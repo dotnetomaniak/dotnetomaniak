@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.625, 10.625" name="Maniak">
+  <DataContextMoniker Name="/ManiakDataContext" />
+  <nestedChildShapes>
+    <classShape Id="e62f32a6-7528-4621-9db0-e48b81725612" absoluteBounds="6.5, 2.375, 2, 4.0785139973958326">
+      <DataClassMoniker Name="/ManiakDataContext/Story" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e3c7cd0a-a121-403c-920a-90acb0953115" absoluteBounds="6.515, 2.835, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="19ea1b0f-3193-4eb2-9bc8-ca500c83b6fb" absoluteBounds="3.125, 1.375, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/ManiakDataContext/Tag" />
+      <nestedChildShapes>
+        <elementListCompartment Id="47526080-fc4b-4f0e-b3b1-acc48675f730" absoluteBounds="3.14, 1.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4db2401f-f08f-4daa-98c6-753a2f80726d" absoluteBounds="3.75, 4.75, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/ManiakDataContext/StoryTag" />
+      <nestedChildShapes>
+        <elementListCompartment Id="19c4cabd-795a-4dde-a787-1ec6ab7027ee" absoluteBounds="3.765, 5.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(6.5 : 5.34699625651042); (5.75 : 5.34699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ManiakDataContext/Story/Story_StoryTag" />
+      <nodes>
+        <classShapeMoniker Id="e62f32a6-7528-4621-9db0-e48b81725612" />
+        <classShapeMoniker Id="4db2401f-f08f-4daa-98c6-753a2f80726d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.53125 : 2.95359537760417); (4.53125 : 4.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ManiakDataContext/Tag/Tag_StoryTag" />
+      <nodes>
+        <classShapeMoniker Id="19ea1b0f-3193-4eb2-9bc8-ca500c83b6fb" />
+        <classShapeMoniker Id="4db2401f-f08f-4daa-98c6-753a2f80726d" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="8d1816b8-9ffb-45a4-b2ab-3b3da1a10001" absoluteBounds="9.625, 0.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/ManiakDataContext/Category" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d86acf82-f4fd-403c-93d4-e3647f1bf259" absoluteBounds="9.64, 1.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(9.90625 : 2.45359537760417); (9.90625 : 2.82054818880208); (8.5 : 2.82054818880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ManiakDataContext/Category/Category_Story" />
+      <nodes>
+        <classShapeMoniker Id="8d1816b8-9ffb-45a4-b2ab-3b3da1a10001" />
+        <classShapeMoniker Id="e62f32a6-7528-4621-9db0-e48b81725612" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="844a0034-2d08-4d5d-ba3a-9bca42629159" absoluteBounds="10.375, 5.25, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/ManiakDataContext/StoryComment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="12d4da28-c20a-46ea-8a7c-618d1f88148f" absoluteBounds="10.39, 5.71, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.5 : 5.85175699869792); (10.1979166666667 : 5.85175699869792 : JumpStart); (10.3645833333333 : 5.85175699869792 : JumpEnd); (10.375 : 5.85175699869792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ManiakDataContext/Story/Story_StoryComment" />
+      <nodes>
+        <classShapeMoniker Id="e62f32a6-7528-4621-9db0-e48b81725612" />
+        <classShapeMoniker Id="844a0034-2d08-4d5d-ba3a-9bca42629159" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="8da663fe-af8c-429d-87c1-a5d8e59ff54f" absoluteBounds="6.375, 7.875, 2, 2.5401025390625">
+      <DataClassMoniker Name="/ManiakDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="09a60daa-91fb-4ecc-82f8-400aa06686f7" absoluteBounds="6.39, 8.335, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.4375 : 7.875); (7.4375 : 6.45351399739583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ManiakDataContext/User/User_Story" />
+      <nodes>
+        <classShapeMoniker Id="8da663fe-af8c-429d-87c1-a5d8e59ff54f" />
+        <classShapeMoniker Id="e62f32a6-7528-4621-9db0-e48b81725612" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.375 : 9.14505126953125); (11.375 : 9.14505126953125); (11.375 : 7.59780110677083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ManiakDataContext/User/User_StoryComment" />
+      <nodes>
+        <classShapeMoniker Id="8da663fe-af8c-429d-87c1-a5d8e59ff54f" />
+        <classShapeMoniker Id="844a0034-2d08-4d5d-ba3a-9bca42629159" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="cb63f200-39d0-49a6-8e77-396b5e1b754a" absoluteBounds="1.75, 7.75, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/ManiakDataContext/UserScore" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c9252c44-8cc0-40a9-89aa-a5ac4acd3a2f" absoluteBounds="1.7650000000000001, 8.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(6.375 : 8.69794840494792); (3.75 : 8.69794840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ManiakDataContext/User/User_UserScore" />
+      <nodes>
+        <classShapeMoniker Id="8da663fe-af8c-429d-87c1-a5d8e59ff54f" />
+        <classShapeMoniker Id="cb63f200-39d0-49a6-8e77-396b5e1b754a" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="446b966d-a846-4b7e-b1c9-ecad26fc5034" absoluteBounds="1.375, 5.625, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/ManiakDataContext/UserTag" />
+      <nestedChildShapes>
+        <elementListCompartment Id="191a8149-1abd-4ca7-8afc-f9477fd3ffc4" absoluteBounds="1.3900000000000001, 6.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.125 : 2.60984537760417); (1.53125 : 2.60984537760417); (1.53125 : 5.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ManiakDataContext/Tag/Tag_UserTag" />
+      <nodes>
+        <classShapeMoniker Id="19ea1b0f-3193-4eb2-9bc8-ca500c83b6fb" />
+        <classShapeMoniker Id="446b966d-a846-4b7e-b1c9-ecad26fc5034" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.40625 : 7.875); (6.40625 : 6.66750325520833); (3.375 : 6.66750325520833)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ManiakDataContext/User/User_UserTag" />
+      <nodes>
+        <classShapeMoniker Id="8da663fe-af8c-429d-87c1-a5d8e59ff54f" />
+        <classShapeMoniker Id="446b966d-a846-4b7e-b1c9-ecad26fc5034" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="5bc70454-1a38-4ff5-9b47-8af804cc764c" absoluteBounds="6.125, 0.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/ManiakDataContext/StoryView" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d7597e79-468a-45b5-80de-97352bdea11a" absoluteBounds="6.14, 0.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.3125 : 2.375); (7.3125 : 2.07859537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ManiakDataContext/Story/Story_StoryView" />
+      <nodes>
+        <classShapeMoniker Id="e62f32a6-7528-4621-9db0-e48b81725612" />
+        <classShapeMoniker Id="5bc70454-1a38-4ff5-9b47-8af804cc764c" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="52f68592-8779-48ed-8449-73cf8345a9c8" absoluteBounds="10.25, 3.25, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/ManiakDataContext/StoryVote" />
+      <nestedChildShapes>
+        <elementListCompartment Id="921a21cb-1252-48c3-99b9-d4ded47bd02e" absoluteBounds="10.265, 3.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.5 : 4.03929768880208); (10.25 : 4.03929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ManiakDataContext/Story/Story_StoryVote" />
+      <nodes>
+        <classShapeMoniker Id="e62f32a6-7528-4621-9db0-e48b81725612" />
+        <classShapeMoniker Id="52f68592-8779-48ed-8449-73cf8345a9c8" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.375 : 8.47877313476562); (10.28125 : 8.47877313476562); (10.28125 : 4.82859537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ManiakDataContext/User/User_StoryVote" />
+      <nodes>
+        <classShapeMoniker Id="8da663fe-af8c-429d-87c1-a5d8e59ff54f" />
+        <classShapeMoniker Id="52f68592-8779-48ed-8449-73cf8345a9c8" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -1,0 +1,3 @@
+Użytkownik <%=name%> (<%=email%>) napisał:
+
+<%=content%>

@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{04A61455-9656-4E67-A8D6-9FBA348F0FB3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kigg.Core</RootNamespace>
+    <AssemblyName>Kigg.Core</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\Kigg.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SqlServer|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\SqlServer\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MySql|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\MySql\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'PublishingRelease|AnyCPU' ">
+    <OutputPath>bin\PublishingRelease\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SharedFiles\CommonAssemblyInfo.cs">
+      <Link>CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="DomainObjects\IAchievement.cs" />
+    <Compile Include="DomainObjects\ICommentSubscribtion.cs" />
+    <Compile Include="DomainObjects\IKnownSource.cs" />
+    <Compile Include="DomainObjects\ITagContainer.cs" />
+    <Compile Include="DomainObjects\IUserAchievement.cs" />
+    <Compile Include="DomainObjects\KnownSourceGrade.cs" />
+    <Compile Include="DomainObjects\Roles.cs" />
+    <Compile Include="DomainObjects\Types.cs" />
+    <Compile Include="DomainObjects\UserAction.cs" />
+    <Compile Include="Extension\CollectionExtension.cs" />
+    <Compile Include="Extension\DateTimeExtension.cs" />
+    <Compile Include="Extension\DomainObjectsExplicitExtension\CategoryExtension.cs" />
+    <Compile Include="Extension\DomainObjectsExplicitExtension\StoryExtension.cs" />
+    <Compile Include="Extension\DomainObjectsExplicitExtension\TagExtension.cs" />
+    <Compile Include="Extension\DomainObjectsExplicitExtension\UserExtension.cs" />
+    <Compile Include="Extension\EnumerableExtension.cs" />
+    <Compile Include="DomainObjects\Extension\TagContainerExtension.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Helper\Constants.cs" />
+    <Compile Include="Helper\DisposableResource.cs" />
+    <Compile Include="Helper\SystemTime.cs" />
+    <Compile Include="Infrastructure\BackgroundTask\BaseBackgroundTask.cs" />
+    <Compile Include="Infrastructure\BackgroundTask\IBackgroundTask.cs" />
+    <Compile Include="Infrastructure\BackgroundTask\SendMail.cs" />
+    <Compile Include="Infrastructure\BackgroundTask\PingServer.cs" />
+    <Compile Include="Infrastructure\BackgroundTask\SendTwitterMessage.cs" />
+    <Compile Include="Infrastructure\Bootstrapper\Bootstrapper.cs" />
+    <Compile Include="Infrastructure\Bootstrapper\CreateDefaultUsers.cs" />
+    <Compile Include="Infrastructure\Bootstrapper\DefaultUser.cs" />
+    <Compile Include="Infrastructure\Bootstrapper\IBootstrapperTask.cs" />
+    <Compile Include="Infrastructure\Bootstrapper\StartBackgroundTasks.cs" />
+    <Compile Include="Infrastructure\EventAggregator\BaseEvent.cs" />
+    <Compile Include="Infrastructure\EventAggregator\BaseEvent`1.cs" />
+    <Compile Include="Infrastructure\EventAggregator\DelegateReference.cs" />
+    <Compile Include="Infrastructure\EventAggregator\EventAggregator.cs" />
+    <Compile Include="Infrastructure\EventAggregator\EventSubscription.cs" />
+    <Compile Include="Infrastructure\EventAggregator\IDelegateReference.cs" />
+    <Compile Include="Infrastructure\EventAggregator\IEventAggregator.cs" />
+    <Compile Include="Infrastructure\EventAggregator\IEventSubscription.cs" />
+    <Compile Include="Infrastructure\EventAggregator\SubscriptionToken.cs" />
+    <Compile Include="Infrastructure\Http\Decorated\CachingHttpForm.cs" />
+    <Compile Include="Infrastructure\Http\Decorated\DecoratedHttpForm.cs" />
+    <Compile Include="Infrastructure\Http\HttpFormGetRequest.cs" />
+    <Compile Include="Infrastructure\Http\HttpFormPostRawRequest.cs" />
+    <Compile Include="Infrastructure\Http\HttpFormPostRequest.cs" />
+    <Compile Include="Infrastructure\Http\HttpFormResponse.cs" />
+    <Compile Include="Infrastructure\Http\IHtmlToStoryContentConverter.cs" />
+    <Compile Include="Infrastructure\Spam\BaseSpamProtection.cs" />
+    <Compile Include="Infrastructure\Spam\Default\BadWordMatchSpamWeightCalculator.cs" />
+    <Compile Include="Infrastructure\Spam\Default\CategoryMatchSpamWeightCalculator.cs" />
+    <Compile Include="Infrastructure\Spam\Default\DefaultSpamProtection.cs" />
+    <Compile Include="Infrastructure\Spam\Default\HyperlinkCountSpamWeightCalculator.cs" />
+    <Compile Include="Infrastructure\Spam\Default\ISpamWeightCalculator.cs" />
+    <Compile Include="Infrastructure\Spam\Default\TagMatchSpamWeightCalculator.cs" />
+    <Compile Include="Infrastructure\Spam\DefensioSpamProtection.cs" />
+    <Compile Include="Infrastructure\Spam\GenericExternalSpamProtection.cs" />
+    <Compile Include="Infrastructure\BackgroundTask\PingStory.cs" />
+    <Compile Include="Infrastructure\Thumbnail\ThumbalizrThumbnail.cs" />
+    <Compile Include="Repository\IAchievementRepository.cs" />
+    <Compile Include="Repository\ICountByStoryRepository.cs" />
+    <Compile Include="Service\ISpamPostprocessor.cs" />
+    <Compile Include="Service\SpamPostprocessor.cs" />
+    <Compile Include="Repository\Decorated\Caching\CachingUserRepository.cs" />
+    <Compile Include="Repository\Decorated\DecoratedUserRepository.cs" />
+    <Compile Include="Repository\Decorated\Logging\LoggingUserRepository.cs" />
+    <Compile Include="Repository\ICommentRepository.cs" />
+    <Compile Include="Repository\ICommentSubscribtionRepository.cs" />
+    <Compile Include="Repository\IMarkAsSpamRepository.cs" />
+    <Compile Include="Repository\IStoryViewRepository.cs" />
+    <Compile Include="Repository\IVoteRepository.cs" />
+    <Compile Include="Service\StoryWeightCalculator\CommentWeight.cs" />
+    <Compile Include="Service\StoryWeightCalculator\FreshnessWeight.cs" />
+    <Compile Include="Service\StoryWeightCalculator\IStoryWeightCalculator.cs" />
+    <Compile Include="Service\IUserScoreTable.cs" />
+    <Compile Include="DomainObjects\IMarkAsSpam.cs" />
+    <Compile Include="DomainObjects\IUniqueNameEntity.cs" />
+    <Compile Include="DomainObjects\IStoryView.cs" />
+    <Compile Include="DomainObjects\IVote.cs" />
+    <Compile Include="Service\PublishedStory.cs" />
+    <Compile Include="Service\StoryWeightCalculator\KnownSourceWeight.cs" />
+    <Compile Include="Service\StoryWeightCalculator\StoryWeightBaseCalculator.cs" />
+    <Compile Include="Service\StoryWeightCalculator\UserScoreWeight.cs" />
+    <Compile Include="Service\StoryWeightCalculator\ViewWeight.cs" />
+    <Compile Include="Service\StoryWeightCalculator\VoteWeight.cs" />
+    <Compile Include="Service\SystemEvents\CommentMarkAsOffendedEvent.cs" />
+    <Compile Include="Service\SystemEvents\CommentSpamEvent.cs" />
+    <Compile Include="Service\SystemEvents\CommentSubmitEvent.cs" />
+    <Compile Include="Service\SystemEvents\PossibleSpamCommentEvent.cs" />
+    <Compile Include="Service\SystemEvents\PossibleSpamStoryEvent.cs" />
+    <Compile Include="Service\SystemEvents\StoryApproveEvent.cs" />
+    <Compile Include="Service\SystemEvents\StoryDeleteEvent.cs" />
+    <Compile Include="Service\SystemEvents\StoryDemoteEvent.cs" />
+    <Compile Include="Service\SystemEvents\StoryIncorrectlyMarkedAsSpamEvent.cs" />
+    <Compile Include="Service\SystemEvents\StoryMarkAsSpamEvent.cs" />
+    <Compile Include="Service\SystemEvents\StoryPromoteEvent.cs" />
+    <Compile Include="Service\SystemEvents\StoryPublishEvent.cs" />
+    <Compile Include="Service\SystemEvents\StorySpamEvent.cs" />
+    <Compile Include="Service\SystemEvents\StorySubmitEvent.cs" />
+    <Compile Include="Service\SystemEvents\StoryUnmarkAsSpamEvent.cs" />
+    <Compile Include="Service\SystemEvents\StoryViewEvent.cs" />
+    <Compile Include="Service\SystemEvents\UserActivateEvent.cs" />
+    <Compile Include="Service\UserScoreTable.cs" />
+    <Compile Include="Infrastructure\Http\StoryContent.cs" />
+    <Compile Include="DomainObjects\Extension\StoryExtension.cs" />
+    <Compile Include="Extension\GuidExtension.cs" />
+    <Compile Include="DomainObjects\Extension\UserExtension.cs" />
+    <Compile Include="Infrastructure\Configuration\ConfigurationManagerWrapper.cs" />
+    <Compile Include="Infrastructure\Configuration\IConfigurationManager.cs" />
+    <Compile Include="Infrastructure\File\FileWrapper.cs" />
+    <Compile Include="Infrastructure\File\IFile.cs" />
+    <Compile Include="Infrastructure\Http\ContentService.cs" />
+    <Compile Include="Infrastructure\Http\IHtmlSanitizer.cs" />
+    <Compile Include="Infrastructure\Http\Decorated\CachingContentService.cs" />
+    <Compile Include="Infrastructure\Http\Decorated\DecoratedContentService.cs" />
+    <Compile Include="Infrastructure\Http\Decorated\LoggingContentService.cs" />
+    <Compile Include="Infrastructure\Http\HttpForm.cs" />
+    <Compile Include="Infrastructure\Http\IContentService.cs" />
+    <Compile Include="Infrastructure\Http\IHttpForm.cs" />
+    <Compile Include="Infrastructure\Spam\ISpamProtection.cs" />
+    <Compile Include="Infrastructure\Spam\SpamCheckContent.cs" />
+    <Compile Include="Infrastructure\Thumbnail\IThumbnail.cs" />
+    <Compile Include="Infrastructure\Thumbnail\PageGlimpseThumbnail.cs" />
+    <Compile Include="Infrastructure\Thumbnail\ThumbnailSize.cs" />
+    <Compile Include="Infrastructure\Thumbnail\WebSnaprThumbnail.cs" />
+    <Compile Include="Repository\Decorated\Caching\CachingStoryRepository.cs" />
+    <Compile Include="Repository\IKnownSourceRepository.cs" />
+    <Compile Include="Repository\IUniqueNameEntityRepository.cs" />
+    <Compile Include="Repository\Decorated\Caching\CachingCategoryRepository.cs" />
+    <Compile Include="Repository\Decorated\Caching\CachingTagRepository.cs" />
+    <Compile Include="Repository\Decorated\DecoratedCategoryRepository.cs" />
+    <Compile Include="Repository\Decorated\DecoratedStoryRepository.cs" />
+    <Compile Include="Repository\Decorated\DecoratedTagRepository.cs" />
+    <Compile Include="DomainObjects\IDomainObjectFactory.cs" />
+    <Compile Include="Helper\PagedResult.cs" />
+    <Compile Include="Configuration\ConfigurationSettings.cs" />
+    <Compile Include="Configuration\IConfigurationSettings.cs" />
+    <Compile Include="DomainObjects\IComment.cs" />
+    <Compile Include="DomainObjects\IStory.cs" />
+    <Compile Include="DomainObjects\IUser.cs" />
+    <Compile Include="DomainObjects\ITag.cs" />
+    <Compile Include="DomainObjects\ICategory.cs" />
+    <Compile Include="DomainObjects\IEntity.cs" />
+    <Compile Include="Helper\CheckArgument.cs" />
+    <Compile Include="Extension\StringExtension.cs" />
+    <Compile Include="Infrastructure\Caching\Cache.cs" />
+    <Compile Include="Infrastructure\Caching\ICache.cs" />
+    <Compile Include="Infrastructure\IoC\DependencyResolverFactory.cs" />
+    <Compile Include="Infrastructure\IoC\IDependencyResolver.cs" />
+    <Compile Include="Infrastructure\IoC\IDependencyResolverFactory.cs" />
+    <Compile Include="Infrastructure\IoC\IoC.cs" />
+    <Compile Include="Infrastructure\Logging\ILog.cs" />
+    <Compile Include="Infrastructure\Logging\Log.cs" />
+    <Compile Include="Infrastructure\UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\UnitOfWork\UnitOfWork.cs" />
+    <Compile Include="Repository\Decorated\Logging\LoggingCategoryRepository.cs" />
+    <Compile Include="Repository\Decorated\Logging\LoggingStoryRepository.cs" />
+    <Compile Include="Repository\Decorated\Logging\LoggingTagRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IStoryRepository.cs" />
+    <Compile Include="Repository\ICategoryRepository.cs" />
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\ITagRepository.cs" />
+    <Compile Include="Infrastructure\Mail\EmailSender.cs" />
+    <Compile Include="Infrastructure\Mail\IEmailSender.cs" />
+    <Compile Include="Repository\IUserRepository.cs" />
+    <Compile Include="Service\BaseServiceResult.cs" />
+    <Compile Include="Service\CommentCreateResult.cs" />
+    <Compile Include="Service\IStoryService.cs" />
+    <Compile Include="Service\StoryService.cs" />
+    <Compile Include="Service\StoryCreateResult.cs" />
+    <Compile Include="Service\UserScoreService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Diagrams\DomainObjects.cd" />
+    <None Include="Diagrams\Repositories.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,94 @@
+MICROSOFT Code Sharing License
+
+These license terms are an agreement between Microsoft Corporation (or based on where you live, one of its affiliates) and you. Please read them. They apply to any software covered by this license, which includes the media on which you received it, if any. The terms also apply to any Microsoft
+• updates,
+• supplements,
+• Internet-based services, and 
+• support services
+
+for this software, unless other terms accompany those items. If so, those terms apply.
+
+By using any software covered by this license, you accept these terms. If you do not accept them, do not use any software covered by this license.
+
+If you comply with these license terms, you have the rights below.
+
+1. Definitions
+
+a. “Original Software” is the software provided by Microsoft in its original form before any derivative works are created, but including any bug fixes or other modifications subsequently supplied by Microsoft.
+
+b. An “Extensible Licensed Product” is a Microsoft product that the Original Software communicates with via an API, file format, schema, network protocol, or other interoperation or extension mechanism.
+
+c. The “Licensed Platform” is the execution environment on which the Original Software functioned, such as a Microsoft Windows operating system, Windows Azure, or Windows Mobile Phone.
+
+d. A “Derived Software Work” is software based on the Original Software or based on another Derived Software Work, and that:
+(1.d.1) runs on the Licensed Platform, and
+(1.d.2) extends or interoperates with the same Extensible Licensed Products as the Original Software. 
+
+
+Software modified, hosted, or ported to (1) run on a different platform or (2) extend or interoperate with a product other than the Extensible Licensed Product(s) is not a Derived Software Work.
+
+2. INSTALLATION AND USE RIGHTS. 
+• You may install and use any number of copies of the Original Software or Derived Software Work on your devices running validly licensed copies of the Extensible Licensed Products.
+
+• The license terms and use rights in this agreement extend only to the Original Software or Derived Software Works. 
+
+• Subject to the terms of this license Microsoft grants you a non-exclusive, worldwide, royalty-free license under its patents to make, have made, use, sell, offer for sale, import, and/or otherwise dispose of its contribution in the Original Software. Patents licensed under this grant are limited to those patents that cover Microsoft’s code as it appears in the Original Software or Derived Software Works. Microsoft does not grant an express or implied license to patents that cover non-Microsoft code in Derived Software Works.
+
+3. ADDITIONAL LICENSING REQUIREMENTS AND/OR USE RIGHTS.
+
+i. Right to Use and Distribute. 
+
+• Code Distribution. You may copy and distribute the source and object code form of the Original Software or Derived Software Work including for commercial use.
+
+• Modifications Made By You or Third Parties. You may modify the Original Software or Derived Software Work only to create another Derived Software Work. You agree that Microsoft is not responsible for any problems that result from modifications made or distributed by you or a third party (including any third party acting on your behalf). You may not make any modification that creates a work that is not a Derived Software Work.
+
+• Service and Support for Modified Code. You agree that Microsoft does not, and will not have any obligation to provide service releases, technical or other support for any modifications to the Original Software, Derived Software Work, or programs made by you or any third party (including any third party acting on your behalf) whether they are a Derived Software Work or not. 
+ii. Distribution Requirements: In order to distribute the Original Software or Derived Software Works, you must
+
+• require distributors and external end users to agree to terms that protect the Original Software or Derived Software Works at least as much as this agreement; 
+
+• display your valid copyright notice on your programs; and
+
+• indemnify, defend, and hold harmless Microsoft from any claims, including attorneys’ fees, related to the distribution or use of Derived Software Works that you create.
+
+iii. Distribution Restrictions. You may not
+
+• alter any copyright, trademark or patent notice in the Original Software or Derived Software Works; 
+
+• use Microsoft’s trademarks in Derived Software Works’ names or in a way that suggests your programs come from or are endorsed by Microsoft; 
+
+• include the Original Software or Derived Software Works in malicious, deceptive or unlawful programs;
+
+• distribute any work based on this code that is not a Derived Software Work; or
+
+• distribute the source code of the Original Software or Derived Software Work so that any part of it becomes subject to an Excluded License. An Excluded License is one that requires, as a condition of use, modification or distribution, that
+
+• the code be disclosed or distributed in source code form; or 
+
+• others have the right to modify it.
+
+4. TERMINATION. In the event that you sue Microsoft for patent or copyright infringement and assert a claim against the Original Software, a Derived Software Work, an Extensible Licensed Product, or the Licensed Platform, your rights under this agreement, including all copyright and patent licenses from Microsoft, terminate.
+
+5. SCOPE OF LICENSE. The Original Software and Derived Software Works are licensed, not sold. This agreement only gives you some rights to use the Original Software or Derived Software Works. Microsoft reserves all other rights. Unless applicable law gives you more rights despite this limitation, you may use the Original Software or Derived Software Works only as expressly permitted in this agreement. You may not use the Original Software or Derived Software Works for commercial software hosting services unless the Original Software was expressly intended to be used in a commercial software hosting service.
+
+6. EXPORT RESTRICTIONS. The Original Software or Derived Software Works may be subject to United States export laws and regulations. You must comply with all domestic and international export laws and regulations that apply the Original Software or Derived Software Works. These laws include restrictions on destinations, end users and end use. For additional information, see www.microsoft.com/exporting.
+
+7. SUPPORT SERVICES. Because the Original Software or Derived Software Works are “as is,” we may not provide support services for it.
+
+8. ENTIRE AGREEMENT. This agreement, and the terms for supplements, updates, Internet-based services and support services that you use, are the entire agreement.
+
+9. APPLICABLE LAW.
+
+a. United States. If you acquired the Original Software or Derived Software Works in the United States, Washington state law governs the interpretation of this agreement and applies to claims for breach of it, regardless of conflict of laws principles. The laws of the state where you live govern all other claims, including claims under state consumer protection laws, unfair competition laws, and in tort.
+
+b. Outside the United States. If you acquired the Original Software or Derived Software Works in any other country, the laws of that country apply.
+
+10. LEGAL EFFECT. This agreement describes certain legal rights. You may have other rights under the laws of your country. You may also have rights with respect to the party from whom you acquired the Original Software or Derived Software Works. This agreement does not change your rights under the laws of your country if the laws of your country do not permit it to do so.
+
+11. DISCLAIMER OF WARRANTY. The Original Software or Derived Software Works are licensed “as-is.” You bear the risk of using it. Microsoft gives no express warranties, guarantees or conditions. You may have additional consumer rights under your local laws which this agreement cannot change. To the extent permitted under your local laws, Microsoft excludes the implied warranties of merchantability, fitness for a particular purpose and non-infringement.
+
+12. LIMITATION ON AND EXCLUSION OF REMEDIES AND DAMAGES. You can recover from Microsoft and its suppliers only direct damages up to U.S. $5.00. You cannot recover any other damages, including consequential, lost profits, special, indirect or incidental damages.
+This limitation applies to
+• anything related to the Original Software or Derived Software Works, services, content (including code) on third party Internet sites, or third party programs; and
+• claims for breach of contract, breach of warranty, guarantee or condition, strict liability, negligence, or other tort to the extent permitted by applicable law.
+It also applies even if Microsoft knew or should have known about the possibility of the damages. The above limitation or exclusion may not apply to you because your country may not allow the exclusion or limitation of incidental, consequential or other damages.

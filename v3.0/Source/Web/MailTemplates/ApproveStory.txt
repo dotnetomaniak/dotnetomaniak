@@ -1,0 +1,6 @@
+﻿Artykuł został zaakceptowany przez <%=approvedByUserName%>:
+
+Tytuł: <%=title%>
+Adres: <%=siteUrl%>
+Adres źródłowy: <%=originalUrl%>
+Dodany przez: <%=postedByUserName%>

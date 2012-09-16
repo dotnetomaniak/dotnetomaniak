@@ -1,0 +1,6 @@
+Poniższy artykuł został oznaczony jako spam przez użytkownika <%=markedByUserName%>:
+
+Tytuł: <%=title%>
+Url: <%=siteUrl%>
+Źródłowy Url: <%=originalUrl%>
+Użytkownik: <%=postedByUserName%>

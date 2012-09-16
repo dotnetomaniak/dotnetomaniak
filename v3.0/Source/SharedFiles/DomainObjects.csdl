@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Kigg.EF.DomainObjects" Alias="Self" 
+        xmlns="http://schemas.microsoft.com/ado/2006/04/edm"
+        xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+  <EntityContainer Name="KiggEntityContainer">
+    <EntitySet a:MethodAccess="Private" a:GetterAccess="Private" Name="Category" EntityType="Kigg.EF.DomainObjects.Category" />
+    <EntitySet a:MethodAccess="Private" a:GetterAccess="Private" Name="KnownSource" EntityType="Kigg.EF.DomainObjects.KnownSource" />
+    <EntitySet a:MethodAccess="Private" a:GetterAccess="Private" Name="Story" EntityType="Kigg.EF.DomainObjects.Story" />
+    <EntitySet a:MethodAccess="Private" a:GetterAccess="Private" Name="StoryComment" EntityType="Kigg.EF.DomainObjects.StoryComment" />
+    <EntitySet a:MethodAccess="Private" a:GetterAccess="Private" Name="StoryMarkAsSpam" EntityType="Kigg.EF.DomainObjects.StoryMarkAsSpam" />
+    <EntitySet a:MethodAccess="Private" a:GetterAccess="Private" Name="StoryView" EntityType="Kigg.EF.DomainObjects.StoryView" />
+    <EntitySet a:MethodAccess="Private" a:GetterAccess="Private" Name="StoryVote" EntityType="Kigg.EF.DomainObjects.StoryVote" />
+    <EntitySet a:MethodAccess="Private" a:GetterAccess="Private" Name="Tag" EntityType="Kigg.EF.DomainObjects.Tag" />
+    <EntitySet a:MethodAccess="Private" a:GetterAccess="Private" Name="UserDataSource" EntityType="Kigg.EF.DomainObjects.User" />
+    <EntitySet a:MethodAccess="Private" a:GetterAccess="Private" Name="UserScore" EntityType="Kigg.EF.DomainObjects.UserScore" />
+    <!--<EntitySet a:MethodAccess="Public" a:GetterAccess="Public" Name="StorySearchResult" EntityType="Kigg.EF.DomainObjects.StorySearchResult" />
+    <EntitySet a:MethodAccess="Public" a:GetterAccess="Public" Name="CommentSearchResult" EntityType="Kigg.EF.DomainObjects.CommentSearchResult" />-->
+    <AssociationSet Name="FK_Story_Category" Association="Kigg.EF.DomainObjects.FK_Story_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Story" EntitySet="Story" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Story_User" Association="Kigg.EF.DomainObjects.FK_Story_User">
+      <End Role="User" EntitySet="UserDataSource" />
+      <End Role="Story" EntitySet="Story" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoryComment_Story" Association="Kigg.EF.DomainObjects.FK_StoryComment_Story">
+      <End Role="Story" EntitySet="Story" />
+      <End Role="StoryComment" EntitySet="StoryComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoryMarkAsSpam_Story" Association="Kigg.EF.DomainObjects.FK_StoryMarkAsSpam_Story">
+      <End Role="Story" EntitySet="Story" />
+      <End Role="StoryMarkAsSpam" EntitySet="StoryMarkAsSpam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoryView_Story" Association="Kigg.EF.DomainObjects.FK_StoryView_Story">
+      <End Role="Story" EntitySet="Story" />
+      <End Role="StoryView" EntitySet="StoryView" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoryVote_Story" Association="Kigg.EF.DomainObjects.FK_StoryVote_Story">
+      <End Role="Story" EntitySet="Story" />
+      <End Role="StoryVote" EntitySet="StoryVote" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoryComment_User" Association="Kigg.EF.DomainObjects.FK_StoryComment_User">
+      <End Role="User" EntitySet="UserDataSource" />
+      <End Role="StoryComment" EntitySet="StoryComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoryMarkAsSpam_User" Association="Kigg.EF.DomainObjects.FK_StoryMarkAsSpam_User">
+      <End Role="User" EntitySet="UserDataSource" />
+      <End Role="StoryMarkAsSpam" EntitySet="StoryMarkAsSpam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoryVote_User" Association="Kigg.EF.DomainObjects.FK_StoryVote_User">
+      <End Role="User" EntitySet="UserDataSource" />
+      <End Role="StoryVote" EntitySet="StoryVote" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserScore_User" Association="Kigg.EF.DomainObjects.FK_UserScore_User">
+      <End Role="User" EntitySet="UserDataSource" />
+      <End Role="UserScore" EntitySet="UserScore" />
+    </AssociationSet>
+    <AssociationSet Name="CommentSubscribtion" Association="Kigg.EF.DomainObjects.CommentSubscribtion">
+      <End Role="Story" EntitySet="Story" />
+      <End Role="User" EntitySet="UserDataSource" />
+    </AssociationSet>
+    <AssociationSet Name="StoryTag" Association="Kigg.EF.DomainObjects.StoryTag">
+      <End Role="Story" EntitySet="Story" />
+      <End Role="Tag" EntitySet="Tag" />
+    </AssociationSet>
+    <AssociationSet Name="UserTag" Association="Kigg.EF.DomainObjects.UserTag">
+      <End Role="Tag" EntitySet="Tag" />
+      <End Role="User" EntitySet="UserDataSource" />
+    </AssociationSet>
+    <!--<FunctionImport Name="StorySearch"
+      EntitySet="StorySearchResult" ReturnType="Collection(Self.StorySearchResult)">
+      <Parameter Name="query" Type="String" Mode="In">
+      </Parameter>
+    </FunctionImport>
+    <FunctionImport Name="CommentSearch"
+          EntitySet="CommentSearchResult" ReturnType="Collection(Self.CommentSearchResult)">
+      <Parameter Name="query" Type="String" Mode="In">
+      </Parameter>
+    </FunctionImport>-->
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property a:SetterAccess="Public" Name="Id" Type="Guid" Nullable="false" />
+    <Property a:SetterAccess="Public" Name="UniqueName" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+    <Property a:SetterAccess="Public" Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+    <Property a:SetterAccess="Public" Name="CreatedAt" Type="DateTime" Nullable="false" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="Stories" Relationship="Kigg.EF.DomainObjects.FK_Story_Category" FromRole="Category" ToRole="Story" />
+  </EntityType>
+  <EntityType Name="KnownSource">
+    <Key>
+      <PropertyRef Name="Url" />
+    </Key>
+    <Property Name="Url" Type="String" Nullable="false" MaxLength="450" Unicode="true" FixedLength="false" />
+    <Property a:GetterAccess="Public" a:SetterAccess="Public" Name="SourceGrade" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Story">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="UniqueName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="HtmlDescription" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="TextDescription" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Url" Type="String" Nullable="false" MaxLength="2048" Unicode="true" FixedLength="false" />
+    <Property Name="UrlHash" Type="String" Nullable="false" MaxLength="24" Unicode="true" FixedLength="true" />
+    <Property a:GetterAccess="Public" a:SetterAccess="Public" Name="IpAddress" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property a:SetterAccess="Public" Name="CreatedAt" Type="DateTime" Nullable="false" />
+    <Property a:SetterAccess="Public" Name="LastActivityAt" Type="DateTime" Nullable="false" />
+    <Property a:SetterAccess="Public" Name="ApprovedAt" Type="DateTime" />
+    <Property a:SetterAccess="Public" Name="PublishedAt" Type="DateTime" />
+    <Property a:SetterAccess="Public" Name="Rank" Type="Int32" />
+    <Property a:SetterAccess="Public" Name="LastProcessedAt" Type="DateTime" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="Category" Relationship="Kigg.EF.DomainObjects.FK_Story_Category" FromRole="Story" ToRole="Category" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="User" Relationship="Kigg.EF.DomainObjects.FK_Story_User" FromRole="Story" ToRole="User" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="StoryCommentsInternal" Relationship="Kigg.EF.DomainObjects.FK_StoryComment_Story" FromRole="Story" ToRole="StoryComment" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="StoryMarkAsSpamsInternal" Relationship="Kigg.EF.DomainObjects.FK_StoryMarkAsSpam_Story" FromRole="Story" ToRole="StoryMarkAsSpam" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="StoryViewsInternal" Relationship="Kigg.EF.DomainObjects.FK_StoryView_Story" FromRole="Story" ToRole="StoryView" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="StoryVotesInternal" Relationship="Kigg.EF.DomainObjects.FK_StoryVote_Story" FromRole="Story" ToRole="StoryVote" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="CommentSubscribersInternal" Relationship="Kigg.EF.DomainObjects.CommentSubscribtion" FromRole="Story" ToRole="User" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="StoryTagsInternal" Relationship="Kigg.EF.DomainObjects.StoryTag" FromRole="Story" ToRole="Tag" />
+  </EntityType>
+  <EntityType Name="StoryComment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="HtmlBody" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="TextBody" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property a:SetterAccess="Public" Name="CreatedAt" Type="DateTime" Nullable="false" />
+    <Property a:SetterAccess="Public" a:GetterAccess="Public" Name="IpAddress" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property a:SetterAccess="Public" Name="IsOffended" Type="Boolean" Nullable="false" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="Story" Relationship="Kigg.EF.DomainObjects.FK_StoryComment_Story" FromRole="StoryComment" ToRole="Story" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="User" Relationship="Kigg.EF.DomainObjects.FK_StoryComment_User" FromRole="StoryComment" ToRole="User" />
+  </EntityType>
+  <EntityType Name="StoryMarkAsSpam">
+    <Key>
+      <PropertyRef Name="StoryId" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="StoryId" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property a:SetterAccess="Public" a:GetterAccess="Public" Name="IpAddress" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property a:SetterAccess="Public" a:GetterAccess="Public" Name="Timestamp" Type="DateTime" Nullable="false" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="Story" Relationship="Kigg.EF.DomainObjects.FK_StoryMarkAsSpam_Story" FromRole="StoryMarkAsSpam" ToRole="Story" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="User" Relationship="Kigg.EF.DomainObjects.FK_StoryMarkAsSpam_User" FromRole="StoryMarkAsSpam" ToRole="User" />
+  </EntityType>
+  <EntityType Name="StoryView">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property a:SetterAccess="Public" Name="Id" Type="Int64" Nullable="false" />
+    <Property a:GetterAccess="Public" a:SetterAccess="Public" Name="Timestamp" Type="DateTime" Nullable="false" />
+    <Property a:GetterAccess="Public" a:SetterAccess="Public" Name="IpAddress" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="Story" Relationship="Kigg.EF.DomainObjects.FK_StoryView_Story" FromRole="StoryView" ToRole="Story" />
+  </EntityType>
+  <EntityType Name="StoryVote">
+    <Key>
+      <PropertyRef Name="StoryId" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="StoryId" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property a:GetterAccess="Public" a:SetterAccess="Public" Name="IpAddress" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property a:GetterAccess="Public" a:SetterAccess="Public" Name="Timestamp" Type="DateTime" Nullable="false" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="Story" Relationship="Kigg.EF.DomainObjects.FK_StoryVote_Story" FromRole="StoryVote" ToRole="Story" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="User" Relationship="Kigg.EF.DomainObjects.FK_StoryVote_User" FromRole="StoryVote" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Tag">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property a:SetterAccess="Public" Name="Id" Type="Guid" Nullable="false" />
+    <Property a:SetterAccess="Public" Name="UniqueName" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+    <Property a:SetterAccess="Public" Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+    <Property a:SetterAccess="Public" Name="CreatedAt" Type="DateTime" Nullable="false" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="StoriesInternal" Relationship="Kigg.EF.DomainObjects.StoryTag" FromRole="Tag" ToRole="Story" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="UsersInternal" Relationship="Kigg.EF.DomainObjects.UserTag" FromRole="Tag" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property a:SetterAccess="Public" Name="Id" Type="Guid" Nullable="false" />
+    <Property a:SetterAccess="Public" Name="UserName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property a:SetterAccess="Public" Name="Password" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+    <Property a:SetterAccess="Public" Name="Email" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property a:SetterAccess="Public" Name="IsLockedOut" Type="Boolean" Nullable="false" />
+    <Property a:GetterAccess="Public" a:SetterAccess="Public" Name="AssignedRole" Type="Int32" Nullable="false" />
+    <Property Name="LastActivityAt" Type="DateTime" Nullable="false" />
+    <Property a:SetterAccess="Public" Name="CreatedAt" Type="DateTime" Nullable="false" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="SubmittedStoriesInternal" Relationship="Kigg.EF.DomainObjects.FK_Story_User" FromRole="User" ToRole="Story" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="SubmittedCommentsInternal" Relationship="Kigg.EF.DomainObjects.FK_StoryComment_User" FromRole="User" ToRole="StoryComment" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="SubmittedSpamsInternal" Relationship="Kigg.EF.DomainObjects.FK_StoryMarkAsSpam_User" FromRole="User" ToRole="StoryMarkAsSpam" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="SubmittedStoryVotesInternal" Relationship="Kigg.EF.DomainObjects.FK_StoryVote_User" FromRole="User" ToRole="StoryVote" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="UserScoreInternal" Relationship="Kigg.EF.DomainObjects.FK_UserScore_User" FromRole="User" ToRole="UserScore" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="CommentSubscriptionsInternal" Relationship="Kigg.EF.DomainObjects.CommentSubscribtion" FromRole="User" ToRole="Story" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="UserTagsInternal" Relationship="Kigg.EF.DomainObjects.UserTag" FromRole="User" ToRole="Tag" />
+  </EntityType>
+  <EntityType Name="UserScore">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property a:GetterAccess="Public" a:SetterAccess="Public" Name="Id" Type="Int64" Nullable="false" />
+    <Property a:GetterAccess="Public" a:SetterAccess="Public" Name="Timestamp" Type="DateTime" Nullable="false" />
+    <Property a:GetterAccess="Public" a:SetterAccess="Public" Name="Action" Type="Int32" Nullable="false" />
+    <Property a:GetterAccess="Public" a:SetterAccess="Public" Name="Score" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+    <NavigationProperty a:GetterAccess="Public" a:SetterAccess="Public" Name="User" Relationship="Kigg.EF.DomainObjects.FK_UserScore_User" FromRole="UserScore" ToRole="User" />
+  </EntityType>
+  <!--<EntityType Name="StorySearchResult">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property a:GetterAccess="Public" a:SetterAccess="Public" Name="Id" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CommentSearchResult">
+    <Key>
+      <PropertyRef Name="StoryId" />
+    </Key>
+    <Property a:GetterAccess="Public" a:SetterAccess="Public" Name="StoryId" Type="Guid" Nullable="false" />
+  </EntityType>-->
+  <Association Name="FK_Story_Category">
+    <End Role="Category" Type="Kigg.EF.DomainObjects.Category" Multiplicity="1" />
+    <End Role="Story" Type="Kigg.EF.DomainObjects.Story" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_Story_User">
+    <End Role="User" Type="Kigg.EF.DomainObjects.User" Multiplicity="1" />
+    <End Role="Story" Type="Kigg.EF.DomainObjects.Story" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_StoryComment_Story">
+    <End Role="Story" Type="Kigg.EF.DomainObjects.Story" Multiplicity="1" />
+    <End Role="StoryComment" Type="Kigg.EF.DomainObjects.StoryComment" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_StoryMarkAsSpam_Story">
+    <End Role="Story" Type="Kigg.EF.DomainObjects.Story" Multiplicity="1" />
+    <End Role="StoryMarkAsSpam" Type="Kigg.EF.DomainObjects.StoryMarkAsSpam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Story">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StoryMarkAsSpam">
+        <PropertyRef Name="StoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoryView_Story">
+    <End Role="Story" Type="Kigg.EF.DomainObjects.Story" Multiplicity="1" />
+    <End Role="StoryView" Type="Kigg.EF.DomainObjects.StoryView" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_StoryVote_Story">
+    <End Role="Story" Type="Kigg.EF.DomainObjects.Story" Multiplicity="1" />
+    <End Role="StoryVote" Type="Kigg.EF.DomainObjects.StoryVote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Story">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StoryVote">
+        <PropertyRef Name="StoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoryComment_User">
+    <End Role="User" Type="Kigg.EF.DomainObjects.User" Multiplicity="1" />
+    <End Role="StoryComment" Type="Kigg.EF.DomainObjects.StoryComment" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_StoryMarkAsSpam_User">
+    <End Role="User" Type="Kigg.EF.DomainObjects.User" Multiplicity="1" />
+    <End Role="StoryMarkAsSpam" Type="Kigg.EF.DomainObjects.StoryMarkAsSpam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StoryMarkAsSpam">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoryVote_User">
+    <End Role="User" Type="Kigg.EF.DomainObjects.User" Multiplicity="1" />
+    <End Role="StoryVote" Type="Kigg.EF.DomainObjects.StoryVote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StoryVote">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserScore_User">
+    <End Role="User" Type="Kigg.EF.DomainObjects.User" Multiplicity="1" />
+    <End Role="UserScore" Type="Kigg.EF.DomainObjects.UserScore" Multiplicity="*" />
+  </Association>
+  <Association Name="CommentSubscribtion">
+    <End Role="Story" Type="Kigg.EF.DomainObjects.Story" Multiplicity="*" />
+    <End Role="User" Type="Kigg.EF.DomainObjects.User" Multiplicity="*" />
+  </Association>
+  <Association Name="StoryTag">
+    <End Role="Story" Type="Kigg.EF.DomainObjects.Story" Multiplicity="*" />
+    <End Role="Tag" Type="Kigg.EF.DomainObjects.Tag" Multiplicity="*" />
+  </Association>
+  <Association Name="UserTag">
+    <End Role="Tag" Type="Kigg.EF.DomainObjects.Tag" Multiplicity="*" />
+    <End Role="User" Type="Kigg.EF.DomainObjects.User" Multiplicity="*" />
+  </Association>
+</Schema>

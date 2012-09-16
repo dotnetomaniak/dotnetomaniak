@@ -1,0 +1,5 @@
+Poniższy komentarz został oznaczony jako obraźliwy przez użytkownika <%=offendedByUserName%>:
+
+Url: <%=siteUrl%>
+Użytkownik: <%=postedByUserName%>
+Komentarz: <%=comment%>

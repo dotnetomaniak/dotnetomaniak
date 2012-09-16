@@ -1,0 +1,6 @@
+AuthName ZabezpieczonaWitryna
+                    AuthType Basic
+                    AuthUserFile .htpasswd
+                    Require valid-user
+		    
+beta:{SHA}lbM2ZThzUGeoST6A/yOz9zoLTII=

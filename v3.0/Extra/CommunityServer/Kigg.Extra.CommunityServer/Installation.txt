@@ -1,0 +1,18 @@
+﻿Installation Notes
+==================
+
+1. Copy Kigg.Extra.CommunityServer.dll into the bin directory.
+2. Open the communityserver.config file in your prefered text editor.
+3. Add <add name="DotNetShoutout" type="Kigg.Extra.CommunityServer.DotNetShoutout, Kigg.Extra.CommunityServer"/> under the <CSModules> Node. like the following (use only one):
+  <!--  Community Server Modules -->
+  <CSModules>
+    <!-- Default Color -->
+    <add name = "DotNetShoutout" type = "Kigg.Extra.CommunityServer.DotNetShoutout, Kigg.Extra.CommunityServer"/>
+    <!-- Different Color -->
+    <add name = "DotNetShoutout" type = "Kigg.Extra.CommunityServer.DotNetShoutout, Kigg.Extra.CommunityServer" borderColor="cc2211" textBackColor="dd4455" textForeColor="124527" countBackColor="abccda" countForeColor="256129"/>
+    .....
+    .....
+    Other Modules
+    .....
+    .....
+  </CSModules>

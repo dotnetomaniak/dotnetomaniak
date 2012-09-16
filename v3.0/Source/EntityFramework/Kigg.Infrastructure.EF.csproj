@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7AEA11B2-945D-42FB-A9F0-97745DA88393}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kigg.Infrastructure.EF</RootNamespace>
+    <AssemblyName>Kigg.Infrastructure.EF</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\Kigg.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SqlServer|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\SqlServer\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MySql|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\MySql\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'PublishingRelease|AnyCPU' ">
+    <OutputPath>bin\PublishingRelease\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.0.3.0, Culture=neutral, PublicKeyToken=92c3c527cdfe7566, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\MySqlClient\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity, Version=6.0.3.0, Culture=neutral, PublicKeyToken=92c3c527cdfe7566, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\MySqlClient\MySql.Data.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SharedFiles\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="DomainObjects\Category.cs" />
+    <Compile Include="DomainObjects\DomainObjectFactory.cs" />
+    <Compile Include="DomainObjects\Helpers\EntityReference.cs" />
+    <Compile Include="DomainObjects\Helpers\IEntityReference.cs" />
+    <Compile Include="DomainObjects\KnownSource.cs" />
+    <Compile Include="DomainObjects\Generated\Models.cs" />
+    <Compile Include="DomainObjects\Story.cs" />
+    <Compile Include="DomainObjects\StoryComment.cs" />
+    <Compile Include="DomainObjects\StoryMarkAsSpam.cs" />
+    <Compile Include="DomainObjects\StoryView.cs" />
+    <Compile Include="DomainObjects\StoryVote.cs" />
+    <Compile Include="DomainObjects\Tag.cs" />
+    <Compile Include="DomainObjects\User.cs" />
+    <Compile Include="DomainObjects\CommentSubscribtion.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="DomainObjects\Helpers\EntityCollection.cs" />
+    <Compile Include="DomainObjects\Helpers\IEntityCollection.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\BaseRepository.cs" />
+    <Compile Include="Repository\CategoryRepository.cs" />
+    <Compile Include="Repository\CommentRepository.cs" />
+    <Compile Include="Repository\CommentSubscribtionRepository.cs" />
+    <Compile Include="Repository\CompiledQueries\CategoryRepository.cs" />
+    <Compile Include="Repository\CompiledQueries\StoryRepository.cs" />
+    <Compile Include="Repository\CompiledQueries\TagRepository.cs" />
+    <Compile Include="Repository\CompiledQueries\UserRepository.cs" />
+    <Compile Include="Repository\Database\ConnectionString.cs" />
+    <Compile Include="Repository\Database\Database.cs" />
+    <Compile Include="Repository\Database\DatabaseFactory.cs" />
+    <Compile Include="Repository\Helpers\DataLoadOptions.cs" />
+    <Compile Include="DomainObjects\Helpers\EntityHelper.cs" />
+    <Compile Include="Repository\Helpers\UniqueNameGenerator.cs" />
+    <Compile Include="Repository\Database\IConnectionString.cs" />
+    <Compile Include="Repository\Database\IDatabase.cs" />
+    <Compile Include="Repository\Database\IDatabaseFactory.cs" />
+    <Compile Include="Repository\KnownSourceRepository.cs" />
+    <Compile Include="Repository\MarkAsSpamRepository.cs" />
+    <Compile Include="Repository\StoryRepository.cs" />
+    <Compile Include="Repository\StoryViewRepository.cs" />
+    <Compile Include="Repository\TagRepository.cs" />
+    <Compile Include="Repository\Database\UnitOfWork.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="Repository\VoteRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Kigg.Core.csproj">
+      <Project>{04A61455-9656-4E67-A8D6-9FBA348F0FB3}</Project>
+      <Name>Kigg.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\SharedFiles\DomainObjects.csdl">
+      <Link>EDM\DomainObjects.csdl</Link>
+    </None>
+    <None Include="..\SharedFiles\DomainObjects.msl">
+      <Link>EDM\DomainObjects.msl</Link>
+    </None>
+    <None Include="..\SharedFiles\DomainObjects.MySql.ssdl">
+      <Link>EDM\DomainObjects.MySql.ssdl</Link>
+    </None>
+    <None Include="..\SharedFiles\DomainObjects.SqlServer.ssdl">
+      <Link>EDM\DomainObjects.SqlServer.ssdl</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PreBuildEvent>"%25windir%25\Microsoft.NET\Framework\v3.5\edmgen.exe" /mode:EntityClassGeneration /incsdl:"$(SolutionDir)SharedFiles\DomainObjects.csdl" /outobjectlayer:"$(ProjectDir)DomainObjects\Generated\Models.cs" /language:CSharp
+
+"%25windir%25\Microsoft.NET\Framework\v3.5\edmgen.exe" /mode:ViewGeneration /incsdl:"$(SolutionDir)SharedFiles\DomainObjects.csdl" /inssdl:"$(SolutionDir)SharedFiles\DomainObjects.SqlServer.ssdl" /inmsl:"$(SolutionDir)SharedFiles\DomainObjects.msl" /outviews:"$(ProjectDir)DomainObjects\Generated\SqlServerViews.cs" /language:CSharp
+
+"$(SolutionDir)References\MySqlClient\edmgen.exe" /mode:ViewGeneration /incsdl:"$(SolutionDir)SharedFiles\DomainObjects.csdl" /inssdl:"$(SolutionDir)SharedFiles\DomainObjects.MySql.ssdl" /inmsl:"$(SolutionDir)SharedFiles\DomainObjects.msl" /outviews:"$(ProjectDir)DomainObjects\Generated\MySqlViews.cs" /language:CSharp</PreBuildEvent>
+  </PropertyGroup>
+</Project>

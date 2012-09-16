@@ -1,0 +1,24 @@
+*MySQL Connector\net supported Database Schema:
+  1-MySQL.Connector.KiGG.Schema.Administrator.Tool.Restore.sql 
+    To be use with MySQL Administrator Restore tool
+
+  2-MySQL.Connector.KiGG.Schema.Raw.Script.sql
+    Normal script, Will create database with name Kigg and then create the database schema.
+
+
+*Devart dotConnect Provider for MySQL supported Database Schema:
+  1-MySQL.Devart.KiGG.Schema.Administrator.Tool.Restore.sql 
+    To be use with MySQL Administrator Restore tool
+
+  2-MySQL.Devart.KiGG.Schema.Raw.Script.sql
+    Normal script, Will create database with name Kigg and then create the database schema.
+
+
+*Difference between both schemas:
+Only one major difference between the above 2 schemas. Current Devart provider support GUID as varchar or char field.
+Connector\net provider support GUID as binary(16) field.
+So I had to make 2 different schemas to support both providers.
+
+
+*NOTE:
+Data.sql is used only to insert category data into SQL SERVER Database, not compatible with MySQL

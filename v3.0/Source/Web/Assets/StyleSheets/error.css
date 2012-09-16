@@ -1,0 +1,65 @@
+﻿*
+{
+    padding: 0;
+    margin: 0;
+}
+body
+{
+    font-family: Tahoma, sans-serif;
+    background-color: #212B40;
+    color: #fff;
+    text-align: center;
+}
+
+h1
+{
+    color: #C2E078;
+    font-size: 54pt;
+}
+
+h2
+{
+    /*background: url("/Assets/images/toplist-border_31.jpg") repeat-x bottom #212B40;*/
+    border-bottom: 2px dotted #59606F;
+    margin-top: 50px;
+    padding-bottom: 31px;
+    margin-bottom: 25px;
+    font-size: 22pt;
+}
+
+.back { margin-top: 63px;}
+
+#container p { font-size: 9pt; color: #FEFEFE}
+
+#container { margin-top: 104px;}
+
+div#notice
+{
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;    
+    border: 3px solid #4C5D6C;
+    /*height: 349px;*/
+    width: 635px;
+    padding: 42px 28px;
+    margin: 51px auto;    
+}
+
+#footer {
+/*      font-family: Arial;*/
+    /*background: url("/Assets/Images/footer-bg_17.jpg") repeat-x scroll center 20px transparent;*/
+    clear: both;
+    border-top: 2px dotted #59606F;
+    font-size: 8pt;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    color: #8B909B;
+    width: 960px;
+    margin: 0 auto;
+    text-align: left;
+} 
+
+a 
+{
+    color: #8B909B;
+}

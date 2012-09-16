@@ -1,0 +1,18 @@
+#questions ul { 
+	list-style-type: none;
+	padding-left: 0px;
+}
+
+#questions h2
+{
+	margin: 8px 0;
+}
+
+#questions ul li {
+	height: 35px;
+}
+
+#commentTabs ul
+{
+	 border-color: #D3D3D3;
+}

@@ -1,0 +1,11 @@
+﻿Installation Notes
+==================
+
+1. Copy Kigg.Extra.Graffiti.dll into the bin directory.
+2. Next Login as an Admin
+3. Click Presentation -> Themes.
+4. Click Personalize.
+5. Click your desired template like blog.post.view, post.view etc where the counter will appear.
+6. Put $DotNetShoutout.Counter($post) or $DotNetShoutout.Counter($post, 'YOUR_borderColor', 'YOUR_textBackColor', 'YOUR_textForeColor', 'YOUR_countBackColor', 'YOUR_countForeColor') if you want change the default color.
+7. Click save changes.
+8. Now View the page/post, the counter image will appear.

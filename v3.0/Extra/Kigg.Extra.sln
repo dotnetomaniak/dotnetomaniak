@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Extra.BlogEngine", "BlogEngine\Kigg.Extra.BlogEngine\Kigg.Extra.BlogEngine.csproj", "{BC988E1A-AF08-4243-A029-767D65483C72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Extra.Graffiti", "Graffiti\Kigg.Extra.Graffiti\Kigg.Extra.Graffiti.csproj", "{AF3F6CB6-D393-42AF-8ACB-9D1EF075CB75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Extra.CommunityServer", "CommunityServer\Kigg.Extra.CommunityServer\Kigg.Extra.CommunityServer.csproj", "{B31A6874-CE45-47B6-B758-9987269438E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Extra.LiveWriter", "LiveWriter\Kigg.Extra.LiveWriter\Kigg.Extra.LiveWriter.csproj", "{28780272-0BC5-46FA-8814-69C6B1B50122}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC988E1A-AF08-4243-A029-767D65483C72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC988E1A-AF08-4243-A029-767D65483C72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC988E1A-AF08-4243-A029-767D65483C72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC988E1A-AF08-4243-A029-767D65483C72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF3F6CB6-D393-42AF-8ACB-9D1EF075CB75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF3F6CB6-D393-42AF-8ACB-9D1EF075CB75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF3F6CB6-D393-42AF-8ACB-9D1EF075CB75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF3F6CB6-D393-42AF-8ACB-9D1EF075CB75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B31A6874-CE45-47B6-B758-9987269438E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B31A6874-CE45-47B6-B758-9987269438E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B31A6874-CE45-47B6-B758-9987269438E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B31A6874-CE45-47B6-B758-9987269438E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28780272-0BC5-46FA-8814-69C6B1B50122}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28780272-0BC5-46FA-8814-69C6B1B50122}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28780272-0BC5-46FA-8814-69C6B1B50122}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28780272-0BC5-46FA-8814-69C6B1B50122}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,259 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage<BaseViewData>" %>
+<%@ Import Namespace="System.Linq" %>
+<%@ Import Namespace="Kigg.Infrastructure" %>
+
+<script runat="server">
+
+    protected override void OnInit(EventArgs e)
+    {
+        base.OnInit(e);
+
+        jQueryScriptManager scriptManager = jQueryScriptManager.Current;
+
+        GenerateScript(scriptManager);
+        GenerateHeaders();
+        ShowQueuedMessage(scriptManager);
+        CheckBadges(scriptManager);
+    }
+
+    private void ShowQueuedMessage(jQueryScriptManager scriptManager)
+    {
+        HttpCookie notification = Request.Cookies["notification"];
+
+        if (notification != null)
+        {
+            string message = notification.Values["msg"];
+
+            if (!string.IsNullOrEmpty(message))
+            {
+                bool isError;
+                bool.TryParse(notification.Values["err"], out isError);
+
+                message = message.Replace("'", string.Empty).Replace("\"", string.Empty);
+
+                scriptManager.RegisterOnReady(
+                    "FB.Event.subscribe('xfbml.render', function() {{ $U.messageBox('Komunikat', '{0}', {1});}});".FormatWith(
+                        message, isError.ToString().ToLowerInvariant()));
+            }
+
+            notification = Response.Cookies["notification"];
+
+            if (notification != null)
+            {
+                notification.Expire();
+            }
+        }
+    }
+
+    private void CheckBadges(jQueryScriptManager scriptManager)
+    {        
+        if (Model.IsCurrentUserAuthenticated)
+        {
+            int total = Model.CurrentUser.NewAchievements.Total;
+            if (total <= 0) return;
+            
+            string firstAchievementText = string.Empty;
+            foreach (var newAchievement in Model.CurrentUser.NewAchievements.Result)
+            {
+                firstAchievementText =
+                    @"Gratulacje! Zdobyłeś odznakę: ""<a href=""{1}"">{0}</a>""".FormatWith(
+                        Html.Translated(newAchievement.Achievement.Name),
+                        Url.RouteUrl("User",
+                                     new { name = Model.CurrentUser.Id.Shrink(), tab = UserDetailTab.Achivements, page = 1 }));
+            }
+            if (total > 1)
+            {
+                if (total >= 5)
+                    firstAchievementText += " oraz {0} innych.".FormatWith(total - 1);
+                else
+                {
+                    if (total == 2)
+                        firstAchievementText += " oraz 1 inną.";
+                    else
+                        firstAchievementText += " oraz {0} inne.".FormatWith(total - 1);
+                }
+            }
+
+            scriptManager.RegisterOnReady("jQuery('#info').html('{0}').slideDown('slow', function() {{ setTimeout(function() {{ jQuery('#info').slideUp(); }}, 7000)}});".FormatWith(firstAchievementText));
+
+            using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
+            {
+                Model.CurrentUser.MarkAchievementsAsDisplayed();
+                unitOfWork.Commit();
+            }
+        }
+    }
+
+    private const string cookieName = "dotnetomaniakpl_firstVisit";
+    private const int expiresIn = 90;
+    void CheckIfFirstVisit(jQueryScriptManager scriptManager)
+    {
+        var firstVisit = Request.Cookies[cookieName];
+        if (firstVisit != null) return;
+
+        scriptManager.RegisterSource(Url.Asset("firstVisit"));
+        scriptManager.RegisterOnReady("$('#info').slideDown('slow');");
+        var cookie = new HttpCookie(cookieName, "false") { Expires = DateTime.Now.AddDays(expiresIn) };
+        Response.Cookies.Add(cookie);
+    }
+
+    private void GenerateScript(jQueryScriptManager scriptManager)
+    {
+        scriptManager.RegisterSource(Url.Asset("js2"));
+
+        scriptManager.RegisterOnReady("Membership.set_isLoggedIn({0});".FormatWith(Model.IsCurrentUserAuthenticated.ToString().ToLowerInvariant()));
+        scriptManager.RegisterOnReady("Membership.set_logOutUrl('{0}');".FormatWith(Url.RouteUrl("Logout")));
+
+        scriptManager.RegisterOnReady("Story.set_clickUrl('{0}');".FormatWith(Url.RouteUrl("Click")));
+        scriptManager.RegisterOnReady("Story.set_promoteUrl('{0}');".FormatWith(Url.RouteUrl("Promote")));
+        scriptManager.RegisterOnReady("Story.set_demoteUrl('{0}');".FormatWith(Url.RouteUrl("Demote")));
+        scriptManager.RegisterOnReady("Story.set_markAsSpamUrl('{0}');".FormatWith(Url.RouteUrl("MarkAsSpam")));
+
+        scriptManager.RegisterOnReady("Search.init();");
+        //scriptManager.RegisterOnReady("Tag.init();");
+        scriptManager.RegisterOnReady("Membership.init();");
+        scriptManager.RegisterOnReady("devMedia.init();");
+        scriptManager.RegisterOnDispose("Membership.dispose();");
+        //scriptManager.RegisterOnDispose("Tag.dispose();");
+        scriptManager.RegisterOnDispose("Search.dispose();");
+
+        if (Model.IsCurrentUserAuthenticated)
+        {
+            if (Model.CanCurrentUserModerate)
+            {
+                scriptManager.RegisterSource(Url.Asset("moderation"));
+                scriptManager.RegisterOnReady("Moderation.init();");
+                scriptManager.RegisterOnReady("Moderation.set_getStoryUrl('{0}');".FormatWith(Url.RouteUrl("GetStory")));
+                scriptManager.RegisterOnReady("Moderation.set_deleteStoryUrl('{0}');".FormatWith(Url.RouteUrl("Delete")));
+                scriptManager.RegisterOnReady("Moderation.set_spamStoryUrl('{0}');".FormatWith(Url.RouteUrl("ConfirmSpamStory")));
+                scriptManager.RegisterOnReady("Moderation.set_approveStoryUrl('{0}');".FormatWith(Url.RouteUrl("ApproveStory")));
+                scriptManager.RegisterOnReady("Moderation.set_spamCommentUrl('{0}');".FormatWith(Url.RouteUrl("ConfirmSpamComment")));
+                scriptManager.RegisterOnReady("Moderation.set_markCommentAsOffendedUrl('{0}');".FormatWith(Url.RouteUrl("MarkCommentAsOffended")));
+
+                scriptManager.RegisterOnDispose("Moderation.dispose();");
+            }
+
+            if (Model.CurrentUser.IsAdministrator())
+            {
+                scriptManager.RegisterSource(Url.Asset("administration"));
+                scriptManager.RegisterOnReady("Administration.init();");
+                scriptManager.RegisterOnReady("Administration.set_lockUserUrl('{0}');".FormatWith(Url.RouteUrl("LockUser")));
+                scriptManager.RegisterOnReady("Administration.set_unlockUserUrl('{0}');".FormatWith(Url.RouteUrl("UnlockUser")));
+                scriptManager.RegisterOnReady("Administration.set_publishUrl('{0}');".FormatWith(Url.RouteUrl("Publish")));
+                scriptManager.RegisterOnDispose("Administration.dispose();");
+            }
+        }
+
+        if (!Request.IsLocal)
+        {
+            scriptManager.RegisterSource("http://www.google-analytics.com/ga.js");
+            scriptManager.RegisterOnReady("Analytics.init();");
+        }
+    }
+
+    private void GenerateHeaders()
+    {
+        if (string.IsNullOrEmpty(Page.Header.Title))
+        {
+            Page.Header.Title = Model.SiteTitle;
+        }
+
+        metaKeywords.Content = Model.MetaKeywords;
+        metaDescription.Content = Model.MetaDescription;
+
+        //Remove the ugly server ID tag
+        metaKeywords.ID = metaDescription.ID = null;
+    }
+
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta id="metaKeywords" runat="server" name="keywords" content="" />
+    <meta id="metaDescription" runat="server" name="description" content="" />
+    <meta name="Rating" content="General" />
+    <meta name="robots" content="index, follow" />
+    <title></title>
+    <link href='http://cdn.devmedia.pl/common/css/devmedia.css' rel='stylesheet' type='text/css'/>    
+    <link href="<%= Url.Asset("css").Replace("&", "&amp;") %>" rel="stylesheet" type="text/css" />
+    <link href="<%= Url.Image("fav.ico")%>" rel="shortcut icon" type="image/x-icon" />
+    <link href="<%= Url.Image("fav.png")%>" rel="icon" type="image/png" />
+    <link href="<%= Url.Content("~/opensearch.axd")%>" title="<%= Model.SiteTitle %>"
+        rel="search" type="application/opensearchdescription+xml" />
+    <link href="https://plus.google.com/110925305542873177884" rel="publisher" />
+    <script src="https://www.google.com/jsapi?key=ABQIAAAAdWi2-jJ3tpgf0HNqkwp6TBRfozVu3uzgMdQm0owx2puRbZ1h7hQwKYIn0t3A1mHpnYzWO-ppxXkndQ" type="text/javascript"></script>
+    <script type='text/javascript'>
+        google.load('feeds', '1');
+    </script>
+    <script src='http://cdn.devmedia.pl/common/js/devmedia.js' type='text/javascript'></script>
+    <script src="<%= Url.Asset("js1").Replace("&", "&amp;") %>" type="text/javascript"></script>
+    <asp:ContentPlaceHolder ID="HeadPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div id="info"></div>
+    <div id="container">
+        <div id="top">
+            <h1>
+                <a rel="home" title="<%= Model.SiteTitle %>" href="<%= Url.Content("~/") %>">
+                    <img alt="<%= Model.SiteTitle %>" src="<%= Url.Image("logo-dotnetomaniak.png") %>" />
+                </a>
+            </h1>
+            <div class="top-right">
+                <div class="links">
+                    <%
+                        Html.RenderAction("Menu", "Membership");%>
+                </div>
+                <div class="top-right-bottom">
+                    <p>
+                        <%= Html.ActionLink("Dodaj artykuł", "Submit", "Story", null, new {id = "blue-button"})%>
+                    </p>
+                    <p class="show-more-articles">
+                        <%= Html.ActionLink("Zobacz listę oczekujących artykułów", "Upcoming", "Story")%>
+                    </p>
+                </div>
+            </div>
+            <div id="menuwrapper">
+                <% Html.RenderAction("Menu", "Category"); %>
+            </div>
+            <% Html.RenderPartial("SearchBox", ViewData.Model); %>
+        </div>
+        <div id="content">
+            <div id="main">
+                <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">
+                </asp:ContentPlaceHolder>		
+            </div>	    
+            <div id="sub">
+                <%
+                    if (Model.CanCurrentUserModerate)
+                    {
+                        Html.RenderAction("ControlPanel", "Support");
+                    }
+                %>                
+                <% Html.RenderPartial("RecommendationsBox"); %>
+                
+                <% try { Html.RenderPartial("FeedBox"); }
+                   catch {}%>
+                <% Html.RenderAction("TopTabs","Membership"); %>
+                <% Html.RenderAction("Tabs","Tag"); %>
+            </div>
+            <script src="http://connect.facebook.net/pl_PL/all.js#xfbml=1" type="text/javascript"></script><fb:like-box href="http://www.facebook.com/dotnetomaniakpl" width="915" show_faces="true" stream="false" header="true"></fb:like-box>            
+        </div>    
+        <div id="footer">
+            <p>
+                <strong>&copy; <%= ViewData.Model.SiteTitle %>.</strong>
+                    <%= DateTime.Today.Year.ToString("0000") %>
+                    - Treść opublikowana przez użytkowników portalu umieszczana jest na zasadzie <a target="_blank"
+                        rel="license" href="http://creativecommons.org/licenses/publicdomain/">public domain</a>.		
+            </p>
+        </div>
+    </div>
+    <div id="confirmationBox"></div>
+    <div id="messageBox"></div>
+    <div id="dimBackground" class="dimBackground"></div>
+    <% Html.RenderPartial("MembershipBox", Model); %>
+    <kigg:jQueryScriptManager ID="scripts" runat="server">
+    </kigg:jQueryScriptManager>
+</body>
+</html>

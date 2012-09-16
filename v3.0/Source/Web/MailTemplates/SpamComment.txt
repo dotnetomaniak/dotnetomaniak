@@ -1,0 +1,6 @@
+﻿Prawdopodobny spam w komentarzu:
+
+Url: <%=siteUrl%>
+Użytkownik <%=userName%>
+Komentarz: <%=comment%>
+Zabezpieczenie: <%=protection%>

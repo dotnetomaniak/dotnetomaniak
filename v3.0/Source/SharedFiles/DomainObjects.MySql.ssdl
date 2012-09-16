@@ -1,0 +1,459 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Kigg.EF.DomainObjects.Store"
+        Alias="Self"
+        xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl"
+        xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator"
+        Provider="MySql.Data.MySqlClient"
+        ProviderManifestToken="5.1"
+        >
+        <!--
+        Provider="Devart.Data.MySql" ProviderManifestToken="MySQL51"
+        -->
+  <EntityContainer Name="KiggStorageEntityContainer" >
+    <EntitySet Name="Category" EntityType="Kigg.EF.DomainObjects.Store.Category" store:Type="Tables" Schema="kigg" />
+    <EntitySet Name="CommentSubscribtion" EntityType="Kigg.EF.DomainObjects.Store.CommentSubscribtion" store:Type="Tables" Schema="kigg" />
+    <EntitySet Name="KnownSource" EntityType="Kigg.EF.DomainObjects.Store.KnownSource" store:Type="Tables" Schema="kigg" />
+    <EntitySet Name="Story" EntityType="Kigg.EF.DomainObjects.Store.Story" store:Type="Tables" Schema="kigg" />
+    <EntitySet Name="StoryComment" EntityType="Kigg.EF.DomainObjects.Store.StoryComment" store:Type="Tables" Schema="kigg" />
+    <EntitySet Name="StoryMarkAsSpam" EntityType="Kigg.EF.DomainObjects.Store.StoryMarkAsSpam" store:Type="Tables" Schema="kigg" />
+    <EntitySet Name="StoryTag" EntityType="Kigg.EF.DomainObjects.Store.StoryTag" store:Type="Tables" Schema="kigg" />
+    <EntitySet Name="StoryView" EntityType="Kigg.EF.DomainObjects.Store.StoryView" store:Type="Tables" Schema="kigg" />
+    <EntitySet Name="StoryVote" EntityType="Kigg.EF.DomainObjects.Store.StoryVote" store:Type="Tables" Schema="kigg" />
+    <EntitySet Name="Tag" EntityType="Kigg.EF.DomainObjects.Store.Tag" store:Type="Tables" Schema="kigg" />
+    <EntitySet Name="User" EntityType="Kigg.EF.DomainObjects.Store.User" store:Type="Tables" Schema="kigg" />
+    <EntitySet Name="UserScore" EntityType="Kigg.EF.DomainObjects.Store.UserScore" store:Type="Tables" Schema="kigg" />
+    <EntitySet Name="UserTag" EntityType="Kigg.EF.DomainObjects.Store.UserTag" store:Type="Tables" Schema="kigg" />
+    <EntitySet Name="StorySearchResult" EntityType="Kigg.EF.DomainObjects.Store.StorySearchResult" Schema="kigg" />
+    <EntitySet Name="CommentSearchResult" EntityType="Kigg.EF.DomainObjects.Store.CommentSearchResult" Schema="kigg" />
+    <AssociationSet Name="FK_CommentSubscribtion_Story" Association="Kigg.EF.DomainObjects.Store.FK_CommentSubscribtion_Story">
+      <End Role="Story" EntitySet="Story" />
+      <End Role="CommentSubscribtion" EntitySet="CommentSubscribtion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CommentSubscribtion_User" Association="Kigg.EF.DomainObjects.Store.FK_CommentSubscribtion_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="CommentSubscribtion" EntitySet="CommentSubscribtion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Story_Category" Association="Kigg.EF.DomainObjects.Store.FK_Story_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Story" EntitySet="Story" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Story_User" Association="Kigg.EF.DomainObjects.Store.FK_Story_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Story" EntitySet="Story" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoryComment_Story" Association="Kigg.EF.DomainObjects.Store.FK_StoryComment_Story">
+      <End Role="Story" EntitySet="Story" />
+      <End Role="StoryComment" EntitySet="StoryComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoryComment_User" Association="Kigg.EF.DomainObjects.Store.FK_StoryComment_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="StoryComment" EntitySet="StoryComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoryMarkAsSpam_Story" Association="Kigg.EF.DomainObjects.Store.FK_StoryMarkAsSpam_Story">
+      <End Role="Story" EntitySet="Story" />
+      <End Role="StoryMarkAsSpam" EntitySet="StoryMarkAsSpam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoryMarkAsSpam_User" Association="Kigg.EF.DomainObjects.Store.FK_StoryMarkAsSpam_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="StoryMarkAsSpam" EntitySet="StoryMarkAsSpam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoryTag_Story" Association="Kigg.EF.DomainObjects.Store.FK_StoryTag_Story">
+      <End Role="Story" EntitySet="Story" />
+      <End Role="StoryTag" EntitySet="StoryTag" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoryTag_Tag" Association="Kigg.EF.DomainObjects.Store.FK_StoryTag_Tag">
+      <End Role="Tag" EntitySet="Tag" />
+      <End Role="StoryTag" EntitySet="StoryTag" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoryView_Story" Association="Kigg.EF.DomainObjects.Store.FK_StoryView_Story">
+      <End Role="Story" EntitySet="Story" />
+      <End Role="StoryView" EntitySet="StoryView" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoryVote_Story" Association="Kigg.EF.DomainObjects.Store.FK_StoryVote_Story">
+      <End Role="Story" EntitySet="Story" />
+      <End Role="StoryVote" EntitySet="StoryVote" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoryVote_User" Association="Kigg.EF.DomainObjects.Store.FK_StoryVote_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="StoryVote" EntitySet="StoryVote" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserScore_User" Association="Kigg.EF.DomainObjects.Store.FK_UserScore_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserScore" EntitySet="UserScore" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserTag_Tag" Association="Kigg.EF.DomainObjects.Store.FK_UserTag_Tag">
+      <End Role="Tag" EntitySet="Tag" />
+      <End Role="UserTag" EntitySet="UserTag" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserTag_User" Association="Kigg.EF.DomainObjects.Store.FK_UserTag_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserTag" EntitySet="UserTag" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="guid" Nullable="false" />
+    <Property Name="UniqueName" Type="varchar" Nullable="false" MaxLength="64" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="64" />
+    <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CommentSubscribtion">
+    <Key>
+      <PropertyRef Name="StoryId" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="StoryId" Type="guid" Nullable="false" />
+    <Property Name="UserId" Type="guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KnownSource">
+    <Key>
+      <PropertyRef Name="Url" />
+    </Key>
+    <Property Name="Url" Type="varchar" Nullable="false" MaxLength="450" />
+    <Property Name="Grade" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Story">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="guid" Nullable="false" />
+    <Property Name="UniqueName" Type="varchar" Nullable="false" MaxLength="256" />
+    <Property Name="Title" Type="varchar" Nullable="false" MaxLength="256" />
+    <Property Name="HtmlDescription" Type="mediumtext" Nullable="false" />
+    <Property Name="TextDescription" Type="mediumtext" Nullable="false" />
+    <Property Name="Url" Type="varchar" Nullable="false" MaxLength="2048" />
+    <Property Name="UrlHash" Type="char" Nullable="false" MaxLength="24" />
+    <Property Name="CategoryId" Type="guid" Nullable="false" />
+    <Property Name="UserId" Type="guid" Nullable="false" />
+    <Property Name="IPAddress" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="LastActivityAt" Type="datetime" Nullable="false" />
+    <Property Name="ApprovedAt" Type="datetime" />
+    <Property Name="PublishedAt" Type="datetime" />
+    <Property Name="Rank" Type="int" />
+    <Property Name="LastProcessedAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="StoryComment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="guid" Nullable="false" />
+    <Property Name="HtmlBody" Type="mediumtext" Nullable="false" />
+    <Property Name="TextBody" Type="mediumtext" Nullable="false" />
+    <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="StoryId" Type="guid" Nullable="false" />
+    <Property Name="UserId" Type="guid" Nullable="false" />
+    <Property Name="IPAddress" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="IsOffended" Type="boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StoryMarkAsSpam">
+    <Key>
+      <PropertyRef Name="StoryId" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="StoryId" Type="guid" Nullable="false" />
+    <Property Name="UserId" Type="guid" Nullable="false" />
+    <Property Name="IPAddress" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="Timestamp" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StoryTag">
+    <Key>
+      <PropertyRef Name="StoryId" />
+      <PropertyRef Name="TagId" />
+    </Key>
+    <Property Name="StoryId" Type="guid" Nullable="false" />
+    <Property Name="TagId" Type="guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StoryView">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StoryId" Type="guid" Nullable="false" />
+    <Property Name="Timestamp" Type="datetime" Nullable="false" />
+    <Property Name="IPAddress" Type="varchar" Nullable="false" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="StoryVote">
+    <Key>
+      <PropertyRef Name="StoryId" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="StoryId" Type="guid" Nullable="false" />
+    <Property Name="UserId" Type="guid" Nullable="false" />
+    <Property Name="IPAddress" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="Timestamp" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tag">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="guid" Nullable="false" />
+    <Property Name="UniqueName" Type="varchar" Nullable="false" MaxLength="64" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="64" />
+    <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="guid" Nullable="false" />
+    <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="256" />
+    <Property Name="Password" Type="varchar" MaxLength="64" />
+    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="256" />
+    <Property Name="IsActive" Type="boolean" Nullable="false" />
+    <Property Name="IsLockedOut" Type="boolean" Nullable="false" />
+    <Property Name="Role" Type="int" Nullable="false" />
+    <Property Name="LastActivityAt" Type="datetime" Nullable="false" />
+    <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserScore">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="guid" Nullable="false" />
+    <Property Name="Timestamp" Type="datetime" Nullable="false" />
+    <Property Name="ActionType" Type="int" Nullable="false" />
+    <Property Name="Score" Type="decimal" Nullable="false" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="UserTag">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="TagId" />
+    </Key>
+    <Property Name="UserId" Type="guid" Nullable="false" />
+    <Property Name="TagId" Type="guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StorySearchResult">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CommentSearchResult">
+    <Key>
+      <PropertyRef Name="StoryId" />
+    </Key>
+    <Property Name="StoryId" Type="guid" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_CommentSubscribtion_Story">
+    <End Role="Story" Type="Kigg.EF.DomainObjects.Store.Story" Multiplicity="1" />
+    <End Role="CommentSubscribtion" Type="Kigg.EF.DomainObjects.Store.CommentSubscribtion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Story">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CommentSubscribtion">
+        <PropertyRef Name="StoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CommentSubscribtion_User">
+    <End Role="User" Type="Kigg.EF.DomainObjects.Store.User" Multiplicity="1" />
+    <End Role="CommentSubscribtion" Type="Kigg.EF.DomainObjects.Store.CommentSubscribtion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CommentSubscribtion">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Story_Category">
+    <End Role="Category" Type="Kigg.EF.DomainObjects.Store.Category" Multiplicity="1" />
+    <End Role="Story" Type="Kigg.EF.DomainObjects.Store.Story" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Story">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Story_User">
+    <End Role="User" Type="Kigg.EF.DomainObjects.Store.User" Multiplicity="1" />
+    <End Role="Story" Type="Kigg.EF.DomainObjects.Store.Story" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Story">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoryComment_Story">
+    <End Role="Story" Type="Kigg.EF.DomainObjects.Store.Story" Multiplicity="1" />
+    <End Role="StoryComment" Type="Kigg.EF.DomainObjects.Store.StoryComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Story">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StoryComment">
+        <PropertyRef Name="StoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoryComment_User">
+    <End Role="User" Type="Kigg.EF.DomainObjects.Store.User" Multiplicity="1" />
+    <End Role="StoryComment" Type="Kigg.EF.DomainObjects.Store.StoryComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StoryComment">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoryMarkAsSpam_Story">
+    <End Role="Story" Type="Kigg.EF.DomainObjects.Store.Story" Multiplicity="1" />
+    <End Role="StoryMarkAsSpam" Type="Kigg.EF.DomainObjects.Store.StoryMarkAsSpam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Story">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StoryMarkAsSpam">
+        <PropertyRef Name="StoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoryMarkAsSpam_User">
+    <End Role="User" Type="Kigg.EF.DomainObjects.Store.User" Multiplicity="1" />
+    <End Role="StoryMarkAsSpam" Type="Kigg.EF.DomainObjects.Store.StoryMarkAsSpam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StoryMarkAsSpam">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoryTag_Story">
+    <End Role="Story" Type="Kigg.EF.DomainObjects.Store.Story" Multiplicity="1" />
+    <End Role="StoryTag" Type="Kigg.EF.DomainObjects.Store.StoryTag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Story">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StoryTag">
+        <PropertyRef Name="StoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoryTag_Tag">
+    <End Role="Tag" Type="Kigg.EF.DomainObjects.Store.Tag" Multiplicity="1" />
+    <End Role="StoryTag" Type="Kigg.EF.DomainObjects.Store.StoryTag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tag">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StoryTag">
+        <PropertyRef Name="TagId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoryView_Story">
+    <End Role="Story" Type="Kigg.EF.DomainObjects.Store.Story" Multiplicity="1" />
+    <End Role="StoryView" Type="Kigg.EF.DomainObjects.Store.StoryView" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Story">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StoryView">
+        <PropertyRef Name="StoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoryVote_Story">
+    <End Role="Story" Type="Kigg.EF.DomainObjects.Store.Story" Multiplicity="1" />
+    <End Role="StoryVote" Type="Kigg.EF.DomainObjects.Store.StoryVote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Story">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StoryVote">
+        <PropertyRef Name="StoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoryVote_User">
+    <End Role="User" Type="Kigg.EF.DomainObjects.Store.User" Multiplicity="1" />
+    <End Role="StoryVote" Type="Kigg.EF.DomainObjects.Store.StoryVote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StoryVote">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserScore_User">
+    <End Role="User" Type="Kigg.EF.DomainObjects.Store.User" Multiplicity="1" />
+    <End Role="UserScore" Type="Kigg.EF.DomainObjects.Store.UserScore" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserScore">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserTag_Tag">
+    <End Role="Tag" Type="Kigg.EF.DomainObjects.Store.Tag" Multiplicity="1" />
+    <End Role="UserTag" Type="Kigg.EF.DomainObjects.Store.UserTag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tag">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserTag">
+        <PropertyRef Name="TagId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserTag_User">
+    <End Role="User" Type="Kigg.EF.DomainObjects.Store.User" Multiplicity="1" />
+    <End Role="UserTag" Type="Kigg.EF.DomainObjects.Store.UserTag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserTag">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="EFSearchStory" Aggregate="false"
+    BuiltIn="false" NiladicFunction="false" IsComposable="true"
+    ParameterTypeSemantics="AllowImplicitConversion" StoreFunctionName="EFSearchStory"
+    Schema="kigg" ReturnType="boolean">
+    <Parameter Name="StoryId" Type="guid" Mode="In" />
+    <Parameter Name="query" Type="varchar" MaxLength="4000" Mode="In" />
+  </Function>
+  <Function Name="EFSearchComment" Aggregate="false"
+    BuiltIn="false" NiladicFunction="false" IsComposable="true"
+    ParameterTypeSemantics="AllowImplicitConversion" StoreFunctionName="EFSearchComment"
+    Schema="kigg" ReturnType="boolean">
+    <Parameter Name="StoryId" Type="guid" Mode="In" />
+    <Parameter Name="query" Type="varchar" MaxLength="4000" Mode="In" />
+  </Function>
+  <!--<Function Name="StorySearchProc" Aggregate="false"
+    BuiltIn="false" NiladicFunction="false" IsComposable="false"
+    ParameterTypeSemantics="AllowImplicitConversion" StoreFunctionName="StorySearchProc"
+    Schema="kigg">
+    <Parameter Name="query" Type="varchar" MaxLength="4000" Mode="In" />
+  </Function>
+  <Function Name="CommentSearchProc" Aggregate="false"
+    BuiltIn="false" NiladicFunction="false" IsComposable="false"
+    ParameterTypeSemantics="AllowImplicitConversion" StoreFunctionName="CommentSearchProc"
+    Schema="kigg">
+    <Parameter Name="query" Type="varchar" MaxLength="4000" Mode="In" />
+  </Function>-->
+</Schema>

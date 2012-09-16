@@ -1,0 +1,7 @@
+﻿Installation Notes
+==================
+
+1. Copy Kigg.Extra.LiveWriter.dll into the plugin directory (e.g. C:\Program Files\Windows Live\Writer\Plugins).
+2. If you want to change the default colors goto Tools->Options->Plugins->Options.
+3. Write Your Post.
+4. Preview/Publish the post, the counter image will appear.

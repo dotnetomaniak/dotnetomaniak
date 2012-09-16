@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8D913567-3D14-4F7C-82B5-BB12FB52F68A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kigg.Web.Test</RootNamespace>
+    <AssemblyName>Kigg.Web.Test</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\Kigg.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SqlServer|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\SqlServer\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MySql|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\MySql\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'PublishingRelease|AnyCPU' ">
+    <OutputPath>bin\PublishingRelease\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotNetOpenAuth, Version=3.2.0.9177, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\dotnetopenauth\DotNetOpenAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq, Version=2.6.1014.1, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\moq\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\system.Web\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="xunit, Version=1.1.0.1323, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\xunit\xunit.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.extensions, Version=1.1.0.1323, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\xunit\xunit.extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SharedFiles\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="ActionResult\FeedResultFixture.cs" />
+    <Compile Include="BootstrapperTasks\RegisterControllerFactoryFixture.cs" />
+    <Compile Include="Controllers\BaseControllerFixture.cs" />
+    <Compile Include="Controllers\CateoryControllerFixture.cs" />
+    <Compile Include="Controllers\CommentControllerFixture.cs" />
+    <Compile Include="Controllers\ControllerFactoryFixture.cs" />
+    <Compile Include="Controllers\FeedControllerFixture.cs" />
+    <Compile Include="Controllers\MembershipControllerFixture.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\StoryControllerFixture.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\SupportControllerFixture.cs" />
+    <Compile Include="Controllers\TagControllerFixture.cs" />
+    <Compile Include="Controls\jQueryScriptManagerFixture.cs" />
+    <Compile Include="Controls\reCAPTCHAFixture.cs" />
+    <Compile Include="Controls\reCAPTCHAValidatorFixture.cs" />
+    <Compile Include="Extension\ControllerContextExtensionFixture.cs" />
+    <Compile Include="Extension\DateTimeExtensionFixture.cs" />
+    <Compile Include="Extension\HtmlHelperExtensionFixture.cs" />
+    <Compile Include="Extension\HttpContextExtensionFixture.cs" />
+    <Compile Include="Extension\StoryExtensionFixture.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extension\UrlHelperExtensionFixture.cs" />
+    <Compile Include="Extension\UserExtensionFixture.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Extension\XDocumentExtensionFixture.cs" />
+    <Compile Include="Filters\AutoRefreshAttributeFixture.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Filters\CompressAttributeFixture.cs" />
+    <Compile Include="Handlers\AssetElementCollectionFixture.cs" />
+    <Compile Include="Handlers\AssetElementFixture.cs" />
+    <Compile Include="Handlers\AssetHandlerFixture.cs" />
+    <Compile Include="Handlers\AssetSettingsSectionFixture.cs" />
+    <Compile Include="Handlers\BaseHandlerFixture.cs" />
+    <Compile Include="Handlers\DeliciousRedirectorFixture.cs" />
+    <Compile Include="Handlers\FacebookRedirectorFixture.cs" />
+    <Compile Include="Handlers\HandlerCacheItemFixture.cs" />
+    <Compile Include="Handlers\ImageHandlerFixture.cs" />
+    <Compile Include="Handlers\MsdnRedirectorFixture.cs" />
+    <Compile Include="Handlers\OpenSearchHandlerFixture.cs" />
+    <Compile Include="Handlers\ShareHandlerFixture.cs" />
+    <Compile Include="Handlers\SiteMapHandlerFixture.cs" />
+    <Compile Include="Handlers\TwitterRedirectorFixture.cs" />
+    <Compile Include="Handlers\XrdsHandlerFixture.cs" />
+    <Compile Include="Helpers\EmptyTempDataProviderFixture.cs" />
+    <Compile Include="GlobalApplicationFixture.cs" />
+    <Compile Include="Helpers\PageCalculatorFixture.cs" />
+    <Compile Include="Helpers\StringWriterWithEncodingFixture.cs" />
+    <Compile Include="Helpers\ValidationFixture.cs" />
+    <Compile Include="Modules\BaseHttpModuleFixture.cs" />
+    <Compile Include="Modules\BlockedIPCollectionFixture.cs" />
+    <Compile Include="Modules\ErrorHandlerFixture.cs" />
+    <Compile Include="Modules\IPBlockFixture.cs" />
+    <Compile Include="Modules\RemoveWwwRedirectorFixture.cs" />
+    <Compile Include="BootstrapperTasks\RegisterRoutesFixtures.cs" />
+    <Compile Include="ViewData\BaseViewDataFixture.cs" />
+    <Compile Include="ViewData\FeedViewDataFixture.cs" />
+    <Compile Include="ViewData\StoryListViewDataFixture.cs" />
+    <Compile Include="TestHelper\ControllerTestDouble.cs" />
+    <Compile Include="TestHelper\Moq\HttpApplicationStateMock.cs" />
+    <Compile Include="TestHelper\Moq\BetterHttpContextMock.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestHelper\Moq\HttpCachePolicyBaseMock.cs" />
+    <Compile Include="TestHelper\Moq\HttpContextMock.cs" />
+    <Compile Include="TestHelper\Moq\HttpIdentityMock.cs" />
+    <Compile Include="TestHelper\Moq\HttpPrincipalMock.cs" />
+    <Compile Include="TestHelper\Moq\HttpRequestMock.cs" />
+    <Compile Include="TestHelper\Moq\HttpResponseMock.cs" />
+    <Compile Include="TestHelper\Moq\HttpServerUtilityMock.cs" />
+    <Compile Include="TestHelper\Moq\HttpSessionStateMock.cs" />
+    <Compile Include="TestHelper\MvcTestHelper.cs" />
+    <Compile Include="ViewData\UserListViewDataFixture.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Kigg.Core.csproj">
+      <Project>{04A61455-9656-4E67-A8D6-9FBA348F0FB3}</Project>
+      <Name>Kigg.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Web\Kigg.Web.csproj">
+      <Project>{B385D300-8714-4F31-A591-A904C383F88B}</Project>
+      <Name>Kigg.Web</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

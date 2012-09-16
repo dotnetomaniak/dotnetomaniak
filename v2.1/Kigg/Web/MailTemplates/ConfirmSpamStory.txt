@@ -1,0 +1,6 @@
+Poniższy artykuł został uznany za spam przez użytkownika <%=confirmedByUserName%>:
+
+Tytuł: <%=title%>
+Url: <%=siteUrl%>
+Źródłowy Url: <%=originalUrl%>
+Użytkownik: <%=postedByUserName%>

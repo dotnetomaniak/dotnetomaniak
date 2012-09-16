@@ -1,0 +1,7 @@
+﻿Prawdopodobny spam:
+
+Tytuł: <%=title%>
+Url: <%=siteUrl%>
+Źródłowy Url: <%=originalUrl%>
+Użytkownik: <%=userName%>
+Zabezpiecznie: <%=protection%>

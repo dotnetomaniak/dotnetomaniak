@@ -1,0 +1,6 @@
+﻿Installation Notes
+==================
+
+1. Copy the DotNetShoutout.cs and shared file DotNetShoutoutCounterGenerator.cs into you App_Code Folder.
+2. Chanage the colors to your desired values from admin/extension of BlogEngine.
+2. View any post, the counter image will appear.

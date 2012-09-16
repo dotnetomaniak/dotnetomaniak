@@ -1,0 +1,3 @@
+User-Agent: *
+Allow: /
+Sitemap: http://YOUR-DOMAIN.com/sitemap.axd

@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Interface Name="Kigg.DomainObjects.IVote">
+    <Position X="9.5" Y="8.5" Width="1.5" />
+    <AssociationLine Name="ForStory" Type="Kigg.DomainObjects.IStory">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="1.01" Y="0.085" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="ByUser" Type="Kigg.DomainObjects.IUser">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.635" Y="0.085" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAIAAgAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>DomainObjects\IVote.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ForStory" />
+      <Property Name="ByUser" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="Kigg.DomainObjects.IUser">
+    <Position X="5.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQQAAAAgCAAgAgAGAAACAAQAAAAAAACAQEAAAAAAAA=</HashCode>
+      <FileName>DomainObjects\IUser.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Kigg.DomainObjects.IUniqueNameEntity">
+    <Position X="9.5" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>DomainObjects\IUniqueNameEntity.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Kigg.DomainObjects.ITagContainer">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAACAAAAAAAAAEAAAMAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>DomainObjects\ITagContainer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Kigg.DomainObjects.ITag">
+    <Position X="11.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DomainObjects\ITag.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Kigg.DomainObjects.IStoryView">
+    <Position X="19" Y="7" Width="1.5" />
+    <AssociationLine Name="ForStory" Type="Kigg.DomainObjects.IStory">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.826" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAwAA=</HashCode>
+      <FileName>DomainObjects\IStoryView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ForStory" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="Kigg.DomainObjects.IStory">
+    <Position X="14" Y="6.75" Width="2.75" />
+    <AssociationLine Name="BelongsTo" Type="Kigg.DomainObjects.ICategory" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14" Y="8.098" />
+        <Point X="8.75" Y="8.098" />
+        <Point X="8.75" Y="5.925" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.11" Y="1.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AzgBBAgABAsABkQACMAAQCJSAABFkAAsCAUgoQAAoAA=</HashCode>
+      <FileName>DomainObjects\IStory.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BelongsTo" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="Kigg.DomainObjects.IMarkAsSpam">
+    <Position X="9.5" Y="10.25" Width="1.5" />
+    <AssociationLine Name="ByUser" Type="Kigg.DomainObjects.IUser">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.693" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAgAAAAAAgAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>DomainObjects\IMarkAsSpam.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ForStory" />
+      <Property Name="ByUser" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="Kigg.DomainObjects.IKnownSource">
+    <Position X="13" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAEAAAA=</HashCode>
+      <FileName>DomainObjects\IKnownSource.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Kigg.DomainObjects.IEntity">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DomainObjects\IEntity.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Kigg.DomainObjects.IDomainObjectFactory">
+    <Position X="13" Y="1" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAQACAAAAAAAAAAAAAAAAAAAAABAAAAAAACA=</HashCode>
+      <FileName>DomainObjects\IDomainObjectFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Kigg.DomainObjects.ICommentSubscribtion">
+    <Position X="9.25" Y="15.5" Width="2" />
+    <AssociationLine Name="ForStory" Type="Kigg.DomainObjects.IStory">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.593" Y="0.102" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="ByUser" Type="Kigg.DomainObjects.IUser" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.188" Y="15.5" />
+        <Point X="10.188" Y="15.125" />
+        <Point X="6.25" Y="15.125" />
+        <Point X="6.25" Y="11.506" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.898" Y="1.26" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DomainObjects\ICommentSubscribtion.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ForStory" />
+      <Property Name="ByUser" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="Kigg.DomainObjects.IComment">
+    <Position X="9.5" Y="12" Width="1.5" />
+    <AssociationLine Name="ForStory" Type="Kigg.DomainObjects.IStory">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.816" Y="0.08" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="ByUser" Type="Kigg.DomainObjects.IUser">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.11" Y="0.346" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAhABAgAAAAAAAAAAAgAAAAgAAAAAAAIAAAAAgAA=</HashCode>
+      <FileName>DomainObjects\IComment.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ForStory" />
+      <Property Name="ByUser" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="Kigg.DomainObjects.ICategory">
+    <Position X="8" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DomainObjects\ICategory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Kigg.DomainObjects.UserAction" Collapsed="true">
+    <Position X="3.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAECABAACAAEEIAQAgCAEIAAAAEAAAAAEAAgAEAAAI=</HashCode>
+      <FileName>DomainObjects\UserAction.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Kigg.DomainObjects.Roles" Collapsed="true">
+    <Position X="3.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAEAMAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DomainObjects\Roles.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Kigg.DomainObjects.KnownSourceGrade" Collapsed="true">
+    <Position X="14.75" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAApgEAAAA=</HashCode>
+      <FileName>DomainObjects\KnownSourceGrade.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

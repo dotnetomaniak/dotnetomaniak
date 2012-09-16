@@ -1,0 +1,80 @@
+﻿body
+{
+    font-family:Trebuchet MS, Tahoma, Arial, sans-serif;
+    color:#fff;
+    background:#eb4c07 url(../Images/preview.png) no-repeat fixed 100% 100%;
+}
+
+#container
+{
+    margin:100px auto;
+    width:750px;
+}
+
+#talker
+{
+    padding-right:45px;
+    float:left;
+    background:transparent url(../Images/arrow.png) no-repeat 100% 33%;
+}
+
+#talker a
+{
+    float:left;
+    margin-top:20px;
+}
+
+#talker img
+{
+    border:0;
+}
+
+#notice
+{
+    width:560px;
+    float:left;
+    padding:15px 20px 0;
+    background :#404040 url(../Images/edge.gif) no-repeat 0 0;
+}
+
+#notice h1
+{
+    font-size:24px;
+    font-family:"Courier New", Courier, Monospace;
+}
+
+#notice p
+{
+    font-size:14px;
+    margin-top:10px;
+}
+
+#notice .back
+{
+    width:560px;
+    display:block;
+    margin:0 -20px;
+    padding:30px 20px;
+    background:transparent url(../Images/edge.gif) no-repeat 100% 100%;
+}
+
+#notice .back a
+{
+    background:#ffdd00 url(../Images/toRightButtonBG.png) repeat-x scroll 0 0;
+    color:#404040;
+    font-weight:bold;
+    font-size:14px;
+    margin:0 12px 0 0;
+    padding:6px 12px;
+    text-decoration:none;
+}
+
+#notice .back a:hover
+{
+    text-decoration:underline;
+}
+
+.clear
+{
+    clear:both;
+}

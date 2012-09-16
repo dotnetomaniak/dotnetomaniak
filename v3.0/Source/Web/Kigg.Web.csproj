@@ -1,0 +1,637 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B385D300-8714-4F31-A591-A904C383F88B}</ProjectGuid>
+    <ProjectTypeGuids>{f85e285d-a4e0-4152-9332-ab1d724d3325};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kigg.Web</RootNamespace>
+    <AssemblyName>Kigg.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\Kigg.snk</AssemblyOriginatorKeyFile>
+    <MvcBuildViews>true</MvcBuildViews>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SqlServer|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MySql|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'PublishingRelease|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotNetOpenAuth, Version=3.2.0.9177, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\dotnetopenauth\DotNetOpenAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.3.0.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\html\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\entlib\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\entlib\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\entlib\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\entlib\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\entlib\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder2, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\entlib\Microsoft.Practices.ObjectBuilder2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\entlib\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\entlib\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.0.3.0, Culture=neutral, PublicKeyToken=92c3c527cdfe7566, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\MySqlClient\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity, Version=6.0.3.0, Culture=neutral, PublicKeyToken=92c3c527cdfe7566, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\MySqlClient\MySql.Data.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Services">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Abstractions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Extensions.Design" />
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\system.Web\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SharedFiles\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="BootstrapperTasks\RegisterRoutes.cs" />
+    <Compile Include="BootstrapperTasks\RegisterControllerFactory.cs" />
+    <Compile Include="Controllers\BadgesController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="ActionResult\FeedResult.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\QuizController.cs" />
+    <Compile Include="Handlers\Image\DefaultColors.cs" />
+    <Compile Include="Handlers\Image\GraphicsExtension.cs" />
+    <Compile Include="Handlers\Share\WykopRedirector.cs" />
+    <Compile Include="Handlers\User\UserHandler.cs" />
+    <Compile Include="Helpers\IOpenIdRelyingParty.cs" />
+    <Compile Include="Controllers\TagController.cs" />
+    <Compile Include="Extension\HttpCookieExtension.cs" />
+    <Compile Include="Helpers\OpenIdRelyingPartyWrapper.cs" />
+    <Compile Include="Helpers\Validation.cs" />
+    <Compile Include="Controls\jQueryScriptManager.cs" />
+    <Compile Include="Controls\reCAPTCHA.cs" />
+    <Compile Include="Controls\reCAPTCHAValidator.cs" />
+    <Compile Include="Extension\UrlHelperExtension.cs" />
+    <Compile Include="Handlers\Asset\AssetElement.cs" />
+    <Compile Include="Handlers\Asset\AssetElementCollection.cs" />
+    <Compile Include="Handlers\Asset\AssetHandler.cs" />
+    <Compile Include="Handlers\Asset\AssetSettingsSection.cs" />
+    <Compile Include="Handlers\BaseHandler.cs" />
+    <Compile Include="Handlers\HandlerCacheItem.cs" />
+    <Compile Include="Handlers\Image\ImageHandler.cs" />
+    <Compile Include="Handlers\OpenSearch\OpenSearchHandler.cs" />
+    <Compile Include="Handlers\Share\DeliciousRedirector.cs" />
+    <Compile Include="Handlers\Share\FaceBookRedirector.cs" />
+    <Compile Include="Handlers\Share\ISocialServiceRedirector.cs" />
+    <Compile Include="Handlers\Share\MsdnRedirector.cs" />
+    <Compile Include="Handlers\Share\ShareHandler.cs" />
+    <Compile Include="Handlers\Share\TwitterRedirector.cs" />
+    <Compile Include="Handlers\SiteMap\SiteMapHandler.cs" />
+    <Compile Include="Handlers\Xrds\XrdsHandler.cs" />
+    <Compile Include="Helpers\FormatStrings.cs" />
+    <Compile Include="Jobs\10kPointsBadge.cs" />
+    <Compile Include="Jobs\1kPointsBadge.cs" />
+    <Compile Include="Jobs\AwardBadgeJob.cs" />
+    <Compile Include="Jobs\CommenterBadge.cs" />
+    <Compile Include="Jobs\DotnetomaniakBadge.cs" />
+    <Compile Include="Jobs\EarlyBirdBadge.cs" />
+    <Compile Include="Jobs\GlobetrotterBadge.cs" />
+    <Compile Include="Jobs\GoodStoryBadge.cs" />
+    <Compile Include="Jobs\GreatStoryBadge.cs" />
+    <Compile Include="Jobs\MultiAdderBadge.cs" />
+    <Compile Include="Jobs\PlaqueBadge.cs" />
+    <Compile Include="Jobs\PopularStoryBadge.cs" />
+    <Compile Include="Jobs\UpVoterBadge.cs" />
+    <Compile Include="Jobs\NightOwlBadge.cs" />
+    <Compile Include="Jobs\StoryAdderBadge.cs" />
+    <Compile Include="Modules\Offline.cs" />
+    <Compile Include="Modules\BaseHttpModule.cs" />
+    <Compile Include="Modules\BlockedIPCollection.cs" />
+    <Compile Include="Modules\ErrorHandler.cs" />
+    <Compile Include="Modules\IBlockedIPCollection.cs" />
+    <Compile Include="Modules\IPBlock.cs" />
+    <Compile Include="Modules\RemoveWwwRedirector.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\FeedController.cs" />
+    <Compile Include="Extension\ControllerContextExtension.cs" />
+    <Compile Include="Extension\XDocumentExtension.cs" />
+    <Compile Include="Helpers\PageCalculator.cs" />
+    <Compile Include="Helpers\StringWriterWithEncoding.cs" />
+    <Compile Include="Helpers\EmptyTempDataProvider.cs" />
+    <Compile Include="Controllers\SupportController.cs" />
+    <Compile Include="Controllers\StoryController.cs" />
+    <Compile Include="Extension\DateTimeExtension.cs" />
+    <Compile Include="Filters\AutoRefreshAttribute.cs" />
+    <Compile Include="Extension\HttpContextExtension.cs" />
+    <Compile Include="Helpers\FormsAuthenticationWrapper.cs" />
+    <Compile Include="Extension\HtmlHelperExtension.cs" />
+    <Compile Include="Helpers\IFormsAuthentication.cs" />
+    <Compile Include="Controllers\MembershipController.cs" />
+    <Compile Include="Controllers\ControllerFactory.cs" />
+    <Compile Include="Extension\StoryExtension.cs" />
+    <Compile Include="Extension\UserExtension.cs" />
+    <Compile Include="Filters\CompressAttribute.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewData\AchievementsViewData.cs" />
+    <Compile Include="ViewData\BadgesViewData.cs" />
+    <Compile Include="ViewData\BaseStoryViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\BaseViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\ControlPanelViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\FeedViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\JsonContentViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\JsonCreateViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\JsonViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\JsonVoteViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\PromoteSiteViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\QuizStatisticsViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\QuizViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\StoryContentViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\StoryDetailViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\StoryItemViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\StoryListSearchViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\StoryListUserViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\StoryListViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\StorySummary.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\SupportViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\TagTabsViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\TopUserTabsViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\UserDetailTab.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\UserDetailViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\UserListViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\UserMenuViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\UserWithScore.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Images\180x220_1_v4.gif" />
+    <Content Include="Assets\Images\ajaxSmall.gif" />
+    <Content Include="Assets\Images\alert.jpg" />
+    <Content Include="Assets\Images\arrow-login.gif" />
+    <Content Include="Assets\Images\arrow.png" />
+    <Content Include="Assets\Images\atom.png" />
+    <Content Include="Assets\Images\body-bg.gif" />
+    <Content Include="Assets\Images\button-blue.png" />
+    <Content Include="Assets\Images\categories_03.jpg" />
+    <Content Include="Assets\Images\close-big.jpg" />
+    <Content Include="Assets\Images\content.gif" />
+    <Content Include="Assets\Images\count-icon.png" />
+    <Content Include="Assets\Images\crumb.jpg" />
+    <Content Include="Assets\Images\dalej.jpg" />
+    <Content Include="Assets\Images\delete.png" />
+    <Content Include="Assets\Images\dodaj-artykul.jpg" />
+    <Content Include="Assets\Images\dodaj-grey.jpg" />
+    <Content Include="Assets\Images\dodaj.png" />
+    <Content Include="Assets\Images\dotnetomaniak_logo - negatyw.jpg" />
+    <Content Include="Assets\Images\dotnetomaniak_logo - negatyw.png" />
+    <Content Include="Assets\Images\dotnetomaniak_logo - negatyw_small.png" />
+    <Content Include="Assets\Images\dotnetomaniak_logo.jpg" />
+    <Content Include="Assets\Images\dotnetomaniak_logo.png" />
+    <Content Include="Assets\Images\dotnetomaniak_logo_small.jpg" />
+    <Content Include="Assets\Images\dotnetomaniak_logo_small.png" />
+    <Content Include="Assets\Images\dotnetomaniak_wlepka - kontra.jpg" />
+    <Content Include="Assets\Images\dotnetomaniak_wlepka - kontra.png" />
+    <Content Include="Assets\Images\dotnetomaniak_wlepka - kontra_small.png" />
+    <Content Include="Assets\Images\dotnetomaniak_wlepka.jpg" />
+    <Content Include="Assets\Images\dotnetomaniak_wlepka.png" />
+    <Content Include="Assets\Images\dotnetomaniak_wlepka_small.png" />
+    <Content Include="Assets\Images\dots-dark.gif" />
+    <Content Include="Assets\Images\edit.png" />
+    <Content Include="Assets\Images\error.png" />
+    <Content Include="Assets\Images\error_mainpage.png" />
+    <Content Include="Assets\Images\facebook.png" />
+    <Content Include="Assets\Images\fav-big.png" />
+    <Content Include="Assets\Images\fav.ico" />
+    <Content Include="Assets\Images\fav.png" />
+    <Content Include="Assets\Images\footer-bg_17.jpg" />
+    <Content Include="Assets\Images\ico-rozwin.png" />
+    <Content Include="Assets\Images\icon-author.png" />
+    <Content Include="Assets\Images\icon-click.png" />
+    <Content Include="Assets\Images\icon-counter.png" />
+    <Content Include="Assets\Images\icon-date.png" />
+    <Content Include="Assets\Images\icon-spam.png" />
+    <Content Include="Assets\Images\icon-system.png" />
+    <Content Include="Assets\Images\icon-time.png" />
+    <Content Include="Assets\Images\icon-zwin.png" />
+    <Content Include="Assets\Images\icons.png" />
+    <Content Include="Assets\Images\kompy-staker-promo.png" />
+    <Content Include="Assets\Images\loadingAnimation.gif" />
+    <Content Include="Assets\Images\logo-dotnetomaniak.png" />
+    <Content Include="Assets\Images\menu-cat-border.jpg" />
+    <Content Include="Assets\Images\menu-over.jpg" />
+    <Content Include="Assets\Images\menu-right-last.png" />
+    <Content Include="Assets\Images\menu-right.jpg" />
+    <Content Include="Assets\Images\openid.jpg" />
+    <Content Include="Assets\Images\promuj.png" />
+    <Content Include="Assets\Images\quote.png" />
+    <Content Include="Assets\Images\radios-bg_07.jpg" />
+    <Content Include="Assets\Images\rss.png" />
+    <Content Include="Assets\Images\search-submit-buttom.png" />
+    <Content Include="Assets\Images\search-text-input.png" />
+    <Content Include="Assets\Images\tabs-bg.jpg" />
+    <Content Include="Assets\Images\tabs-border-right.png" />
+    <Content Include="Assets\Images\top-nav2.jpg" />
+    <Content Include="Assets\Images\toplist-border_31.jpg" />
+    <Content Include="Assets\Images\toplist-coun.jpg" />
+    <Content Include="Assets\Images\toplist_bottom.jpg" />
+    <Content Include="Assets\Images\toplist_top.jpg" />
+    <Content Include="Assets\Images\twitter.ico" />
+    <Content Include="Assets\Images\wyslij.jpg" />
+    <Content Include="Assets\Images\zaloguj.jpg" />
+    <Content Include="Assets\Images\zaloz-konto_07.jpg" />
+    <Content Include="Assets\Images\zaloz-konto_15.jpg" />
+    <Content Include="Assets\JavaScripts\devmedia.js" />
+    <Content Include="Assets\JavaScripts\jquery-1.7.1.min.js" />
+    <Content Include="Assets\JavaScripts\jquery-ui-1.8.17.custom.min.js" />
+    <Content Include="Assets\JavaScripts\jquery.validate.js" />
+    <Content Include="Assets\JavaScripts\load.js" />
+    <Content Include="Assets\StyleSheets\autocomplete.css" />
+    <Content Include="Assets\StyleSheets\blog.css" />
+    <Content Include="Assets\StyleSheets\colorPicker.min.css" />
+    <Content Include="Assets\StyleSheets\error.css" />
+    <Content Include="Assets\StyleSheets\marItUp.css" />
+    <Content Include="Assets\StyleSheets\marItUp.min.css" />
+    <Content Include="Assets\StyleSheets\modal.css" />
+    <Content Include="Assets\StyleSheets\style.css" />
+    <Content Include="Assets\StyleSheets\ui.jquery.css" />
+    <Content Include="ErrorPages\Offline.aspx" />
+    <Content Include="Logs\exception.txt" />
+    <Content Include="MailTemplates\NewPassword.txt" />
+    <Content Include="MailTemplates\Registration.txt" />
+    <Content Include="Views\Badges\All.aspx" />
+    <Content Include="Views\Badges\List.ascx" />
+    <Content Include="Views\Membership\Achievements.ascx" />
+    <Content Include="Views\Quiz\QuizView.aspx" />
+    <Content Include="Views\Shared\FeedBox.ascx" />
+    <Content Include="Views\Shared\RecommendationsBox.ascx" />
+    <Content Include="Views\Story\Questions.ascx" />
+    <Content Include="Views\Support\PromoteSite.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Kigg.Core.csproj">
+      <Project>{04A61455-9656-4E67-A8D6-9FBA348F0FB3}</Project>
+      <Name>Kigg.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataServices\Kigg.DataServices.csproj">
+      <Project>{6370DAF2-7999-4DF2-8A7F-0EAF1A12D962}</Project>
+      <Name>Kigg.DataServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EnterpriseLibrary\Kigg.Infrastructure.EnterpriseLibrary.csproj">
+      <Project>{115F6494-917B-4E8B-97E4-F671DE3E94F9}</Project>
+      <Name>Kigg.Infrastructure.EnterpriseLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HtmlAgilityPack\Kigg.Infrastructure.HtmlAgilityPack.csproj">
+      <Project>{564931FC-9E33-4FA4-887D-7E78C2B63873}</Project>
+      <Name>Kigg.Infrastructure.HtmlAgilityPack</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LinqToSql\Kigg.Infrastructure.LinqToSql.csproj">
+      <Project>{49CDCCC2-2C02-4DF1-9234-246D974D2B2D}</Project>
+      <Name>Kigg.Infrastructure.LinqToSql</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\badWords.xml" />
+    <Content Include="..\SharedFiles\DomainObjects.csdl">
+      <Link>App_Data\DomainObjects.csdl</Link>
+    </Content>
+    <Content Include="..\SharedFiles\DomainObjects.msl">
+      <Link>App_Data\DomainObjects.msl</Link>
+    </Content>
+    <Content Include="..\SharedFiles\DomainObjects.MySql.ssdl">
+      <Link>App_Data\DomainObjects.MySql.ssdl</Link>
+    </Content>
+    <Content Include="..\SharedFiles\DomainObjects.SqlServer.ssdl">
+      <Link>App_Data\DomainObjects.SqlServer.ssdl</Link>
+    </Content>
+    <Content Include="..\SharedFiles\DomainObjects.ssdl">
+      <Link>App_Data\DomainObjects.ssdl</Link>
+    </Content>
+    <Content Include="App_Data\blockedUrlPrefixList.txt" />
+    <Content Include="Assets\Images\marItUp\bg-container.png" />
+    <Content Include="Assets\Images\marItUp\bg-editor-markdown.png" />
+    <None Include="Assets\Images\dotnetomaniak_logo - negatyw.eps" />
+    <None Include="Assets\Images\dotnetomaniak_logo - negatyw.pdf" />
+    <None Include="Assets\Images\dotnetomaniak_logo.eps" />
+    <None Include="Assets\Images\dotnetomaniak_logo.pdf" />
+    <None Include="Assets\Images\dotnetomaniak_wlepka - kontra.eps" />
+    <None Include="Assets\Images\dotnetomaniak_wlepka - kontra.pdf" />
+    <None Include="Assets\Images\dotnetomaniak_wlepka.eps" />
+    <None Include="Assets\Images\dotnetomaniak_wlepka.pdf" />
+    <None Include="Assets\Images\marItUp\bold.png" />
+    <None Include="Assets\Images\marItUp\code.png" />
+    <Content Include="Assets\Images\marItUp\handle.png" />
+    <Content Include="Assets\Images\marItUp\icons.png" />
+    <None Include="Assets\Images\marItUp\italic.png" />
+    <None Include="Assets\Images\marItUp\link.png" />
+    <None Include="Assets\Images\marItUp\list-bullet.png" />
+    <None Include="Assets\Images\marItUp\list-numeric.png" />
+    <Content Include="Assets\Images\marItUp\menu.png" />
+    <None Include="Assets\Images\marItUp\quotes.png" />
+    <Content Include="Assets\Images\marItUp\submenu.png" />
+    <Content Include="Assets\Images\ui.jquery\222222_11x11_icon_close.gif" />
+    <Content Include="Assets\Images\ui.jquery\222222_11x11_icon_resize_se.gif" />
+    <Content Include="Assets\Images\ui.jquery\454545_11x11_icon_close.gif" />
+    <Content Include="Assets\Images\ui.jquery\888888_11x11_icon_close.gif" />
+    <Content Include="Assets\Images\colorPicker\colorpicker_background.png" />
+    <Content Include="Assets\Images\colorPicker\colorpicker_hex.png" />
+    <Content Include="Assets\Images\colorPicker\colorpicker_hsb_b.png" />
+    <Content Include="Assets\Images\colorPicker\colorpicker_hsb_h.png" />
+    <Content Include="Assets\Images\colorPicker\colorpicker_hsb_s.png" />
+    <Content Include="Assets\Images\colorPicker\colorpicker_indic.gif" />
+    <Content Include="Assets\Images\colorPicker\colorpicker_overlay.png" />
+    <Content Include="Assets\Images\colorPicker\colorpicker_rgb_b.png" />
+    <Content Include="Assets\Images\colorPicker\colorpicker_rgb_g.png" />
+    <Content Include="Assets\Images\colorPicker\colorpicker_rgb_r.png" />
+    <Content Include="Assets\Images\colorPicker\colorpicker_select.gif" />
+    <Content Include="Assets\Images\colorPicker\colorpicker_submit.png" />
+    <Content Include="Assets\Images\ui.jquery\dadada_40x100_textures_02_glass_75.png" />
+    <Content Include="Assets\Images\ui.jquery\e6e6e6_40x100_textures_02_glass_75.png" />
+    <Content Include="Assets\Images\ui.jquery\ffffff_40x100_textures_01_flat_0.png" />
+    <Content Include="Assets\Images\ui.jquery\ffffff_40x100_textures_02_glass_65.png" />
+    <None Include="Assets\JavaScripts\Analytics.js" />
+    <Content Include="Assets\JavaScripts\Analytics.min.js" />
+    <Content Include="Assets\JavaScripts\colorpicker.min.js" />
+    <None Include="Assets\JavaScripts\Contact.js" />
+    <Content Include="Assets\JavaScripts\Contact.min.js" />
+    <None Include="Assets\JavaScripts\Tag.js" />
+    <None Include="Assets\JavaScripts\Moderation.js" />
+    <None Include="Assets\JavaScripts\Administration.js" />
+    <Content Include="Assets\JavaScripts\Administration.min.js" />
+    <None Include="Assets\JavaScripts\Faq.js" />
+    <Content Include="Assets\JavaScripts\Faq.min.js" />
+    <Content Include="Assets\JavaScripts\Moderation.min.js" />
+    <Content Include="Assets\JavaScripts\Tag.min.js" />
+    <Content Include="Assets\JavaScripts\OpenID.min.js" />
+    <Content Include="Assets\JavaScripts\GloablErrorHandler.min.js" />
+    <None Include="Assets\JavaScripts\GloablErrorHandler.js" />
+    <Content Include="Assets\JavaScripts\jquery-1.2.6.min.js" />
+    <Content Include="Assets\JavaScripts\jquery.markitup.min.js" />
+    <None Include="Assets\JavaScripts\OpenID.js" />
+    <Content Include="Assets\JavaScripts\RichEditor.min.js" />
+    <None Include="Assets\JavaScripts\RichEditor.js" />
+    <Content Include="Assets\JavaScripts\showdown.js" />
+    <Content Include="Assets\JavaScripts\SmoothImage.min.js" />
+    <None Include="Assets\JavaScripts\SmoothImage.js" />
+    <None Include="Assets\JavaScripts\ImageCode.js" />
+    <Content Include="Assets\JavaScripts\ImageCode.min.js" />
+    <Content Include="Assets\JavaScripts\ui.autocomplete.min.js" />
+    <Content Include="Assets\JavaScripts\ui.core.min.js" />
+    <Content Include="Assets\JavaScripts\ui.dialog.min.js" />
+    <Content Include="Assets\JavaScripts\ui.draggable.min.js" />
+    <Content Include="Assets\JavaScripts\ui.resizable.min.js" />
+    <Content Include="Assets\JavaScripts\ui.tabs.min.js" />
+    <Content Include="Assets\JavaScripts\Utility.min.js" />
+    <Content Include="App_Data\blockedIPList.txt" />
+    <Content Include="DataServices\KiggDataService.svc" />
+    <Content Include="ErrorPages\NotFound.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Logs\trace.csv" />
+    <None Include="Assets\JavaScripts\Comment.js" />
+    <Content Include="Assets\JavaScripts\Comment.min.js" />
+    <Content Include="Assets\JavaScripts\Membership.min.js" />
+    <Content Include="Assets\JavaScripts\Search.min.js" />
+    <Content Include="Assets\JavaScripts\Story.min.js" />
+    <Content Include="App_Data\contentNodes.txt" />
+    <Content Include="Assets\JavaScripts\jquery.form.min.js" />
+    <None Include="Assets\JavaScripts\Utility.js" />
+    <None Include="Assets\JavaScripts\Story.js" />
+    <None Include="Assets\JavaScripts\Search.js" />
+    <Content Include="Assets\JavaScripts\jquery.validate.min.js" />
+    <None Include="Assets\JavaScripts\Membership.js" />
+    <Content Include="MailTemplates\ConfirmSpamStory.txt" />
+    <Content Include="MailTemplates\ConfirmSpamComment.txt" />
+    <Content Include="MailTemplates\ApproveStory.txt" />
+    <Content Include="MailTemplates\StoryDeleted.txt" />
+    <Content Include="MailTemplates\OffendedComment.txt" />
+    <Content Include="MailTemplates\MarkAsSpamStory.txt" />
+    <Content Include="MailTemplates\PublishedStories.txt" />
+    <Content Include="MailTemplates\NewComment.txt" />
+    <Content Include="MailTemplates\SpamComment.txt" />
+    <Content Include="MailTemplates\SpamStory.txt" />
+    <Content Include="MailTemplates\Feedback.txt" />
+    <Content Include="ErrorPages\Generic.aspx" />
+    <Content Include="ErrorPages\AccessDenied.aspx" />
+    <Content Include="Views\Category\Menu.ascx" />
+    <Content Include="robots.txt" />
+    <Content Include="Views\Membership\Chart.ascx" />
+    <Content Include="Views\Membership\Detail.aspx" />
+    <Content Include="Views\Membership\List.aspx" />
+    <Content Include="Views\Support\ControlPanel.ascx" />
+    <Content Include="Views\Shared\IntroBox.ascx" />
+    <Content Include="Views\Membership\Top.ascx" />
+    <Content Include="Views\Story\ImageCode.ascx" />
+    <Content Include="Views\Story\Comments.ascx" />
+    <Content Include="Views\Story\Votes.ascx" />
+    <Content Include="Views\Story\UserStoryList.ascx" />
+    <Content Include="Views\Story\StoryList.ascx" />
+    <Content Include="Views\Support\Faq.aspx" />
+    <Content Include="Views\Tag\Cloud.ascx" />
+    <Content Include="Views\Shared\SearchBox.ascx" />
+    <Content Include="Views\Story\List.aspx" />
+    <Content Include="Views\Membership\TopTabs.ascx" />
+    <Content Include="Views\Category\RadioButtonList.ascx" />
+    <Content Include="Views\Story\StoryEditorBox.ascx" />
+    <Content Include="Views\Support\About.aspx" />
+    <Content Include="Views\Story\Detail.aspx" />
+    <Content Include="Views\Shared\SiteTemplate.Master" />
+    <Content Include="Views\Story\New.aspx" />
+    <Content Include="Views\Shared\MembershipBox.ascx" />
+    <Content Include="Views\Support\Contact.aspx" />
+    <Content Include="Views\Membership\Menu.ascx" />
+    <Content Include="Views\Story\Story.ascx" />
+    <Content Include="Views\Tag\Tabs.ascx" />
+    <None Include="Properties\PublishProfiles\dotnetomaniak - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\dotnetomaniak - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\dotnetomaniak - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\dotnetomaniak - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\Profile1.pubxml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <Target Name="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)\..\Web" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

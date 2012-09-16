@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{199F7292-3FC7-4D58-8AD6-E1EDFE799916}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kigg.Core.Test</RootNamespace>
+    <AssemblyName>Kigg.Core.Test</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\Kigg.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'SqlServer|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\SqlServer\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MySql|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\MySql\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'PublishingRelease|AnyCPU' ">
+    <OutputPath>bin\PublishingRelease\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Moq, Version=2.6.1014.1, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\moq\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="xunit, Version=1.1.0.1323, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\xunit\xunit.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.extensions, Version=1.1.0.1323, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\xunit\xunit.extensions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SharedFiles\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Extension\CategoryExtensionFixture.cs" />
+    <Compile Include="Extension\CollectionExtensionFixture.cs" />
+    <Compile Include="Extension\TagExtensionFixture.cs" />
+    <Compile Include="Extension\DateTimeExtensionFixture.cs" />
+    <Compile Include="Extension\EnumerableExtensionFixture.cs" />
+    <Compile Include="Extension\TagContainerFixture.cs" />
+    <Compile Include="Extension\UserExtensionFixture.cs" />
+    <Compile Include="Helper\DisposableResourceFixture.cs" />
+    <Compile Include="Infrastructure\BackgroundTask\BaseBackgroundTaskFixture.cs" />
+    <Compile Include="Infrastructure\BackgroundTask\PingStoryFixture.cs" />
+    <Compile Include="Infrastructure\BackgroundTask\PingServerFixture.cs" />
+    <Compile Include="Infrastructure\BackgroundTask\SendMailFixture.cs" />
+    <Compile Include="Infrastructure\BackgroundTask\SendTwitterMessageFixture.cs" />
+    <Compile Include="Infrastructure\Bootstrapper\StartBackgroundTasksFixture.cs" />
+    <Compile Include="Infrastructure\EventAggregator\BaseEventFixture.cs" />
+    <Compile Include="Infrastructure\EventAggregator\BaseEvent`1Fixture.cs" />
+    <Compile Include="Infrastructure\EventAggregator\DelegateReferenceFixture.cs" />
+    <Compile Include="Infrastructure\EventAggregator\EventAggregatorFixture.cs" />
+    <Compile Include="Infrastructure\EventAggregator\EventSubscriptionFixture.cs" />
+    <Compile Include="Infrastructure\EventAggregator\SubscriptionTokenFixture.cs" />
+    <Compile Include="Infrastructure\Thumbnail\BadWordMatchSpamWeightCalculatorFixture.cs" />
+    <Compile Include="Infrastructure\Bootstrapper\BootstrapperFixture.cs" />
+    <Compile Include="Infrastructure\Http\CachingHttpFormFixture.cs" />
+    <Compile Include="Infrastructure\Thumbnail\CategoryMatchSpamWeightCalculatorFixture.cs" />
+    <Compile Include="Infrastructure\Http\DecoratedContentServiceFixture.cs" />
+    <Compile Include="Infrastructure\Http\DecoratedHttpFormFixture.cs" />
+    <Compile Include="Infrastructure\Spam\DefaultSpamProtectionFixture.cs" />
+    <Compile Include="Infrastructure\Http\HttpFormFixture.cs" />
+    <Compile Include="Infrastructure\Thumbnail\HyperlinkCountSpamWeightCalculatorFixture.cs" />
+    <Compile Include="Service\SpamPostprocessorFixture.cs" />
+    <Compile Include="Infrastructure\Thumbnail\TagMatchSpamWeightCalculatorFixture.cs" />
+    <Compile Include="Infrastructure\Bootstrapper\CreateDefaultUsersFixture.cs" />
+    <Compile Include="Infrastructure\Spam\DefensioSpamProtectionFixture.cs" />
+    <Compile Include="Infrastructure\Spam\GenericSpamProtectionFixture.cs" />
+    <Compile Include="Infrastructure\Spam\SpamCheckContentFixture.cs" />
+    <Compile Include="Infrastructure\Http\StoryContentFixture.cs" />
+    <Compile Include="Extension\StoryExtensionFixture.cs" />
+    <Compile Include="Extension\GuidExtensionFixture.cs" />
+    <Compile Include="Helper\PagedResultFixture.cs" />
+    <Compile Include="Helper\CheckArgumentFixture.cs" />
+    <Compile Include="Extension\StringExtensionFixture.cs" />
+    <Compile Include="Infrastructure\Others\CacheFixture.cs" />
+    <Compile Include="Infrastructure\Http\CachingContentServiceFixture.cs" />
+    <Compile Include="Infrastructure\Others\ConfigurationManagerWrapperFixture.cs" />
+    <Compile Include="Infrastructure\Http\ContentServiceFixture.cs" />
+    <Compile Include="Infrastructure\Thumbnail\WebSnaprThumbnail.cs" />
+    <Compile Include="Infrastructure\IoC\DependencyResolverFactoryFixture.cs" />
+    <Compile Include="Infrastructure\Http\LoggingContentServiceFixture.cs" />
+    <Compile Include="Infrastructure\Thumbnail\PageGlimpseThumbnailFixture.cs" />
+    <Compile Include="Repository\CachingCategoryRepositoryFixture.cs" />
+    <Compile Include="Repository\CachingStoryRepositoryFixture.cs" />
+    <Compile Include="Repository\CachingTagRepositoryFixture.cs" />
+    <Compile Include="Repository\CachingUserRepositoryFixture.cs" />
+    <Compile Include="Repository\LoggingCategoryRepositoryFixture.cs" />
+    <Compile Include="Repository\LoggingStoryRepositoryFixture.cs" />
+    <Compile Include="Repository\LoggingTagRepositoryFixture.cs" />
+    <Compile Include="Infrastructure\Others\EmailSenderFixture.cs" />
+    <Compile Include="Repository\LoggingUserRepositoryFixture.cs" />
+    <Compile Include="Service\CommentWeightFixture.cs" />
+    <Compile Include="Service\FreshnessWeightFixture.cs" />
+    <Compile Include="Service\KnownSourceWeightFixture.cs" />
+    <Compile Include="Service\PublishedStoryFixture.cs" />
+    <Compile Include="Service\StoryServiceFixture.cs" />
+    <Compile Include="Service\StoryWeightBaseCalculatorFixture.cs" />
+    <Compile Include="Service\UserScoreWeightFixture.cs" />
+    <Compile Include="Service\UserScoreServiceFixture.cs" />
+    <Compile Include="Service\ViewWeightFixture.cs" />
+    <Compile Include="Service\VoteWeightFixture.cs" />
+    <Compile Include="TestHelper\DecoratedRepositoryFixture.cs" />
+    <Compile Include="TestHelper\DependencyResolverTestDouble.cs" />
+    <Compile Include="Infrastructure\IoC\IoCFixture.cs" />
+    <Compile Include="Infrastructure\Others\LogFixture.cs" />
+    <Compile Include="Infrastructure\Others\UnitOfWorkFixture.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestHelper\DummyObject.cs" />
+    <Compile Include="TestHelper\IDummyObject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Kigg.Core.csproj">
+      <Project>{04A61455-9656-4E67-A8D6-9FBA348F0FB3}</Project>
+      <Name>Kigg.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Test.Infrastructure\Kigg.Test.Infrastructure.csproj">
+      <Project>{880A0F43-4A21-4A6E-BCA7-4094F0FB38AB}</Project>
+      <Name>Kigg.Test.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

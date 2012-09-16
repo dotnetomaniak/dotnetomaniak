@@ -1,0 +1,3 @@
+﻿Poniższe komentarze zostały dodane przez użytkownika <%=userName%> w <%=detailUrl%> :
+
+<%=comment%>

@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{199F7292-3FC7-4D58-8AD6-E1EDFE799916}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kigg.Core.Test</RootNamespace>
+    <AssemblyName>Kigg.Core.Test</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\Kigg.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>40</FileUpgradeFlags>
+    <UpgradeBackupLocation>E:\projects\dotnetomaniak.pl\v2.1\Kigg\Backup2\Core.Test\</UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Moq, Version=2.6.1014.1, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\moq\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="xunit, Version=1.1.0.1323, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\xunit\xunit.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.extensions, Version=1.1.0.1323, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\xunit\xunit.extensions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SharedFiles\CommonAssemblyInfo.cs">
+      <Link>CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Extension\CollectionExtensionFixture.cs" />
+    <Compile Include="Extension\DateTimeExtensionFixture.cs" />
+    <Compile Include="Extension\EnumerableExtensionFixture.cs" />
+    <Compile Include="Extension\TagContainerFixture.cs" />
+    <Compile Include="Extension\UserExtensionFixture.cs" />
+    <Compile Include="Helper\DisposableResourceFixture.cs" />
+    <Compile Include="Infrastructure\BadWordMatchSpamWeightCalculatorFixture.cs" />
+    <Compile Include="Infrastructure\BootstrapperFixture.cs" />
+    <Compile Include="Infrastructure\CachingHttpFormFixture.cs" />
+    <Compile Include="Infrastructure\CategoryMatchSpamWeightCalculatorFixture.cs" />
+    <Compile Include="Infrastructure\DecoratedContentServiceFixture.cs" />
+    <Compile Include="Infrastructure\DecoratedHttpFormFixture.cs" />
+    <Compile Include="Infrastructure\DefaultSpamProtectionFixture.cs" />
+    <Compile Include="Infrastructure\HyperlinkCountSpamWeightCalculatorFixture.cs" />
+    <Compile Include="Infrastructure\SpamPostprocessorFixture.cs" />
+    <Compile Include="Infrastructure\TagMatchSpamWeightCalculatorFixture.cs" />
+    <Compile Include="Infrastructure\CreateDefaultUsersFixture.cs" />
+    <Compile Include="Infrastructure\DefensioSpamProtectionFixture.cs" />
+    <Compile Include="Infrastructure\GenericSpamProtectionFixture.cs" />
+    <Compile Include="Infrastructure\SpamCheckContentFixture.cs" />
+    <Compile Include="Infrastructure\StoryContentFixture.cs" />
+    <Compile Include="Extension\StoryExtensionFixture.cs" />
+    <Compile Include="Extension\GuidExtensionFixture.cs" />
+    <Compile Include="Helper\PagedResultFixture.cs" />
+    <Compile Include="Helper\CheckArgumentFixture.cs" />
+    <Compile Include="Extension\StringExtensionFixture.cs" />
+    <Compile Include="Infrastructure\CacheFixture.cs" />
+    <Compile Include="Infrastructure\CachingContentServiceFixture.cs" />
+    <Compile Include="Infrastructure\ConfigurationManagerWrapperFixture.cs" />
+    <Compile Include="Infrastructure\ContentServiceFixture.cs" />
+    <Compile Include="Infrastructure\WebSnaprThumbnail.cs" />
+    <Compile Include="Infrastructure\DependencyResolverFactoryFixture.cs" />
+    <Compile Include="Infrastructure\HttpFormFixture.cs" />
+    <Compile Include="Infrastructure\LoggingContentServiceFixture.cs" />
+    <Compile Include="Infrastructure\PageGlimpseThumbnailFixture.cs" />
+    <Compile Include="Repository\CachingCategoryRepositoryFixture.cs" />
+    <Compile Include="Repository\CachingStoryRepositoryFixture.cs" />
+    <Compile Include="Repository\CachingTagRepositoryFixture.cs" />
+    <Compile Include="Repository\CachingUserRepositoryFixture.cs" />
+    <Compile Include="Repository\LoggingCategoryRepositoryFixture.cs" />
+    <Compile Include="Repository\LoggingStoryRepositoryFixture.cs" />
+    <Compile Include="Repository\LoggingTagRepositoryFixture.cs" />
+    <Compile Include="Infrastructure\EmailSenderFixture.cs" />
+    <Compile Include="Repository\LoggingUserRepositoryFixture.cs" />
+    <Compile Include="Service\CommentWeightFixture.cs" />
+    <Compile Include="Service\FreshnessWeightFixture.cs" />
+    <Compile Include="Service\KnownSourceWeightFixture.cs" />
+    <Compile Include="Service\PublishedStoryFixture.cs" />
+    <Compile Include="Service\StoryWeightBaseCalculatorFixture.cs" />
+    <Compile Include="Service\StoryServiceFixture.cs" />
+    <Compile Include="Service\UserScoreWeightFixture.cs" />
+    <Compile Include="Service\UserScoreServiceFixture.cs" />
+    <Compile Include="Service\ViewWeightFixture.cs" />
+    <Compile Include="Service\VoteWeightFixture.cs" />
+    <Compile Include="TestHelper\DecoratedRepositoryFixture.cs" />
+    <Compile Include="TestHelper\DependencyResolverTestDouble.cs" />
+    <Compile Include="Infrastructure\IoCFixture.cs" />
+    <Compile Include="Infrastructure\LogFixture.cs" />
+    <Compile Include="Infrastructure\UnitOfWorkFixture.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestHelper\DummyObject.cs" />
+    <Compile Include="TestHelper\IDummyObject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Kigg.Core.csproj">
+      <Project>{04A61455-9656-4E67-A8D6-9FBA348F0FB3}</Project>
+      <Name>Kigg.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Test.Infrastructure\Kigg.Test.Infrastructure.csproj">
+      <Project>{880A0F43-4A21-4A6E-BCA7-4094F0FB38AB}</Project>
+      <Name>Kigg.Test.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

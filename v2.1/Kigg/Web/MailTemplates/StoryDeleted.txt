@@ -1,0 +1,5 @@
+Poniższy artykuł został skasowany przez użytkownika <%=deletedByUserName%>:
+
+Tytuł: <%=title%>
+Url: <%=url%>
+Użytkownik: <%=postedByUserName%>

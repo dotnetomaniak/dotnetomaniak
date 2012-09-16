@@ -1,0 +1,80 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Core", "Core\Kigg.Core.csproj", "{04A61455-9656-4E67-A8D6-9FBA348F0FB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Infrastructure.LinqToSql", "LinqToSql\Kigg.Infrastructure.LinqToSql.csproj", "{49CDCCC2-2C02-4DF1-9234-246D974D2B2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Infrastructure.EnterpriseLibrary", "EnterpriseLibrary\Kigg.Infrastructure.EnterpriseLibrary.csproj", "{115F6494-917B-4E8B-97E4-F671DE3E94F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Infrastructure.HtmlAgilityPack", "HtmlAgilityPack\Kigg.Infrastructure.HtmlAgilityPack.csproj", "{564931FC-9E33-4FA4-887D-7E78C2B63873}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Core.Test", "Core.Test\Kigg.Core.Test.csproj", "{199F7292-3FC7-4D58-8AD6-E1EDFE799916}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Test.Infrastructure", "Test.Infrastructure\Kigg.Test.Infrastructure.csproj", "{880A0F43-4A21-4A6E-BCA7-4094F0FB38AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Infrastructure.EnterpriseLibrary.Test", "EnterpriseLibrary.Test\Kigg.Infrastructure.EnterpriseLibrary.Test.csproj", "{96E668A5-16AF-4192-988D-7A4D70337969}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Infrastructure.HtmlAgilityPack.Test", "HtmlAgilityPack.Test\Kigg.Infrastructure.HtmlAgilityPack.Test.csproj", "{1A8C7B96-CF84-4389-B1D9-DE38BFA6C207}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Infrastructure.LinqToSql.Test", "LinqToSql.Test\Kigg.Infrastructure.LinqToSql.Test.csproj", "{71379487-28BF-43B1-803A-A359DEB90C91}"
+EndProject
+Project("{00000000-0000-0000-0000-000000000000}") = "Kigg.Web", "Web\Kigg.Web.csproj", "{B385D300-8714-4F31-A591-A904C383F88B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Web.Test", "Web.Test\Kigg.Web.Test.csproj", "{8D913567-3D14-4F7C-82B5-BB12FB52F68A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04A61455-9656-4E67-A8D6-9FBA348F0FB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04A61455-9656-4E67-A8D6-9FBA348F0FB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04A61455-9656-4E67-A8D6-9FBA348F0FB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04A61455-9656-4E67-A8D6-9FBA348F0FB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49CDCCC2-2C02-4DF1-9234-246D974D2B2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49CDCCC2-2C02-4DF1-9234-246D974D2B2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49CDCCC2-2C02-4DF1-9234-246D974D2B2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49CDCCC2-2C02-4DF1-9234-246D974D2B2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{115F6494-917B-4E8B-97E4-F671DE3E94F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{115F6494-917B-4E8B-97E4-F671DE3E94F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{115F6494-917B-4E8B-97E4-F671DE3E94F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{115F6494-917B-4E8B-97E4-F671DE3E94F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{564931FC-9E33-4FA4-887D-7E78C2B63873}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{564931FC-9E33-4FA4-887D-7E78C2B63873}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{564931FC-9E33-4FA4-887D-7E78C2B63873}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{564931FC-9E33-4FA4-887D-7E78C2B63873}.Release|Any CPU.Build.0 = Release|Any CPU
+		{199F7292-3FC7-4D58-8AD6-E1EDFE799916}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{199F7292-3FC7-4D58-8AD6-E1EDFE799916}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{199F7292-3FC7-4D58-8AD6-E1EDFE799916}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{199F7292-3FC7-4D58-8AD6-E1EDFE799916}.Release|Any CPU.Build.0 = Release|Any CPU
+		{880A0F43-4A21-4A6E-BCA7-4094F0FB38AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{880A0F43-4A21-4A6E-BCA7-4094F0FB38AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{880A0F43-4A21-4A6E-BCA7-4094F0FB38AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{880A0F43-4A21-4A6E-BCA7-4094F0FB38AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96E668A5-16AF-4192-988D-7A4D70337969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96E668A5-16AF-4192-988D-7A4D70337969}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96E668A5-16AF-4192-988D-7A4D70337969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96E668A5-16AF-4192-988D-7A4D70337969}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A8C7B96-CF84-4389-B1D9-DE38BFA6C207}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A8C7B96-CF84-4389-B1D9-DE38BFA6C207}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A8C7B96-CF84-4389-B1D9-DE38BFA6C207}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A8C7B96-CF84-4389-B1D9-DE38BFA6C207}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71379487-28BF-43B1-803A-A359DEB90C91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71379487-28BF-43B1-803A-A359DEB90C91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71379487-28BF-43B1-803A-A359DEB90C91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71379487-28BF-43B1-803A-A359DEB90C91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B385D300-8714-4F31-A591-A904C383F88B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B385D300-8714-4F31-A591-A904C383F88B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B385D300-8714-4F31-A591-A904C383F88B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B385D300-8714-4F31-A591-A904C383F88B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D913567-3D14-4F7C-82B5-BB12FB52F68A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D913567-3D14-4F7C-82B5-BB12FB52F68A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D913567-3D14-4F7C-82B5-BB12FB52F68A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D913567-3D14-4F7C-82B5-BB12FB52F68A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

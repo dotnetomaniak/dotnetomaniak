@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Interface Name="Kigg.Repository.ICategoryRepository">
+    <Position X="15.75" Y="4.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\ICategoryRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Kigg.Repository.IVoteRepository">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAIAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\IVoteRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Kigg.Repository.ICommentRepository">
+    <Position X="15" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAIAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\ICommentRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Kigg.Repository.ICommentSubscribtionRepository">
+    <Position X="22.5" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\ICommentSubscribtionRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Kigg.Repository.IKnownSourceRepository">
+    <Position X="5.5" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Repository\IKnownSourceRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Kigg.Repository.IMarkAsSpamRepository">
+    <Position X="12.25" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAIAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\IMarkAsSpamRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Kigg.Repository.IRepository&lt;TEntity&gt;">
+    <Position X="15.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\IRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Kigg.Repository.IStoryRepository">
+    <Position X="22.5" Y="4.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AABAGAAACAAAAGBAAAAAQQAQAJkBAEAAQAJAAAAgAAA=</HashCode>
+      <FileName>Repository\IStoryRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Kigg.Repository.IStoryViewRepository">
+    <Position X="7.75" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\IStoryViewRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Kigg.Repository.ITagRepository">
+    <Position X="19.5" Y="4.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAABAAAACAAA=</HashCode>
+      <FileName>Repository\ITagRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Kigg.Repository.IUniqueNameEntityRepository&lt;TEntity&gt;">
+    <Position X="18.75" Y="2.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\IUniqueNameEntityRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Kigg.Repository.IUserRepository">
+    <Position X="26.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAEAAAAAAAAAAAAAAAAAABAEAAIEAAAAAAAAA=</HashCode>
+      <FileName>Repository\IUserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dotnetomaniak" EntityNamespace="Kigg.LinqToSql.DomainObjects" ContextNamespace="Kigg.LinqToSql.Repository" Class="Database" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(local);Initial Catalog=dotnetomaniak;Integrated Security=True" SettingsObjectName="Kigg.Infrastructure.LinqToSql.Properties.Settings" SettingsPropertyName="dotnetomaniakConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Category" Member="Categories">
+    <Type Name="Category">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UniqueName" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Description" Type="System.String" CanBeNull="false" />
+      <Association Name="Category_Story" Member="Stories" ThisKey="Id" OtherKey="CategoryId" Type="Story" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserTag" Member="UserTags">
+    <Type Name="UserTag">
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TagId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Tag_UserTag" Member="Tag" ThisKey="TagId" OtherKey="Id" Type="Tag" IsForeignKey="true" DeleteOnNull="true" />
+      <Association Name="User_UserTag" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CommentSubscribtion" Member="CommentSubscribtions">
+    <Type Name="CommentSubscribtion">
+      <Column Name="StoryId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Story_CommentSubscribtion" Member="Story" ThisKey="StoryId" OtherKey="Id" Type="Story" IsForeignKey="true" DeleteOnNull="true" />
+      <Association Name="User_CommentSubscribtion" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KnownSource" Member="KnownSources">
+    <Type Name="KnownSource">
+      <Column Name="Url" Type="System.String" DbType="NVarChar(450) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Grade" Type="global::Kigg.DomainObjects.KnownSourceGrade" DbType="Int NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Story" Member="Stories">
+    <Type Name="Story">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UniqueName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="HtmlDescription" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" IsDelayLoaded="true" />
+      <Column Name="TextDescription" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Url" Type="System.String" DbType="NVarChar(2048) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="UrlHash" Type="System.String" DbType="NChar(24) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="CategoryId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="IPAddress" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="LastActivityAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ApprovedAt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PublishedAt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Rank" Type="System.Int32" DbType="Int" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="LastProcessedAt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Story_CommentSubscribtion" Member="CommentSubscribtions" ThisKey="Id" OtherKey="StoryId" Type="CommentSubscribtion" />
+      <Association Name="Story_StoryComment" Member="StoryComments" ThisKey="Id" OtherKey="StoryId" Type="StoryComment" />
+      <Association Name="Story_StoryMarkAsSpam" Member="StoryMarkAsSpams" ThisKey="Id" OtherKey="StoryId" Type="StoryMarkAsSpam" />
+      <Association Name="Story_StoryTag" Member="StoryTags" ThisKey="Id" OtherKey="StoryId" Type="StoryTag" />
+      <Association Name="Story_StoryView" Member="StoryViews" ThisKey="Id" OtherKey="StoryId" Type="StoryView" />
+      <Association Name="Story_StoryVote" Member="StoryVotes" ThisKey="Id" OtherKey="StoryId" Type="StoryVote" />
+      <Association Name="Category_Story" Member="Category" ThisKey="CategoryId" OtherKey="Id" Type="Category" IsForeignKey="true" DeleteOnNull="true" />
+      <Association Name="User_Story" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StoryComment" Member="StoryComments">
+    <Type Name="StoryComment">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="HtmlBody" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="TextBody" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" IsDelayLoaded="true" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="StoryId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="IPAddress" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="IsOffended" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="Story_StoryComment" Member="Story" ThisKey="StoryId" OtherKey="Id" Type="Story" IsForeignKey="true" DeleteOnNull="true" />
+      <Association Name="User_StoryComment" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StoryMarkAsSpam" Member="StoryMarkAsSpams">
+    <Type Name="StoryMarkAsSpam">
+      <Column Name="StoryId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IPAddress" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Timestamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="Story_StoryMarkAsSpam" Member="Story" ThisKey="StoryId" OtherKey="Id" Type="Story" IsForeignKey="true" DeleteOnNull="true" />
+      <Association Name="User_StoryMarkAsSpam" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StoryTag" Member="StoryTags">
+    <Type Name="StoryTag">
+      <Column Name="StoryId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TagId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Story_StoryTag" Member="Story" ThisKey="StoryId" OtherKey="Id" Type="Story" IsForeignKey="true" DeleteOnNull="true" />
+      <Association Name="Tag_StoryTag" Member="Tag" ThisKey="TagId" OtherKey="Id" Type="Tag" IsForeignKey="true" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StoryView" Member="StoryViews">
+    <Type Name="StoryView">
+      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StoryId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Timestamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="IPAddress" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="Story_StoryView" Member="Story" ThisKey="StoryId" OtherKey="Id" Type="Story" IsForeignKey="true" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StoryVote" Member="StoryVotes">
+    <Type Name="StoryVote">
+      <Column Name="StoryId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IPAddress" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Timestamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="Story_StoryVote" Member="Story" ThisKey="StoryId" OtherKey="Id" Type="Story" IsForeignKey="true" DeleteOnNull="true" />
+      <Association Name="User_StoryVote" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tag" Member="Tags">
+    <Type Name="Tag">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UniqueName" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="Tag_UserTag" Member="UserTags" ThisKey="Id" OtherKey="TagId" Type="UserTag" />
+      <Association Name="Tag_StoryTag" Member="StoryTags" ThisKey="Id" OtherKey="TagId" Type="StoryTag" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="IsLockedOut" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Role" Type="global::Kigg.DomainObjects.Roles" DbType="Int NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="LastActivityAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="User_UserTag" Member="UserTags" ThisKey="Id" OtherKey="UserId" Type="UserTag" />
+      <Association Name="User_CommentSubscribtion" Member="CommentSubscribtions" ThisKey="Id" OtherKey="UserId" Type="CommentSubscribtion" />
+      <Association Name="User_Story" Member="Stories" ThisKey="Id" OtherKey="UserId" Type="Story" />
+      <Association Name="User_StoryComment" Member="StoryComments" ThisKey="Id" OtherKey="UserId" Type="StoryComment" />
+      <Association Name="User_StoryMarkAsSpam" Member="StoryMarkAsSpams" ThisKey="Id" OtherKey="UserId" Type="StoryMarkAsSpam" />
+      <Association Name="User_StoryVote" Member="StoryVotes" ThisKey="Id" OtherKey="UserId" Type="StoryVote" />
+      <Association Name="User_UserScore" Member="UserScores" ThisKey="Id" OtherKey="UserId" Type="UserScore" />
+      <Association Name="User_UserAchievement" Member="UserAchievements" ThisKey="Id" OtherKey="UserId" Type="UserAchievement" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserScore" Member="UserScores">
+    <Type Name="UserScore">
+      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Timestamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ActionType" Type="global::Kigg.DomainObjects.UserAction" DbType="Int NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Score" Type="System.Decimal" DbType="Decimal(5,2) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="User_UserScore" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserAchievement" Member="UserAchievements">
+    <Type Name="UserAchievement">
+      <Column Name="DateAchieved" Type="System.DateTime" CanBeNull="false" />
+      <Column Name="AchievementId" Type="System.Guid" DbType="uniqueidentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="uniqueidentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Displayed" Type="System.Boolean" CanBeNull="false" />
+      <Association Name="Achievement_UserAchievement" Member="Achievement" ThisKey="AchievementId" OtherKey="Id" Type="Achievement" IsForeignKey="true" />
+      <Association Name="User_UserAchievement" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Achievement" Member="Achievements">
+    <Type Name="Achievement">
+      <Column Name="Name" Type="System.String" CanBeNull="false" />
+      <Column Name="Id" Type="System.Guid" DbType="uniqueidentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="ntext NOT NULL" CanBeNull="false" />
+      <Column Name="Type" Type="System.Int32" CanBeNull="false" />
+      <Association Name="Achievement_UserAchievement" Member="UserAchievements" ThisKey="Id" OtherKey="AchievementId" Type="UserAchievement" />
+    </Type>
+  </Table>
+  <Function Name="dbo.CommentSearch" Method="CommentSearch" IsComposable="true">
+    <Parameter Name="query" Type="System.String" DbType="NVarChar(4000)" />
+    <ElementType Name="CommentSearchResult">
+      <Column Name="StoryId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.StorySearch" Method="StorySearch" IsComposable="true">
+    <Parameter Name="query" Type="System.String" DbType="NVarChar(4000)" />
+    <ElementType Name="StorySearchResult">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[_10kPoints]" Method="_10kPoints" IsComposable="true">
+    <Return Type="object" />
+  </Function>
+  <Function Name="dbo.EarlyBird" Method="EarlyBird">
+    <ElementType Name="EarlyBirdResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.StoryAdder" Method="StoryAdder">
+    <ElementType Name="StoryAdderResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.[_1kPoints]" Method="_1kPoints">
+    <ElementType Name="_1kPointsResult">
+      <Column Name="" Member="Column1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

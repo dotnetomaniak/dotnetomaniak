@@ -1,0 +1,14 @@
+user Kigg;
+delete from `storytag`;
+delete from `usertag`;
+delete from `commentsubscribtion`;
+delete from `storyview`;
+delete from `storymarkasspam`;
+delete from `storycomment`;
+delete from `storyvote`;
+delete from `userscore`;
+delete from `tag`;
+delete from `category`;
+delete from `story`;
+delete from `user`;
+delete from `knownsource`;

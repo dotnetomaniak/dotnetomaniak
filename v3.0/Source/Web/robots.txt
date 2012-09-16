@@ -1,0 +1,8 @@
+User-Agent: *
+Allow: /
+Sitemap: http://dotnetomaniak.pl/sitemap.axd
+Disallow: /Logout
+Disallow: /Click
+Disallow: /Promote
+Disallow: /Demote
+Disallow: /MarkAsSpam

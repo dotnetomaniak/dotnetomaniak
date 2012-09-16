@@ -1,0 +1,5 @@
+﻿Poniższy komentarz został uznany za spam przez użytkownika <%=confirmedByUserName%>:
+
+Url: <%=siteUrl%>
+Użytkownik: <%=postedByUserName%>
+Komentarz: <%=comment%>

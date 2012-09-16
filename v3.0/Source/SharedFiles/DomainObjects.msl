@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+  <EntityContainerMapping 
+    StorageEntityContainer="KiggStorageEntityContainer"
+    CdmEntityContainer="KiggEntityContainer">
+    <EntitySetMapping Name="Category">
+      <EntityTypeMapping TypeName="IsTypeOf(Kigg.EF.DomainObjects.Category)">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UniqueName" ColumnName="UniqueName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KnownSource">
+      <EntityTypeMapping TypeName="IsTypeOf(Kigg.EF.DomainObjects.KnownSource)">
+        <MappingFragment StoreEntitySet="KnownSource">
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="SourceGrade" ColumnName="Grade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Story">
+      <EntityTypeMapping TypeName="IsTypeOf(Kigg.EF.DomainObjects.Story)">
+        <MappingFragment StoreEntitySet="Story">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UniqueName" ColumnName="UniqueName" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="HtmlDescription" ColumnName="HtmlDescription" />
+          <ScalarProperty Name="TextDescription" ColumnName="TextDescription" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="UrlHash" ColumnName="UrlHash" />
+          <ScalarProperty Name="IpAddress" ColumnName="IPAddress" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="LastActivityAt" ColumnName="LastActivityAt" />
+          <ScalarProperty Name="ApprovedAt" ColumnName="ApprovedAt" />
+          <ScalarProperty Name="PublishedAt" ColumnName="PublishedAt" />
+          <ScalarProperty Name="Rank" ColumnName="Rank" />
+          <ScalarProperty Name="LastProcessedAt" ColumnName="LastProcessedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StoryComment">
+      <EntityTypeMapping TypeName="IsTypeOf(Kigg.EF.DomainObjects.StoryComment)">
+        <MappingFragment StoreEntitySet="StoryComment">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HtmlBody" ColumnName="HtmlBody" />
+          <ScalarProperty Name="TextBody" ColumnName="TextBody" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="IpAddress" ColumnName="IPAddress" />
+          <ScalarProperty Name="IsOffended" ColumnName="IsOffended" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StoryMarkAsSpam">
+      <EntityTypeMapping TypeName="IsTypeOf(Kigg.EF.DomainObjects.StoryMarkAsSpam)">
+        <MappingFragment StoreEntitySet="StoryMarkAsSpam">
+          <ScalarProperty Name="StoryId" ColumnName="StoryId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="IpAddress" ColumnName="IPAddress" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StoryView">
+      <EntityTypeMapping TypeName="IsTypeOf(Kigg.EF.DomainObjects.StoryView)">
+        <MappingFragment StoreEntitySet="StoryView">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="IpAddress" ColumnName="IPAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StoryVote">
+      <EntityTypeMapping TypeName="IsTypeOf(Kigg.EF.DomainObjects.StoryVote)">
+        <MappingFragment StoreEntitySet="StoryVote">
+          <ScalarProperty Name="StoryId" ColumnName="StoryId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="IpAddress" ColumnName="IPAddress" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tag">
+      <EntityTypeMapping TypeName="IsTypeOf(Kigg.EF.DomainObjects.Tag)">
+        <MappingFragment StoreEntitySet="Tag">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UniqueName" ColumnName="UniqueName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserDataSource">
+      <EntityTypeMapping TypeName="IsTypeOf(Kigg.EF.DomainObjects.User)">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+          <ScalarProperty Name="AssignedRole" ColumnName="Role" />
+          <ScalarProperty Name="LastActivityAt" ColumnName="LastActivityAt" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserScore">
+      <EntityTypeMapping TypeName="IsTypeOf(Kigg.EF.DomainObjects.UserScore)">
+        <MappingFragment StoreEntitySet="UserScore">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="Action" ColumnName="ActionType" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <!--<EntitySetMapping Name="StorySearchResult">
+      <EntityTypeMapping TypeName="IsTypeOf(Kigg.EF.DomainObjects.StorySearchResult)">
+        <MappingFragment StoreEntitySet="StorySearchResult">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CommentSearchResult">
+      <EntityTypeMapping TypeName="IsTypeOf(Kigg.EF.DomainObjects.CommentSearchResult)">
+        <MappingFragment StoreEntitySet="CommentSearchResult">
+          <ScalarProperty Name="StoryId" ColumnName="StoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>-->
+    <AssociationSetMapping Name="FK_Story_Category" TypeName="Kigg.EF.DomainObjects.FK_Story_Category" StoreEntitySet="Story">
+      <EndProperty Name="Category">
+        <ScalarProperty Name="Id" ColumnName="CategoryId" />
+      </EndProperty>
+      <EndProperty Name="Story">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Story_User" TypeName="Kigg.EF.DomainObjects.FK_Story_User" StoreEntitySet="Story">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="Story">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_StoryComment_Story" TypeName="Kigg.EF.DomainObjects.FK_StoryComment_Story" StoreEntitySet="StoryComment">
+      <EndProperty Name="Story">
+        <ScalarProperty Name="Id" ColumnName="StoryId" />
+      </EndProperty>
+      <EndProperty Name="StoryComment">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_StoryMarkAsSpam_Story" TypeName="Kigg.EF.DomainObjects.FK_StoryMarkAsSpam_Story" StoreEntitySet="StoryMarkAsSpam">
+      <EndProperty Name="Story">
+        <ScalarProperty Name="Id" ColumnName="StoryId" />
+      </EndProperty>
+      <EndProperty Name="StoryMarkAsSpam">
+        <ScalarProperty Name="StoryId" ColumnName="StoryId" />
+        <ScalarProperty Name="UserId" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_StoryView_Story" TypeName="Kigg.EF.DomainObjects.FK_StoryView_Story" StoreEntitySet="StoryView">
+      <EndProperty Name="Story">
+        <ScalarProperty Name="Id" ColumnName="StoryId" />
+      </EndProperty>
+      <EndProperty Name="StoryView">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_StoryVote_Story" TypeName="Kigg.EF.DomainObjects.FK_StoryVote_Story" StoreEntitySet="StoryVote">
+      <EndProperty Name="Story">
+        <ScalarProperty Name="Id" ColumnName="StoryId" />
+      </EndProperty>
+      <EndProperty Name="StoryVote">
+        <ScalarProperty Name="StoryId" ColumnName="StoryId" />
+        <ScalarProperty Name="UserId" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_StoryComment_User" TypeName="Kigg.EF.DomainObjects.FK_StoryComment_User" StoreEntitySet="StoryComment">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="StoryComment">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_StoryMarkAsSpam_User" TypeName="Kigg.EF.DomainObjects.FK_StoryMarkAsSpam_User" StoreEntitySet="StoryMarkAsSpam">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="StoryMarkAsSpam">
+        <ScalarProperty Name="StoryId" ColumnName="StoryId" />
+        <ScalarProperty Name="UserId" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_StoryVote_User" TypeName="Kigg.EF.DomainObjects.FK_StoryVote_User" StoreEntitySet="StoryVote">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="StoryVote">
+        <ScalarProperty Name="StoryId" ColumnName="StoryId" />
+        <ScalarProperty Name="UserId" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_UserScore_User" TypeName="Kigg.EF.DomainObjects.FK_UserScore_User" StoreEntitySet="UserScore">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="UserScore">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CommentSubscribtion" TypeName="Kigg.EF.DomainObjects.CommentSubscribtion" StoreEntitySet="CommentSubscribtion">
+      <EndProperty Name="Story">
+        <ScalarProperty Name="Id" ColumnName="StoryId" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="StoryTag" TypeName="Kigg.EF.DomainObjects.StoryTag" StoreEntitySet="StoryTag">
+      <EndProperty Name="Story">
+        <ScalarProperty Name="Id" ColumnName="StoryId" />
+      </EndProperty>
+      <EndProperty Name="Tag">
+        <ScalarProperty Name="Id" ColumnName="TagId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserTag" TypeName="Kigg.EF.DomainObjects.UserTag" StoreEntitySet="UserTag">
+      <EndProperty Name="Tag">
+        <ScalarProperty Name="Id" ColumnName="TagId" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <!--<FunctionImportMapping FunctionImportName="StorySearch"
+                           FunctionName="Kigg.EF.DomainObjects.Store.StorySearchProc"/>
+    <FunctionImportMapping FunctionImportName="CommentSearch"
+                           FunctionName="Kigg.EF.DomainObjects.Store.CommentSearchProc"/>-->
+  </EntityContainerMapping>
+</Mapping>
