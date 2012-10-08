@@ -1,0 +1,411 @@
+﻿<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>AzureToolkit</name>
+  </assembly>
+  <members>
+    <member name="M:AzureToolkit.IInitializer.Initialize">
+      <summary>
+            Initializes this instance.
+            </summary>
+      <remarks />
+    </member>
+    <member name="M:AzureToolkit.IAzureTable`1.Get(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+      <summary>
+            Gets the specified predicate.
+            </summary>
+      <param name="predicate">The predicate.</param>
+      <returns />
+    </member>
+    <member name="M:AzureToolkit.IAzureTable`1.GetAll">
+      <summary>
+            Gets all the rows in the table.
+            </summary>
+      <returns />
+    </member>
+    <member name="M:AzureToolkit.IAzureTable`1.GetAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+      <summary>
+            Gets all the rows in the table filtered by the query expression.
+            </summary>
+      <param name="predicate">The predicate.</param>
+      <returns />
+    </member>
+    <member name="M:AzureToolkit.IAzureTable`1.Add(`0)">
+      <summary>
+            Adds the specified object to the table.
+            </summary>
+      <param name="obj">The object.</param>
+    </member>
+    <member name="M:AzureToolkit.IAzureTable`1.Add(System.Collections.Generic.IEnumerable{`0})">
+      <summary>
+            Adds the specified objects to the table.
+            </summary>
+      <param name="objs">The objects.</param>
+    </member>
+    <member name="M:AzureToolkit.IAzureTable`1.AddOrUpdate(`0)">
+      <summary>
+            Adds or updates the object.
+            </summary>
+      <param name="obj">The object.</param>
+    </member>
+    <member name="M:AzureToolkit.IAzureTable`1.AddOrUpdate(System.Collections.Generic.IEnumerable{`0})">
+      <summary>
+            Adds or updates the object.
+            </summary>
+      <param name="objs">The objects.</param>
+    </member>
+    <member name="M:AzureToolkit.IAzureTable`1.Delete(`0)">
+      <summary>
+            Deletes the specified object.
+            </summary>
+      <param name="obj">The object.</param>
+    </member>
+    <member name="M:AzureToolkit.IAzureTable`1.Delete(System.Collections.Generic.IEnumerable{`0})">
+      <summary>
+            Deletes the specified objects.
+            </summary>
+      <param name="objs">The objects.</param>
+    </member>
+    <member name="P:AzureToolkit.IAzureTable`1.Query">
+      <summary>
+            Gets the query.
+            </summary>
+      <value>The query.</value>
+    </member>
+    <member name="M:AzureToolkit.IAzureQueue`1.Clear">
+      <summary>
+            Clears the queue.
+            </summary>
+    </member>
+    <member name="M:AzureToolkit.IAzureQueue`1.AddMessage(`0)">
+      <summary>
+            Adds the message to the queue.
+            </summary>
+      <param name="message">The message.</param>
+    </member>
+    <member name="M:AzureToolkit.IAzureQueue`1.AddMessageAsync(`0)">
+      <summary>
+            Adds the message async.
+            </summary>
+      <param name="message">The message.</param>
+    </member>
+    <member name="M:AzureToolkit.IAzureQueue`1.BeginAddMessage(`0,System.AsyncCallback,System.Object)">
+      <summary>
+            Begins the add message.
+            </summary>
+      <param name="message">The message.</param>
+      <param name="callback">The callback.</param>
+      <param name="state">The state.</param>
+      <returns />
+    </member>
+    <member name="M:AzureToolkit.IAzureQueue`1.EndAddMessage(System.IAsyncResult)">
+      <summary>
+            Ends the add message.
+            </summary>
+      <param name="asyncResult">The async result.</param>
+    </member>
+    <member name="M:AzureToolkit.IAzureQueue`1.GetMessage">
+      <summary>
+            Gets the top message from the queue.
+            </summary>
+      <returns>The message object.</returns>
+    </member>
+    <member name="M:AzureToolkit.IAzureQueue`1.GetMessages(System.Int32)">
+      <summary>
+            Gets the top messages from the queue.
+            </summary>
+      <param name="maxMessagesToReturn">The max messages to return.</param>
+      <returns>The message objects.</returns>
+    </member>
+    <member name="M:AzureToolkit.IAzureQueue`1.DeleteMessage(`0)">
+      <summary>
+            Deletes the message from the queue.
+            </summary>
+      <param name="message">The message.</param>
+    </member>
+    <member name="M:AzureToolkit.IAzureQueue`1.DeleteMessageAsync(`0)">
+      <summary>
+            Deletes the message asynchronously.
+            </summary>
+      <param name="message">The message.</param>
+    </member>
+    <member name="M:AzureToolkit.IAzureBlobContainer`1.Save(System.String,`0)">
+      <summary>
+            Saves the specified object.
+            </summary>
+      <param name="objId">The object id.</param>
+      <param name="obj">The object.</param>
+    </member>
+    <member name="M:AzureToolkit.IAzureBlobContainer`1.SaveAsync(System.String,`0)">
+      <summary>
+            Saves the document asyncronously.
+            </summary>
+      <param name="objId">The obj id.</param>
+      <param name="obj">The obj.</param>
+    </member>
+    <member name="M:AzureToolkit.IAzureBlobContainer`1.Get(System.String)">
+      <summary>
+            Gets the specified object.
+            </summary>
+      <param name="objId">The object id.</param>
+      <returns>The object.</returns>
+    </member>
+    <member name="M:AzureToolkit.IAzureBlobContainer`1.GetAll">
+      <summary>
+            Gets all objects.
+            </summary>
+      <returns>The objects.</returns>
+    </member>
+    <member name="M:AzureToolkit.IAzureBlobContainer`1.GetUri(System.String)">
+      <summary>
+            Gets the URI of the blob container.
+            </summary>
+      <param name="objId">The object id.</param>
+      <returns>The URI of the blob container.</returns>
+    </member>
+    <member name="M:AzureToolkit.IAzureBlobContainer`1.Delete(System.String)">
+      <summary>
+            Deletes the specified object.
+            </summary>
+      <param name="objId">The object id.</param>
+    </member>
+    <member name="M:AzureToolkit.IAzureBlobContainer`1.DeleteContainer">
+      <summary>
+            Deletes the container.
+            </summary>
+    </member>
+    <member name="M:AzureToolkit.IAzureStorageFactory.GetEntitiesContainer``1(System.String)">
+      <summary>
+            Gets the entities container.
+            </summary>
+      <typeparam name="T" />
+      <param name="containerName">Name of the container.</param>
+      <returns />
+    </member>
+    <member name="M:AzureToolkit.IAzureStorageFactory.GetFileContainer(System.String,System.String)">
+      <summary>
+            Gets the file container.
+            </summary>
+      <param name="containerName">Name of the container.</param>
+      <param name="containerType">Type of the container.</param>
+      <returns />
+    </member>
+    <member name="M:AzureToolkit.IAzureStorageFactory.GetFileContainer(System.String,System.String,Microsoft.WindowsAzure.StorageClient.BlobContainerPermissions)">
+      <summary>
+            Gets the file container.
+            </summary>
+      <param name="containerName">Name of the container.</param>
+      <param name="containerType">Type of the container.</param>
+      <param name="blobContainerPermissions">The BLOB container permissions.</param>
+      <returns />
+    </member>
+    <member name="M:AzureToolkit.IAzureStorageFactory.GetQueue``1(System.String)">
+      <summary>
+            Gets the queue.
+            </summary>
+      <typeparam name="T" />
+      <param name="queueName">Name of the queue.</param>
+      <returns />
+    </member>
+    <member name="M:AzureToolkit.IAzureStorageFactory.GetQueue``1(System.String,System.TimeSpan)">
+      <summary>
+            Gets the queue.
+            </summary>
+      <typeparam name="T" />
+      <param name="queueName">Name of the queue.</param>
+      <param name="visibilityTimeout">The visibility timeout.</param>
+      <returns />
+    </member>
+    <member name="M:AzureToolkit.IAzureStorageFactory.GetTable``1(System.String)">
+      <summary>
+            Gets the table.
+            </summary>
+      <typeparam name="T" />
+      <param name="tableName">Name of the table.</param>
+      <returns />
+    </member>
+    <member name="P:AzureToolkit.IAzureStorageFactory.Account">
+      <summary>
+            Gets or sets the account.
+            </summary>
+      <value>The account.</value>
+    </member>
+    <member name="M:AzureToolkit.CloudConfiguration.GetConfigurationSetting(System.String,System.String,System.Boolean)">
+      <summary>
+            Gets a configuration setting from application settings in the Web.config or App.config file. 
+            When running in a hosted environment, configuration settings are read from the settings specified in 
+            .cscfg files (i.e., the settings are read from the fabrics configuration system).
+            </summary>
+    </member>
+    <member name="T:AzureToolkit.Engine.CrontabField">
+      <summary>
+            Represents a single crontab field.
+            </summary>
+    </member>
+    <member name="M:AzureToolkit.Engine.CrontabField.Parse(AzureToolkit.Engine.CrontabFieldKind,System.String)">
+      <summary>
+            Parses a crontab field expression given its kind.
+            </summary>
+    </member>
+    <member name="M:AzureToolkit.Engine.CrontabField.Minutes(System.String)">
+      <summary>
+            Parses a crontab field expression representing minutes.
+            </summary>
+    </member>
+    <member name="M:AzureToolkit.Engine.CrontabField.Hours(System.String)">
+      <summary>
+            Parses a crontab field expression representing hours.
+            </summary>
+    </member>
+    <member name="M:AzureToolkit.Engine.CrontabField.Days(System.String)">
+      <summary>
+            Parses a crontab field expression representing days in any given month.
+            </summary>
+    </member>
+    <member name="M:AzureToolkit.Engine.CrontabField.Months(System.String)">
+      <summary>
+            Parses a crontab field expression representing months.
+            </summary>
+    </member>
+    <member name="M:AzureToolkit.Engine.CrontabField.DaysOfWeek(System.String)">
+      <summary>
+            Parses a crontab field expression representing days of a week.
+            </summary>
+    </member>
+    <member name="M:AzureToolkit.Engine.CrontabField.GetFirst">
+      <summary>
+            Gets the first value of the field or -1.
+            </summary>
+    </member>
+    <member name="M:AzureToolkit.Engine.CrontabField.Next(System.Int32)">
+      <summary>
+            Gets the next value of the field that occurs after the given 
+            start value or -1 if there is no next value available.
+            </summary>
+    </member>
+    <member name="M:AzureToolkit.Engine.CrontabField.Contains(System.Int32)">
+      <summary>
+            Determines if the given value occurs in the field.
+            </summary>
+    </member>
+    <member name="M:AzureToolkit.Engine.CrontabField.Accumulate(System.Int32,System.Int32,System.Int32)">
+      <summary>
+            Accumulates the given range (start to end) and interval of values
+            into the current set of the field.
+            </summary>
+      <remarks>
+            To set the entire range of values representable by the field,
+            set <param name="start" /> and <param name="end" /> to -1 and
+            <param name="interval" /> to 1.
+            </remarks>
+    </member>
+    <member name="T:AzureToolkit.Engine.CrontabSchedule">
+      <summary>
+            Represents a schedule initialized from the crontab expression.
+            </summary>
+    </member>
+    <member name="M:AzureToolkit.Engine.CloudEngine.Setup(System.Action{AzureToolkit.Engine.CloudEngineSettings})">
+      <requires>config != null</requires>
+    </member>
+    <member name="M:AzureToolkit.Engine.MessageHandlerBase`1.ProcessMessages(System.Collections.Generic.IEnumerable{`0},System.Action{`0})">
+      <requires>messages != null</requires>
+      <requires>action != null</requires>
+    </member>
+    <member name="M:AzureToolkit.Engine.JobSchedulingProcessFluent.ToString">
+      <ensures inheritedFrom="M:System.Object.ToString" inheritedFromTypeName="Object">Contract.Result&lt;string&gt;() != null</ensures>
+    </member>
+    <member name="M:AzureToolkit.Engine.CrontabField.ToString">
+      <ensures inheritedFrom="M:System.Object.ToString" inheritedFromTypeName="Object">Contract.Result&lt;string&gt;() != null</ensures>
+    </member>
+    <member name="M:AzureToolkit.Engine.CrontabSchedule.ToString">
+      <ensures inheritedFrom="M:System.Object.ToString" inheritedFromTypeName="Object">Contract.Result&lt;string&gt;() != null</ensures>
+    </member>
+    <member name="M:AzureToolkit.Engine.CronBuilder.ToString">
+      <ensures inheritedFrom="M:System.Object.ToString" inheritedFromTypeName="Object">Contract.Result&lt;string&gt;() != null</ensures>
+    </member>
+    <member name="M:AzureToolkit.EntitiesBlobContainer`1.#ctor(Microsoft.WindowsAzure.CloudStorageAccount,System.String,Microsoft.WindowsAzure.StorageClient.BlobContainerPermissions)">
+      <requires>account != null</requires>
+    </member>
+    <member name="P:AzureToolkit.JsonSerializer.Current">
+      <getter>
+        <ensures>Contract.Result&lt;IJsonSerializer&gt;() != null</ensures>
+      </getter>
+    </member>
+    <member name="M:AzureToolkit.JsonSerializer.InnerSetApplication(System.Func{AzureToolkit.IJsonSerializer})">
+      <requires>getJsonSerializer != null</requires>
+    </member>
+    <member name="M:AzureToolkit.JsonSerializer.SetJsonSerializer(System.Func{AzureToolkit.IJsonSerializer})">
+      <requires>getJsonSerializer != null</requires>
+    </member>
+    <member name="M:AzureToolkit.JsonSerializer.SetJsonSerializer(AzureToolkit.IJsonSerializer)">
+      <requires>jsonSerializer != null</requires>
+    </member>
+    <member name="P:AzureToolkit.JsonSerializer.InnerCurrent">
+      <getter>
+        <ensures>Contract.Result&lt;IJsonSerializer&gt;() != null</ensures>
+      </getter>
+    </member>
+    <member name="M:AzureToolkit.JsonSerializer.InnerSetApplication(AzureToolkit.IJsonSerializer)">
+      <requires>jsonSerializer != null</requires>
+    </member>
+    <member name="M:AzureToolkit.GenericEntity.System#Collections#IEnumerable#GetEnumerator">
+      <ensures inheritedFrom="M:System.Collections.IEnumerable.GetEnumerator" inheritedFromTypeName="IEnumerable">Contract.Result&lt;IEnumerator&gt;() != null</ensures>
+      <ensures inheritedFrom="M:System.Collections.IEnumerable.GetEnumerator" inheritedFromTypeName="IEnumerable">Contract.Result&lt;IEnumerator&gt;().Model == this.Model</ensures>
+      <ensures inheritedFrom="M:System.Collections.IEnumerable.GetEnumerator" inheritedFromTypeName="IEnumerable">Contract.Result&lt;IEnumerator&gt;().CurrentIndex == -1</ensures>
+    </member>
+    <member name="M:AzureToolkit.GenericEntity.GetEnumerator">
+      <ensures inheritedFrom="M:System.Collections.Generic.IEnumerable`1.GetEnumerator" inheritedFromTypeName="IEnumerable">Contract.Result&lt;IEnumerator&lt;T&gt;&gt;() != null</ensures>
+      <ensures inheritedFrom="M:System.Collections.Generic.IEnumerable`1.GetEnumerator" inheritedFromTypeName="IEnumerable">Contract.Result&lt;IEnumerator&lt;T&gt;&gt;().Model == ((IEnumerable)this).Model</ensures>
+    </member>
+    <member name="P:AzureToolkit.GenericEntity.Values">
+      <getter>
+        <ensures inheritedFrom="M:System.Collections.Generic.IDictionary`2.get_Values" inheritedFromTypeName="IDictionary">Contract.Result&lt;ICollection&lt;TValue&gt;&gt;() != null</ensures>
+      </getter>
+    </member>
+    <member name="M:AzureToolkit.GenericEntity.ContainsKey(System.String)">
+      <ensures inheritedFrom="M:System.Collections.Generic.IDictionary`2.ContainsKey(`0)" inheritedFromTypeName="IDictionary">!Contract.Result&lt;bool&gt;() || @this.Count &gt; 0</ensures>
+    </member>
+    <member name="P:AzureToolkit.GenericEntity.Count">
+      <getter>
+        <ensures inheritedFrom="M:System.Collections.Generic.ICollection`1.get_Count" inheritedFromTypeName="ICollection">Contract.Result&lt;int&gt;() &gt;= 0</ensures>
+      </getter>
+    </member>
+    <member name="P:AzureToolkit.GenericEntity.Keys">
+      <getter>
+        <ensures inheritedFrom="M:System.Collections.Generic.IDictionary`2.get_Keys" inheritedFromTypeName="IDictionary">Contract.Result&lt;ICollection&lt;TKey&gt;&gt;() != null</ensures>
+      </getter>
+    </member>
+    <member name="M:AzureToolkit.GenericEntity.TryGetValue(System.String,System.Object@)">
+      <ensures inheritedFrom="M:System.Collections.Generic.IDictionary`2.TryGetValue(`0,`1@)" inheritedFromTypeName="IDictionary">Contract.Result&lt;bool&gt;() == @this.ContainsKey(key)</ensures>
+    </member>
+    <member name="M:AzureToolkit.GenericEntity.Clear">
+      <ensures inheritedFrom="M:System.Collections.Generic.ICollection`1.Clear" inheritedFromTypeName="ICollection">this.Count == 0</ensures>
+    </member>
+    <member name="M:AzureToolkit.AzureTableBase`1.#ctor(Microsoft.WindowsAzure.CloudStorageAccount,System.String)">
+      <requires>account != null</requires>
+    </member>
+    <member name="T:AzureToolkit.AzureQueue`1">
+      <invariant>this.queue != null</invariant>
+      <invariant>this.visibilityTimeout != null</invariant>
+      <invariant>this.account != null</invariant>
+    </member>
+    <member name="M:AzureToolkit.AzureQueue`1.#ctor(Microsoft.WindowsAzure.CloudStorageAccount,System.String)">
+      <requires>account != null</requires>
+      <requires>visibilityTimeout != null</requires>
+    </member>
+    <member name="M:AzureToolkit.AzureQueue`1.#ctor(Microsoft.WindowsAzure.CloudStorageAccount,System.String,System.TimeSpan)">
+      <requires>account != null</requires>
+      <requires>visibilityTimeout != null</requires>
+      <ensures>this.queue != null</ensures>
+      <ensures>this.visibilityTimeout != null</ensures>
+      <ensures>this.account != null</ensures>
+    </member>
+    <member name="M:AzureToolkit.AzureQueue`1.#ctor(Microsoft.WindowsAzure.CloudStorageAccount)">
+      <requires>account != null</requires>
+    </member>
+    <member name="M:AzureToolkit.AzureQueue`1.#ctor(Microsoft.WindowsAzure.CloudStorageAccount,System.TimeSpan)">
+      <requires>account != null</requires>
+      <requires>visibilityTimeout != null</requires>
+    </member>
+  </members>
+</doc>
