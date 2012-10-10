@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Threading;
 using HtmlAgilityPack;
+using JobOfferParser.Crawlers;
 using JobOfferParser.Data;
 using JobOfferParser.Parsers;
 using Microsoft.WindowsAzure;
@@ -20,7 +21,7 @@ namespace JobOfferParser
 {
     public class WorkerRole : RoleEntryPoint
     {
-        private List<ICrawler> _carwlers;
+        private List<ICrawler> _crawlers;
         private OfferPersister _persister;
         public override void Run()
         {
@@ -31,14 +32,14 @@ namespace JobOfferParser
             {
                 try
                 {
-                    _carwlers.ForEach(x => x.Crawl());
+                    _crawlers.ForEach(x => x.Crawl());
                 }
                 catch (Exception ex)
                 {
-                    var mailSend = new SmtpClient();
-                    var exceptionMessage = new MailMessage("crawl@octal.pl", "pawel@octal.pl")
-                                               {Body = ex.ToString(), Subject = "Exception!"};
-                    mailSend.SendAsync(exceptionMessage, null);
+                    //var mailSend = new SmtpClient();
+                    //var exceptionMessage = new MailMessage("crawl@octal.pl", "pawel@octal.pl")
+                    //                           {Body = ex.ToString(), Subject = "Exception!"};
+                    //mailSend.SendAsync(exceptionMessage, null);
                     Trace.WriteLine("Error crawling pages");
                 }                
 
@@ -55,13 +56,10 @@ namespace JobOfferParser
             string connectionString = ConfigurationManager.ConnectionStrings["Azure"].ConnectionString;
             _persister = new OfferPersister(connectionString);
 
-            _carwlers = new List<ICrawler>
+            _crawlers = new List<ICrawler>
                             {
-                                    new PracujplCrawler(_persister), 
-                                    new GoldenLineCrawler(_persister),
-                                    new WssCrawler(),
-                                    new CodeguruCrawler(),
-                                    new GumtreeCrawler()
+                                new GumtreeCrawler(_persister, new GumtreeParser()),
+                                new PracujPlCrawler(_persister, new PracujPlParser())
                             };
 
             // For information on handling configuration changes

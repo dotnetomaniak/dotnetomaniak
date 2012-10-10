@@ -54,17 +54,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Crawlers\CrawlerBase.cs" />
+    <Compile Include="Crawlers\GumtreeCrawler.cs" />
+    <Compile Include="Crawlers\PracujPlCrawler.cs" />
     <Compile Include="Data\ICrawler.cs" />
     <Compile Include="Data\IOfferPersister.cs" />
     <Compile Include="Data\IParser.cs" />
     <Compile Include="Data\Keyword.cs" />
     <Compile Include="Data\Offer.cs" />
     <Compile Include="DB\OfferPersister.cs" />
-    <Compile Include="Parsers\CodeguruCrawler.cs" />
-    <Compile Include="Parsers\GoldenLineCrawler.cs" />
-    <Compile Include="Parsers\GumtreeCrawler.cs" />
-    <Compile Include="Parsers\PracujplCrawler.cs" />
-    <Compile Include="Parsers\WssCrawler.cs" />
+    <Compile Include="Helpers\OfferHelper.cs" />
+    <Compile Include="Crawlers\CodeguruCrawler.cs" />
+    <Compile Include="Crawlers\GoldenLineCrawler.cs" />
+    <Compile Include="Parsers\GumtreeParser.cs" />
+    <Compile Include="Parsers\PracujPlParser.cs" />
+    <Compile Include="Crawlers\WssCrawler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorkerRole.cs" />
   </ItemGroup>
@@ -72,6 +76,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,0 +1,2 @@
+"SPETZPC","2012-10-09 11:44:17","Information","Kigg.Repository","LoggingUserRepository","FindByUserName(String userName)","Retrieving user with userName: admin","n/a","::1","Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.79 Safari/537.4","/","/"
+"SPETZPC","2012-10-09 11:48:04","Warning","Kigg.Web","GlobalApplication","OnEnd()","Application Ended","n/a","n/a","n/a","n/a","n/a"
