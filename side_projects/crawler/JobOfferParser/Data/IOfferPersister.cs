@@ -1,4 +1,6 @@
-﻿namespace JobOfferParser.Data
+﻿using System.Collections.Generic;
+
+namespace JobOfferParser.Data
 {
     public interface IOfferPersister
     {

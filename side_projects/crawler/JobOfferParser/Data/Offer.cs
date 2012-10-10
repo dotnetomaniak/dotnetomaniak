@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 
 namespace JobOfferParser.Data
@@ -9,7 +10,10 @@ namespace JobOfferParser.Data
         public string Link { get; set; }
         public string Text { get; set; }
         public string Title { get; set; }
+        public string City { get; set; }
+        public string Province { get; set; }
         public string Sha1 { get; set; }
+        public DateTime Date { get; set; }
 
         public static Offer Empty
         {
