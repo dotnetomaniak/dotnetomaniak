@@ -1,4 +1,5 @@
 /v3.0/Source/Core/*.user
+/v3.0/Source/Web/Logs
 
 #OS junk files
 [Tt]humbs.db

@@ -13,5 +13,10 @@ namespace JobOfferParser.Helpers
             Array.ForEach(bytes, b => sb.AppendFormat("{0:X2}", b));
             return sb.ToString();
         }
+
+        public static string ReplaceRedundantSpaces(string text)
+        {
+            return text.Replace("\n", "").Replace("\r", "");
+        }
     }
 }

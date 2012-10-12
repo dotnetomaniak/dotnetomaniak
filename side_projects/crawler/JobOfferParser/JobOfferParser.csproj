@@ -65,10 +65,13 @@
     <Compile Include="DB\OfferPersister.cs" />
     <Compile Include="Helpers\OfferHelper.cs" />
     <Compile Include="Crawlers\CodeguruCrawler.cs" />
-    <Compile Include="Crawlers\GoldenLineCrawler.cs" />
+    <Compile Include="Crawlers\GoldenlineCrawler.cs" />
+    <Compile Include="Parsers\CodeguruParser.cs" />
+    <Compile Include="Parsers\GoldenlineParser.cs" />
     <Compile Include="Parsers\GumtreeParser.cs" />
     <Compile Include="Parsers\PracujPlParser.cs" />
     <Compile Include="Crawlers\WssCrawler.cs" />
+    <Compile Include="Parsers\WssParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorkerRole.cs" />
   </ItemGroup>

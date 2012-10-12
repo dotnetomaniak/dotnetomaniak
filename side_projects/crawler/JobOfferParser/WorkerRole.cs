@@ -23,6 +23,7 @@ namespace JobOfferParser
     {
         private List<ICrawler> _crawlers;
         private OfferPersister _persister;
+
         public override void Run()
         {
             // This is a sample worker implementation. Replace with your logic.
@@ -40,7 +41,7 @@ namespace JobOfferParser
                     //var exceptionMessage = new MailMessage("crawl@octal.pl", "pawel@octal.pl")
                     //                           {Body = ex.ToString(), Subject = "Exception!"};
                     //mailSend.SendAsync(exceptionMessage, null);
-                    Trace.WriteLine("Error crawling pages");
+                    Trace.WriteLine("Error crawling pages" + ex.Message);
                 }                
 
                 Thread.Sleep(10000);
@@ -58,8 +59,11 @@ namespace JobOfferParser
 
             _crawlers = new List<ICrawler>
                             {
+                                new CodeguruCrawler(_persister, new CodeguruParser()),
+                                new GoldenlineCrawler(_persister, new GoldenlineParser()),
                                 new GumtreeCrawler(_persister, new GumtreeParser()),
-                                new PracujPlCrawler(_persister, new PracujPlParser())
+                                new PracujPlCrawler(_persister, new PracujPlParser()),
+                                new WssCrawler(_persister, new WssParser())
                             };
 
             // For information on handling configuration changes

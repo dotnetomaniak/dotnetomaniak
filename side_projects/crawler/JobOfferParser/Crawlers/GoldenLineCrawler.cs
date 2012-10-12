@@ -3,9 +3,10 @@ using JobOfferParser.Data;
 
 namespace JobOfferParser.Crawlers
 {
-    public class GoldenLineCrawler : CrawlerBase
+    public class GoldenlineCrawler : CrawlerBase
     {
-        public GoldenLineCrawler(IOfferPersister persister, IParser parser) : base(persister, parser, "", "")
+        public GoldenlineCrawler(IOfferPersister persister, IParser parser)
+            : base(persister, parser, "http://www.goldenline.pl/praca/informatyka-programowanie", "//tbody/tr")
         {
         }
 

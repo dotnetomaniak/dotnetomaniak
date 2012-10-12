@@ -40,7 +40,8 @@ namespace JobOfferParser.Crawlers
                 {
                     try
                     {
-                        _persister.Persist(_parser.ParseOffer(node));
+                        var offer = _parser.ParseOffer(node);
+                        _persister.Persist(offer);
                     }
                     catch (Exception)
                     {

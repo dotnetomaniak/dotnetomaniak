@@ -61,11 +61,13 @@ namespace JobOfferParser.Parsers
                 DateTime dateParsed;
                 DateTime.TryParse(date, out dateParsed);
 
+                
                 offer.Title = title;
                 offer.Text = rawHtmlText;
                 offer.City = city;
                 offer.Province = province;                
                 offer.Date = dateParsed;
+                offer.Source = "PracujPL";
 
             }
 
