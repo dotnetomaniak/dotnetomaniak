@@ -42,11 +42,13 @@ namespace JobOfferParser.Parsers
                 DateTime dateParsed;
                 DateTime.TryParse(date, out dateParsed);
 
+
                 
                 offer.Text = text;
                 offer.City = city;
                 offer.Province = province;
                 offer.Date = dateParsed;
+                offer.Source = "Gumtree";
 
             }
 
