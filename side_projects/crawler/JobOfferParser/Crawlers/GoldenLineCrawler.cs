@@ -5,8 +5,7 @@ namespace JobOfferParser.Crawlers
 {
     public class GoldenlineCrawler : CrawlerBase
     {
-        public GoldenlineCrawler(IOfferPersister persister, IParser parser)
-            : base(persister, parser, "http://www.goldenline.pl/praca/informatyka-programowanie", "//tbody/tr")
+        public GoldenlineCrawler(IOfferRepository repository, IParser parser) : base(repository, parser, "http://www.goldenline.pl/praca/informatyka-programowanie", "//tbody/tr")
         {
         }
 

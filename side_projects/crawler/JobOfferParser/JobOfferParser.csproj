@@ -58,11 +58,11 @@
     <Compile Include="Crawlers\GumtreeCrawler.cs" />
     <Compile Include="Crawlers\PracujPlCrawler.cs" />
     <Compile Include="Data\ICrawler.cs" />
-    <Compile Include="Data\IOfferPersister.cs" />
+    <Compile Include="Data\IOfferRepository.cs" />
     <Compile Include="Data\IParser.cs" />
     <Compile Include="Data\Keyword.cs" />
     <Compile Include="Data\Offer.cs" />
-    <Compile Include="DB\OfferPersister.cs" />
+    <Compile Include="DB\OfferRepository.cs" />
     <Compile Include="Helpers\OfferHelper.cs" />
     <Compile Include="Crawlers\CodeguruCrawler.cs" />
     <Compile Include="Crawlers\GoldenlineCrawler.cs" />
