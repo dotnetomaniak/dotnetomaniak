@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Net;
 using HtmlAgilityPack;
 using JobOfferParser.Data;
+using JobOfferParser.Helpers;
 
 namespace JobOfferParser.Crawlers
 {
     public abstract class CrawlerBase : ICrawler
     {
-        private readonly IOfferPersister _persister;
+        private readonly IOfferRepository _repository;
         private readonly IParser _parser;
         private readonly string _requestUriString;
         private readonly string _nodesXPath;
 
 
-        protected CrawlerBase(IOfferPersister persister, IParser parser, string requestUriString, string nodesXPath)
+        protected CrawlerBase(IOfferRepository repository, IParser parser, string requestUriString, string nodesXPath)
         {
-            _persister = persister;
+            _repository = repository;
             _parser = parser;
             _requestUriString = requestUriString;
             _nodesXPath = nodesXPath;
@@ -35,13 +36,19 @@ namespace JobOfferParser.Crawlers
                 document.Load(response);
 
                 var nodes = document.DocumentNode.SelectNodes(_nodesXPath);
-                
+                var allKeywords = _repository.GetAllKeywords();
+              
+
                 foreach (var node in nodes)
                 {
                     try
                     {
                         var offer = _parser.ParseOffer(node);
-                        _persister.Persist(offer);
+                        if(_repository.InsertOffer(offer))
+                        {
+                            var offerKeywords = OfferHelper.ScanTextForKeywords(offer.Text, allKeywords);
+                            _repository.InsertKeywordsForOffer(offer.Sha1, offerKeywords);
+                        }
                     }
                     catch (Exception)
                     {

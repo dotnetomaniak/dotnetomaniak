@@ -22,7 +22,7 @@ namespace JobOfferParser
     public class WorkerRole : RoleEntryPoint
     {
         private List<ICrawler> _crawlers;
-        private OfferPersister _persister;
+        private IOfferRepository _repository;
 
         public override void Run()
         {
@@ -55,15 +55,15 @@ namespace JobOfferParser
             ServicePointManager.DefaultConnectionLimit = 12;
 
             string connectionString = ConfigurationManager.ConnectionStrings["Azure"].ConnectionString;
-            _persister = new OfferPersister(connectionString);
+            _repository = new OfferRepository(connectionString);
 
             _crawlers = new List<ICrawler>
                             {
-                                new CodeguruCrawler(_persister, new CodeguruParser()),
-                                new GoldenlineCrawler(_persister, new GoldenlineParser()),
-                                new GumtreeCrawler(_persister, new GumtreeParser()),
-                                new PracujPlCrawler(_persister, new PracujPlParser()),
-                                new WssCrawler(_persister, new WssParser())
+                                new CodeguruCrawler(_repository, new CodeguruParser()),
+                                new GoldenlineCrawler(_repository, new GoldenlineParser()),
+                                new GumtreeCrawler(_repository, new GumtreeParser()),
+                                new PracujPlCrawler(_repository, new PracujPlParser()),
+                                new WssCrawler(_repository, new WssParser())
                             };
 
             // For information on handling configuration changes

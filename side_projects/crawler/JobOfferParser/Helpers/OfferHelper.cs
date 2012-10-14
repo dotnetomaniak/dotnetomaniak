@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using JobOfferParser.Data;
 
 namespace JobOfferParser.Helpers
 {
@@ -14,9 +17,14 @@ namespace JobOfferParser.Helpers
             return sb.ToString();
         }
 
-        public static string ReplaceRedundantSpaces(string text)
+
+        public static IEnumerable<Keyword> ScanTextForKeywords(string text, IEnumerable<Keyword> allKeywords)
         {
-            return text.Replace("\n", "").Replace("\r", "");
+            return from keyword in allKeywords where text.ToLower().Contains(keyword.Name.ToLower()) select new Keyword()
+                                                                                            {
+                                                                                                Id = keyword.Id,
+                                                                                                Name = keyword.Name
+                                                                                            };
         }
     }
 }
