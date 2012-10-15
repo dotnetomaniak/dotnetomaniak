@@ -161,6 +161,7 @@
     <Compile Include="Infrastructure\Spam\DefensioSpamProtection.cs" />
     <Compile Include="Infrastructure\Spam\GenericExternalSpamProtection.cs" />
     <Compile Include="Infrastructure\BackgroundTask\PingStory.cs" />
+    <Compile Include="Infrastructure\Thumbnail\BrowshotThumbnail.cs" />
     <Compile Include="Infrastructure\Thumbnail\ThumbalizrThumbnail.cs" />
     <Compile Include="Repository\IAchievementRepository.cs" />
     <Compile Include="Repository\ICountByStoryRepository.cs" />
