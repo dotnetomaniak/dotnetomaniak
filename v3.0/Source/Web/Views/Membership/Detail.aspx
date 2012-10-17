@@ -50,9 +50,8 @@
     <% IUser user = Model.TheUser; %>
     <%bool isVisitingOwnPage = ((Model.IsCurrentUserAuthenticated) && (user.Id.Equals(Model.CurrentUser.Id)));%>
     <%bool isAdmin = ((Model.IsCurrentUserAuthenticated) && (Model.CurrentUser.IsAdministrator()));%>
-    <%bool isMod = ((Model.IsCurrentUserAuthenticated) && (Model.CurrentUser.IsModerator())); %>
-    <%bool isTheUserAdmin = ((Model.IsCurrentUserAuthenticated) && user.IsAdministrator()); %>
-    <%bool isTheUserMod = ((Model.IsCurrentUserAuthenticated) && user.IsModerator()); %>
+    <%bool isTheUserAdmin = (user.IsAdministrator()); %>
+    <%bool isTheUserMod = (user.IsModerator()); %>
     <%string rank = isTheUserAdmin ? "administrator" : (isTheUserMod ? "moderator" : "użytkownik"); %>
     
     <%= Html.ArticleHeader("", new string[] {"Strona główna", "Użytkownik"}) %>

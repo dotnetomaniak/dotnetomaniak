@@ -150,7 +150,7 @@
             <%= Html.ActionLink(story.BelongsTo.Name, "Category", "Story", new { name = story.BelongsTo.UniqueName }, new { rel = "tag directory" })%></span>
         <% if (story.IsPublished()) %>
         <% { %>
-        <span class="time" title="<%= story.PublishedAt.Value.ToString(LongDateFormat) %> GMT"><%= story.PublishedAt.Value.ToRelative()%>
+        <span class="time" title="<%= story.PublishedAt.Value.AddHours(2).ToString(LongDateFormat) %> CEST"><%= story.PublishedAt.Value.ToRelative()%>
             temu</span>
         <% }
            else
