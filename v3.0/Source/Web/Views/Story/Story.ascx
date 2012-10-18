@@ -40,6 +40,9 @@
 <% const string LongDateFormat = "F"; %>
 <% IStory story = Model.Story; %>
 <% IUser user = Model.User; %>
+<% bool wasStoryPublishedInSummerTime = story.PublishedAt.Value.IsSummerTime(); %>
+<% string storyPublishedTimeLocalName = story.PublishedAt.Value.GetLocalTimeName(wasStoryPublishedInSummerTime);  %>
+<% int hoursToAddToUtcTime = story.PublishedAt.Value.GetHoursDifferenceForLocalTime(wasStoryPublishedInSummerTime); %>
 <% string attributedEncodedStoryId = Html.AttributeEncode(story.Id.Shrink()); %>
 <%
     bool detailsMode = Model.DetailMode; %>
@@ -150,7 +153,7 @@
             <%= Html.ActionLink(story.BelongsTo.Name, "Category", "Story", new { name = story.BelongsTo.UniqueName }, new { rel = "tag directory" })%></span>
         <% if (story.IsPublished()) %>
         <% { %>
-        <span class="time" title="<%= story.PublishedAt.Value.AddHours(2).ToString(LongDateFormat) %> CEST"><%= story.PublishedAt.Value.ToRelative()%>
+        <span class="time" title="<%= story.PublishedAt.Value.AddHours(hoursToAddToUtcTime).ToString(LongDateFormat) %> <%= storyPublishedTimeLocalName %>"><%= story.PublishedAt.Value.ToRelative()%>
             temu</span>
         <% }
            else
