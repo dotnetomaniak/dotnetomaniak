@@ -139,7 +139,7 @@
     </div>
     <div class="entry-thumb">
         <a href="<%= Html.AttributeEncode(detailUrl) %>" target="_blank" rel="external" <%= onClick %>>
-            <img alt="<%= Html.AttributeEncode(story.Title) %>" src="<%= Html.AttributeEncode(story.SmallThumbnail()) %>"
+            <img alt="<%= Html.AttributeEncode(story.Title) %>" src="<%= Html.AttributeEncode(story.GetSmallThumbnailPath()) %>"
                 class="smoothImage" onload="javascript:SmoothImage.show(this)" />
         </a>
     </div>
