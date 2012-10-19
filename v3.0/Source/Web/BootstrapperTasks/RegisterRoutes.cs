@@ -28,11 +28,12 @@ namespace Kigg.Web
             // Turns off the unnecessary file exists check
             _routes.RouteExistingFiles = true;
 
-            // Ignore text, html, xml files.
+            // Ignore text, html, xml, png files.
             _routes.IgnoreRoute("{file}.txt");
             _routes.IgnoreRoute("{file}.htm");
             _routes.IgnoreRoute("{file}.html");
             _routes.IgnoreRoute("{file}.xml");
+            _routes.IgnoreRoute("Data/Thumbnails/{file}.png");
 
             // Ignore axd files such as assest, image, sitemap etc
             _routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
