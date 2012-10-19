@@ -40,11 +40,8 @@
 <% const string LongDateFormat = "F"; %>
 <% IStory story = Model.Story; %>
 <% IUser user = Model.User; %>
-<% bool wasStoryPublishedInSummerTime = story.PublishedAt.Value.IsSummerTime(); %>
-<% string storyPublishedTimeLocalName = story.PublishedAt.Value.GetLocalTimeName(wasStoryPublishedInSummerTime);  %>
-<% int hoursToAddToUtcTime = story.PublishedAt.Value.GetHoursDifferenceForLocalTime(wasStoryPublishedInSummerTime); %>
-<% string attributedEncodedStoryId = Html.AttributeEncode(story.Id.Shrink()); %>
-<%
+<%          
+    string attributedEncodedStoryId = Html.AttributeEncode(story.Id.Shrink());
     bool detailsMode = Model.DetailMode; %>
 <div class="kigg">
     <div class="count" id="s-c-<%= attributedEncodedStoryId %>">
@@ -152,7 +149,11 @@
         <span class="system">
             <%= Html.ActionLink(story.BelongsTo.Name, "Category", "Story", new { name = story.BelongsTo.UniqueName }, new { rel = "tag directory" })%></span>
         <% if (story.IsPublished()) %>
-        <% { %>
+        <% {
+             bool wasStoryPublishedInSummerTime = story.PublishedAt.Value.IsSummerTime();
+             string storyPublishedTimeLocalName = story.PublishedAt.Value.GetLocalTimeName(wasStoryPublishedInSummerTime);
+             int hoursToAddToUtcTime = story.PublishedAt.Value.GetHoursDifferenceForLocalTime(wasStoryPublishedInSummerTime);
+             %>
         <span class="time" title="<%= story.PublishedAt.Value.AddHours(hoursToAddToUtcTime).ToString(LongDateFormat) %> <%= storyPublishedTimeLocalName %>"><%= story.PublishedAt.Value.ToRelative()%>
             temu</span>
         <% }
