@@ -349,8 +349,6 @@ namespace Kigg.Web
 
             if (story != null)
             {
-                ThumbnailHelper.GenerateAndSaveThumbnailsForStory(story.Url, story.Id.Shrink());
-
                 viewData.Title = "{0} - {1}".FormatWith(Settings.SiteTitle, story.Title);
                 viewData.MetaDescription = story.StrippedDescription();
                 viewData.Story = story;

@@ -15,28 +15,23 @@ namespace Kigg.Web
         private const string ThumbnailSizeSmallPrefix = "small_";
         private const string ThumbnailSizeMediumPrefix = "medium_";
 
-        public static void GenerateAndSaveThumbnailsForStory(string storyUrl, string shrinkedStoryId)
-        {
 
-           
-            if(!ThumbnailExists(shrinkedStoryId, ThumbnailSize.Small))
+        public static string GetThumbnailVirtualPathForStory(string storyUrl, string shrinkedStoryId, ThumbnailSize size, bool createMediumThumbnail = false)
+        {
+            if (!ThumbnailExists(shrinkedStoryId, ThumbnailSize.Small))
             {
                 var uri = IoC.Resolve<IThumbnail>().For(storyUrl, ThumbnailSize.Small);
                 var thumbnail = CreateThumbnailFromUri(uri);
                 SaveThumbnail(thumbnail, shrinkedStoryId, ThumbnailSize.Small);
             }
 
-            if (!ThumbnailExists(shrinkedStoryId, ThumbnailSize.Medium))
+            if (createMediumThumbnail && !ThumbnailExists(shrinkedStoryId, ThumbnailSize.Medium))
             {
                 var uri = IoC.Resolve<IThumbnail>().For(storyUrl, ThumbnailSize.Medium);
                 var thumbnail = CreateThumbnailFromUri(uri);
                 SaveThumbnail(thumbnail, shrinkedStoryId, ThumbnailSize.Medium);
             }
 
-        }
-
-        public static string GetThumbnailVirtualPathForStory(string shrinkedStoryId, ThumbnailSize size)
-        {
             string path = ThumbnailStoragePath;
 
             if(size == ThumbnailSize.Small)
