@@ -346,12 +346,16 @@ namespace Kigg.Web
             StoryDetailViewData viewData = CreateStoryViewData<StoryDetailViewData>();
             viewData.CaptchaEnabled = !CurrentUser.ShouldHideCaptcha();
 
+
             if (story != null)
             {
+                ThumbnailHelper.GenerateAndSaveThumbnailsForStory(story.Url, story.Id.Shrink());
+
                 viewData.Title = "{0} - {1}".FormatWith(Settings.SiteTitle, story.Title);
                 viewData.MetaDescription = story.StrippedDescription();
                 viewData.Story = story;
                 viewData.CounterColors = CounterColors;
+
             }
 
             return View(viewData);

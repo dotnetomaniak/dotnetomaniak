@@ -174,6 +174,7 @@
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Extension\HttpCookieExtension.cs" />
     <Compile Include="Helpers\OpenIdRelyingPartyWrapper.cs" />
+    <Compile Include="Helpers\ThumbnailHelper.cs" />
     <Compile Include="Helpers\Validation.cs" />
     <Compile Include="Controls\jQueryScriptManager.cs" />
     <Compile Include="Controls\reCAPTCHA.cs" />
