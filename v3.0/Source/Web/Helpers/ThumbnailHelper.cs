@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
 using System.Web;
@@ -14,7 +15,7 @@ namespace Kigg.Web
         private const string ThumbnailExtension = ".png";
         private const string ThumbnailSizeSmallPrefix = "small_";
         private const string ThumbnailSizeMediumPrefix = "medium_";
-
+        private const string BlankThumbnailImageName = "blank_thumbnail.png";
 
         public static string GetThumbnailVirtualPathForStory(string storyUrl, string shrinkedStoryId, ThumbnailSize size, bool createMediumThumbnail = false)
         {
@@ -50,7 +51,7 @@ namespace Kigg.Web
             if (thumbnail != null)
             {
                 string fullPath = GenerateThumbnailFullPath(shrinkedStoryId, size);
-                thumbnail.Save(fullPath, System.Drawing.Imaging.ImageFormat.Png);
+                thumbnail.Save(fullPath, ImageFormat.Png);
             }
         }
 
@@ -58,13 +59,22 @@ namespace Kigg.Web
         {
             try
             {
-                var request = WebRequest.Create(uri);
+                var request = (HttpWebRequest)WebRequest.Create(uri);
                 request.Method = "GET";
 
-                using (var response = request.GetResponse())
+                using (var response = (HttpWebResponse)request.GetResponse())
                 {
-                    var img = Image.FromStream(response.GetResponseStream());
-                    return img;
+                    if(response.StatusCode == HttpStatusCode.OK)
+                    {
+                        var img = Image.FromStream(response.GetResponseStream());
+                        return img;
+                    }
+                    else
+                    {
+                        var blankThumbnailPath = Path.Combine(HttpContext.Current.Server.MapPath(ThumbnailStoragePath), BlankThumbnailImageName);
+                        return new Bitmap(blankThumbnailPath);
+                    }
+
                 }
             }
             catch(Exception ex)
