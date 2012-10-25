@@ -13,12 +13,12 @@ namespace Kigg.Web
 
         public static string GetSmallThumbnailPath(this IStory story)
         {
-            return ThumbnailHelper.GetThumbnailVirtualPathForStory(story.Url, story.Id.Shrink(), ThumbnailSize.Small);
+            return ThumbnailHelper.GetThumbnailVirtualPathForStoryOrCreateNew(story.Url, story.Id.Shrink(), ThumbnailSize.Small);
         }
 
         public static string GetMediumThumbnailPath(this IStory story)
         {
-            return ThumbnailHelper.GetThumbnailVirtualPathForStory(story.Url, story.Id.Shrink(), ThumbnailSize.Medium);
+            return ThumbnailHelper.GetThumbnailVirtualPathForStoryOrCreateNew(story.Url, story.Id.Shrink(), ThumbnailSize.Medium);
         }
     }
 }

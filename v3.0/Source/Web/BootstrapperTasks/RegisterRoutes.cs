@@ -50,6 +50,8 @@ namespace Kigg.Web
             //Exclude favicon (google toolbar request gif file as fav icon)
             _routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.([iI][cC][oO]|[gG][iI][fF])(/.*)?" });
 
+            _routes.MapRoute("ThumbnailPath", "Story/ThumbnailPath", new { controller = "Story", action = "GetThumbnailPath" });
+
             _routes.MapRoute("FeedUpcoming", "Feed/{format}/Upcoming/{start}/{max}", new { controller = "Feed", action = "Upcoming", format = "Rss", start = 1, max = _settings.FeedStoryPerPage });
             _routes.MapRoute("FeedSearch", "Feed/{format}/Search/{q}/{start}/{max}", new { controller = "Feed", action = "Search", format = "Rss", q = string.Empty, start = 1, max = _settings.FeedStoryPerPage });
             _routes.MapRoute("FeedPublished", "Feed/{format}/Published/{start}/{max}", new { controller = "Feed", action = "Published", format = "Rss", start = 1, max = _settings.FeedStoryPerPage });
@@ -108,7 +110,7 @@ namespace Kigg.Web
             _routes.MapRoute("StoryList", "{action}/{name}/{page}", new { controller = "Story", page = 1 });
             _routes.MapRoute("Published", "{page}", new { controller = "Story", action = "Published", page = 1 }, new { page = @"^\d+$" });
             _routes.MapRoute("Detail", "{name}", new { controller = "Story", action = "Detail" });
-
+           
             _routes.MapRoute("Default", "{controller}/{action}", new { controller = "Story", action = "Published" });
         }
     }

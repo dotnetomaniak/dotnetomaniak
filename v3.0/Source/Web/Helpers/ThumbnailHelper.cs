@@ -17,7 +17,9 @@ namespace Kigg.Web
         private const string ThumbnailSizeMediumPrefix = "medium_";
         private const string BlankThumbnailImageName = "blank_thumbnail.png";
 
-        public static string GetThumbnailVirtualPathForStory(string storyUrl, string shrinkedStoryId, ThumbnailSize size, bool createMediumThumbnail = false)
+
+
+        public static string GetThumbnailVirtualPathForStoryOrCreateNew(string storyUrl, string shrinkedStoryId, ThumbnailSize size, bool createMediumThumbnail = false)
         {
             if (!ThumbnailExists(shrinkedStoryId, ThumbnailSize.Small))
             {
@@ -33,6 +35,11 @@ namespace Kigg.Web
                 SaveThumbnail(thumbnail, shrinkedStoryId, ThumbnailSize.Medium);
             }
 
+            return GetThumbnailVirtualPathForStory(shrinkedStoryId, size);
+        }
+
+        public static string GetThumbnailVirtualPathForStory(string shrinkedStoryId, ThumbnailSize size)
+        {
             string path = ThumbnailStoragePath;
 
             if(size == ThumbnailSize.Small)
