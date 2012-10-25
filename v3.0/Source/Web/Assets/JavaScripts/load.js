@@ -9,14 +9,14 @@ $(document).ready(function () {
     $("a.rozwin").live("click", function () {
         $(this).html("zwiń");
         $(this).attr("class", "zwin");
-        var el = $(this).parents('div.summary').prev(), curHeight = el.height(), autoHeight = el.css('height', 'auto').height();
+        var el = $(this).parents('div.summary').prev().children('div.description'), curHeight = el.height(), autoHeight = el.css('height', 'auto').height();
         el.height(curHeight).animate({ height: autoHeight }); //.css('height', 'auto');
     });
     $("a.zwin").live("click", function () {
 
         $(this).html("rozwiń");
         $(this).attr("class", "rozwin");
-        $(this).parents('div.summary').prev().animate({ height: '30px' }); //.css('height','30px');
+        $(this).parents('div.summary').prev().children('div.description').animate({ height: '30px' }); //.css('height','30px');
 
 
     });
