@@ -105,43 +105,45 @@
        detailUrl = Model.Story.Url;
        onClick = @"onclick=""javascript:Story.click('" + attributedEncodedStoryId + @"')""";
    } %>
-<div class="title">
-    <h2>
-        <a class="entry-title taggedlink" rel="bookmark external" href="<%= Html.AttributeEncode(detailUrl) %>"
-            <%= onClick %> >
-            <%= Html.Encode(story.Title)%></a></h2>
-</div>
-<div class="entry-content description" <%= detailsMode ? "style='height: auto'" : "" %>>
-    <% if (detailsMode) %>
-    <% { %>
-    <%= story.HtmlDescription %>
-    <% } %>
-    <% else %>
-    <% { %>
-    <p>
-        <%= story.StrippedDescription() %></p>
-    <% } %>
-    <div class="more">
-        <div class="more-row">
-            Tagi:
-            <% if (story.HasTags())
-               { %>
-            <%= TagLinks(story.Tags) %>
-            <% } %>
-        </div>
-        <div class="more-row">
-            Źródło: <a href="http://<%= Html.AttributeEncode(story.Host()) %>" target="_blank">
-                <%= story.Host()%></a>
-        </div>
-        <div class="more-row nobg">
-            <span>Dziel się z innymi:</span><%= ShareLinks(story.Id.Shrink(), Model.SocialServices)%>
-        </div>
+<div itemscope itemtype="http://schema.org/Article" class="article">
+    <div class="title">
+        <h2>
+            <a itemprop="name" class="entry-title taggedlink" rel="bookmark external" href="<%= Html.AttributeEncode(detailUrl) %>"
+                <%= onClick %> >
+                <%= Html.Encode(story.Title)%></a></h2>
     </div>
-    <div class="entry-thumb">
-        <a href="<%= Html.AttributeEncode(detailUrl) %>" target="_blank" rel="external" <%= onClick %>>
-            <img alt="<%= Html.AttributeEncode(story.Title) %>" src="<%= Html.AttributeEncode(story.GetSmallThumbnailPath()) %>"
-                class="smoothImage" onload="javascript:SmoothImage.show(this)" />
-        </a>
+    <div itemprop="description" class="entry-content description" <%= detailsMode ? "style='height: auto'" : "" %>>
+        <% if (detailsMode) %>
+        <% { %>
+        <%= story.HtmlDescription %>
+        <% } %>
+        <% else %>
+        <% { %>
+        <p>
+            <%= story.StrippedDescription() %></p>
+        <% } %>
+        <div class="more">
+            <div class="more-row">
+                Tagi:
+                <% if (story.HasTags())
+                   { %>
+                <%= TagLinks(story.Tags) %>
+                <% } %>
+            </div>
+            <div class="more-row">
+                Źródło: <a href="http://<%= Html.AttributeEncode(story.Host()) %>" target="_blank">
+                    <%= story.Host()%></a>
+            </div>
+            <div class="more-row nobg">
+                <span>Dziel się z innymi:</span><%= ShareLinks(story.Id.Shrink(), Model.SocialServices)%>
+            </div>
+        </div>
+        <div class="entry-thumb">
+            <a href="<%= Html.AttributeEncode(detailUrl) %>" target="_blank" rel="external" <%= onClick %>>
+                <img itemprop="image" alt="<%= Html.AttributeEncode(story.Title) %>" src="<%= Html.AttributeEncode(story.GetSmallThumbnailPath()) %>"
+                    class="smoothImage post-thumbnail" onload="javascript:SmoothImage.show(this)" />
+            </a>
+        </div>
     </div>
 </div>
 <div class="summary">
