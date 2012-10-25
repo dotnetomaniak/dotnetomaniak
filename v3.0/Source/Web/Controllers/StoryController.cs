@@ -986,6 +986,20 @@ namespace Kigg.Web
             return View("UserStoryList", viewData);
         }
 
+        public string GetThumbnailPath(string storyId, string size)
+        {
+            var thumbnailSize = ThumbnailSize.Small;
+            if(!string.IsNullOrWhiteSpace(size) && size.ToLower().Equals("medium"))
+                thumbnailSize = ThumbnailSize.Medium;
+
+            IStory story = _storyRepository.FindById(storyId.NullSafe().ToGuid());
+
+            if(story != null)
+                return ThumbnailHelper.GetThumbnailVirtualPathForStoryOrCreateNew(story.Url, storyId, thumbnailSize);
+
+            return "";
+        }
+
         private T CreateStoryListViewData<T>(int? page) where T : StoryListViewData, new()
         {
             T viewData = CreateStoryViewData<T>();
@@ -1051,7 +1065,7 @@ namespace Kigg.Web
             }
 
             PagedResult<IStory> pagedResult = method(start.Value, max.Value);
-            List<StorySummary> summaries = pagedResult.Result.Select(s => new StorySummary { Title = s.Title, ThumbnailUrl = s.MediumThumbnail(), Url = Url.RouteUrl("Detail", new { name = s.UniqueName }), Description = s.StrippedDescription() }).ToList();
+            List<StorySummary> summaries = pagedResult.Result.Select(s => new StorySummary { Title = s.Title, ThumbnailUrl = ThumbnailHelper.GetThumbnailVirtualPathForStory(s.Id.Shrink(), ThumbnailSize.Medium), Url = Url.RouteUrl("Detail", new { name = s.UniqueName }), Description = s.StrippedDescription() }).ToList();
 
             return new PagedResult<StorySummary>(summaries, pagedResult.Total);
         }

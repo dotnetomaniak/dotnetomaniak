@@ -11,6 +11,19 @@ $(document).ready(function () {
         $(this).attr("class", "zwin");
         var el = $(this).parents('div.summary').prev().children('div.description'), curHeight = el.height(), autoHeight = el.css('height', 'auto').height();
         el.height(curHeight).animate({ height: autoHeight }); //.css('height', 'auto');
+
+
+        var image = $(this).parents('div.summary').prev().children('div.description').children('div.entry-thumb').children('a').children('img.smoothImage');
+
+        if (image.attr("src") === '') {
+            image.hide();
+            var storyId = image.attr("data-story-id");                      
+            $.get("/Story/ThumbnailPath", { storyId: storyId }, function (data) {
+                image.attr("src", data);
+                image.fadeIn('slow');
+            });
+        }
+
     });
     $("a.zwin").live("click", function () {
 

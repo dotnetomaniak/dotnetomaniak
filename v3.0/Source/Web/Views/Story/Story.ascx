@@ -140,8 +140,16 @@
         </div>
         <div class="entry-thumb">
             <a href="<%= Html.AttributeEncode(detailUrl) %>" target="_blank" rel="external" <%= onClick %>>
-                <img itemprop="image" alt="<%= Html.AttributeEncode(story.Title) %>" src="<%= Html.AttributeEncode(story.GetSmallThumbnailPath()) %>"
-                    class="smoothImage" onload="javascript:SmoothImage.show(this)" />
+                <% if (detailsMode) %>
+                <% { %>
+                    <img itemprop="image" alt="<%= Html.AttributeEncode(story.Title) %>" src="<%= Html.AttributeEncode(story.GetSmallThumbnailPath()) %>"
+                         class="smoothImage" onload="javascript:SmoothImage.show(this)" />
+                <% } %>
+                            
+                <% else %>
+                <% { %>
+                    <img itemprop="image" alt="<%= Html.AttributeEncode(story.Title) %>" src="" data-story-id="<%= story.Id.Shrink() %>" class="smoothImage" onload="javascript:SmoothImage.show(this)" />
+                <% } %>
             </a>
         </div>
     </div>
