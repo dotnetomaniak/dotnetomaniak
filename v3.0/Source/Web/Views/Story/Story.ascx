@@ -99,16 +99,18 @@
 </div>
 <% string detailUrl = Url.RouteUrl("Detail", new { name = story.UniqueName });
    string onClick = string.Empty;
+   string rel = "bookmark";
    %>
 <% if (detailsMode)
    {
        detailUrl = Model.Story.Url;
        onClick = @"onclick=""javascript:Story.click('" + attributedEncodedStoryId + @"')""";
+       rel += " external";
    } %>
 <div itemscope itemtype="http://schema.org/Article" class="article">
     <div class="title">
         <h2>
-            <a itemprop="name" class="entry-title taggedlink" rel="bookmark external" href="<%= Html.AttributeEncode(detailUrl) %>"
+            <a itemprop="name" class="entry-title taggedlink" rel="<%= rel %>" href="<%= Html.AttributeEncode(detailUrl) %>"
                 <%= onClick %> >
                 <%= Html.Encode(story.Title)%></a></h2>
     </div>
