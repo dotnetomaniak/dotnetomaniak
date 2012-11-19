@@ -32,7 +32,7 @@ namespace JobOfferParser.Parsers
             using (var response = request.GetResponse().GetResponseStream())
             {
                 var document = new HtmlDocument();
-                document.Load(response);
+                document.Load(response, true);
 
                 
 

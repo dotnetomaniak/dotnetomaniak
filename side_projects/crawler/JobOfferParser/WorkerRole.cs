@@ -37,11 +37,9 @@ namespace JobOfferParser
                 }
                 catch (Exception ex)
                 {
-                    //var mailSend = new SmtpClient();
-                    //var exceptionMessage = new MailMessage("crawl@octal.pl", "pawel@octal.pl")
-                    //                           {Body = ex.ToString(), Subject = "Exception!"};
-                    //mailSend.SendAsync(exceptionMessage, null);
-                    Trace.WriteLine("Error crawling pages" + ex.Message);
+                  var log = NLog.LogManager.GetCurrentClassLogger();
+                  log.LogException(NLog.LogLevel.Fatal, "Exception occured", ex);
+                  Trace.WriteLine("Error crawling pages" + ex.Message);
                 }                
 
                 Thread.Sleep(10000);

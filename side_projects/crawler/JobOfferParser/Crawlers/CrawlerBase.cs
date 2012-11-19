@@ -33,7 +33,7 @@ namespace JobOfferParser.Crawlers
                     return;
 
                 var document = new HtmlDocument();
-                document.Load(response);
+                document.Load(response, true);
 
                 var nodes = document.DocumentNode.SelectNodes(_nodesXPath);
                 var allKeywords = _repository.GetAllKeywords();
@@ -50,9 +50,10 @@ namespace JobOfferParser.Crawlers
                             _repository.InsertKeywordsForOffer(offer.Sha1, offerKeywords);
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-
+                      var log = NLog.LogManager.GetCurrentClassLogger();
+                      log.LogException(NLog.LogLevel.Fatal, "Exception occured", ex);
                     }                   
                 }
             }
