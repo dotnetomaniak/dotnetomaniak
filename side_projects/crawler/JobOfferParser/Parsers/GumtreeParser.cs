@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
@@ -28,7 +29,7 @@ namespace JobOfferParser.Parsers
             using (var response = request.GetResponse().GetResponseStream())
             {
                 var document = new HtmlDocument();
-                document.Load(response);
+                document.Load(response, true);
               
                 var body = document.DocumentNode.SelectSingleNode("//body");
                 var date = body.SelectSingleNode("//td[@class='first_row']").InnerText.Trim().Substring(0,10).Replace("/", "-");
@@ -40,7 +41,8 @@ namespace JobOfferParser.Parsers
                 var city = provinceAndCity[1];
 
                 DateTime dateParsed;
-                DateTime.TryParse(date, out dateParsed);
+                DateTime.TryParseExact(date, "dd-MM-yyyy", CultureInfo.CurrentUICulture.DateTimeFormat,
+                                     DateTimeStyles.AllowWhiteSpaces, out dateParsed);
 
 
                 

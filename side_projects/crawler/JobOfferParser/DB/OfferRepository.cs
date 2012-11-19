@@ -32,7 +32,7 @@ namespace JobOfferParser.DB
                 {
                     if(selectCommand.ExecuteScalar() == null)
                     {
-                        using (SqlCommand insertCommand = new SqlCommand("INSERT INTO RawOffers (Title, Text, Province, City, SHA1, Link, Date) VALUES (@title, @text, @province, @city, @sha1, @link, @date)", connection))
+                        using (SqlCommand insertCommand = new SqlCommand("INSERT INTO RawOffers (Title, Text, Province, City, SHA1, Link, Date, Source) VALUES (@title, @text, @province, @city, @sha1, @link, @date, @source)", connection))
                         {
                             AddOfferToQuery(offer, insertCommand);
                             insertCommand.ExecuteNonQuery();
@@ -121,6 +121,7 @@ namespace JobOfferParser.DB
             command.Parameters.AddWithValue("@sha1", offer.Sha1);
             command.Parameters.AddWithValue("@link", offer.Link);
             command.Parameters.AddWithValue("@date", offer.Date);
+            command.Parameters.AddWithValue("@source", offer.Source);
         }
     }
 }
