@@ -11,6 +11,7 @@ namespace Kigg.Web
     public static class ThumbnailHelper
     {
 
+        private const string ThumbnailHost = "http://dotnetomaniak.pl";
         private const string ThumbnailStoragePath = "/Data/Thumbnails/";
         private const string ThumbnailExtension = ".png";
         private const string ThumbnailSizeSmallPrefix = "small_";
@@ -19,7 +20,7 @@ namespace Kigg.Web
 
 
 
-        public static string GetThumbnailVirtualPathForStoryOrCreateNew(string storyUrl, string shrinkedStoryId, ThumbnailSize size, bool createMediumThumbnail = false)
+        public static string GetThumbnailVirtualPathForStoryOrCreateNew(string storyUrl, string shrinkedStoryId, ThumbnailSize size, bool createMediumThumbnail = false, bool fullPath = false)
         {
             if (!ThumbnailExists(shrinkedStoryId, ThumbnailSize.Small))
             {
@@ -35,12 +36,12 @@ namespace Kigg.Web
                 SaveThumbnail(thumbnail, shrinkedStoryId, ThumbnailSize.Medium);
             }
 
-            return GetThumbnailVirtualPathForStory(shrinkedStoryId, size);
+            return GetThumbnailVirtualPathForStory(shrinkedStoryId, size, fullPath);
         }
 
-        public static string GetThumbnailVirtualPathForStory(string shrinkedStoryId, ThumbnailSize size)
+        public static string GetThumbnailVirtualPathForStory(string shrinkedStoryId, ThumbnailSize size, bool fullPath = false)
         {
-            string path = ThumbnailStoragePath;
+            string path = ((fullPath) ? ThumbnailHost : string.Empty) + ThumbnailStoragePath;
 
             if(size == ThumbnailSize.Small)
                 path += ThumbnailSizeSmallPrefix;

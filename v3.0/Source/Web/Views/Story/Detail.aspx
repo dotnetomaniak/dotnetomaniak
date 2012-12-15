@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/SiteTemplate.Master" Inherits="System.Web.Mvc.ViewPage<StoryDetailViewData>" %>
+﻿
+<%@ Page Language="C#" MasterPageFile="~/Views/Shared/SiteTemplate.Master" Inherits="System.Web.Mvc.ViewPage<StoryDetailViewData>" %>
 
 <script runat="server">
 
@@ -18,6 +19,10 @@
         <link rel="author" href="http://www.blogger.com/profile/<%:Model.Story.AuthorsProfile()%>" />
     <%
        }%>
+       <meta property="og:title" content="<%= Model.Story.Title %>" />
+       <meta property="og:url" content="<%= Model.Story.Url %>" />
+       <meta property="og:type" content="article" />
+       <meta property="og:image" content="<%= Html.AttributeEncode(Model.Story.GetSmallThumbnailPath(true)) %>" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContentPlaceHolder" runat="server">
     <% IStory story = Model.Story; %>

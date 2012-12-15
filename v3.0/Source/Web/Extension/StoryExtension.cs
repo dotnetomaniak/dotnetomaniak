@@ -11,14 +11,14 @@ namespace Kigg.Web
             return story.TextDescription.WrapAt(512);
         }
 
-        public static string GetSmallThumbnailPath(this IStory story)
+        public static string GetSmallThumbnailPath(this IStory story, bool fullPath = false)
         {
-            return ThumbnailHelper.GetThumbnailVirtualPathForStoryOrCreateNew(story.Url, story.Id.Shrink(), ThumbnailSize.Small);
+            return ThumbnailHelper.GetThumbnailVirtualPathForStoryOrCreateNew(story.Url, story.Id.Shrink(), ThumbnailSize.Small, fullPath: fullPath);
         }
 
-        public static string GetMediumThumbnailPath(this IStory story)
+        public static string GetMediumThumbnailPath(this IStory story, bool fullPath = false)
         {
-            return ThumbnailHelper.GetThumbnailVirtualPathForStoryOrCreateNew(story.Url, story.Id.Shrink(), ThumbnailSize.Medium);
+            return ThumbnailHelper.GetThumbnailVirtualPathForStoryOrCreateNew(story.Url, story.Id.Shrink(), ThumbnailSize.Medium, fullPath: fullPath);
         }
     }
 }
