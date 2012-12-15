@@ -19,8 +19,9 @@
         <link rel="author" href="http://www.blogger.com/profile/<%:Model.Story.AuthorsProfile()%>" />
     <%
        }%>
+       <link rel="image_src" href="<%= Html.AttributeEncode(Model.Story.GetSmallThumbnailPath(true)) %>" />
        <meta property="og:title" content="<%= Model.Story.Title %>" />
-       <meta property="og:url" content="<%= Model.Story.Url %>" />
+       <meta property="og:url" content="<%= Url.RouteUrl("Detail", new { name = Model.Story.UniqueName }, "http") %>" />
        <meta property="og:type" content="article" />
        <meta property="og:image" content="<%= Html.AttributeEncode(Model.Story.GetSmallThumbnailPath(true)) %>" />
 </asp:Content>
