@@ -427,6 +427,7 @@
     <Content Include="Views\Badges\List.ascx" />
     <Content Include="Views\Membership\Achievements.ascx" />
     <Content Include="Views\Quiz\QuizView.aspx" />
+    <Content Include="Views\Shared\Fb.ascx" />
     <Content Include="Views\Shared\FeedBox.ascx" />
     <Content Include="Views\Shared\RecommendationsBox.ascx" />
     <Content Include="Views\Story\Questions.ascx" />
