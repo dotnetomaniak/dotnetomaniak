@@ -109,13 +109,13 @@
         scriptManager.RegisterOnReady("Story.set_demoteUrl('{0}');".FormatWith(Url.RouteUrl("Demote")));
         scriptManager.RegisterOnReady("Story.set_markAsSpamUrl('{0}');".FormatWith(Url.RouteUrl("MarkAsSpam")));
 
-        scriptManager.RegisterOnReady("Search.init();");
+        //scriptManager.RegisterOnReady("Search.init();");
         //scriptManager.RegisterOnReady("Tag.init();");
         scriptManager.RegisterOnReady("Membership.init();");
         scriptManager.RegisterOnReady("devMedia.init();");
         scriptManager.RegisterOnDispose("Membership.dispose();");
         //scriptManager.RegisterOnDispose("Tag.dispose();");
-        scriptManager.RegisterOnDispose("Search.dispose();");
+        //scriptManager.RegisterOnDispose("Search.dispose();");
 
         if (Model.IsCurrentUserAuthenticated)
         {
