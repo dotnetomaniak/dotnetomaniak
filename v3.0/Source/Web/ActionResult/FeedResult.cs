@@ -10,6 +10,7 @@ namespace Kigg.Web
     using System.Xml.Linq;
 
     using DomainObjects;
+    using Infrastructure;
 
     public class FeedResult : ActionResult
     {
@@ -296,7 +297,7 @@ namespace Kigg.Web
             return "<div>" +
                         "<div>" +
                             "<div style=\"float:right\">" +
-                                "<img alt =\"\" src=\"{0}\"/>".FormatWith(story.SmallThumbnail().AttributeEncode()) +
+                                "<img alt =\"\" src=\"{0}\"/>".FormatWith(ThumbnailHelper.GetThumbnailVirtualPathForStory(story.Id.Shrink(), ThumbnailSize.Small, true).AttributeEncode()) +
                             "</div>" +
                             "<div>" +
                                 "{0}".FormatWith(story.TextDescription) +
