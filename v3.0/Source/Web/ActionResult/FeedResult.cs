@@ -142,7 +142,7 @@ namespace Kigg.Web
             XElement item = new XElement(
                                             "item",
                                             new XElement("guid", new XAttribute("isPermaLink", "true"), detailUrl),
-                                            new XElement("link", story.Url),
+                                            new XElement("link", detailUrl),
                                             new XElement("title", story.Title),
                                             new XElement("description", new XCData(storyDescription)),
                                             new XElement("comments", "{0}#comments".FormatWith(detailUrl))
@@ -225,7 +225,7 @@ namespace Kigg.Web
                                             new XElement(atom + "title", story.Title),
                                             new XElement(atom + "updated", story.CreatedAt.ToString(dateFormat, Constants.CurrentCulture)),
                                             new XElement(atom + "content", new XAttribute("type", "html"), storyDescription),
-                                            new XElement(atom + "link", new XAttribute("rel", "alternate"), new XAttribute("href", story.Url)),
+                                            new XElement(atom + "link", new XAttribute("rel", "alternate"), new XAttribute("href", detailUrl)),
                                             new XElement(atom + "contributor", new XElement(atom + "name", story.PostedBy.UserName), new XElement(atom + "uri", userUrl))
                                           );
 
