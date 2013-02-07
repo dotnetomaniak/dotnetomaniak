@@ -446,7 +446,7 @@ namespace Kigg.Web
             return Json(viewData, JsonRequestBehavior.AllowGet);
         }
 
-        [AcceptVerbs(HttpVerbs.Post), ValidateInput(false), Compress]
+        [AcceptVerbs(HttpVerbs.Post), ValidateInput(false)]
         public ActionResult Submit(string url, string title, string category, string description, string tags)
         {
             string captchaChallenge = null;
@@ -502,7 +502,7 @@ namespace Kigg.Web
             return Json(viewData);
         }
 
-        [AcceptVerbs(HttpVerbs.Post), Compress]
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Click(string id)
         {
             id = id.NullSafe();
