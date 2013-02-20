@@ -689,7 +689,7 @@ namespace Kigg.Web
             return Json(viewData);
         }
 
-        [AcceptVerbs(HttpVerbs.Post), Compress]
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Publish()
         {
             JsonViewData viewData = Validate<JsonViewData>(
@@ -716,7 +716,7 @@ namespace Kigg.Web
             return Json(viewData);
         }
 
-        [AcceptVerbs(HttpVerbs.Post), Compress]
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult GetStory(string id)
         {
             id = id.NullSafe();
