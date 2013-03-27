@@ -144,7 +144,7 @@
             <a href="<%= Html.AttributeEncode(detailUrl) %>" target="_blank" rel="external" <%= onClick %>>
                 <% if (detailsMode) %>
                 <% { %>
-                    <img itemprop="image" alt="<%= Html.AttributeEncode(story.Title) %>" src="<%= Html.AttributeEncode(story.GetSmallThumbnailPath()) %>"
+                    <img itemprop="image" alt="<%= Html.AttributeEncode(story.Title) %>" src="<%= Html.AttributeEncode(story.GetMediumThumbnailPath()) %>"
                          class="smoothImage" onload="javascript:SmoothImage.show(this)" />
                 <% } %>
                             
