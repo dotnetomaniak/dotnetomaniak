@@ -27,7 +27,7 @@ namespace Kigg.Infrastructure
         {
             Check.Argument.IsNotInvalidWebUrl(url, "url");
 
-            string size = inSize == ThumbnailSize.Small ? "width=111&height=111" : "width=250&height=250";
+            string size = inSize == ThumbnailSize.Small ? "width=111&height=111" : "height=250";//width=250&
 
             return "{0}?url={1}&instance_id={2}&{3}&key={4}".FormatWith(_baseUrl, url, _instanceId, size, _key);
         }

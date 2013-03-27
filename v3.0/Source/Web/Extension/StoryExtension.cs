@@ -18,7 +18,7 @@ namespace Kigg.Web
 
         public static string GetMediumThumbnailPath(this IStory story, bool fullPath = false)
         {
-            return ThumbnailHelper.GetThumbnailVirtualPathForStoryOrCreateNew(story.Url, story.Id.Shrink(), ThumbnailSize.Medium, fullPath: fullPath);
+            return ThumbnailHelper.GetThumbnailVirtualPathForStoryOrCreateNew(story.Url, story.Id.Shrink(), ThumbnailSize.Medium, fullPath: fullPath, createMediumThumbnail:true);
         }
     }
 }
