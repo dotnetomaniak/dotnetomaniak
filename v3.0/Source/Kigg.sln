@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Core", "Core\Kigg.Core.csproj", "{04A61455-9656-4E67-A8D6-9FBA348F0FB3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Infrastructure.LinqToSql", "LinqToSql\Kigg.Infrastructure.LinqToSql.csproj", "{49CDCCC2-2C02-4DF1-9234-246D974D2B2D}"
@@ -12,6 +12,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Web", "Web\Kigg.Web.csproj", "{B385D300-8714-4F31-A591-A904C383F88B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.DataServices", "DataServices\Kigg.DataServices.csproj", "{6370DAF2-7999-4DF2-8A7F-0EAF1A12D962}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0475B953-3F43-4664-8CDA-43FE252CC53E}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
