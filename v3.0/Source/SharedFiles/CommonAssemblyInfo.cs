@@ -10,5 +10,5 @@ using System.Security;
 [assembly: AssemblyCulture("")]
 [assembly: AssemblyVersion("3.0.0.0")]
 [assembly: AssemblyFileVersion("3.0.0.0")]
-[assembly: AllowPartiallyTrustedCallers]
+//[assembly: AllowPartiallyTrustedCallers]
 [assembly: ComVisible(false)]
