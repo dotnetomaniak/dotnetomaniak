@@ -1,6 +1,7 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage<BaseViewData>" %>
 <%@ Import Namespace="System.Linq" %>
 <%@ Import Namespace="Kigg.Infrastructure" %>
+<%@ Import Namespace="StackExchange.Profiling" %>
 
 <script runat="server">
 
@@ -257,5 +258,6 @@
     <% Html.RenderPartial("MembershipBox", Model); %>
     <kigg:jQueryScriptManager ID="scripts" runat="server">
     </kigg:jQueryScriptManager>
+    <%= MiniProfiler.RenderIncludes() %>
 </body>
 </html>
