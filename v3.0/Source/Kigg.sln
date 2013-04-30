@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Core", "Core\Kigg.Core.csproj", "{04A61455-9656-4E67-A8D6-9FBA348F0FB3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Infrastructure.LinqToSql", "LinqToSql\Kigg.Infrastructure.LinqToSql.csproj", "{49CDCCC2-2C02-4DF1-9234-246D974D2B2D}"
