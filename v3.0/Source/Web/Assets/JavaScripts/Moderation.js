@@ -5,8 +5,9 @@
     _deleteStoryUrl : '',
     _spamStoryUrl: '',
     _approveStoryUrl: '',
-    _getStoryUrl : '',
-    _centerMeTimer : null,
+    _getStoryUrl: '',
+    _generateMiniatureStoryUrl: '',
+    _centerMeTimer: null,
 
     set_markCommentAsOffendedUrl : function(value)
     {
@@ -36,6 +37,11 @@
     set_getStoryUrl : function(value)
     {
         Moderation._getStoryUrl = value;
+    },
+
+    set_generateMiniatureStoryUrl: function (value)
+    {
+        Moderation._generateMiniatureStoryUrl = value;
     },
 
     init : function()
@@ -295,6 +301,37 @@
         $U.confirm('Oznacz jako spam?', 'Czy na pewno chcesz oznaczyć artykuł jako spam?', submit);
     },
 
+    generateMiniatureStory: function(storyId)
+    {
+        function submit() {
+            var data = 'id=' + encodeURIComponent(storyId);
+
+            $.ajax(
+                        {
+                            url: Moderation._generateMiniatureStoryUrl,
+                            type: 'POST',
+                            dataType: 'json',
+                            data: data,
+                            beforeSend: function () {
+                                $U.showProgress('Generowanie miniatury');
+                            },
+                            success: function (result) {
+                                $U.hideProgress();
+
+                                if (result.isSuccessful) {
+                                    $U.messageBox('Sukces', 'Poprawnie wygenerowano miniaturę');
+                                }
+                                else {
+                                    $U.messageBox('Error', result.errorMessage, true);
+                                }
+                            }
+                        }
+                    );
+        }
+
+        $U.confirm('Generowanie miniaturki', 'Czy jesteś pewny, że chcesz pobrać miniaturkę?', submit);
+    },
+    
     confirmSpamComment : function(storyId, commentId)
     {
         function submit()

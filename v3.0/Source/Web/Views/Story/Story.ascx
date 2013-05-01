@@ -188,6 +188,7 @@
             edycja</a></span><span class="delete"><a class="delete actionLink" href="javascript:void(0)" onclick="Moderation.deleteStory('<%= attributedEncodedStoryId %>')">
                 usuń</a></span>
                 <span class="spam"><a class="spam actionLink" href="javascript:void(0)" onclick="Moderation.confirmSpamStory('<%= attributedEncodedStoryId %>')">spam</a></span>
+                    <span class="miniature"><a class="miniature actionLink" href="javascript:void(0)" onclick="Moderation.generateMiniatureStory('<%= attributedEncodedStoryId %>')">miniaturka</a></span>
         <% } %>
         <% else if (story.IsPublished() == false)
            {%>

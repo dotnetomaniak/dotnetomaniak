@@ -130,6 +130,7 @@
                 scriptManager.RegisterOnReady("Moderation.set_approveStoryUrl('{0}');".FormatWith(Url.RouteUrl("ApproveStory")));
                 scriptManager.RegisterOnReady("Moderation.set_spamCommentUrl('{0}');".FormatWith(Url.RouteUrl("ConfirmSpamComment")));
                 scriptManager.RegisterOnReady("Moderation.set_markCommentAsOffendedUrl('{0}');".FormatWith(Url.RouteUrl("MarkCommentAsOffended")));
+                scriptManager.RegisterOnReady("Moderation.set_generateMiniatureStoryUrl('{0}');".FormatWith(Url.RouteUrl("GenerateMiniatureStory")));
 
                 scriptManager.RegisterOnDispose("Moderation.dispose();");
             }
