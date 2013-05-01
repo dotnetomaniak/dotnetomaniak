@@ -319,7 +319,7 @@
                                 $U.hideProgress();
 
                                 if (result.isSuccessful) {
-                                    $U.messageBox('Sukces', 'Poprawnie wygenerowano miniaturę');
+                                    $('.entry-thumb img').attr('src', result.url);
                                 }
                                 else {
                                     $U.messageBox('Error', result.errorMessage, true);
