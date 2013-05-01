@@ -22,7 +22,7 @@
     string message = story.HasComments() ? "{0} {1}.".FormatWith(story.CommentCount, (story.CommentCount > 1 ? (story.CommentCount < 5 ? "komentarze" : "komentarzy") : "komentarz")) : "Brak komentarzy. Bądź pierwszy aby skomentować ten wpis.";
 %>
 <div class="commentMessage"><h2><%= message%></h2></div>
-<div id="commentDisc"><span>Komentarze są własnością ich twórców i tylko oni są za <strong>nie odpowiedzialni</strong>. Serwis <%= Html.ActionLink("dotnetomaniak.pl", "Story", "Published")%> serwisu <strong>nie ponosi jakiejkolwiek odpowiedzialności za treść</strong> komentarzy.</span>
+<div id="commentDisc"><span>Komentarze są własnością ich twórców i tylko oni są za <strong>nie odpowiedzialni</strong>.<br /> Serwis <%= Html.ActionLink("dotnetomaniak.pl", "Story", "Published")%> <strong>nie ponosi jakiejkolwiek odpowiedzialności za treść</strong> komentarzy.</span>
 </div>
 <div id="commentList">
     <%if (story.HasComments()) %>
