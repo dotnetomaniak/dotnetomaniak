@@ -1,35 +1,17 @@
-<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<StoryDetailViewData>" %>
+<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<XmlNode>>" %>
 <%@ OutputCache VaryByParam="None" Duration="7200" %>
 <%@ Import Namespace="System.Xml" %>
 <%@ Import Namespace="System.Linq" %>
 
 <h2>Powi¹zane pytania z devPytania:</h2>
-<%
-   IEnumerable<XmlNode> entries = null;
-   try
-   {   
-   foreach(var tag in Model.Story.Tags)
-   {
-       var address = "http://devpytania.pl/szukaj?type=rss&q=[{0}]".FormatWith(tag.UniqueName);
-       var rssReader = new XmlTextReader(address);
-       var rssDoc = new XmlDocument();
-
-       rssDoc.Load(rssReader);
-       entries = rssDoc.SelectNodes("//item").Cast<XmlNode>();
-       if (entries !=null && entries.Count() > 0)
-           break;
-   }   
-   }
-   catch { }      
-  %>
 <ul>
-    <% if (entries == null || (entries != null && entries.Count() == 0))
+    <% if (Model == null || (Model != null && Model.Count() == 0))
        { %>
         <span>Nie znaleziono powi¹zanych pytañ.</span>
     <% }
        else
        {
-           foreach (var entry in entries.Take(5))
+           foreach (var entry in Model.Take(7))
            { %>
         <li>
             <a href="<%= Html.Encode(entry.SelectSingleNode("link").InnerText) %>">

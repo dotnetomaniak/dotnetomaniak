@@ -42,8 +42,9 @@
         </ul>
     </div>
     <div class="tabs-contents">
-        <div id="first-tab-content" class="tab-content">
-            <% Html.RenderPartial("Questions", Model); %>
+        <div id="first-tab-content" class="tab-content partialContents" data-url="<%= Url.Action("Questions", "Story", new { tags = Model.Story.Tags.Select(x=>x.UniqueName).Aggregate((x,y)=>x+","+y) })%>">
+            Wczytywanie pytań...
+            <%--<% Html.RenderPartial("Questions", Model); %>--%>
         </div>
         <div id="second-tab-content" class="tab-content">
             <% Html.RenderPartial("Comments", Model); %>
