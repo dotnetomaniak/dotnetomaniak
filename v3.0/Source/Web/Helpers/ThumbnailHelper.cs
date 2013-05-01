@@ -43,7 +43,7 @@ namespace Kigg.Web
         {
             string path = ((fullPath) ? ThumbnailHost : string.Empty) + ThumbnailStoragePath;
 
-            if(size == ThumbnailSize.Small)
+            if (size == ThumbnailSize.Small)
                 path += ThumbnailSizeSmallPrefix;
             if (size == ThumbnailSize.Medium)
                 path += ThumbnailSizeMediumPrefix;
@@ -65,6 +65,7 @@ namespace Kigg.Web
 
         private static Image CreateThumbnailFromUri(string uri)
         {
+            Image img = null;
             try
             {
                 var request = (HttpWebRequest)WebRequest.Create(uri);
@@ -72,24 +73,19 @@ namespace Kigg.Web
 
                 using (var response = (HttpWebResponse)request.GetResponse())
                 {
-                    if(response.StatusCode == HttpStatusCode.OK)
+                    if (response.StatusCode == HttpStatusCode.OK)
                     {
-                        var img = Image.FromStream(response.GetResponseStream());
-                        return img;
+                        img = Image.FromStream(response.GetResponseStream());
                     }
-                    else
-                    {
-                        var blankThumbnailPath = Path.Combine(HttpContext.Current.Server.MapPath(ThumbnailStoragePath), BlankThumbnailImageName);
-                        return new Bitmap(blankThumbnailPath);
-                    }
-
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex) { /*404 throws exception :/ */  }
+            if (img == null)
             {
-                return null;
+                var blankThumbnailPath = Path.Combine(HttpContext.Current.Server.MapPath(ThumbnailStoragePath), BlankThumbnailImageName);
+                img = new Bitmap(blankThumbnailPath);
             }
-
+            return img;
         }
 
         private static bool ThumbnailExists(string shrinkedStoryId, ThumbnailSize size)
