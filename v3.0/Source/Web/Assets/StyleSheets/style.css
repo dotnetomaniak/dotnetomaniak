@@ -309,6 +309,10 @@ p.show-more-articles{
     {
         background: url(/Assets/images/edit.png) no-repeat left 3px;
     }
+    .summary span.miniature 
+    {
+    background: url(/Assets/images/miniature.png) no-repeat left 3px;
+    }
     .summary span.delete
     {
         background: url(/Assets/images/delete.png) no-repeat left 3px;

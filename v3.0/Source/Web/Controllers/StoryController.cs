@@ -956,17 +956,16 @@ namespace Kigg.Web
                     }
                     else
                     {
-                        //_storyService.GenerateMiniature(story, story.Url, CurrentUser);
                         string path = ThumbnailHelper.GetThumbnailVirtualPathForStoryOrCreateNew(story.Url, story.Id.Shrink(), ThumbnailSize.Medium, createMediumThumbnail: true, doNotCheckForExistingMiniature: true);
 
-                        viewData = new JsonViewData { isSuccessful = true };
+                        viewData = new JsonCreateViewData { isSuccessful = true, url = path };
                     }
                 }
                 catch (Exception e)
                 {
                     Log.Exception(e);
 
-                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("usuwania artyku³u") };
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("odswie¿ania miniaturki") };
                 }
             }
 
