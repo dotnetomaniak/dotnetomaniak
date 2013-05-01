@@ -98,6 +98,7 @@ namespace Kigg.Web
             _routes.MapRoute("ConfirmSpamStory", "ConfirmSpamStory", new { controller = "Story", action = "ConfirmSpam" });
             _routes.MapRoute("ConfirmSpamComment", "ConfirmSpamComment", new { controller = "Comment", action = "ConfirmSpam" });
             _routes.MapRoute("MarkCommentAsOffended", "MarkCommentAsOffended", new { controller = "Comment", action = "MarkAsOffended" });
+            _routes.MapRoute("GenerateMiniatureStory", "GenerateMiniatureStory", new { controller = "Story", action = "GenerateMiniature" });
 
             _routes.MapRoute("Publish", "Publish", new { controller = "Story", action = "Publish" });
 

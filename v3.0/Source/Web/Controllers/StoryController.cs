@@ -932,6 +932,47 @@ namespace Kigg.Web
             return Json(viewData);
         }
 
+        [AcceptVerbs(HttpVerbs.Post), Compress]
+        public ActionResult GenerateMiniature(string id)
+        {
+            id = id.NullSafe();
+
+            JsonViewData viewData = Validate<JsonViewData>(
+                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku³u nie mo¿e byæ pusty."),
+                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku³u."),
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteœ zalogowany."),
+                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz praw do wo³ania tej metody.")
+                                                          );
+
+            if (viewData == null)
+            {
+                try
+                {
+                    IStory story = _storyRepository.FindById(id.ToGuid());
+
+                    if (story == null)
+                    {
+                        viewData = new JsonViewData { errorMessage = "Podany artyku³ nie istnieje." };
+                    }
+                    else
+                    {
+                        //_storyService.GenerateMiniature(story, story.Url, CurrentUser);
+                        string path = ThumbnailHelper.GetThumbnailVirtualPathForStoryOrCreateNew(story.Url, story.Id.Shrink(), ThumbnailSize.Medium, createMediumThumbnail: true, doNotCheckForExistingMiniature: true);
+
+                        viewData = new JsonViewData { isSuccessful = true };
+                    }
+                }
+                catch (Exception e)
+                {
+                    Log.Exception(e);
+
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("usuwania artyku³u") };
+                }
+            }
+
+            return Json(viewData);
+        }
+
         public ActionResult PromotedBy(string name, int? page)
         {
             IUser user = UserRepository.FindById(name.ToGuid());
