@@ -190,6 +190,7 @@
     </script>
     <script src='http://cdn.devmedia.pl/common/js/devmedia.js' type='text/javascript'></script>
     <script src="<%= Url.Asset("js1").Replace("&", "&amp;") %>" type="text/javascript"></script>
+    <script src="/Assets/JavaScripts/whcookies.js" type="text/javascript"></script>
     <asp:ContentPlaceHolder ID="HeadPlaceHolder" runat="server">
     </asp:ContentPlaceHolder>
 </head>

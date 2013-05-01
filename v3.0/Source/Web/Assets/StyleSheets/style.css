@@ -350,7 +350,7 @@ background: url("/Assets/images/icon-zwin.png") no-repeat scroll right top trans
     float: left;
     font-size: 11px;
     padding-top: 10px;
-    width: 381px;}
+    width: 377px;}
     .more-row{
       background:url(/Assets/Images/dots-dark.gif) bottom repeat-x;
       padding:7px 0px;
@@ -562,7 +562,7 @@ border-radius: 8px;
   .categories a:hover, .about a:hover{text-decoration:underline; background:none;}
   li.last{background:none !important;}
   .entry-thumb{float:right;padding-left:15px;}
-  .entry-thumb img{border:3px solid #a7a7a7}
+  .entry-thumb img{ border: 3px solid #a7a7a7;width: 115px;}
   
   /********* Article Wiev Styles ********************/
   
