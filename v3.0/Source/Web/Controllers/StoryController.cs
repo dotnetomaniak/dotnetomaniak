@@ -9,6 +9,7 @@ namespace Kigg.Web
     using Infrastructure;
     using Repository;
     using Service;
+    using System.Xml;
 
     public class StoryController : BaseController
     {
@@ -60,7 +61,7 @@ namespace Kigg.Web
 
             viewData.Title = "{0} - Najnowsze artyku³y o .NET".FormatWith(Settings.SiteTitle);
             if (page.HasValue && page > 1)
-               viewData.Title += " - Strona {0}".FormatWith(page);
+                viewData.Title += " - Strona {0}".FormatWith(page);
 
             viewData.MetaDescription = "Czytaj najnowsze artyku³y o .NET";
             if (page.HasValue && page > 1)
@@ -68,7 +69,7 @@ namespace Kigg.Web
                 viewData.MetaDescription += " - Strona {0}".FormatWith(page);
             }
             viewData.RssUrl = string.IsNullOrEmpty(Settings.PublishedStoriesFeedBurnerUrl) ? Url.RouteUrl("FeedPublished") : Settings.PublishedStoriesFeedBurnerUrl;
-            viewData.AtomUrl = Url.RouteUrl("FeedPublished", new { format = "Atom" });            
+            viewData.AtomUrl = Url.RouteUrl("FeedPublished", new { format = "Atom" });
             viewData.Subtitle = "Wszystkie";
             viewData.NoStoryExistMessage = "Brak opublikowanych artyku³ów.";
 
@@ -359,6 +360,28 @@ namespace Kigg.Web
             return View(viewData);
         }
 
+        public ActionResult Questions(string tags)
+        {
+            IEnumerable<XmlNode> entries = null;
+            try
+            {                
+                foreach (var tag in tags.Split(new[] { ',' }))
+                {
+                    var address = "http://devpytania.pl/szukaj?type=rss&q=[{0}]".FormatWith(tag);
+                    var rssReader = new XmlTextReader(address);
+                    var rssDoc = new XmlDocument();
+
+                    rssDoc.Load(rssReader);
+                    entries = rssDoc.SelectNodes("//item").Cast<XmlNode>();
+                    if (entries != null && entries.Count() > 0)
+                        break;
+                }
+            }
+            catch { }
+
+            return View(entries);
+        }
+
         [AcceptVerbs(HttpVerbs.Get), ValidateInput(false), Compress]
         public ActionResult Submit(string url, string title)
         {
@@ -591,7 +614,7 @@ namespace Kigg.Web
         private static string GetText(int count)
         {
             if (count == 1)
-                return ".netomaniak";            
+                return ".netomaniak";
             return count < 5 ? ".netomaniaki" : ".netomaniaków";
         }
 
@@ -982,7 +1005,7 @@ namespace Kigg.Web
             viewData.Stories = pagedResult.Result;
             viewData.TotalStoryCount = pagedResult.Total;
             viewData.RssUrl = Url.Action("PromotedBy", "Feed", new { name });
-            viewData.AtomUrl = Url.Action("PromotedBy", "Feed", new { name , format = "Atom" });
+            viewData.AtomUrl = Url.Action("PromotedBy", "Feed", new { name, format = "Atom" });
             viewData.NoStoryExistMessage = "Brak artyku³ów promowanych przez \"{0}\".".FormatWith(user.UserName.HtmlEncode());
             viewData.SelectedTab = UserDetailTab.Promoted;
             viewData.TheUser = user;
@@ -1029,12 +1052,12 @@ namespace Kigg.Web
         public string GetThumbnailPath(string storyId, string size)
         {
             var thumbnailSize = ThumbnailSize.Small;
-            if(!string.IsNullOrWhiteSpace(size) && size.ToLower().Equals("medium"))
+            if (!string.IsNullOrWhiteSpace(size) && size.ToLower().Equals("medium"))
                 thumbnailSize = ThumbnailSize.Medium;
 
             IStory story = _storyRepository.FindById(storyId.NullSafe().ToGuid());
 
-            if(story != null)
+            if (story != null)
                 return ThumbnailHelper.GetThumbnailVirtualPathForStoryOrCreateNew(story.Url, storyId, thumbnailSize);
 
             return "";
@@ -1047,7 +1070,7 @@ namespace Kigg.Web
             viewData.CurrentPage = page ?? 1;
             viewData.StoryPerPage = Settings.HtmlStoryPerPage;
             viewData.FacebookUrl = "http://facebook.com/dotnetomaniakpl";
-            viewData.GooglePlusUrl = "https://plus.google.com/110925305542873177884?prsrc=3";            
+            viewData.GooglePlusUrl = "https://plus.google.com/110925305542873177884?prsrc=3";
 
             return viewData;
         }

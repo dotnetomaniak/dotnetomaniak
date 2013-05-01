@@ -84,6 +84,12 @@ $(document).ready(function () {
 
     });
 
+    $(".partialContents").each(function (index, item) {
+        var url = $(item).data("url");
+        if (url && url.length > 0) {
+            $(item).load(url);
+        }
+    });
     //podswietlenie inputów w add-article
 
     $(".add-article-row input, .add-article-row textarea").focus(function () {
