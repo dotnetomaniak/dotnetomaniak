@@ -109,7 +109,7 @@ namespace Kigg.Web.App_Start
 
         private static bool CanRunProfiler(HttpRequest request)
         {
-            return (request.IsLocal || request.UserHostAddress == "78.10.91.195") &&
+            return (request.IsLocal || request.UserHostAddress == "78.10.91.195" || request.UserHostAddress == "91.217.18.134") &&
                 bool.Parse(ConfigurationManager.AppSettings["MiniProfilerEnabled"]);
         }
 
