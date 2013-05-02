@@ -527,12 +527,7 @@
         }
     }
 
-    var oldOnLoad = window.onload;
-    window.onload = function (evt) {
-        try {
-            gen_selector();
-        } finally {
-            return oldOnLoad && oldOnLoad(evt);
-        }
-    }
+    $(document).ready(function () {
+        gen_selector();
+    });
 })();
