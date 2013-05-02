@@ -6,6 +6,7 @@ using StackExchange.Profiling;
 using StackExchange.Profiling.MVCHelpers;
 using Microsoft.Web.Infrastructure;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+using System.Configuration;
 //using System.Data;
 //using System.Data.Entity;
 //using System.Data.Entity.Infrastructure;
@@ -108,7 +109,8 @@ namespace Kigg.Web.App_Start
 
         private static bool CanRunProfiler(HttpRequest request)
         {
-            return request.IsLocal || request.UserHostAddress == "78.10.91.195";
+            return (request.IsLocal || request.UserHostAddress == "78.10.91.195") &&
+                bool.Parse(ConfigurationManager.AppSettings["MiniProfilerEnabled"]);
         }
 
         public void Dispose() { }
