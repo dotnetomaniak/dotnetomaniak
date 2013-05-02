@@ -44,7 +44,7 @@ namespace Kigg.Web
             for (int i = 0; i < breadcrumbs.Length-1; i++)
             {
                 articleHeaderHtml.AppendFormat(
-                    i == 0 ? "<a id=\"first-crumb\" href=\"#\">{0}</a>" : "<a href=\"#\">{0}</a>", breadcrumbs[i]);
+                    i == 0 ? "<a id=\"first-crumb\" href=\"/\">{0}</a>" : "<a href=\"#\">{0}</a>", breadcrumbs[i]);
             }
             if (breadcrumbs.Length > 1)
                 articleHeaderHtml.AppendFormat("<span>{0}</span>", breadcrumbs[breadcrumbs.Length - 1]);
