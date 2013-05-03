@@ -164,7 +164,7 @@ namespace Kigg.Web
 
             Cache.TryGet(key, out asset);
 
-            if (asset == null)
+            if (asset == null) 
             {
                 string[] files = setting.Files.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -174,7 +174,13 @@ namespace Kigg.Web
 
                     for (int i = 0; i < files.Length; i++)
                     {
-                        string file = context.Server.MapPath(Path.Combine(setting.Directory, files[i]));
+                        string file = Path.GetFileNameWithoutExtension(files[i]) + ".min" + Path.GetExtension(files[i]);
+                        file = context.Server.MapPath(Path.Combine(setting.Directory, file));
+                        if (File.Exists(file) == false)
+                        {
+                            file = context.Server.MapPath(Path.Combine(setting.Directory, files[i]));
+                        }
+                        
                         string fileContent = FileReader.ReadAllText(file);
 
                         if (!string.IsNullOrEmpty(fileContent))

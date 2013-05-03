@@ -424,16 +424,24 @@
     <Content Include="Assets\JavaScripts\jquery-ui-1.8.17.custom.min.js" />
     <Content Include="Assets\JavaScripts\jquery.validate.js" />
     <Content Include="Assets\JavaScripts\load.js" />
+    <Content Include="Assets\JavaScripts\load.min.js" />
     <Content Include="Assets\JavaScripts\whcookies.js" />
+    <Content Include="Assets\JavaScripts\whcookies.min.js" />
     <Content Include="Assets\StyleSheets\autocomplete.css" />
+    <Content Include="Assets\StyleSheets\autocomplete.min.css" />
     <Content Include="Assets\StyleSheets\blog.css" />
+    <Content Include="Assets\StyleSheets\blog.min.css" />
     <Content Include="Assets\StyleSheets\colorPicker.min.css" />
     <Content Include="Assets\StyleSheets\error.css" />
+    <Content Include="Assets\StyleSheets\error.min.css" />
     <Content Include="Assets\StyleSheets\marItUp.css" />
     <Content Include="Assets\StyleSheets\marItUp.min.css" />
     <Content Include="Assets\StyleSheets\modal.css" />
+    <Content Include="Assets\StyleSheets\modal.min.css" />
     <Content Include="Assets\StyleSheets\style.css" />
+    <Content Include="Assets\StyleSheets\style.min.css" />
     <Content Include="Assets\StyleSheets\ui.jquery.css" />
+    <Content Include="Assets\StyleSheets\ui.jquery.min.css" />
     <Content Include="ErrorPages\Offline.aspx" />
     <Content Include="Logs\exception.txt" />
     <Content Include="MailTemplates\NewPassword.txt" />
@@ -568,8 +576,17 @@
     <None Include="Assets\JavaScripts\Analytics.js" />
     <Content Include="Assets\JavaScripts\Analytics.min.js" />
     <Content Include="Assets\JavaScripts\colorpicker.min.js" />
+    <Content Include="Assets\JavaScripts\Comment.min.js.map">
+      <DependentUpon>Comment.js</DependentUpon>
+    </Content>
     <None Include="Assets\JavaScripts\Contact.js" />
     <Content Include="Assets\JavaScripts\Contact.min.js" />
+    <Content Include="Assets\JavaScripts\Faq.min.js.map">
+      <DependentUpon>Faq.js</DependentUpon>
+    </Content>
+    <Content Include="Assets\JavaScripts\Membership.min.js.map">
+      <DependentUpon>Membership.js</DependentUpon>
+    </Content>
     <None Include="Assets\JavaScripts\Tag.js" />
     <None Include="Assets\JavaScripts\Moderation.js" />
     <None Include="Assets\JavaScripts\Administration.js" />
