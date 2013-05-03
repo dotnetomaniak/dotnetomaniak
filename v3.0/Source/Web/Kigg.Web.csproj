@@ -401,6 +401,18 @@
     <Content Include="Assets\Images\menu-right-last.png" />
     <Content Include="Assets\Images\menu-right.jpg" />
     <Content Include="Assets\Images\openid.jpg" />
+    <Content Include="Assets\Images\OpenID\aol.ico" />
+    <Content Include="Assets\Images\OpenID\blogger.ico" />
+    <Content Include="Assets\Images\OpenID\bloglines.ico" />
+    <Content Include="Assets\Images\OpenID\claimid.ico" />
+    <Content Include="Assets\Images\OpenID\lj.ico" />
+    <Content Include="Assets\Images\OpenID\myopenid.ico" />
+    <Content Include="Assets\Images\OpenID\technorati.ico" />
+    <Content Include="Assets\Images\OpenID\verisign.ico" />
+    <Content Include="Assets\Images\OpenID\vidoop.ico" />
+    <Content Include="Assets\Images\OpenID\vox.ico" />
+    <Content Include="Assets\Images\OpenID\wordpress.ico" />
+    <Content Include="Assets\Images\OpenID\yahoo.ico" />
     <Content Include="Assets\Images\promuj.png" />
     <Content Include="Assets\Images\quote.png" />
     <Content Include="Assets\Images\radios-bg_07.jpg" />
@@ -570,6 +582,9 @@
     <Content Include="Assets\JavaScripts\colorpicker.min.js" />
     <None Include="Assets\JavaScripts\Contact.js" />
     <Content Include="Assets\JavaScripts\Contact.min.js" />
+    <Content Include="Assets\JavaScripts\OpenID.min.js.map">
+      <DependentUpon>OpenID.js</DependentUpon>
+    </Content>
     <None Include="Assets\JavaScripts\Tag.js" />
     <None Include="Assets\JavaScripts\Moderation.js" />
     <None Include="Assets\JavaScripts\Administration.js" />
