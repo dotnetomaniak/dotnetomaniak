@@ -155,7 +155,7 @@
             var provider = providers[idx];
             var icon = pdoc.createElement("img");
             icon.src = provider ? ('../Assets/Images/OpenID/' + provider.icon) :
-                '../Assets/Images/OpenID/';
+                '../Assets/Images/OpenID/openid.ico';
             icon.style.width = "16px";
             icon.style.height = "16px";
             icon.style.verticalAlign = "middle";
