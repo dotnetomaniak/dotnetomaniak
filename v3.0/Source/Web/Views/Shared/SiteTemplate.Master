@@ -177,8 +177,7 @@
     <meta id="metaKeywords" runat="server" name="keywords" content="" />
     <meta id="metaDescription" runat="server" name="description" content="" />
     <meta name="Rating" content="General" />
-    <meta name="robots" content="index, follow" />
-    <title></title>
+    <meta name="robots" content="index, follow" />    
     <link href='http://cdn.devmedia.pl/common/css/devmedia.css' rel='stylesheet' type='text/css'/>    
     <link href="<%= Url.Asset("css").Replace("&", "&amp;") %>" rel="stylesheet" type="text/css" />
     <link href="<%= Url.Image("fav.ico")%>" rel="shortcut icon" type="image/x-icon" />
