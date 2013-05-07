@@ -93,11 +93,11 @@
 
         var back = pdoc.createElement('img');
         back.style.verticalAlign = "middle"; back.style.cursor = "pointer";
-        back.src = "https://www.idselector.com/images/arrow_white_back.png";
+        back.src = "../Assets/Images/OpenID/arrow_white_back.png";
 
         var forward = pdoc.createElement('img');
         forward.style.verticalAlign = "middle"; forward.style.cursor = "pointer";
-        forward.src = "https://www.idselector.com/images/arrow_white_forward.png";
+        forward.src = "../Assets/Images/OpenID/arrow_white_forward.png";
 
         var headRight = pdoc.createElement('div');
         headRight.style[document.all ? 'styleFloat' : 'cssFloat'] = 'right';
@@ -293,7 +293,7 @@
             } else {
                 nameLabel.style.visibility = 'hidden';
                 nameTb.style.visibility = 'hidden';
-                btnIcn.src = 'https://www.idselector.com/images/openid.ico';
+                btnIcn.src = '../Assets/Images/OpenID/openid.ico';
             }
         }
 
