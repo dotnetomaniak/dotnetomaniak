@@ -1,0 +1,856 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebOptimizer</name>
+    </assembly>
+    <members>
+        <member name="T:WebOptimizer.Filters.BaseFilterStream">
+            <summary>
+            A base class for the response filters.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Filters.BaseFilterStream.Flush">
+            <summary>
+            When overridden in a derived class, clears all buffers for this stream and causes any buffered data to be written to the underlying device.
+            </summary>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+        </member>
+        <member name="M:WebOptimizer.Filters.BaseFilterStream.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            When overridden in a derived class, reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read.
+            </summary>
+            <param name="buffer">An array of bytes. When this method returns, the buffer contains the specified byte array with the values between <paramref name="offset"/> and (<paramref name="offset"/> + <paramref name="count"/> - 1) replaced by the bytes read from the current source.</param>
+            <param name="offset">The zero-based byte offset in <paramref name="buffer"/> at which to begin storing the data read from the current stream.</param>
+            <param name="count">The maximum number of bytes to be read from the current stream.</param>
+            <returns>
+            The total number of bytes read into the buffer. This can be less than the number of bytes requested if that many bytes are not currently available, or zero (0) if the end of the stream has been reached.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+            The sum of <paramref name="offset"/> and <paramref name="count"/> is larger than the buffer length.
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            	<paramref name="buffer"/> is null.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            	<paramref name="offset"/> or <paramref name="count"/> is negative.
+            </exception>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support reading.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="M:WebOptimizer.Filters.BaseFilterStream.Seek(System.Int64,System.IO.SeekOrigin)">
+            <summary>
+            When overridden in a derived class, sets the position within the current stream.
+            </summary>
+            <param name="offset">A byte offset relative to the <paramref name="origin"/> parameter.</param>
+            <param name="origin">A value of type <see cref="T:System.IO.SeekOrigin"/> indicating the reference point used to obtain the new position.</param>
+            <returns>
+            The new position within the current stream.
+            </returns>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support seeking, such as if the stream is constructed from a pipe or console output.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="M:WebOptimizer.Filters.BaseFilterStream.SetLength(System.Int64)">
+            <summary>
+            When overridden in a derived class, sets the length of the current stream.
+            </summary>
+            <param name="value">The desired length of the current stream in bytes.</param>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support both writing and seeking, such as if the stream is constructed from a pipe or console output.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="M:WebOptimizer.Filters.BaseFilterStream.Close">
+            <summary>
+            Closes the current stream and releases any resources (such as sockets and file handles) associated with the current stream.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Filters.BaseFilterStream.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            When overridden in a derived class, writes a sequence of bytes to the current stream and advances the current position within this stream by the number of bytes written.
+            </summary>
+            <param name="buffer">An array of bytes. This method copies <paramref name="count"/> bytes from <paramref name="buffer"/> to the current stream.</param>
+            <param name="offset">The zero-based byte offset in <paramref name="buffer"/> at which to begin copying bytes to the current stream.</param>
+            <param name="count">The number of bytes to be written to the current stream.</param>
+            <exception cref="T:System.ArgumentException">
+            The sum of <paramref name="offset"/> and <paramref name="count"/> is greater than the buffer length.
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            	<paramref name="buffer"/> is null.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            	<paramref name="offset"/> or <paramref name="count"/> is negative.
+            </exception>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support writing.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="M:WebOptimizer.Filters.BaseFilterStream.Process(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Process and manipulate the buffer.
+            </summary>
+            <param name="buffer">An array of bytes. This method copies <paramref name="count"/> bytes from <paramref name="buffer"/> to the current stream.</param>
+            <param name="offset">The zero-based byte offset in <paramref name="buffer"/> at which to begin copying bytes to the current stream.</param>
+            <param name="count">The number of bytes to be written to the current stream.</param>
+        </member>
+        <member name="P:WebOptimizer.Filters.BaseFilterStream.CanRead">
+            <summary>
+            When overridden in a derived class, gets a value indicating whether the current stream supports reading.
+            </summary>
+            <value></value>
+            <returns>true if the stream supports reading; otherwise, false.</returns>
+        </member>
+        <member name="P:WebOptimizer.Filters.BaseFilterStream.CanSeek">
+            <summary>
+            When overridden in a derived class, gets a value indicating whether the current stream supports seeking.
+            </summary>
+            <value></value>
+            <returns>true if the stream supports seeking; otherwise, false.</returns>
+        </member>
+        <member name="P:WebOptimizer.Filters.BaseFilterStream.CanWrite">
+            <summary>
+            When overridden in a derived class, gets a value indicating whether the current stream supports writing.
+            </summary>
+            <value></value>
+            <returns>true if the stream supports writing; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:WebOptimizer.Filters.BaseFilterStream.Length">
+            <summary>
+            When overridden in a derived class, gets the length in bytes of the stream.
+            </summary>
+            <value></value>
+            <returns>
+            A long value representing the length of the stream in bytes.
+            </returns>
+            <exception cref="T:System.NotSupportedException">
+            A class derived from Stream does not support seeking.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="P:WebOptimizer.Filters.BaseFilterStream.Position">
+            <summary>
+            When overridden in a derived class, gets or sets the position within the current stream.
+            </summary>
+            <value></value>
+            <returns>
+            The current position within the stream.
+            </returns>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support seeking.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="P:WebOptimizer.Filters.BaseFilterStream.Sink">
+            <summary>
+            Gets or sets the internal sink stream.
+            </summary>
+            <value>The internal sink.</value>
+        </member>
+        <member name="P:WebOptimizer.Filters.BaseFilterStream.IgnoreLargeResponse">
+            <summary>
+            Gets a value indicating whether to ignore requests that are too large to be garbage collected efficiently.
+            </summary>
+            <value><c>true</c> if large response should be ignored; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:WebOptimizer.Filters.CombineStylesheetsFilterStream">
+            <summary>
+            A respons filter for handling conditional GETs using the Etag header.
+            </summary>
+        </member>
+        <member name="F:WebOptimizer.Filters.CombineStylesheetsFilterStream.LinkTag">
+            <summary>
+            The link tag to inject into the page header.
+            </summary>
+        </member>
+        <member name="F:WebOptimizer.Filters.CombineStylesheetsFilterStream.regex">
+            <summary>
+            A regular expression for finding stylesheet references.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Filters.CombineStylesheetsFilterStream.#ctor(System.Web.HttpContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebOptimizer.Filters.CombineStylesheetsFilterStream"/> class.
+            </summary>
+            <param name="context">The HTTP context.</param>
+        </member>
+        <member name="M:WebOptimizer.Filters.CombineStylesheetsFilterStream.Process(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Process and manipulate the buffer.
+            </summary>
+            <param name="buffer">An array of bytes. This method copies <paramref name="count"/> bytes from <paramref name="buffer"/> to the current stream.</param>
+            <param name="offset">The zero-based byte offset in <paramref name="buffer"/> at which to begin copying bytes to the current stream.</param>
+            <param name="count">The number of bytes to be written to the current stream.</param>
+        </member>
+        <member name="P:WebOptimizer.Filters.CombineStylesheetsFilterStream.IgnoreLargeResponse">
+            <summary>
+            Gets or sets a value indicating whether to ignore requests that are too large to be garbage collected efficiently.
+            </summary>
+            <value>
+            	<c>true</c> if large response should be ignored; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:WebOptimizer.Filters.MinifyInlineScriptsFilterStream">
+            <summary>
+            A respons filter for handling conditional GETs using the Etag header.
+            </summary>
+        </member>
+        <member name="F:WebOptimizer.Filters.MinifyInlineScriptsFilterStream.regex">
+            <summary>
+            A regular expression for finding scripts inlined in HTML.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Filters.MinifyInlineScriptsFilterStream.#ctor(System.Web.HttpContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebOptimizer.Filters.MinifyInlineScriptsFilterStream"/> class.
+            </summary>
+            <param name="context">The HTTP context.</param>
+        </member>
+        <member name="M:WebOptimizer.Filters.MinifyInlineScriptsFilterStream.Process(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Process and manipulate the buffer.
+            </summary>
+            <param name="buffer">An array of bytes. This method copies <paramref name="count"/> bytes from <paramref name="buffer"/> to the current stream.</param>
+            <param name="offset">The zero-based byte offset in <paramref name="buffer"/> at which to begin copying bytes to the current stream.</param>
+            <param name="count">The number of bytes to be written to the current stream.</param>
+        </member>
+        <member name="P:WebOptimizer.Filters.MinifyInlineScriptsFilterStream.IgnoreLargeResponse">
+            <summary>
+            Gets or sets a value indicating whether to ignore requests that are too large to be garbage collected efficiently.
+            </summary>
+            <value>
+            	<c>true</c> if large response should be ignored; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:WebOptimizer.Filters.MinifyInlineStylesFilterStream">
+            <summary>
+            A respons filter for handling conditional GETs using the Etag header.
+            </summary>
+        </member>
+        <member name="F:WebOptimizer.Filters.MinifyInlineStylesFilterStream.regex">
+            <summary>
+            A regular expression for finding stylesheet references.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Filters.MinifyInlineStylesFilterStream.#ctor(System.Web.HttpContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebOptimizer.Filters.MinifyInlineStylesFilterStream"/> class.
+            </summary>
+            <param name="context">The HTTP context.</param>
+        </member>
+        <member name="M:WebOptimizer.Filters.MinifyInlineStylesFilterStream.Process(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Process and manipulate the buffer.
+            </summary>
+            <param name="buffer">An array of bytes. This method copies <paramref name="count"/> bytes from <paramref name="buffer"/> to the current stream.</param>
+            <param name="offset">The zero-based byte offset in <paramref name="buffer"/> at which to begin copying bytes to the current stream.</param>
+            <param name="count">The number of bytes to be written to the current stream.</param>
+        </member>
+        <member name="P:WebOptimizer.Filters.MinifyInlineStylesFilterStream.IgnoreLargeResponse">
+            <summary>
+            Gets or sets a value indicating whether to ignore requests that are too large to be garbage collected efficiently.
+            </summary>
+            <value>
+            	<c>true</c> if large response should be ignored; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:WebOptimizer.Filters.RemoveWhitespaceFilterStream">
+            <summary>
+            A respons filter for handling conditional GETs using the Etag header.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Filters.RemoveWhitespaceFilterStream.#ctor(System.Web.HttpContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebOptimizer.Filters.RemoveWhitespaceFilterStream"/> class.
+            </summary>
+            <param name="context">The HTTP context.</param>
+        </member>
+        <member name="M:WebOptimizer.Filters.RemoveWhitespaceFilterStream.Process(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Process and manipulate the buffer.
+            </summary>
+            <param name="buffer">An array of bytes. This method copies <paramref name="count"/> bytes from <paramref name="buffer"/> to the current stream.</param>
+            <param name="offset">The zero-based byte offset in <paramref name="buffer"/> at which to begin copying bytes to the current stream.</param>
+            <param name="count">The number of bytes to be written to the current stream.</param>
+        </member>
+        <member name="P:WebOptimizer.Filters.RemoveWhitespaceFilterStream.IgnoreLargeResponse">
+            <summary>
+            Gets or sets a value indicating whether to ignore requests that are too large to be garbage collected efficiently.
+            </summary>
+            <value>
+            	<c>true</c> if large response should be ignored; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:WebOptimizer.Handlers.BaseHandler">
+            <summary>
+            A base class for HTTP handlers.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Handlers.BaseHandler.ProcessRequest(System.Web.HttpContext)">
+            <summary>
+            Enables processing of HTTP Web requests by a custom HttpHandler that implements the <see cref="T:System.Web.IHttpHandler"/> interface.
+            </summary>
+            <param name="context">An <see cref="T:System.Web.HttpContext"/> object that provides references to the intrinsic server objects (for example, Request, Response, Session, and Server) used to service HTTP requests.</param>
+        </member>
+        <member name="P:WebOptimizer.Handlers.BaseHandler.IsReusable">
+            <summary>
+            Gets a value indicating whether another request can use the <see cref="T:System.Web.IHttpHandler"/> instance.
+            </summary>
+            <value></value>
+            <returns>true if the <see cref="T:System.Web.IHttpHandler"/> instance is reusable; otherwise, false.
+            </returns>
+        </member>
+        <member name="T:WebOptimizer.Handlers.CombinedStylesheetHandler">
+            <summary>
+            Handles combining and serving of multiple stylesheets.
+            </summary>
+        </member>
+        <member name="F:WebOptimizer.Handlers.CombinedStylesheetHandler.urlFinder">
+            <summary>
+            Regular expression used to find relative url references in the stylesheet.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Handlers.CombinedStylesheetHandler.ProcessRequest(System.Web.HttpContext)">
+            <summary>
+            Enables processing of HTTP Web requests by a custom HttpHandler that implements the <see cref="T:System.Web.IHttpHandler"/> interface.
+            </summary>
+            <param name="context">An <see cref="T:System.Web.HttpContext"/> object that provides references to the intrinsic server objects (for example, Request, Response, Session, and Server) used to service HTTP requests.</param>
+        </member>
+        <member name="M:WebOptimizer.Handlers.CombinedStylesheetHandler.WriteContent(System.Web.HttpContext,System.String,System.String)">
+            <summary>
+            Writes the content of the individual stylesheets to the response stream.
+            </summary>
+            <param name="context">The HTTP context.</param>
+            <param name="file">The fully qualified path of the file on disk.</param>
+            <param name="relative">The relative path of the file.</param>
+        </member>
+        <member name="M:WebOptimizer.Handlers.CombinedStylesheetHandler.ConvertRelativeUrlReferences(System.String,System.String)">
+            <summary>
+            Converts relative URL's into absolute ones.
+            </summary>
+            <remarks>
+            The reason for doing it is to ensure that image references will still work.
+            </remarks>
+            <param name="relative">The relative url of the file.</param>
+            <param name="body">The body of the CSS text.</param>
+            <returns>A css string with absolute url references.</returns>
+        </member>
+        <member name="M:WebOptimizer.Handlers.CombinedStylesheetHandler.SetHeaders(System.Web.HttpContext,System.String[])">
+            <summary>
+            This will make the browser and server keep the output
+            in its cache and thereby improve performance.
+            </summary>
+            <param name="context">The HTTP context.</param>
+            <param name="files">A list of the files ot add cache dependencies to.</param>
+        </member>
+        <member name="T:WebOptimizer.Handlers.JavaScriptHandler">
+            <summary>
+            Minifies JavaScript files by removing all comments and whitespace.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Handlers.JavaScriptHandler.ProcessRequest(System.Web.HttpContext)">
+            <summary>
+            Enables processing of HTTP Web requests by a custom HttpHandler that implements the <see cref="T:System.Web.IHttpHandler"/> interface.
+            </summary>
+            <param name="context">An <see cref="T:System.Web.HttpContext"/> object that provides references to the intrinsic server objects (for example, Request, Response, Session, and Server) used to service HTTP requests.</param>
+        </member>
+        <member name="M:WebOptimizer.Handlers.JavaScriptHandler.SetHeaders(System.Web.HttpContext,System.IO.FileInfo)">
+            <summary>
+            This will make the browser and server keep the output
+            in its cache and thereby improve performance.
+            </summary>
+            <param name="context">The current HTTP context.</param>
+            <param name="file">The JavaScript file that was minified.</param>
+        </member>
+        <member name="M:WebOptimizer.Handlers.JavaScriptHandler.WriteContent(System.Web.HttpContext,System.String)">
+            <summary>
+            Writes the content of the individual stylesheets to the response stream.
+            </summary>
+            <param name="context">The current HTTP context.</param>
+            <param name="file">The JavaScript file to minify.</param>
+        </member>
+        <member name="T:WebOptimizer.Handlers.StylesheetHandler">
+            <summary>
+            Minifies CSS files by removing all comments and whitespace.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Handlers.StylesheetHandler.ProcessRequest(System.Web.HttpContext)">
+            <summary>
+            Enables processing of HTTP Web requests by a custom HttpHandler that implements the <see cref="T:System.Web.IHttpHandler"/> interface.
+            </summary>
+            <param name="context">An <see cref="T:System.Web.HttpContext"/> object that provides references to the intrinsic server objects (for example, Request, Response, Session, and Server) used to service HTTP requests.</param>
+        </member>
+        <member name="M:WebOptimizer.Handlers.StylesheetHandler.SetHeaders(System.Web.HttpContext,System.IO.FileInfo)">
+            <summary>
+            This will make the browser and server keep the output
+            in its cache and thereby improve performance.
+            </summary>
+            <param name="context">The current HTTP context.</param>
+            <param name="file">The CSS file that was minified.</param>
+        </member>
+        <member name="M:WebOptimizer.Handlers.StylesheetHandler.WriteContent(System.Web.HttpContext,System.String)">
+            <summary>
+            Writes the content of the individual stylesheets to the response stream.
+            </summary>
+            <param name="context">The current HTTP context.</param>
+            <param name="file">The CSS file to minify.</param>
+        </member>
+        <member name="T:WebOptimizer.Filters.ConditionalGetFilterStream">
+            <summary>
+            A respons filter for handling conditional GETs using the Etag header.
+            </summary>
+        </member>
+        <member name="F:WebOptimizer.Filters.ConditionalGetFilterStream.context">
+            <summary>
+            The HTTP context in which this filter should be applied.
+            </summary>
+        </member>
+        <member name="F:WebOptimizer.Filters.ConditionalGetFilterStream.hashAlgorithm">
+            <summary>
+            The hash algorithm used to calculate the hash code of the response.
+            </summary>
+        </member>
+        <member name="F:WebOptimizer.Filters.ConditionalGetFilterStream.syncRoot">
+            <summary>
+            Used for mutexing when accessing the hashAlgorithm
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Filters.ConditionalGetFilterStream.#ctor(System.Web.HttpContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebOptimizer.Filters.ConditionalGetFilterStream"/> class.
+            </summary>
+            <param name="context">The HTTP context.</param>
+        </member>
+        <member name="M:WebOptimizer.Filters.ConditionalGetFilterStream.Process(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Process and manipulate the buffer.
+            </summary>
+            <param name="buffer">An array of bytes. This method copies <paramref name="count"/> bytes from <paramref name="buffer"/> to the current stream.</param>
+            <param name="offset">The zero-based byte offset in <paramref name="buffer"/> at which to begin copying bytes to the current stream.</param>
+            <param name="count">The number of bytes to be written to the current stream.</param>
+        </member>
+        <member name="P:WebOptimizer.Filters.ConditionalGetFilterStream.IgnoreLargeResponse">
+            <summary>
+            Gets or sets a value indicating whether to ignore requests that are too large to be garbage collected efficiently.
+            </summary>
+            <value>
+            	<c>true</c> if large response should be ignored; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:WebOptimizer.IOptimizer">
+            <summary>
+            An interface for the optimization methods.
+            </summary>
+            <author>mads</author>
+        </member>
+        <member name="M:WebOptimizer.IOptimizer.Compress(System.Web.HttpContext)">
+            <summary>
+            Compresses the HttpContext's output stream using either Deflate or GZip.
+            </summary>
+            <param name="context">The current HTTP context to compress.</param>
+        </member>
+        <member name="M:WebOptimizer.IOptimizer.RemoveWhitespaceFromHtml(System.String)">
+            <summary>
+            Removes whitespace from the specified string of HTML.
+            </summary>
+            <param name="html">The HTML string to remove white space from.</param>
+            <returns>The specified HTML string stripped from all whitespace.</returns>
+        </member>
+        <member name="M:WebOptimizer.IOptimizer.RemoveWhiteSpaceFromJavaScript(System.String)">
+            <summary>
+            Strips the whitespace from any .js file.
+            </summary>
+            <param name="body">The body text of which to remove white space from.</param>
+            <returns>The specified body with no white space.</returns>
+        </member>
+        <member name="M:WebOptimizer.IOptimizer.RemoveWhiteSpaceFromStylesheets(System.String)">
+            <summary>
+            Strips the whitespace from any .css file.
+            </summary>
+            <param name="body">The body/contents of the CSS file.</param>
+            <returns>The body of the CSS file stripped from whitespace and comments.</returns>
+        </member>
+        <member name="M:WebOptimizer.IOptimizer.SetConditionalGetHeaders(System.DateTime,System.Web.HttpContext)">
+            <summary>
+            Writes the Last-Modified header and sets the conditional get headers.
+            </summary>
+            <param name="lastModified">The date of the last modification.</param>
+            <param name="context">The HTTP context.</param>
+        </member>
+        <member name="M:WebOptimizer.IOptimizer.SetConditionalGetHeaders(System.String,System.Web.HttpContext)">
+            <summary>
+            Sets the Etag for the conditional get headers.
+            </summary>
+            <param name="etag">The etag to send to the response.</param>
+            <param name="context">The HTTP context.</param>
+        </member>
+        <member name="T:WebOptimizer.JavaScriptMinifier">
+            <summary>
+            Minifies JavaScript text input by removing comments and whitespace.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.JavaScriptMinifier.Minify(System.String)">
+            <summary>
+            Minifies the specified string of JavaScript.
+            </summary>
+            <param name="src">The string of JavaScript to minify.</param>
+            <returns>A minified string</returns>
+            <author>mads</author>
+        </member>
+        <member name="M:WebOptimizer.JavaScriptMinifier.MinifyScript">
+            <summary>
+            Copy the input to the output, deleting the characters which areinsignificant to JavaScript. Comments will be removed. 
+            Tabs will be replaced with spaces. Carriage returns will be replaced with linefeeds. Most spaces and linefeeds will be removed.
+            </summary>
+            <author>mads</author>
+        </member>
+        <member name="M:WebOptimizer.JavaScriptMinifier.Action(System.Int32)">
+            <summary>
+            action -- do something! What you do is determined by the argument:
+            1   Output A. Copy B to A. Get the next B.
+            2   Copy B to A. Get the next B. (Delete A).
+            3   Get the next B. (Delete B)
+            .action treats a string as a single character. Wow!
+            action recognizes a regular expression if it is preceded by ( or , or =.
+            </summary>
+            <param name="d">The action.</param>
+            <author>mads</author>
+        </member>
+        <member name="T:WebOptimizer.Modules.CompressionModule">
+            <summary>
+            Compresses the output using standard gzip/deflate.
+            </summary>
+        </member>
+        <member name="F:WebOptimizer.Modules.CompressionModule.contentTypeFilter">
+            <summary>
+            A regular expression for filtering content types.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Modules.CompressionModule.System#Web#IHttpModule#Dispose">
+            <summary>
+            Disposes of the resources (other than memory) used by the module 
+            that implements <see cref="T:System.Web.IHttpModule"></see>.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Modules.CompressionModule.System#Web#IHttpModule#Init(System.Web.HttpApplication)">
+            <summary>
+            Initializes a module and prepares it to handle requests.
+            </summary>
+            <param name="context">An <see cref="T:System.Web.HttpApplication"></see> 
+            that provides access to the methods, properties, and events common to 
+            all application objects within an ASP.NET application.
+            </param>
+        </member>
+        <member name="M:WebOptimizer.Modules.CompressionModule.IsCompressionSupported(System.Web.HttpContext)">
+            <summary>
+            Check if the browser support compression
+            </summary>
+            <param name="context">The HTTP context.</param>
+            <returns>A value indicating whether or not the client supports compression.</returns>
+        </member>
+        <member name="M:WebOptimizer.Modules.CompressionModule.PreRequestHandlerExecute(System.Object,System.EventArgs)">
+            <summary>
+            Handles the BeginRequest event of the context control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:WebOptimizer.Modules.CompressionModule.ProcessError(System.Object,System.EventArgs)">
+            <summary>
+            Handles the Error event of the context control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="T:WebOptimizer.Modules.ConditionalGetModule">
+            <summary>
+            A module for handling conditional GET requests.
+            </summary>
+        </member>
+        <member name="F:WebOptimizer.Modules.ConditionalGetModule.contentTypeFilter">
+            <summary>
+            A regular expression for filtering content types.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Modules.ConditionalGetModule.Dispose">
+            <summary>
+            Disposes of the resources (other than memory) used by the module that implements <see cref="T:System.Web.IHttpModule"/>.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Modules.ConditionalGetModule.Init(System.Web.HttpApplication)">
+            <summary>
+            Initializes a module and prepares it to handle requests.
+            </summary>
+            <param name="context">An <see cref="T:System.Web.HttpApplication"/> that provides access to the methods, properties, and events common to all application objects within an ASP.NET application</param>
+        </member>
+        <member name="M:WebOptimizer.Modules.ConditionalGetModule.ProcessResponse(System.Object,System.EventArgs)">
+            <summary>
+            Processes the response and sets a response filter for conditional GETs.
+            </summary>
+            <param name="sender">The HTTP application of the current request.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="T:WebOptimizer.Modules.CombineStylesheetsModule">
+            <summary>
+            A module for handling conditional GET requests.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Modules.CombineStylesheetsModule.Dispose">
+            <summary>
+            Disposes of the resources (other than memory) used by the module that implements <see cref="T:System.Web.IHttpModule"/>.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Modules.CombineStylesheetsModule.Init(System.Web.HttpApplication)">
+            <summary>
+            Initializes a module and prepares it to handle requests.
+            </summary>
+            <param name="context">An <see cref="T:System.Web.HttpApplication"/> that provides access to the methods, properties, and events common to all application objects within an ASP.NET application</param>
+        </member>
+        <member name="M:WebOptimizer.Modules.CombineStylesheetsModule.ProcessResponse(System.Object,System.EventArgs)">
+            <summary>
+            Processes the response and sets a response filter for conditional GETs.
+            </summary>
+            <param name="sender">The HTTP application of the current request.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="T:WebOptimizer.Modules.MinifyInlineScriptsModule">
+            <summary>
+            A module for handling conditional GET requests.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Modules.MinifyInlineScriptsModule.Dispose">
+            <summary>
+            Disposes of the resources (other than memory) used by the module that implements <see cref="T:System.Web.IHttpModule"/>.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Modules.MinifyInlineScriptsModule.Init(System.Web.HttpApplication)">
+            <summary>
+            Initializes a module and prepares it to handle requests.
+            </summary>
+            <param name="context">An <see cref="T:System.Web.HttpApplication"/> that provides access to the methods, properties, and events common to all application objects within an ASP.NET application</param>
+        </member>
+        <member name="M:WebOptimizer.Modules.MinifyInlineScriptsModule.ProcessResponse(System.Object,System.EventArgs)">
+            <summary>
+            Processes the response and sets a response filter for conditional GETs.
+            </summary>
+            <param name="sender">The HTTP application of the current request.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="T:WebOptimizer.Modules.MinifyInlineStylesModule">
+            <summary>
+            A module for handling conditional GET requests.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Modules.MinifyInlineStylesModule.Dispose">
+            <summary>
+            Disposes of the resources (other than memory) used by the module that implements <see cref="T:System.Web.IHttpModule"/>.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Modules.MinifyInlineStylesModule.Init(System.Web.HttpApplication)">
+            <summary>
+            Initializes a module and prepares it to handle requests.
+            </summary>
+            <param name="context">An <see cref="T:System.Web.HttpApplication"/> that provides access to the methods, properties, and events common to all application objects within an ASP.NET application</param>
+        </member>
+        <member name="M:WebOptimizer.Modules.MinifyInlineStylesModule.ProcessResponse(System.Object,System.EventArgs)">
+            <summary>
+            Processes the response and sets a response filter for conditional GETs.
+            </summary>
+            <param name="sender">The HTTP application of the current request.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="T:WebOptimizer.Modules.RemoveWhitespaceModule">
+            <summary>
+            A module for handling conditional GET requests.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Modules.RemoveWhitespaceModule.Dispose">
+            <summary>
+            Disposes of the resources (other than memory) used by the module that implements <see cref="T:System.Web.IHttpModule"/>.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Modules.RemoveWhitespaceModule.Init(System.Web.HttpApplication)">
+            <summary>
+            Initializes a module and prepares it to handle requests.
+            </summary>
+            <param name="context">An <see cref="T:System.Web.HttpApplication"/> that provides access to the methods, properties, and events common to all application objects within an ASP.NET application</param>
+        </member>
+        <member name="M:WebOptimizer.Modules.RemoveWhitespaceModule.ProcessResponse(System.Object,System.EventArgs)">
+            <summary>
+            Processes the response and sets a response filter for conditional GETs.
+            </summary>
+            <param name="sender">The HTTP application of the current request.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="T:WebOptimizer.Optimizer">
+            <summary>
+            Optimizes various different aspects of an ASP.NET website.
+            </summary>
+            <author>mads</author>
+        </member>
+        <member name="M:WebOptimizer.Optimizer.SetConditionalGetHeaders(System.DateTime,System.Web.HttpContext)">
+            <summary>
+            Writes the Last-Modified header and sets the conditional get headers.
+            </summary>
+            <param name="lastModified">The date of the last modification.</param>
+            <param name="context">The HTTP context.</param>
+            <author>mads</author>
+        </member>
+        <member name="M:WebOptimizer.Optimizer.SetConditionalGetHeaders(System.String,System.Web.HttpContext)">
+            <summary>
+            Sets the Etag for the conditional get headers.
+            </summary>
+            <param name="etag">The etag to send to the response.</param>
+            <param name="context">The HTTP context.</param>
+            <author>mads</author>
+        </member>
+        <member name="M:WebOptimizer.Optimizer.RemoveWhitespaceFromHtml(System.String)">
+            <summary>
+            Removes whitespace from the specified string of HTML.
+            </summary>
+            <param name="html">The HTML string to remove white space from.</param>
+            <returns>
+            The specified HTML string stripped from all whitespace.
+            </returns>
+            <author>mads</author>
+        </member>
+        <member name="M:WebOptimizer.Optimizer.RemoveWhiteSpaceFromJavaScript(System.String)">
+            <summary>
+            Strips the whitespace from any .js file.
+            </summary>
+            <param name="body">The body text of which to remove white space from.</param>
+            <returns>The specified body with no white space.</returns>
+            <author>mads</author>
+        </member>
+        <member name="M:WebOptimizer.Optimizer.RemoveWhiteSpaceFromStylesheets(System.String)">
+            <summary>
+            Strips the whitespace from any .css file.
+            </summary>
+            <param name="body">The body/contents of the CSS file.</param>
+            <returns>
+            The body of the CSS file stripped from whitespace and comments.
+            </returns>
+            <author>mads</author>
+        </member>
+        <member name="M:WebOptimizer.Optimizer.Compress(System.Web.HttpContext)">
+            <summary>
+            Compresses the HttpContext's output stream using either Deflate or GZip.
+            </summary>
+            <param name="context">The current HTTP context to compress.</param>
+            <author>mads</author>
+        </member>
+        <member name="T:WebOptimizer.Processor">
+            <summary>
+            Contains various methods usable by web projects
+            </summary>
+        </member>
+        <member name="F:WebOptimizer.Processor.GZIP">
+            <summary>
+            The name of the GZIP encoding.
+            </summary>
+        </member>
+        <member name="F:WebOptimizer.Processor.DEFLATE">
+            <summary>
+            The name of the Deflate encoding.
+            </summary>
+        </member>
+        <member name="F:WebOptimizer.Processor.RegexBetweenTags">
+            <summary>
+            A regular expression to localize all whitespace preceeding HTML tag endings.
+            </summary>
+        </member>
+        <member name="F:WebOptimizer.Processor.RegexLineBreaks">
+            <summary>
+            A regular expression to localize all whitespace preceeding a line break.
+            </summary>
+        </member>
+        <member name="M:WebOptimizer.Processor.SetConditionalGetHeaders(System.DateTime,System.Web.HttpContext)">
+            <summary>
+            Writes the Last-Modified header and sets the conditional get headers.
+            </summary>
+            <param name="lastModified">The date of the last modification.</param>
+            <param name="context">The HTTP context.</param>
+        </member>
+        <member name="M:WebOptimizer.Processor.SetConditionalGetHeaders(System.String,System.Web.HttpContext)">
+            <summary>
+            Sets the Etag for the conditional get headers.
+            </summary>
+            <param name="etag">The etag to send to the response.</param>
+            <param name="context">The HTTP context.</param>
+        </member>
+        <member name="M:WebOptimizer.Processor.RemoveWhitespaceFromHtml(System.String)">
+            <summary>
+            Removes whitespace from the specified string of HTML.
+            </summary>
+            <param name="html">The HTML string to remove white space from.</param>
+            <returns>The specified HTML string stripped from all whitespace.</returns>
+        </member>
+        <member name="M:WebOptimizer.Processor.RemoveWhiteSpaceFromJavaScript(System.String)">
+            <summary>
+            Strips the whitespace from any .js file.
+            </summary>
+            <param name="body">The body text of which to remove white space from.</param>
+            <returns>The specified body with no white space.</returns>
+        </member>
+        <member name="M:WebOptimizer.Processor.RemoveWhiteSpaceFromStylesheets(System.String)">
+            <summary>
+            Strips the whitespace from any .css file.
+            </summary>
+            <param name="body">The body/contents of the CSS file.</param>
+            <returns>The body of the CSS file stripped from whitespace and comments.</returns>
+        </member>
+        <member name="M:WebOptimizer.Processor.Compress(System.Web.HttpContext)">
+            <summary>
+            Compresses the HttpContext's output stream using either Deflate or GZip.
+            </summary>
+            <param name="context">The current HTTP context to compress.</param>
+        </member>
+        <member name="M:WebOptimizer.Processor.IsEncodingAccepted(System.String)">
+            <summary>
+            Checks the request headers to see if the specified
+            encoding is accepted by the client.
+            </summary>
+            <param name="encoding">The name of the encoding to check for.</param>
+            <returns>True if the client supports the specified encoding; otherwise false.</returns>
+        </member>
+        <member name="M:WebOptimizer.Processor.SetEncoding(System.String)">
+            <summary>
+            Adds the specified encoding to the response headers.
+            </summary>
+            <param name="encoding">The encoding to sent to the Accept-encoding HTTP header of the response.</param>
+        </member>
+    </members>
+</doc>
