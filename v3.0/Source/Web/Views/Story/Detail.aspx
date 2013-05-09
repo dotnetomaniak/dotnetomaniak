@@ -20,7 +20,7 @@
     <%
        }%>
        <link rel="image_src" href="<%= Html.AttributeEncode(Model.Story.GetMediumThumbnailPath(true)) %>" />
-       <meta property="og:title" content="<%= Model.Story.Title %>" />
+       <meta property="og:title" content="<%= Model.Story.Title.Replace(@"""","'")%>" />
        <meta property="og:description" content="<%= Model.Story.TextDescription %>" />
        <meta property="og:url" content="<%= Url.RouteUrl("Detail", new { name = Model.Story.UniqueName }, "http") %>" />
        <meta property="og:type" content="article" />
