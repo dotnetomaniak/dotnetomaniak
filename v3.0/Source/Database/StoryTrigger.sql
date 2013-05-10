@@ -6,15 +6,6 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
---IF EXISTS(
---  SELECT *
---    FROM sys.triggers
---   WHERE name = N'<trigger_name, sysname, table_alter_drop_safety>'
---     AND parent_class_desc = N'DATABASE'
---)
---	DROP TRIGGER <trigger_name, sysname, table_alter_drop_safety> ON DATABASE
---GO
-
 CREATE TRIGGER [dbo].[StoryTrigger] ON [dbo].[Story] AFTER INSERT 
 AS 
 UPDATE 
