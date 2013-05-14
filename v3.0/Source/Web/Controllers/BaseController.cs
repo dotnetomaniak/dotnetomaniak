@@ -39,12 +39,6 @@ namespace Kigg.Web
             set;
         }
 
-        public IRecommendation RecommendationRepository
-        {
-            get;
-            set;
-        }
-
         public string CurrentUserName
         {
             [DebuggerStepThrough]

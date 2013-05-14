@@ -178,7 +178,7 @@
                     Dodaj Rekomendację</h5>
                 <p>
                     Wypełnij wszystko</p>
-                <form id="frmRecommendation" action="<%= Url.Action("Recomend", "Membership") %>" method="post">
+                <form id="frmRecommendation" action="<%= Url.Action("Recomend", "Recommendation") %>" method="post">
                 <fieldset>
                     <div class="add-article-row">
                         <label for="txtRecommendationLink" class="label">

@@ -184,6 +184,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\QuizController.cs" />
+    <Compile Include="Controllers\RecommendationController.cs" />
     <Compile Include="Handlers\Image\DefaultColors.cs" />
     <Compile Include="Handlers\Image\GraphicsExtension.cs" />
     <Compile Include="Handlers\Share\WykopRedirector.cs" />
@@ -466,7 +467,9 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\jquery-1.4.4.js" />
     <Content Include="Scripts\jquery-1.4.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.4.min.js" />
