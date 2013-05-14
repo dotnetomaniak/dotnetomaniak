@@ -84,6 +84,11 @@
             get;
         }
 
+        IQueryable<Recommendation> RecommendationDataSource
+        {
+            get;
+        }
+
         IQueryable<TEntity> GetQueryable<TEntity>() where TEntity : class;
 
         ITable GetEditable<TEntity>() where TEntity : class;

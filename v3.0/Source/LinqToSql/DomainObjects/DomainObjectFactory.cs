@@ -1,4 +1,6 @@
-﻿namespace Kigg.LinqToSql.DomainObjects
+﻿using Kigg.Core.DomainObjects;
+
+namespace Kigg.LinqToSql.DomainObjects
 {
     using System;
 
@@ -175,12 +177,33 @@
             return subscribtion;
         }
 
+        public IRecommendation CreateRecommendation(string recommendationLink, string recommendationTitle, string imageLink,
+            string imageTitle)
+        {
+            Check.Argument.IsNotEmpty(recommendationLink, "RecommendationLink");
+            Check.Argument.IsNotEmpty(recommendationTitle, "RecommendationTitle");
+            Check.Argument.IsNotEmpty(imageLink, "ImageLink");
+            Check.Argument.IsNotEmpty(imageTitle, "ImageTitle");
+
+            var recommendation = new Recommendation
+            {
+                Id = Guid.NewGuid(),
+                RecommendationLink = recommendationLink,
+                RecommendationTitle = recommendationTitle,
+                ImageLink = imageLink,
+                ImageTitle = imageTitle,
+            };
+
+            return recommendation;
+        }
+
         private static void PerformCheck(IStory forStory, DateTime at, IUser byUser, string fromIpAddress)
         {
             Check.Argument.IsNotNull(forStory, "forStory");
             Check.Argument.IsNotInFuture(at, "at");
             Check.Argument.IsNotNull(byUser, "byUser");
             Check.Argument.IsNotEmpty(fromIpAddress, "fromIpAddress");
+
         }
     }
 }

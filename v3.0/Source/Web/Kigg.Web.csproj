@@ -589,6 +589,12 @@
     <Content Include="Assets\JavaScripts\OpenID.min.js.map">
       <DependentUpon>OpenID.js</DependentUpon>
     </Content>
+    <Content Include="Assets\JavaScripts\Moderation.min.js.map">
+      <DependentUpon>Moderation.js</DependentUpon>
+    </Content>
+    <Content Include="Assets\JavaScripts\Membership.min.js.map">
+      <DependentUpon>Membership.js</DependentUpon>
+    </Content>
     <None Include="Assets\JavaScripts\Tag.js" />
     <None Include="Assets\JavaScripts\Moderation.js" />
     <None Include="Assets\JavaScripts\Administration.js" />
@@ -686,6 +692,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\PublishProfiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

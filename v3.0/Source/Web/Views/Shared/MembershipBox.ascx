@@ -172,5 +172,46 @@
             </div>            
         </div> 
         <%}%>
+        <div id="RecommendationSection">
+            <div class="box">
+                <h5>
+                    Dodaj Rekomendację</h5>
+                <p>
+                    Wypełnij wszystko</p>
+                <form id="frmRecommendation" action="<%= Url.Action("Recomend", "Membership") %>" method="post">
+                <fieldset>
+                    <div class="add-article-row">
+                        <label for="txtRecommendationLink" class="label">
+                            Link rekomendacji:</label>
+                        <input id="txtRecommendationLink" name="RecommendationLink" type="text" class="textBox" />
+                        <span class="error"></span>
+                    </div>
+                    <div class="add-article-row">
+                        <label for="txtRecommendationTitle" class="label">
+                            Tytuł rekomendacji:</label>
+                        <input id="txtRecommendationTitle" name="RecommendationTitle" type="text" class="textBox" />
+                        <span class="error"></span>
+                    </div>
+                    <div class="add-article-row">
+                        <label for="txtImageLink" class="label">
+                            Link zdjęcia</label>
+                        <input id="txtImageLink" name="ImageLink" type="text" class="textBox" />
+                        <span class="error"></span>
+                    </div>
+                    <div class="add-article-row">
+                        <label for="txtImageTitle" class="label">
+                            Tytuł zdjęcia</label>
+                        <input id="txtImageTitle" name="ImageTitle" type="text" class="textBox"/>
+                    </div>
+                    <div class="add-article-row">
+                        <span id="RecommendationMessage" class="message"></span>
+                    </div>
+                    <div class="add-article-row">
+                        <input id="Submit1" type="submit" class="button" value="Sign up" />
+                    </div>
+                </fieldset>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
