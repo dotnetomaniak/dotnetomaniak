@@ -1,3 +1,5 @@
+using Kigg.Core.DomainObjects;
+
 namespace Kigg.Web
 {
     using System;
@@ -32,6 +34,12 @@ namespace Kigg.Web
         }
 
         public IUserRepository UserRepository
+        {
+            get;
+            set;
+        }
+
+        public IRecommendation RecommendationRepository
         {
             get;
             set;

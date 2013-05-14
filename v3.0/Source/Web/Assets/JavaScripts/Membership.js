@@ -41,7 +41,7 @@
         $('#lostPassword').click(function () {
             Membership.showLostPassword(false);
         });
-
+        
         $('#lnkSignup, #lnkSignup2').click(
                                    function () {
                                        Membership.showSignUp();
@@ -395,9 +395,7 @@
 
     showLostPassword: function (redirectToPrevious) {
         Membership._redirectToPrevious = redirectToPrevious;
-        $('#signupSection').hide();
-        $('#changePasswordSection').hide();
-        $('#loginSection').hide();
+        $('.contentContainer > div').hide();
         $('#lostPasswordSection').show();
         Membership._show();
     },
@@ -405,19 +403,15 @@
     showLogin: function (redirectToPrevious) {
         Membership._redirectToPrevious = redirectToPrevious;
 
-        $('#signupSection').hide();
-        $('#changePasswordSection').hide();
+        $('.contentContainer > div').hide();
         $('#loginSection').show();
-        $('#lostPasswordSection').hide();
         Membership._show();
 
         $U.focus('txtOpenId');
     },
 
     showChangePassword: function () {
-        $('#signupSection').hide();
-        $('#loginSection').hide();        
-        $('#lostPasswordSection').hide();
+        $('.contentContainer > div').hide();
         $('#changePasswordSection').show();
         Membership._show();
 
@@ -427,9 +421,8 @@
     showSignUp: function () {
         Membership._redirectToPrevious = false;
 
+        $('.contentContainer > div').hide();
         $('#signupSection').show();
-        $('#loginSection').hide();
-        $('#lostPasswordSection').hide();
         $('#changePasswordSection').show();
         Membership._show();
 

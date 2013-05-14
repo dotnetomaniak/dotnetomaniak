@@ -107,6 +107,7 @@
     <Compile Include="DomainObjects\IAchievement.cs" />
     <Compile Include="DomainObjects\ICommentSubscribtion.cs" />
     <Compile Include="DomainObjects\IKnownSource.cs" />
+    <Compile Include="DomainObjects\IRecommendation.cs" />
     <Compile Include="DomainObjects\ITagContainer.cs" />
     <Compile Include="DomainObjects\IUserAchievement.cs" />
     <Compile Include="DomainObjects\KnownSourceGrade.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Infrastructure\Thumbnail\ThumbalizrThumbnail.cs" />
     <Compile Include="Repository\IAchievementRepository.cs" />
     <Compile Include="Repository\ICountByStoryRepository.cs" />
+    <Compile Include="Repository\IRecommendationRepository.cs" />
     <Compile Include="Service\ISpamPostprocessor.cs" />
     <Compile Include="Service\SpamPostprocessor.cs" />
     <Compile Include="Repository\Decorated\Caching\CachingUserRepository.cs" />

@@ -1,3 +1,10 @@
+using System.Net.Configuration;
+using Kigg.Core.DomainObjects;
+using Kigg.Core.Repository;
+using Kigg.Infrastructure.LinqToSql.Repository;
+using Kigg.LinqToSql.DomainObjects;
+using Kigg.LinqToSql.Repository;
+
 namespace Kigg.Web
 {
     using System;
@@ -21,11 +28,11 @@ namespace Kigg.Web
         private const int MinimumLength = 4;
 
         private static readonly Regex UserNameExpression = new Regex(@"^([a-zA-Z])[a-zA-Z_-]*[\w_-]*[\S]$|^([a-zA-Z])[0-9_-]*[\S]$|^[a-zA-Z]*[\S]$", RegexOptions.Singleline | RegexOptions.Compiled);
-
         private readonly IDomainObjectFactory _factory;
         private readonly IEventAggregator _eventAggregator;
         private readonly IEmailSender _emailSender;
         private readonly IBlockedIPCollection _blockedIPList;
+        private readonly IRecommendationRepository _recommendationRepository;
 
         public MembershipController(IDomainObjectFactory factory, IEventAggregator eventAggregator, IEmailSender emailSender, IBlockedIPCollection blockedIPList)
         {
@@ -284,6 +291,51 @@ namespace Kigg.Web
                     Log.Exception(e);
 
                     viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("rejestracji") };
+                }
+            }
+
+            return Json(viewData);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post), Compress]
+        public ActionResult Recomend(string recommendationLink, string recommendationTitle, string imageLink, string imageTitle)
+        {
+            JsonViewData viewData = Validate<JsonViewData>(
+                                                                new Validation(() => string.IsNullOrEmpty(recommendationLink.NullSafe()), "Link rekomendacji nie mo¿e byæ pusty."),
+                                                                new Validation(() => string.IsNullOrEmpty(recommendationTitle.NullSafe()), "Tytu³ rekomendacji nie mo¿e byæ pusty."),
+                                                                new Validation(() => string.IsNullOrEmpty(imageLink.NullSafe()), "Link obrazka nie mo¿e byæ pusty."),
+                                                                new Validation(() => string.IsNullOrEmpty(imageTitle.NullSafe()), "Tytu³ obrazka nie mo¿e byæ pusty.")
+                                                          );
+
+            if (viewData == null)
+            {
+                try
+                {
+                    using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
+                    {
+                        IRecommendation recommendation = _factory.CreateRecommendation(recommendationLink.Trim(), recommendationTitle.Trim(), imageLink.Trim(), imageTitle.Trim());
+                        _recommendationRepository.Add(recommendation);
+
+                        unitOfWork.Commit();
+                        
+                        string recommendationId = recommendation.Id.Shrink();
+
+                        string url = string.Concat(Settings.RootUrl, Url.RouteUrl("Activate", new { id = recommendationId }));
+
+                        Log.Info("Recommendation registered: {0}", recommendation.RecommendationTitle);
+
+                        viewData = new JsonViewData { isSuccessful = true };
+                    }
+                }
+                catch (ArgumentException argument)
+                {
+                    viewData = new JsonViewData { errorMessage = argument.Message };
+                }
+                catch (Exception e)
+                {
+                    Log.Exception(e);
+
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("") };
                 }
             }
 

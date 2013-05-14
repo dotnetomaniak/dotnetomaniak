@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dotnetomaniak" EntityNamespace="Kigg.LinqToSql.DomainObjects" ContextNamespace="Kigg.LinqToSql.Repository" Class="Database" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=(local);Initial Catalog=dotnetomaniak;Integrated Security=True" SettingsObjectName="Kigg.Infrastructure.LinqToSql.Properties.Settings" SettingsPropertyName="dotnetomaniakConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="pawlos_dotnetomaniak" EntityNamespace="Kigg.LinqToSql.DomainObjects" ContextNamespace="Kigg.LinqToSql.Repository" Class="Database" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=OCTAL-KB01\SQLKB01;Initial Catalog=pawlos_dotnetomaniak;User ID=pawlos_dotnetomaniak2;MultipleActiveResultSets=True" SettingsObjectName="Kigg.Infrastructure.LinqToSql.Properties.Settings" SettingsPropertyName="pawlos_dotnetomaniakConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Category" Member="Categories">
     <Type Name="Category">
       <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -169,6 +169,18 @@
       <Column Name="Description" Type="System.String" DbType="ntext NOT NULL" CanBeNull="false" />
       <Column Name="Type" Type="System.Int32" CanBeNull="false" />
       <Association Name="Achievement_UserAchievement" Member="UserAchievements" ThisKey="Id" OtherKey="AchievementId" Type="UserAchievement" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Recommendation" Member="Recommendations">
+    <Type Name="Recommendation">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="RecommendationLink" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="RecommendationTitle" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ImageLink" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="ImageTitle" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="StartTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EndTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Function Name="dbo.CommentSearch" Method="CommentSearch" IsComposable="true">
