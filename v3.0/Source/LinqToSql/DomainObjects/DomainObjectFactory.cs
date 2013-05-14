@@ -185,6 +185,7 @@ namespace Kigg.LinqToSql.DomainObjects
             Check.Argument.IsNotEmpty(imageLink, "ImageLink");
             Check.Argument.IsNotEmpty(imageTitle, "ImageTitle");
 
+            DateTime now = SystemTime.Now();
             var recommendation = new Recommendation
             {
                 Id = Guid.NewGuid(),
@@ -192,6 +193,9 @@ namespace Kigg.LinqToSql.DomainObjects
                 RecommendationTitle = recommendationTitle,
                 ImageLink = imageLink,
                 ImageTitle = imageTitle,
+                CreatedAt = now,
+                StartTime = now,
+                EndTime = now,
             };
 
             return recommendation;

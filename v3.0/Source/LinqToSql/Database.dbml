@@ -173,7 +173,7 @@
   </Table>
   <Table Name="dbo.Recommendation" Member="Recommendations">
     <Type Name="Recommendation">
-      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="RecommendationLink" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="RecommendationTitle" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="ImageLink" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
