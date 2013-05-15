@@ -119,6 +119,11 @@
                 Moderation.showRecommendation();
             }
         );
+        $('a[data-id]').click(
+            function() {
+                Moderation.deleteAd($(this).data('id'));
+            }
+        );
         $('#frmRecommendation').validate(
                                             {
                                                 rules: {
@@ -211,14 +216,14 @@
     dispose: function() {
     },
     
-    deleteAd: function(AdId) {
+    deleteAd: function(adId) {
 
             function submit() {
-                var data = 'id=' + encodeURIComponent(AdId);
+                var data = 'id=' + encodeURIComponent(adId);
 
                 $.ajax(
                     {
-                        url: Moderation._deleteAdUrl,
+                        url: '/DeleteAd',
                         type: 'POST',
                         dataType: 'json',
                         data: data,

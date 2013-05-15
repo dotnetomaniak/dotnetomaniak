@@ -13,11 +13,10 @@
 </div>
 <% foreach (var recommendationViewData in Model.Recommendations)
    { 
-       string atribiutedEncodedAdId = recommendationViewData.Id;
        %>  
     <div class="recommend-left-column">
         <a href="<%= recommendationViewData.UrlLink %>" title="<%=recommendationViewData.UrlTitle %>"><img src="<%= Url.Image(recommendationViewData.ImageName) %>" alt="<%= recommendationViewData.ImageAlt %>" /></a>
-        <a href="lnkEditRecommendation" href="javascript:void(0)">Edytuj</a>
+        <a  href="javascript:void(0);" data-id="<%= recommendationViewData.Id%>">Usuñ</a>
     </div>
   <% } %>
        <a id="lnkAddRecomendation" href="javascript:void(0)">Dodaj</a>

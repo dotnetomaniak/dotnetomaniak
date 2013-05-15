@@ -87,5 +87,52 @@ namespace Kigg.Web
             return View("RecommendationsBox", viewModel);
 
         }
+
+        [AcceptVerbs(HttpVerbs.Post), Compress]
+        public ActionResult DeleteAd(string id)
+        {
+            id = id.NullSafe();
+
+            JsonViewData viewData = Validate<JsonViewData>(
+                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator reklamy nie może być pusty."),
+                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator reklamy."),
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteś zalogowany."),
+                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz praw do wołania tej metody.")
+                                                          );
+
+            if (viewData == null)
+            {
+                try
+                {
+                    using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
+                    {
+                        IRecommendation recommendation = _recommendationRepository.FindById(id.ToGuid());
+
+                        if (recommendation == null)
+                        {
+                            viewData = new JsonViewData {errorMessage = "Reklama nie istnieje."};
+                        }
+                        else
+                        {
+                            _recommendationRepository.Remove(recommendation);
+                            unitOfWork.Commit();
+
+                            viewData = new JsonViewData {isSuccessful = true};
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    Log.Exception(e);
+
+                    viewData = new JsonViewData
+                    {
+                        errorMessage = FormatStrings.UnknownError.FormatWith("usuwania reklamy")
+                    };
+                }
+            }
+
+            return Json(viewData);
+        }
     }
 }
