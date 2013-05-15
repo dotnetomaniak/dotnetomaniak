@@ -301,6 +301,7 @@
     <Compile Include="ViewData\QuizViewData.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewData\RecommendationsViewData.cs" />
     <Compile Include="ViewData\RecommendationViewData.cs" />
     <Compile Include="ViewData\StoryContentViewData.cs">
       <SubType>Code</SubType>
@@ -347,7 +348,6 @@
     <Compile Include="ViewData\UserWithScore.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\Shared\RecommendationsViewData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Images\180x220_1_v4.gif" />

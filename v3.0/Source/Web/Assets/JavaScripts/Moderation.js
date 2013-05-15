@@ -2,6 +2,7 @@
 {
     _markCommentAsOffendedUrl: '',
     _spamCommentUrl: '',
+    _deleteAdUrl: '',
     _deleteStoryUrl: '',
     _spamStoryUrl: '',
     _approveStoryUrl: '',
@@ -17,6 +18,10 @@
         Moderation._spamCommentUrl = value;
     },
 
+    set_deleteAdUrl: function(value) {
+        Moderation._deleteAdUrl = value;
+    },
+    
     set_deleteStoryUrl: function(value) {
         Moderation._deleteStoryUrl = value;
     },
@@ -109,7 +114,7 @@
             }
         );
 
-        $('#lnkEditRecomendation').click(
+        $('#lnkAddRecomendation').click(
             function() {
                 Moderation.showRecommendation();
             }
@@ -128,6 +133,12 @@
                                                     },
                                                     ImageTitle: {
                                                         required: true,
+                                                    },
+                                                    StartTime: {
+                                                        required: true,
+                                                    },
+                                                    EndTime: {
+                                                        required: true,
                                                     }
                                                 },
                                                 messages: {
@@ -142,6 +153,12 @@
                                                     },
                                                     ImageTitle: {
                                                         required: 'Tytuł rekomendacji nie może być pusty.',
+                                                    },
+                                                    StartTime: {
+                                                        required: 'Data startowa jest wymagana.',
+                                                    },
+                                                    EndTime: {
+                                                        required: 'Data końcowa jest wymagana.',
                                                     }
                                                 },
                                                 submitHandler: function (form) {
@@ -193,6 +210,36 @@
 
     dispose: function() {
     },
+    
+    deleteAd: function(AdId) {
+
+            function submit() {
+                var data = 'id=' + encodeURIComponent(AdId);
+
+                $.ajax(
+                    {
+                        url: Moderation._deleteAdUrl,
+                        type: 'POST',
+                        dataType: 'json',
+                        data: data,
+                        beforeSend: function() {
+                            $U.showProgress('Usuwanie reklamy');
+                        },
+                        success: function(result) {
+                            $U.hideProgress();
+
+                            if (result.isSuccessful) {
+                                $('#t-' + AdId).fadeOut('normal', function() { $(this).remove(); });
+                            } else {
+                                $U.messageBox('Error', result.errorMessage, true);
+                            }
+                        }
+                    }
+                );
+            }
+
+            $U.confirm('Usunięcie reklamy?', 'Czy jesteś pewny, że chcesz usunać daną reklamę?', submit);
+        },
 
     editStory: function(storyId) {
         var data = 'id=' + encodeURIComponent(storyId);

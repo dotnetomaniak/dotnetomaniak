@@ -204,6 +204,16 @@
                         <input id="txtImageTitle" name="ImageTitle" type="text" class="textBox"/>
                     </div>
                     <div class="add-article-row">
+                        <label for="txtStartTime" class="label">
+                            Reklama od:</label>
+                        <input id="txtStartTime" name="StartTime" type="text" class="textBox"/>
+                    </div>
+                    <div class="add-article-row">
+                        <label for="txtEndTitle" class="label">
+                            Reklama do:</label>
+                        <input id="txtEndTime" name="EndTime" type="text" class="textBox"/>
+                    </div>
+                    <div class="add-article-row">
                         <span id="RecommendationMessage" class="message"></span>
                     </div>
                     <div class="add-article-row">

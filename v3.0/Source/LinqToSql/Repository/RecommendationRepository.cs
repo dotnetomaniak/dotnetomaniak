@@ -37,11 +37,16 @@ namespace Kigg.LinqToSql.Repository
             base.Remove(recommendation);
         }
 
-        public virtual IRecommendation FindById(Guid id)
-        {
-            Check.Argument.IsNotEmpty(id, "id");
+        //public virtual IRecommendation isVisible()
+        //{
+        //    Check.Argument.IsNotNull(visible, "visible");
 
-            return Database.RecommendationDataSource.SingleOrDefault(r => r.Id == id);
+        //    return Database.RecommendationDataSource.SingleOrDefault(v => v == );
+        //}
+
+        public IRecommendation FindById(Guid id)
+        {
+            throw new NotImplementedException();
         }
 
         public virtual IRecommendation FindByRecommendationTitle(string recommendationTitle)
@@ -49,6 +54,15 @@ namespace Kigg.LinqToSql.Repository
             Check.Argument.IsNotEmpty(recommendationTitle, "recommendationTitle");
 
             return Database.RecommendationDataSource.SingleOrDefault(r => r.RecommendationTitle == recommendationTitle.Trim());
+        }
+
+        public IQueryable<IRecommendation> GetAll()
+        {
+            var now = SystemTime.Now();
+
+            return Database.RecommendationDataSource
+                .Where(r => r.StartTime < now && r.EndTime >= now)
+                .OrderBy(r => r.CreatedAt);
         }
 
         //public virtual IRecommendation FindByRecommendationLink(string recommendationLink)
