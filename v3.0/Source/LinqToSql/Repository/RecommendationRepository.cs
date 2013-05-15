@@ -33,7 +33,7 @@ namespace Kigg.LinqToSql.Repository
 
             Recommendation recommendation = (Recommendation) entity;
 
-            //Database.DeleteAll(Database.CommentSubscribtionDataSource.Where(cs => cs.UserId == user.Id || cs.Story.UserId == user.Id));
+        //    Database.Delete(Database.RecommendationDataSource.Where(r => r.Id == recommendation.Id));
             base.Remove(recommendation);
         }
 
@@ -46,7 +46,9 @@ namespace Kigg.LinqToSql.Repository
 
         public IRecommendation FindById(Guid id)
         {
-            throw new NotImplementedException();
+            Check.Argument.IsNotEmpty(id, "id");
+
+            return Database.RecommendationDataSource.SingleOrDefault(s => s.Id == id);
         }
 
         public virtual IRecommendation FindByRecommendationTitle(string recommendationTitle)
