@@ -178,12 +178,14 @@ namespace Kigg.LinqToSql.DomainObjects
         }
 
         public IRecommendation CreateRecommendation(string recommendationLink, string recommendationTitle, string imageLink,
-            string imageTitle)
+            string imageTitle, DateTime startTime, DateTime endTime)
         {
             Check.Argument.IsNotEmpty(recommendationLink, "RecommendationLink");
             Check.Argument.IsNotEmpty(recommendationTitle, "RecommendationTitle");
             Check.Argument.IsNotEmpty(imageLink, "ImageLink");
             Check.Argument.IsNotEmpty(imageTitle, "ImageTitle");
+            Check.Argument.IsNotInvalidDate(startTime, "StartTime");
+            Check.Argument.IsNotInvalidDate(endTime, "EndTime");
 
             DateTime now = SystemTime.Now();
             var recommendation = new Recommendation
@@ -194,8 +196,8 @@ namespace Kigg.LinqToSql.DomainObjects
                 ImageLink = imageLink,
                 ImageTitle = imageTitle,
                 CreatedAt = now,
-                StartTime = now,
-                EndTime = now,
+                StartTime = startTime,
+                EndTime = endTime,
             };
 
             return recommendation;

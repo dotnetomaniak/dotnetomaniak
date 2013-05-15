@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Kigg.Core.DomainObjects;
 
 namespace Kigg.Repository
@@ -8,5 +9,6 @@ namespace Kigg.Repository
         IRecommendation FindById(Guid id);
 
         IRecommendation FindByRecommendationTitle(string recommendationTitle);
+        IQueryable<IRecommendation> GetAll();
     }
 }

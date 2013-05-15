@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Data;
+using System.Linq;
 using System.Web.Mvc;
+using System.Web.UI;
 using Kigg.Core.DomainObjects;
 using Kigg.DomainObjects;
 using Kigg.Infrastructure;
@@ -27,13 +30,11 @@ namespace Kigg.Web
 
         [AcceptVerbs(HttpVerbs.Post), Compress]
         public ActionResult Recomend(string recommendationLink, string recommendationTitle, string imageLink,
-            string imageTitle)
+            string imageTitle, DateTime startTime, DateTime endTime)
         {
             JsonViewData viewData = Validate<JsonViewData>(
-                new Validation(() => string.IsNullOrEmpty(recommendationLink.NullSafe()),
-                    "Link rekomendacji nie może być pusty."),
-                new Validation(() => string.IsNullOrEmpty(recommendationTitle.NullSafe()),
-                    "Tytuł rekomendacji nie może być pusty."),
+                new Validation(() => string.IsNullOrEmpty(recommendationLink.NullSafe()), "Link rekomendacji nie może być pusty."),
+                new Validation(() => string.IsNullOrEmpty(recommendationTitle.NullSafe()), "Tytuł rekomendacji nie może być pusty."),
                 new Validation(() => string.IsNullOrEmpty(imageLink.NullSafe()), "Link obrazka nie może być pusty."),
                 new Validation(() => string.IsNullOrEmpty(imageTitle.NullSafe()), "Tytuł obrazka nie może być pusty.")
                 );
@@ -45,7 +46,7 @@ namespace Kigg.Web
                     using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
                     {
                         IRecommendation recommendation = _factory.CreateRecommendation(recommendationLink.Trim(),
-                            recommendationTitle.Trim(), imageLink.Trim(), imageTitle.Trim());
+                            recommendationTitle.Trim(), imageLink.Trim(), imageTitle.Trim(), startTime, endTime);
                         _recommendationRepository.Add(recommendation);
 
                         unitOfWork.Commit();
@@ -70,9 +71,21 @@ namespace Kigg.Web
             return Json(viewData);
         }
 
-        public ViewResult PickRecommendationData(string recommendationTitle)
+        public ViewResult Ads()
         {
-            return View(model);
+            IQueryable<IRecommendation> recommendations = _recommendationRepository.GetAll();
+            var viewModel = CreateViewData<RecommendationsViewData>();
+            viewModel.Recommendations = recommendations.Select(x => new RecommendationViewData()
+            {
+                UrlLink = x.RecommendationLink,
+                UrlTitle = x.RecommendationTitle,
+                ImageName = x.ImageLink,
+                ImageAlt = x.ImageTitle,
+                Id = x.Id.Shrink()
+            });
+
+            return View("RecommendationsBox", viewModel);
+
         }
     }
 }

@@ -235,8 +235,8 @@
                     {
                         Html.RenderAction("ControlPanel", "Support");
                     }
-                %>                
-                <% Html.RenderPartial("RecommendationsBox"); %>
+                %>                                
+                <% Html.RenderAction("Ads", "Recommendation"); %>
                 
                 <% try { Html.RenderPartial("FeedBox"); }
                    catch {}%>
