@@ -178,10 +178,10 @@
                                                         success: function (result) {
                                                             $U.disableInputs('#RecommendationSection', false);
                                                             $U.hideProgress();
+                                                            Membership._hide(true);
 
                                                             if (result.isSuccessful) {
                                                                 $U.messageBox("Rekomendacja utworzona", "", false, function () {
-                                                                    Membership._hide(true);
                                                                     window.location.reload();
                                                                 });
                                                             }
@@ -234,7 +234,7 @@
                             $U.hideProgress();
 
                             if (result.isSuccessful) {
-                                $('#t-' + AdId).fadeOut('normal', function() { $(this).remove(); });
+                                window.location.reload();
                             } else {
                                 $U.messageBox('Error', result.errorMessage, true);
                             }
