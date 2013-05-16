@@ -181,7 +181,7 @@
                                                             Membership._hide(true);
 
                                                             if (result.isSuccessful) {
-                                                                $U.messageBox("Rekomendacja utworzona", "", false, function () {
+                                                                $U.messageBox("Sukces", "Rekomendacja utworzona", false, function () {
                                                                     window.location.reload();
                                                                 });
                                                             }
