@@ -33,10 +33,12 @@ namespace Kigg.Web
             string imageTitle, DateTime startTime, DateTime endTime)
         {
             JsonViewData viewData = Validate<JsonViewData>(
+                new Validation(() => CurrentUser.CanModerate() == false, "Nie masz praw do wykonowania tej operacji."),
                 new Validation(() => string.IsNullOrEmpty(recommendationLink.NullSafe()), "Link rekomendacji nie może być pusty."),
                 new Validation(() => string.IsNullOrEmpty(recommendationTitle.NullSafe()), "Tytuł rekomendacji nie może być pusty."),
                 new Validation(() => string.IsNullOrEmpty(imageLink.NullSafe()), "Link obrazka nie może być pusty."),
-                new Validation(() => string.IsNullOrEmpty(imageTitle.NullSafe()), "Tytuł obrazka nie może być pusty.")
+                new Validation(() => string.IsNullOrEmpty(imageTitle.NullSafe()), "Tytuł obrazka nie może być pusty."),
+                new Validation(() => startTime >= endTime, "Data zakończenia reklamy musi być większa od daty początkowej")
                 );
 
             if (viewData == null)
@@ -94,10 +96,10 @@ namespace Kigg.Web
             id = id.NullSafe();
 
             JsonViewData viewData = Validate<JsonViewData>(
+                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz praw do wołania tej metody."),
                                                             new Validation(() => string.IsNullOrEmpty(id), "Identyfikator reklamy nie może być pusty."),
                                                             new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator reklamy."),
-                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteś zalogowany."),
-                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz praw do wołania tej metody.")
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteś zalogowany.")
                                                           );
 
             if (viewData == null)
