@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Kigg.Core.DomainObjects;
+using Kigg.Infrastructure;
 using Kigg.LinqToSql.DomainObjects;
 using Kigg.Repository;
 
@@ -33,16 +34,8 @@ namespace Kigg.LinqToSql.Repository
 
             Recommendation recommendation = (Recommendation) entity;
 
-        //    Database.Delete(Database.RecommendationDataSource.Where(r => r.Id == recommendation.Id));
             base.Remove(recommendation);
         }
-
-        //public virtual IRecommendation isVisible()
-        //{
-        //    Check.Argument.IsNotNull(visible, "visible");
-
-        //    return Database.RecommendationDataSource.SingleOrDefault(v => v == );
-        //}
 
         public IRecommendation FindById(Guid id)
         {
@@ -58,20 +51,48 @@ namespace Kigg.LinqToSql.Repository
             return Database.RecommendationDataSource.SingleOrDefault(r => r.RecommendationTitle == recommendationTitle.Trim());
         }
 
+        public virtual void EditAd(IRecommendation recommendation, string recommendationLink, string recommendationTitle, string imageLink, string imageTitle, DateTime startTime, DateTime endTime, int position)
+        {
+            Check.Argument.IsNotNull(recommendation, "Recommendation");
+
+            using (IUnitOfWork unitOfWork = Infrastructure.UnitOfWork.Begin())
+            {
+                if (!string.IsNullOrEmpty(recommendationLink))
+                {
+                    recommendation.RecommendationLink = recommendationLink;
+                }
+
+                if (!string.IsNullOrEmpty(recommendationTitle))
+                {
+                    recommendation.RecommendationTitle = recommendationTitle;
+                }
+
+                if (!string.IsNullOrEmpty(imageLink))
+                {
+                    recommendation.ImageLink = imageLink;
+                } 
+
+                if (!string.IsNullOrEmpty(imageTitle))
+                {
+                    recommendation.ImageTitle = imageTitle;
+                } 
+                
+                if (position != recommendation.Position)
+                {
+                    recommendation.Position = position;
+                }
+
+                unitOfWork.Commit();
+            }
+        }
+
         public IQueryable<IRecommendation> GetAll()
         {
             var now = SystemTime.Now();
 
             return Database.RecommendationDataSource
                 .Where(r => r.StartTime < now && r.EndTime >= now)
-                .OrderBy(r => r.CreatedAt);
+                .OrderBy(r => r.Position);
         }
-
-        //public virtual IRecommendation FindByRecommendationLink(string recommendationLink)
-        //{
-        //    Check.Argument.IsNotEmpty(recommendationLink, "recommendationLink");
-
-        //    return Database.RecommendationDataSource.SingleOrDefault(r => r. == recommendationLink.Trim());
-        //}
     }
 }

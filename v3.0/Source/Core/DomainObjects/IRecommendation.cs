@@ -42,6 +42,8 @@ namespace Kigg.Core.DomainObjects
             get; 
             set;
         }
+
+        int Position { get; set; }
     }
 }
 

@@ -3,6 +3,8 @@ using System.Data;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.UI;
+using System.Web.WebPages;
+using System.Web.WebPages.Instrumentation;
 using Kigg.Core.DomainObjects;
 using Kigg.DomainObjects;
 using Kigg.Infrastructure;
@@ -28,9 +30,58 @@ namespace Kigg.Web
             _recommendationRepository = recommendationRepository;
         }
 
-        [AcceptVerbs(HttpVerbs.Post), Compress]
-        public ActionResult Recomend(string recommendationLink, string recommendationTitle, string imageLink,
-            string imageTitle, DateTime startTime, DateTime endTime)
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult GetAd(string id)
+        {
+            id = id.NullSafe();
+            JsonViewData viewData = Validate<JsonViewData>(
+                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator reklamy nie może być pusty."),
+                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny reklamy artykułu."),
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteś zalogowany."),
+                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz praw do woływania tej metody.")
+                                                          );
+
+            if (viewData == null)
+            {
+                try
+                {
+                    IRecommendation recommendation = _recommendationRepository.FindById(id.ToGuid());
+
+                    if (recommendation == null)
+                    {
+                        viewData = new JsonViewData { errorMessage = "Podana rekalama nie istnieje." };
+                    }
+                    else
+                    {
+                        return Json(
+                                        new
+                                        {
+                                            id = recommendation.Id.Shrink(),
+                                            recommendationLink = recommendation.RecommendationLink,
+                                            recommendationTitle = recommendation.RecommendationTitle,
+                                            imageLink = recommendation.ImageLink,
+                                            imageTitle = recommendation.ImageTitle,
+                                            startTime = recommendation.StartTime.ToString("yyyy-MM-dd"),
+                                            endTime = recommendation.EndTime.ToString("yyyy-MM-dd"),
+                                            position = recommendation.Position,
+                                        }
+                                    );
+                    }
+                }
+                catch (Exception e)
+                {
+                    Log.Exception(e);
+
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("pobierania reklamy") };
+                }
+            }
+
+            return Json(viewData);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post), ValidateInput(false), Compress]
+        public ActionResult EditAd(string id, string recommendationLink, string recommendationTitle, string imageLink,
+            string imageTitle, DateTime startTime, DateTime endTime, int position = 999)
         {
             JsonViewData viewData = Validate<JsonViewData>(
                 new Validation(() => CurrentUser.CanModerate() == false, "Nie masz praw do wykonowania tej operacji."),
@@ -47,15 +98,34 @@ namespace Kigg.Web
                 {
                     using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
                     {
-                        IRecommendation recommendation = _factory.CreateRecommendation(recommendationLink.Trim(),
-                            recommendationTitle.Trim(), imageLink.Trim(), imageTitle.Trim(), startTime, endTime);
-                        _recommendationRepository.Add(recommendation);
+                        if (id == null || id.IsEmpty())
+                        {
+                            IRecommendation recommendation = _factory.CreateRecommendation(recommendationLink.Trim(),
+                                recommendationTitle.Trim(), imageLink.Trim(), imageTitle.Trim(), startTime, endTime, position);
+                            _recommendationRepository.Add(recommendation);
 
                         unitOfWork.Commit();
 
                         Log.Info("Recommendation registered: {0}", recommendation.RecommendationTitle);
 
                         viewData = new JsonViewData {isSuccessful = true};
+                        }
+                        else
+                        {
+                            IRecommendation recommendation = _recommendationRepository.FindById(id.ToGuid());
+
+                            if (recommendation == null)
+                            {
+                                viewData = new JsonViewData {errorMessage = "Podana reklama nie istnieje."};
+                            }
+                            else
+                            {
+                                _recommendationRepository.EditAd(recommendation, recommendationLink.NullSafe(), recommendationTitle.NullSafe(), imageLink.NullSafe(), imageTitle.NullSafe(), startTime,
+                                    endTime, position);
+
+                                viewData = new JsonViewData {isSuccessful = true};
+                            }
+                        }
                     }
                 }
                 catch (ArgumentException argument)

@@ -26,6 +26,6 @@ namespace Kigg.DomainObjects
 
         ICommentSubscribtion CreateCommentSubscribtion(IStory forStory, IUser byUser);
 
-        IRecommendation CreateRecommendation(string recommendationLink, string recommendationTitle, string imageLink, string imageTitle, DateTime startTime, DateTime endTime);
+        IRecommendation CreateRecommendation(string recommendationLink, string recommendationTitle, string imageLink, string imageTitle, DateTime startTime, DateTime endTime, int position);
     }
 }
