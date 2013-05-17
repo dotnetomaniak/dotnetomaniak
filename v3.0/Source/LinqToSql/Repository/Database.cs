@@ -153,6 +153,15 @@ namespace Kigg.LinqToSql.Repository
             }
         }
 
+        public IQueryable<Recommendation> RecommendationDataSource
+        {
+            [DebuggerStepThrough]
+            get
+            {
+                return GetQueryable<Recommendation>();
+            }
+        }
+
         public virtual IQueryable<TEntity> GetQueryable<TEntity>() where TEntity : class
         {
             return GetTable<TEntity>();

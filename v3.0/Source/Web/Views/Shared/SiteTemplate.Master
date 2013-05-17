@@ -1,5 +1,6 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage<BaseViewData>" %>
 <%@ Import Namespace="System.Linq" %>
+<%@ Import Namespace="System.Web.Routing" %>
 <%@ Import Namespace="Kigg.Infrastructure" %>
 <%@ Import Namespace="StackExchange.Profiling" %>
 
@@ -131,6 +132,8 @@
                 scriptManager.RegisterOnReady("Moderation.set_spamCommentUrl('{0}');".FormatWith(Url.RouteUrl("ConfirmSpamComment")));
                 scriptManager.RegisterOnReady("Moderation.set_markCommentAsOffendedUrl('{0}');".FormatWith(Url.RouteUrl("MarkCommentAsOffended")));
                 scriptManager.RegisterOnReady("Moderation.set_generateMiniatureStoryUrl('{0}');".FormatWith(Url.RouteUrl("GenerateMiniatureStory")));
+                scriptManager.RegisterOnReady("Moderation.set_editAdUrl('{0}');".FormatWith(Url.RouteUrl("GetAd")));
+
 
                 scriptManager.RegisterOnDispose("Moderation.dispose();");
             }
@@ -235,8 +238,8 @@
                     {
                         Html.RenderAction("ControlPanel", "Support");
                     }
-                %>                
-                <% Html.RenderPartial("RecommendationsBox"); %>
+                %>                                
+                <% Html.RenderAction("Ads", "Recommendation"); %>
                 
                 <% try { Html.RenderPartial("FeedBox"); }
                    catch {}%>

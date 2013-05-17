@@ -1,3 +1,5 @@
+using Kigg.Core.DomainObjects;
+
 namespace Kigg.Web
 {
     using System;

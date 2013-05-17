@@ -182,6 +182,11 @@
   {
       background: url("/Assets/Images/dalej.jpg") no-repeat scroll 0px 0px transparent;
   }
+
+  #btnSubmitAd 
+  {
+      background: url("/Assets/Images/dodaj.png") no-repeat scroll 0px 0px transparent;
+  }
   
   #loginSection
   {

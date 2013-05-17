@@ -143,9 +143,6 @@
                     <div class="add-article-row">
                         <span id="signupMessage" class="message"></span>
                     </div>
-                    <div class="add-article-row">
-                        <input id="btnSignup" type="submit" class="button" value="Sign up" />
-                    </div>
                 </fieldset>
                 </form>
             </div>
@@ -172,5 +169,60 @@
             </div>            
         </div> 
         <%}%>
+        <div id="RecommendationSection">
+            <div class="box">
+                <h5>
+                    Edycja reklamy</h5>
+                <form id="frmRecommendation" action="<%= Url.Action("EditAd", "Recommendation") %>" method="post">
+                <fieldset>
+                    <input type="hidden" id="hidAdId" name="id"/>
+                    <div class="add-article-row">
+                        <label for="txtRecommendationLink" class="label">
+                            Link rekomendacji:</label>
+                        <input id="txtRecommendationLink" name="RecommendationLink" type="text" class="textBox" />
+                        <span class="error"></span>
+                    </div>
+                    <div class="add-article-row">
+                        <label for="txtRecommendationTitle" class="label">
+                            Tytuł rekomendacji:</label>
+                        <input id="txtRecommendationTitle" name="RecommendationTitle" type="text" class="textBox" />
+                        <span class="error"></span>
+                    </div>
+                    <div class="add-article-row">
+                        <label for="txtImageLink" class="label">
+                            Link zdjęcia:</label>
+                        <input id="txtImageLink" name="ImageLink" type="text" class="textBox" />
+                        <span class="error"></span>
+                    </div>
+                    <div class="add-article-row">
+                        <label for="txtImageTitle" class="label">
+                            Tytuł zdjęcia:</label>
+                        <input id="txtImageTitle" name="ImageTitle" type="text" class="textBox"/>
+                    </div>
+                    <div class="add-article-row">
+                        <label for="txtStartTime" class="label">
+                            Reklama od:</label>
+                        <input id="txtStartTime" name="StartTime" type="text" class="textBox"/>
+                    </div>
+                    <div class="add-article-row">
+                        <label for="txtEndTime" class="label">
+                            Reklama do:</label>
+                        <input id="txtEndTime" name="EndTime" type="text" class="textBox"/>
+                    </div>
+                    <div class="add-article-row">
+                        <label for="txtPosition" class="label">
+                            Pozycja reklamy:</label>
+                        <input id="txtPosition" name="Position" type="text" class="textBox"/>
+                    </div>
+                    <div class="add-article-row">
+                        <span id="RecommendationMessage" class="message"></span>
+                    </div>
+                    <div class="add-article-row">
+                        <input id="btnSubmitAd" type="submit" class="button" value="Sign up" />
+                    </div>
+                </fieldset>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
