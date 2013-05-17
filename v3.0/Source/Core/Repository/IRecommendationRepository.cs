@@ -8,6 +8,8 @@ namespace Kigg.Repository
     {
         IRecommendation FindById(Guid id);
 
+        void EditAd (IRecommendation recommendation, string recommendationLink, string recommendationTitle, string imageLink, string imageTitle, DateTime startTime, DateTime endTime, int position );
+
         IRecommendation FindByRecommendationTitle(string recommendationTitle);
         IQueryable<IRecommendation> GetAll();
     }

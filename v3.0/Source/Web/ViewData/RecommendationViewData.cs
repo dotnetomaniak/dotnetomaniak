@@ -7,5 +7,6 @@
         public string ImageName { get; set; }
         public string ImageAlt { get; set; }
         public string Id { get; set; }
+        public int Position { get; set; }
     }
 }

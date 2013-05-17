@@ -2,7 +2,7 @@
 {
     _markCommentAsOffendedUrl: '',
     _spamCommentUrl: '',
-    _deleteAdUrl: '',
+    _editAdUrl: '',
     _deleteStoryUrl: '',
     _spamStoryUrl: '',
     _approveStoryUrl: '',
@@ -18,8 +18,8 @@
         Moderation._spamCommentUrl = value;
     },
 
-    set_deleteAdUrl: function(value) {
-        Moderation._deleteAdUrl = value;
+    set_editAdUrl: function(value) {
+        Moderation._editAdUrl = value;
     },
     
     set_deleteStoryUrl: function(value) {
@@ -114,6 +114,29 @@
             }
         );
 
+        /* Polish initialisation for the jQuery UI date picker plugin. */
+        /* Written by Jacek Wysocki (jacek.wysocki@gmail.com). */
+        jQuery(function($){
+            $.datepicker.regional['pl'] = {
+                closeText: 'Zamknij',
+                prevText: '&#x3c;Poprzedni',
+                nextText: 'Następny&#x3e;',
+                currentText: 'Dziś',
+                monthNames: ['Styczeń','Luty','Marzec','Kwiecień','Maj','Czerwiec',
+                'Lipiec','Sierpień','Wrzesień','Październik','Listopad','Grudzień'],
+                monthNamesShort: ['Sty','Lu','Mar','Kw','Maj','Cze',
+                'Lip','Sie','Wrz','Pa','Lis','Gru'],
+                dayNames: ['Niedziela','Poniedzialek','Wtorek','Środa','Czwartek','Piątek','Sobota'],
+                dayNamesShort: ['Nie','Pn','Wt','Śr','Czw','Pt','So'],
+                dayNamesMin: ['N','Pn','Wt','Śr','Cz','Pt','So'],
+                weekHeader: 'Tydz',
+                dateFormat: 'yy-mm-dd',
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: ''};
+        $.datepicker.setDefaults($.datepicker.regional['pl']);
+    });
         $('#lnkAddRecomendation').click(
             function() {
                 Moderation.showRecommendation();
@@ -124,6 +147,12 @@
                 Moderation.deleteAd($(this).data('id'));
             }
         );
+
+        $('a[data-edit-id]').click(
+            function() {
+                Moderation.editAd($(this).data('edit-id'));
+            });
+
         $('#frmRecommendation').validate(
                                             {
                                                 rules: {
@@ -181,9 +210,7 @@
                                                             Membership._hide(true);
 
                                                             if (result.isSuccessful) {
-                                                                $U.messageBox("Sukces", "Rekomendacja utworzona", false, function () {
-                                                                    window.location.reload();
-                                                                });
+                                                                window.location.reload();
                                                             }
                                                             else {
                                                                 $('#RecommendationMessage').text(result.errorMessage).css({ color: '#ff0000', display: 'block' });
@@ -212,7 +239,7 @@
             $(element).next('span.error').hide();
         }
     },
-
+    
     dispose: function() {
     },
     
@@ -246,6 +273,52 @@
             $U.confirm('Usunięcie reklamy?', 'Czy jesteś pewny, że chcesz usunać daną reklamę?', submit);
         },
 
+    editAd: function (adId) {
+        var data = 'id=' + encodeURIComponent(adId);
+
+        $U.disableInputs('#frmRecommendation', true);
+
+        $.ajax(
+            {
+                url: Moderation._editAdUrl,
+                type: 'POST',
+                dataType: 'json',
+                data: data,
+                beforeSend: function () {
+                    $U.showProgress('Wczytywanie reklamy...');
+                },
+                success: function (result) {
+                    $U.hideProgress();
+                    $U.disableInputs('#frmRecommendation', false);
+
+                    if (result.errorMessage) {
+                        $U.messageBox('Error', result.errorMessage, true);
+                    } else {
+                        $U.blockUI();
+
+                        $('span.error').hide();
+                        $('span.message').hide();
+                        Moderation.showRecommendation();
+                        Moderation._centerMe();
+                        
+                        $('#hidAdId').val(result.id);
+                        $('#txtRecommendationLink').val(result.recommendationLink);
+                        $('#txtRecommendationTitle').val(result.recommendationTitle);
+                        $('#txtImageLink').val(result.imageLink);
+                        $('#txtImageTitle').val(result.imageTitle);
+                        $('#txtStartTime').val(result.startTime);
+                        $('#txtEndTime').val(result.endTime);
+                        $('#txtPosition').val(result.position);
+                    }
+                }
+            }
+        );
+    },
+    
+    //function: formatJSONDate(jsonDate) {
+    //var newDate = dateFormat(jsonDate, "mm/dd/yyyy");
+    //return newDate;
+    //},
     editStory: function(storyId) {
         var data = 'id=' + encodeURIComponent(storyId);
 
@@ -518,6 +591,8 @@
     },
 
     showRecommendation: function () {
+        $('input[name="EndTime"]').datepicker({ dateFormat: 'yy-mm-dd'}).val();
+        $('input[name="StartTime"]').datepicker({ dateFormat: 'yy-mm-dd' }).val();
         $('.contentContainer > div').hide();
         $('#RecommendationSection').show();
         Membership._show();

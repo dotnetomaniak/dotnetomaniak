@@ -112,7 +112,7 @@ namespace Kigg.LinqToSql.DomainObjects
                                IPAddress = fromIpAddress,
                                Timestamp = at,
                            };
-            
+
             return view;
         }
 
@@ -150,7 +150,7 @@ namespace Kigg.LinqToSql.DomainObjects
         {
             Check.Argument.IsNotEmpty(content, "content");
             PerformCheck(forStory, at, byUser, fromIpAddress);
-            
+
             var comment = new StoryComment
                               {
                                   Id = Guid.NewGuid(),
@@ -177,17 +177,19 @@ namespace Kigg.LinqToSql.DomainObjects
             return subscribtion;
         }
 
-        public IRecommendation CreateRecommendation(string recommendationLink, string recommendationTitle, string imageLink,
-            string imageTitle, DateTime startTime, DateTime endTime)
+    public IRecommendation CreateRecommendation(string recommendationLink, string recommendationTitle, string imageLink,
+            string imageTitle, DateTime startTime, DateTime endTime, int position)
         {
             Check.Argument.IsNotEmpty(recommendationLink, "RecommendationLink");
             Check.Argument.IsNotEmpty(recommendationTitle, "RecommendationTitle");
             Check.Argument.IsNotEmpty(imageLink, "ImageLink");
             Check.Argument.IsNotEmpty(imageTitle, "ImageTitle");
-            Check.Argument.IsNotInvalidDate(startTime, "StartTime");
-            Check.Argument.IsNotInvalidDate(endTime, "EndTime");
-
+            //Check.Argument.IsNotInvalidDate(startTime, "StartTime");
+            //Check.Argument.IsNotInvalidDate(endTime, "EndTime");
+            //Check.Argument.IsNotInPast(endTime, "EndTime");
+            //Check.Argument.IsNotNegativeOrZero(position, "Position");
             DateTime now = SystemTime.Now();
+
             var recommendation = new Recommendation
             {
                 Id = Guid.NewGuid(),
@@ -198,6 +200,7 @@ namespace Kigg.LinqToSql.DomainObjects
                 CreatedAt = now,
                 StartTime = startTime,
                 EndTime = endTime,
+                Position = position,
             };
 
             return recommendation;

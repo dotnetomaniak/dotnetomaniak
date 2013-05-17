@@ -4431,6 +4431,8 @@ namespace Kigg.LinqToSql.DomainObjects
 		
 		private System.DateTime _EndTime;
 		
+		private int _Position;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -4451,6 +4453,8 @@ namespace Kigg.LinqToSql.DomainObjects
     partial void OnStartTimeChanged();
     partial void OnEndTimeChanging(System.DateTime value);
     partial void OnEndTimeChanged();
+    partial void OnPositionChanging(int value);
+    partial void OnPositionChanged();
     #endregion
 		
 		public Recommendation()
@@ -4622,6 +4626,27 @@ namespace Kigg.LinqToSql.DomainObjects
 					this._EndTime = value;
 					this.SendPropertyChanged("EndTime");
 					this.OnEndTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Position", DbType="Int NOT NULL")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=9)]
+		public int Position
+		{
+			get
+			{
+				return this._Position;
+			}
+			set
+			{
+				if ((this._Position != value))
+				{
+					this.OnPositionChanging(value);
+					this.SendPropertyChanging();
+					this._Position = value;
+					this.SendPropertyChanged("Position");
+					this.OnPositionChanged();
 				}
 			}
 		}
