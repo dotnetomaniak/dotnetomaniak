@@ -184,6 +184,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\QuizController.cs" />
+    <Compile Include="Controllers\RecommendationController.cs" />
     <Compile Include="Handlers\Image\DefaultColors.cs" />
     <Compile Include="Handlers\Image\GraphicsExtension.cs" />
     <Compile Include="Handlers\Share\WykopRedirector.cs" />
@@ -300,6 +301,8 @@
     <Compile Include="ViewData\QuizViewData.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewData\RecommendationsViewData.cs" />
+    <Compile Include="ViewData\RecommendationViewData.cs" />
     <Compile Include="ViewData\StoryContentViewData.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -445,6 +448,7 @@
     <Content Include="Assets\StyleSheets\blog.css" />
     <Content Include="Assets\StyleSheets\colorPicker.min.css" />
     <Content Include="Assets\StyleSheets\error.css" />
+    <Content Include="Assets\StyleSheets\jquery-ui.css" />
     <Content Include="Assets\StyleSheets\marItUp.css" />
     <Content Include="Assets\StyleSheets\marItUp.min.css" />
     <Content Include="Assets\StyleSheets\modal.css" />
@@ -466,7 +470,9 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\jquery-1.4.4.js" />
     <Content Include="Scripts\jquery-1.4.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.4.min.js" />
@@ -589,6 +595,12 @@
     <Content Include="Assets\JavaScripts\OpenID.min.js.map">
       <DependentUpon>OpenID.js</DependentUpon>
     </Content>
+    <Content Include="Assets\JavaScripts\Moderation.min.js.map">
+      <DependentUpon>Moderation.js</DependentUpon>
+    </Content>
+    <Content Include="Assets\JavaScripts\Membership.min.js.map">
+      <DependentUpon>Membership.js</DependentUpon>
+    </Content>
     <None Include="Assets\JavaScripts\Tag.js" />
     <None Include="Assets\JavaScripts\Moderation.js" />
     <None Include="Assets\JavaScripts\Administration.js" />
@@ -686,6 +698,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\PublishProfiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

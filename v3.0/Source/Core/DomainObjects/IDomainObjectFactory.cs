@@ -1,4 +1,6 @@
-﻿namespace Kigg.DomainObjects
+﻿using Kigg.Core.DomainObjects;
+
+namespace Kigg.DomainObjects
 {
     using System;
 
@@ -23,5 +25,7 @@
         IComment CreateComment(IStory forStory, string content, DateTime at, IUser byUser, string fromIpAddress);
 
         ICommentSubscribtion CreateCommentSubscribtion(IStory forStory, IUser byUser);
+
+        IRecommendation CreateRecommendation(string recommendationLink, string recommendationTitle, string imageLink, string imageTitle, DateTime startTime, DateTime endTime, int position);
     }
 }

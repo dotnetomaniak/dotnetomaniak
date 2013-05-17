@@ -1,3 +1,7 @@
+using System.Web.UI.WebControls;
+using Kigg.Core.DomainObjects;
+using Kigg.Repository;
+
 namespace Kigg.Web
 {
     using System;
@@ -21,7 +25,6 @@ namespace Kigg.Web
         private const int MinimumLength = 4;
 
         private static readonly Regex UserNameExpression = new Regex(@"^([a-zA-Z])[a-zA-Z_-]*[\w_-]*[\S]$|^([a-zA-Z])[0-9_-]*[\S]$|^[a-zA-Z]*[\S]$", RegexOptions.Singleline | RegexOptions.Compiled);
-
         private readonly IDomainObjectFactory _factory;
         private readonly IEventAggregator _eventAggregator;
         private readonly IEmailSender _emailSender;
