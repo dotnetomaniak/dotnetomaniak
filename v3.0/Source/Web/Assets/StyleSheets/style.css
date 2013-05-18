@@ -826,6 +826,49 @@ background:url(/Assets/Images/radios-bg_07.jpg) no-repeat left top;
 }
 .add-article-row textarea{  border:2px solid #e1e1e1;}
 
+table a,
+table a:link,
+table a:visited {
+	border:none;
+	}							
+	
+img {
+	border:0;
+	margin-top:.5em;
+	}	
+table {
+	width:90%;
+	border-top:1px solid #e5eff8;
+	border-right:1px solid #e5eff8;
+	margin:1em auto;
+		border-collapse:collapse;
+	}
+caption {
+	color: #56708c;
+	font-size:.94em;
+		letter-spacing:.1em;
+		margin:1em 0 0 0;
+		padding:0;
+		caption-side:top;
+		text-align:center;
+	}		
+td {
+	color:#678197;
+	border-bottom:1px solid #e5eff8;
+	border-left:1px solid #e5eff8;
+	padding:.3em 1em;
+	text-align:center;
+	}				
+th {
+    background-color: #badcdd;
+	font-weight:normal;
+	color: #678197;
+	text-align:center;
+	border-bottom: 1px solid #e5eff8;
+	border-left:1px solid #e5eff8;
+	padding:.3em 1em;
+	}							
+
 /********* FAQ styles **********/
 .faq h4{
   font-weight:bold;
