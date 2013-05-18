@@ -298,8 +298,7 @@
 
                         $('span.error').hide();
                         $('span.message').hide();
-                        Moderation.showRecommendation();
-                        Moderation._centerMe();
+                        Moderation.showRecommendation();                        
                         
                         $('#hidAdId').val(result.id);
                         $('#txtRecommendationLink').val(result.recommendationLink);
