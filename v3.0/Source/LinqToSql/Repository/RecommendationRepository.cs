@@ -86,13 +86,20 @@ namespace Kigg.LinqToSql.Repository
             }
         }
 
-        public IQueryable<IRecommendation> GetAll()
+        public IQueryable<IRecommendation> GetAllVisible()
         {
             var now = SystemTime.Now();
 
             return Database.RecommendationDataSource
                 .Where(r => r.StartTime < now && r.EndTime >= now)
                 .OrderBy(r => r.Position);
+        }
+
+        public IQueryable<IRecommendation> GetAll()
+        {
+            var now = SystemTime.Now();
+
+            return Database.RecommendationDataSource.OrderBy(r => r.Position);
         }
     }
 }

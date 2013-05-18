@@ -13,10 +13,6 @@ namespace Kigg.LinqToSql.DomainObjects
             Check.Argument.IsNotEmpty(recommendationTitle, "RecommendationTitle");
             Check.Argument.IsNotEmpty(imageLink, "ImageLink");
             Check.Argument.IsNotEmpty(imageTitle, "ImageTitle");
-            //Check.Argument.IsNotInvalidDate(startTime, "StartTime");
-            //Check.Argument.IsNotInvalidDate(endTime, "EndTime");
-            //Check.Argument.IsNotInPast(endTime, "EndTime");
-            //Check.Argument.IsNotNegativeOrZero(position, "Position");
         }
     }
 }
