@@ -145,7 +145,7 @@ namespace Kigg.Web
 
         public ViewResult Ads()
         {
-            IQueryable<IRecommendation> recommendations = _recommendationRepository.GetAll();
+            IQueryable<IRecommendation> recommendations = _recommendationRepository.GetAllVisible();
             var viewModel = CreateViewData<RecommendationsViewData>();
             viewModel.Recommendations = recommendations.Select(x => new RecommendationViewData()
             {
@@ -153,6 +153,7 @@ namespace Kigg.Web
                 UrlTitle = x.RecommendationTitle,
                 ImageName = x.ImageLink,
                 ImageAlt = x.ImageTitle,
+                Position = x.Position,
                 Id = x.Id.Shrink()
             });
 
@@ -205,6 +206,27 @@ namespace Kigg.Web
             }
 
             return Json(viewData);
+        }
+
+        [AutoRefresh, Compress]
+        public ActionResult AdList()
+        {
+                IQueryable<IRecommendation> recommendations = _recommendationRepository.GetAll();
+                var viewModel = CreateViewData<RecommendationsViewData>();
+                if (IsCurrentUserAuthenticated && CurrentUser.CanModerate())
+                {
+                    viewModel.Recommendations = recommendations.Select(x => new RecommendationViewData()
+                    {
+                        UrlLink = x.RecommendationLink,
+                        UrlTitle = x.RecommendationTitle,
+                        ImageName = x.ImageLink,
+                        ImageAlt = x.ImageTitle,
+                        Position = x.Position,
+                        Id = x.Id.Shrink()
+                    });
+                }
+            return View("RecommendationListBox", viewModel);
+
         }
     }
 }

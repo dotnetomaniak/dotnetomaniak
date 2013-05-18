@@ -19,6 +19,8 @@
             <% if (Model.IsAdministrator) %>
             <% {%>
             <li style="padding: 5px 0"><a id="lnkPublish" href="javascript:void(0)">Opublikuj</a></li>
+            <li style="padding: 5px 0">
+                <%= Html.ActionLink("Lista reklam", "AdList", "Recommendation")%></li>
             <% }%>
         </ul>
         <% }%>
