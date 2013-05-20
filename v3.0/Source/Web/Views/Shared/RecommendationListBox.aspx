@@ -3,8 +3,8 @@
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContentPlaceHolder">
     <div>
-         <table width="90%">
-             <caption>Lista reklam z bazy danych:</caption>
+        <%= Html.PageHeader("Lista reklam") %>
+         <table width="90%" id="adsTable">             
              <tr>
                  <th>Obrazek</th>
                  <th>Tytuł</th>
@@ -17,10 +17,10 @@
                                 <tr>
                                     <td><a><img src="<%= Url.Image(recommendationViewData.ImageName) %>" height="50"/></a></td>
                                     <td><%= recommendationViewData.UrlTitle %></td>
-                                    <td><%= recommendationViewData.UrlLink %></td>
+                                    <td><a href="<%= recommendationViewData.UrlLink %>"/><%= recommendationViewData.UrlLink %></a></td>
                                     <td><%= recommendationViewData.Position %></td>
                                     <td><a href="javascript:void(0);" data-edit-id="<%= recommendationViewData.Id %>">Edytuj</a>
-                                    <div><a  href="javascript:void(0);" data-id="<%= recommendationViewData.Id %>">Usuń</a></td></div>
+                                    <a  href="javascript:void(0);" data-id="<%= recommendationViewData.Id %>">Usuń</a></td>
                                 </tr>
                      <% } %>
           </table>
