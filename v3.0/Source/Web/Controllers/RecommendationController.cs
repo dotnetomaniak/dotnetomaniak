@@ -104,11 +104,11 @@ namespace Kigg.Web
                                 recommendationTitle.Trim(), imageLink.Trim(), imageTitle.Trim(), startTime, endTime, position);
                             _recommendationRepository.Add(recommendation);
 
-                        unitOfWork.Commit();
+                            unitOfWork.Commit();
 
-                        Log.Info("Recommendation registered: {0}", recommendation.RecommendationTitle);
+                            Log.Info("Recommendation registered: {0}", recommendation.RecommendationTitle);
 
-                        viewData = new JsonViewData {isSuccessful = true};
+                            viewData = new JsonViewData { isSuccessful = true };
                         }
                         else
                         {
@@ -116,27 +116,27 @@ namespace Kigg.Web
 
                             if (recommendation == null)
                             {
-                                viewData = new JsonViewData {errorMessage = "Podana reklama nie istnieje."};
+                                viewData = new JsonViewData { errorMessage = "Podana reklama nie istnieje." };
                             }
                             else
                             {
                                 _recommendationRepository.EditAd(recommendation, recommendationLink.NullSafe(), recommendationTitle.NullSafe(), imageLink.NullSafe(), imageTitle.NullSafe(), startTime,
                                     endTime, position);
 
-                                viewData = new JsonViewData {isSuccessful = true};
+                                viewData = new JsonViewData { isSuccessful = true };
                             }
                         }
                     }
                 }
                 catch (ArgumentException argument)
                 {
-                    viewData = new JsonViewData {errorMessage = argument.Message};
+                    viewData = new JsonViewData { errorMessage = argument.Message };
                 }
                 catch (Exception e)
                 {
                     Log.Exception(e);
 
-                    viewData = new JsonViewData {errorMessage = FormatStrings.UnknownError.FormatWith("")};
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("") };
                 }
             }
 
@@ -183,14 +183,14 @@ namespace Kigg.Web
 
                         if (recommendation == null)
                         {
-                            viewData = new JsonViewData {errorMessage = "Reklama nie istnieje."};
+                            viewData = new JsonViewData { errorMessage = "Reklama nie istnieje." };
                         }
                         else
                         {
                             _recommendationRepository.Remove(recommendation);
                             unitOfWork.Commit();
 
-                            viewData = new JsonViewData {isSuccessful = true};
+                            viewData = new JsonViewData { isSuccessful = true };
                         }
                     }
                 }
@@ -211,20 +211,24 @@ namespace Kigg.Web
         [AutoRefresh, Compress]
         public ActionResult AdList()
         {
-                IQueryable<IRecommendation> recommendations = _recommendationRepository.GetAll();
-                var viewModel = CreateViewData<RecommendationsViewData>();
-                if (IsCurrentUserAuthenticated && CurrentUser.CanModerate())
+            var viewModel = CreateViewData<RecommendationsViewData>();
+            if (IsCurrentUserAuthenticated && CurrentUser.CanModerate())
+            {
+                IQueryable<IRecommendation> recommendations = _recommendationRepository.GetAll();                
+                viewModel.Recommendations = recommendations.Select(x => new RecommendationViewData()
                 {
-                    viewModel.Recommendations = recommendations.Select(x => new RecommendationViewData()
-                    {
-                        UrlLink = x.RecommendationLink,
-                        UrlTitle = x.RecommendationTitle,
-                        ImageName = x.ImageLink,
-                        ImageAlt = x.ImageTitle,
-                        Position = x.Position,
-                        Id = x.Id.Shrink()
-                    });
-                }
+                    UrlLink = x.RecommendationLink,
+                    UrlTitle = x.RecommendationTitle,
+                    ImageName = x.ImageLink,
+                    ImageAlt = x.ImageTitle,
+                    Position = x.Position,
+                    Id = x.Id.Shrink()
+                });
+            }
+            else
+            {
+                ThrowNotFound("Nie ma takiej strony");
+            }
             return View("RecommendationListBox", viewModel);
 
         }
