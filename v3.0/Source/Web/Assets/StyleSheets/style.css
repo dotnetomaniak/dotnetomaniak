@@ -835,17 +835,18 @@ table a:visited {
 img {
 	border:0;
 	margin-top:.5em;
-	}	
+	}
+	
 table {
 	width:90%;
 	border-top:1px solid #e5eff8;
 	border-right:1px solid #e5eff8;
 	margin:1em auto;
-		border-collapse:collapse;
+    border-collapse:collapse;
 	}
 caption {
 	color: #56708c;
-	font-size:.94em;
+	font-size:1.94em;
 		letter-spacing:.1em;
 		margin:1em 0 0 0;
 		padding:0;
@@ -867,7 +868,10 @@ th {
 	border-bottom: 1px solid #e5eff8;
 	border-left:1px solid #e5eff8;
 	padding:.3em 1em;
-	}							
+	}		
+table#adsTable td a {
+    display: block;
+}					
 
 /********* FAQ styles **********/
 .faq h4{

@@ -10,6 +10,7 @@
         <% if (string.IsNullOrEmpty(Model.ErrorMessage)) %>
         <% {%>
         <ul>
+            <li style="padding: 5px 0"><%= Html.ActionLink("Lista reklam", "AdList", "Recommendation")%></li>
             <li style="padding: 5px 0">
                 <%= Html.ActionLink("Nowe ({0})".FormatWith(Model.NewCount), "New", "Story") %></li>
             <li style="padding: 5px 0">
@@ -19,8 +20,6 @@
             <% if (Model.IsAdministrator) %>
             <% {%>
             <li style="padding: 5px 0"><a id="lnkPublish" href="javascript:void(0)">Opublikuj</a></li>
-            <li style="padding: 5px 0">
-                <%= Html.ActionLink("Lista reklam", "AdList", "Recommendation")%></li>
             <% }%>
         </ul>
         <% }%>
