@@ -398,7 +398,7 @@ background: url("/Assets/images/icon-zwin.png") no-repeat scroll right top trans
      #footer ul {}
 .even{ background:url("/Assets/images/toplist-border_31.jpg") repeat-x bottom #f6f6f6;}
 .recommend-left-column{
-        height: 220px;
+        height: 130px;
     overflow: hidden;
     padding-bottom: 35px;
     padding-top: 20px;
@@ -838,20 +838,11 @@ img {
 	}
 	
 table {
-	width:90%;
+	width:100%;
 	border-top:1px solid #e5eff8;
 	border-right:1px solid #e5eff8;
 	margin:1em auto;
     border-collapse:collapse;
-	}
-caption {
-	color: #56708c;
-	font-size:1.94em;
-		letter-spacing:.1em;
-		margin:1em 0 0 0;
-		padding:0;
-		caption-side:top;
-		text-align:center;
 	}		
 td {
 	color:#678197;
