@@ -13,6 +13,6 @@
    { 
        %>  
     <div class="recommend-left-column">
-        <a href="<%= recommendationViewData.UrlLink %>" title="<%=recommendationViewData.UrlTitle %>"><img src="<%= Url.Image(recommendationViewData.ImageName) %>" alt="<%= recommendationViewData.ImageAlt %>" /></a>
+        <a href="<%= recommendationViewData.UrlLink %>" title="<%=recommendationViewData.UrlTitle %>" target="_blank"><img src="<%= Url.Image(recommendationViewData.ImageName) %>" alt="<%= recommendationViewData.ImageAlt %>" /></a>
     </div>
   <% } %>
