@@ -82,6 +82,10 @@ namespace Kigg.LinqToSql.Repository
                     recommendation.Position = position;
                 }
 
+                recommendation.StartTime = startTime;
+
+                recommendation.EndTime = endTime;
+
                 unitOfWork.Commit();
             }
         }
