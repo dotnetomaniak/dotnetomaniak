@@ -44,14 +44,14 @@ namespace Kigg.LinqToSql.Repository
             return Database.RecommendationDataSource.SingleOrDefault(s => s.Id == id);
         }
 
-        public virtual IRecommendation FindByRecommendationTitle(string recommendationTitle)
+        public IRecommendation FindByRecommendationTitle(string recommendationTitle)
         {
             Check.Argument.IsNotEmpty(recommendationTitle, "recommendationTitle");
 
             return Database.RecommendationDataSource.SingleOrDefault(r => r.RecommendationTitle == recommendationTitle.Trim());
         }
 
-        public virtual void EditAd(IRecommendation recommendation, string recommendationLink, string recommendationTitle, string imageLink, string imageTitle, DateTime startTime, DateTime endTime, int position)
+        public void EditAd(IRecommendation recommendation, string recommendationLink, string recommendationTitle, string imageLink, string imageTitle, DateTime startTime, DateTime endTime, int position)
         {
             Check.Argument.IsNotNull(recommendation, "Recommendation");
 
