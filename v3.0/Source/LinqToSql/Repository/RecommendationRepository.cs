@@ -97,9 +97,14 @@ namespace Kigg.LinqToSql.Repository
 
         public IQueryable<IRecommendation> GetAll()
         {
-            var now = SystemTime.Now();
-
             return Database.RecommendationDataSource.OrderBy(r => r.Position);
+        }
+
+        public IQueryable<IRecommendation> GetAllDefault(int howMany)
+        {
+            return Database.RecommendationDataSource
+                .Where(r => r.Position == 999)
+                .OrderBy(r => r.StartTime).Take(howMany);
         }
     }
 }
