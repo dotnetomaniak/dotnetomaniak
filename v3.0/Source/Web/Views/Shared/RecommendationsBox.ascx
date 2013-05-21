@@ -8,7 +8,7 @@
             Polecamy</h2>
     </div>
 </div>
-<% foreach (var recommendationViewData in Model.Recommendations.OrderBy(x=>x.Position))
+<% foreach (var recommendationViewData in Model.Recommendations.ToList().OrderBy(x=>x.Position))
    {
 %>  
     <div class="recommend-left-column">

@@ -859,9 +859,29 @@ th {
 	border-bottom: 1px solid #e5eff8;
 	border-left:1px solid #e5eff8;
 	padding:.3em 1em;
-	}		
+	}	
+tr.Overdued {
+    background-color: #FFE4E1;
+}	
+tr.OverdueTommorow {
+    background-color: #FFF0F5;
+}
+tr.OverdueDuringFiveDays {
+    background-color: #FFFAF0;
+}
+tr.Default {
+    background-color: #c2e078;
+}
 table#adsTable td a {
     display: block;
+}
+
+
+.input-color .color-box {
+    width: 147px;
+    height: 30px;
+    display: inline-block;
+    color: #364057;
 }					
 
 /********* FAQ styles **********/

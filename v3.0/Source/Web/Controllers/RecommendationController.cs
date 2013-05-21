@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.UI;
 using System.Web.WebPages;
@@ -147,30 +148,28 @@ namespace Kigg.Web
         {
             IQueryable<IRecommendation> recommendations = _recommendationRepository.GetAllVisible();
             var viewModel = CreateViewData<RecommendationsViewData>();
-            viewModel.Recommendations = recommendations.Select(x => new RecommendationViewData()
+            viewModel.Recommendations = recommendations.Select(x=>CreateRecommendationViewData(x));
+            int defaultAds = 3 - recommendations.Count();
+            if (defaultAds > 0)
+            {
+                recommendations = _recommendationRepository.GetAllDefault(defaultAds);
+                viewModel.Recommendations = viewModel.Recommendations.Union(recommendations.Select(x => CreateRecommendationViewData(x)));
+            }
+            return View("RecommendationsBox", viewModel);
+        }
+
+        private static RecommendationViewData CreateRecommendationViewData(IRecommendation x)
+        {
+            return new RecommendationViewData()
             {
                 UrlLink = x.RecommendationLink,
                 UrlTitle = x.RecommendationTitle,
                 ImageName = x.ImageLink,
                 ImageAlt = x.ImageTitle,
                 Position = x.Position,
+                EndTime = x.EndTime,
                 Id = x.Id.Shrink()
-            });
-            int defaultAds =3-recommendations.Count();
-            if (defaultAds > 0)
-            {
-                recommendations = _recommendationRepository.GetAllDefault(defaultAds);
-                viewModel.Recommendations = viewModel.Recommendations.Union(recommendations.Select(x => new RecommendationViewData()
-                {
-                    UrlLink = x.RecommendationLink,
-                    UrlTitle = x.RecommendationTitle,
-                    ImageName = x.ImageLink,
-                    ImageAlt = x.ImageTitle,
-                    Position = x.Position,
-                    Id = x.Id.Shrink()
-                }));
-            }
-            return View("RecommendationsBox", viewModel);
+            };
         }
 
         [AcceptVerbs(HttpVerbs.Post), Compress]
@@ -227,15 +226,7 @@ namespace Kigg.Web
             if (IsCurrentUserAuthenticated && CurrentUser.CanModerate())
             {
                 IQueryable<IRecommendation> recommendations = _recommendationRepository.GetAll();                
-                viewModel.Recommendations = recommendations.Select(x => new RecommendationViewData()
-                {
-                    UrlLink = x.RecommendationLink,
-                    UrlTitle = x.RecommendationTitle,
-                    ImageName = x.ImageLink,
-                    ImageAlt = x.ImageTitle,
-                    Position = x.Position,
-                    Id = x.Id.Shrink()
-                });
+                viewModel.Recommendations = recommendations.Select(x => CreateRecommendationViewData(x));
             }
             else
             {
