@@ -156,9 +156,21 @@ namespace Kigg.Web
                 Position = x.Position,
                 Id = x.Id.Shrink()
             });
-
+            int defaultAds =3-recommendations.Count();
+            if (defaultAds > 0)
+            {
+                recommendations = _recommendationRepository.GetAllDefault(defaultAds);
+                viewModel.Recommendations = viewModel.Recommendations.Union(recommendations.Select(x => new RecommendationViewData()
+                {
+                    UrlLink = x.RecommendationLink,
+                    UrlTitle = x.RecommendationTitle,
+                    ImageName = x.ImageLink,
+                    ImageAlt = x.ImageTitle,
+                    Position = x.Position,
+                    Id = x.Id.Shrink()
+                }));
+            }
             return View("RecommendationsBox", viewModel);
-
         }
 
         [AcceptVerbs(HttpVerbs.Post), Compress]
@@ -230,7 +242,6 @@ namespace Kigg.Web
                 ThrowNotFound("Nie ma takiej strony");
             }
             return View("RecommendationListBox", viewModel);
-
         }
     }
 }
