@@ -196,7 +196,7 @@
                     spam?</a></span>
         <%
            }%>
-        <% if (!story.IsApproved()) %>
+        <% if (!story.IsApproved() && user.CanModerate()) %>
         <% { %>
         | <a class="approve actionLink" href="javascript:void(0)" onclick="Moderation.approveStory('<%= attributedEncodedStoryId %>')">
             zaakceptuj</a>
