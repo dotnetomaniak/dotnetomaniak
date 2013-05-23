@@ -121,6 +121,10 @@
 
         if (Model.IsCurrentUserAuthenticated)
         {
+            scriptManager.RegisterSource(Url.Asset("moderation"));
+            scriptManager.RegisterOnReady("Moderation.init();");
+            scriptManager.RegisterOnReady("Moderation.set_getStoryUrl('{0}');".FormatWith(Url.RouteUrl("GetStory")));
+            scriptManager.RegisterOnDispose("Moderation.dispose();");
             if (Model.CanCurrentUserModerate)
             {
                 scriptManager.RegisterSource(Url.Asset("moderation"));

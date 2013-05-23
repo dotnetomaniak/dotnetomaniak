@@ -747,8 +747,8 @@ namespace Kigg.Web
             JsonViewData viewData = Validate<JsonViewData>(
                                                             new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku³u nie mo¿e byæ pusty."),
                                                             new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku³u."),
-                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteœ zalogowany."),
-                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz praw do wo³ywania tej metody.")
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteœ zalogowany.")
+                                                            //new Validation(() => !CurrentUser.CanModerate(), "Nie masz praw do wo³ywania tej metody.")
                                                           );
 
             if (viewData == null)
@@ -796,8 +796,8 @@ namespace Kigg.Web
             JsonViewData viewData = Validate<JsonViewData>(
                                                             new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku³u nie mo¿e byæ pusty."),
                                                             new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku³u."),
-                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteœ zalogowany."),
-                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz praw do wo³ania tej metody.")
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteœ zalogowany.")
+                                                            //new Validation(() => !CurrentUser.CanModerate(), "Nie masz praw do wo³ania tej metody.")
                                                           );
 
             if (viewData == null)

@@ -62,7 +62,7 @@
         </div>
     </div>
     <%
-        if (Model.CanCurrentUserModerate)
+        if (Model.CanCurrentUserModerate || (story.CreatedAt.AddMinutes(20) > DateTime.Now) && story.IsPostedBy(Model.CurrentUser))
         {
             Html.RenderPartial("StoryEditorBox");
         }

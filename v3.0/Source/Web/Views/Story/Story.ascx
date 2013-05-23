@@ -182,10 +182,14 @@
         <% if (detailsMode) {%>
             <span class="counter"><a id="a-c" href="javascript:void(0)" class="imageCode actionLink">pokaż kod licznika</a></span>
         <% }%>
-        <% if ((user != null) && user.CanModerate()) %>
+        <% if ((user != null) && ((user.Id == story.PostedBy.Id && DateTime.Now < story.CreatedAt.AddMinutes(20) && story.IsPublished() == false) || user.CanModerate())) %>
         <% { %>        
         <span class="edit"><a class="edit actionLink" href="javascript:void(0)" onclick="Moderation.editStory('<%= attributedEncodedStoryId %>')">
-            edycja</a></span><span class="delete"><a class="delete actionLink" href="javascript:void(0)" onclick="Moderation.deleteStory('<%= attributedEncodedStoryId %>')">
+            edycja</a></span>
+        <% } %>
+        <% if ((user != null) && user.CanModerate()) %>
+        <% { %>
+        <span class="delete"><a class="delete actionLink" href="javascript:void(0)" onclick="Moderation.deleteStory('<%= attributedEncodedStoryId %>')">
                 usuń</a></span>
                 <span class="spam"><a class="spam actionLink" href="javascript:void(0)" onclick="Moderation.confirmSpamStory('<%= attributedEncodedStoryId %>')">spam</a></span>
                     <span class="miniature"><a class="miniature actionLink" href="javascript:void(0)" onclick="Moderation.generateMiniatureStory('<%= attributedEncodedStoryId %>')">miniaturka</a></span>
