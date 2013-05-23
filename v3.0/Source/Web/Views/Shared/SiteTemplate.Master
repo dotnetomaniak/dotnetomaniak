@@ -230,8 +230,11 @@
         <div id="content">
             <div id="main">
                 <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">
-                </asp:ContentPlaceHolder>		
-            </div>	    
+                </asp:ContentPlaceHolder>
+                <div class="googlePlusBox" align="right">
+                <% Html.RenderPartial("GooglePlusBox"); %>	 
+                </div>             
+                </div> 
             <div id="sub">
                 <%
                     if (Model.CanCurrentUserModerate)
@@ -240,14 +243,14 @@
                     }
                 %>                                
                 <% Html.RenderAction("Ads", "Recommendation"); %>
-                
+
                 <% try { Html.RenderPartial("FeedBox"); }
                    catch {}%>
                 <% Html.RenderAction("TopTabs","Membership"); %>
                 <% Html.RenderAction("Tabs","Tag"); %>
-            </div>
-            <script src="http://connect.facebook.net/pl_PL/all.js#xfbml=1" type="text/javascript"></script><fb:like-box href="http://www.facebook.com/dotnetomaniakpl" width="915" show_faces="true" stream="false" header="true"></fb:like-box>            
-        </div>    
+                </div>	 
+            <script src="http://connect.facebook.net/pl_PL/all.js#xfbml=1" type="text/javascript"></script><fb:like-box href="http://www.facebook.com/dotnetomaniakpl" width="915" show_faces="true" stream="false" header="true"></fb:like-box>
+        </div> 
         <div id="footer">
             <p>
                 <strong>&copy; <%= ViewData.Model.SiteTitle %>.</strong>
