@@ -230,10 +230,7 @@
         <div id="content">
             <div id="main">
                 <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">
-                </asp:ContentPlaceHolder>
-                <div class="googlePlusBox" align="right">
-                <% Html.RenderPartial("GooglePlusBox"); %>	 
-                </div>             
+                </asp:ContentPlaceHolder>          
                 </div> 
             <div id="sub">
                 <%
@@ -248,6 +245,7 @@
                    catch {}%>
                 <% Html.RenderAction("TopTabs","Membership"); %>
                 <% Html.RenderAction("Tabs","Tag"); %>
+                <% Html.RenderPartial("GooglePlusBox"); %>	  
                 </div>	 
             <script src="http://connect.facebook.net/pl_PL/all.js#xfbml=1" type="text/javascript"></script><fb:like-box href="http://www.facebook.com/dotnetomaniakpl" width="915" show_faces="true" stream="false" header="true"></fb:like-box>
         </div> 
