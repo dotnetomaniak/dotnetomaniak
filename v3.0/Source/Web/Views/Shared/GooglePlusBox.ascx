@@ -1,5 +1,12 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<dynamic>" %>
 
+
+<div class="pageHeader">
+    <div class="pageTitle">
+        <h2>
+            Google+</h2>
+    </div>
+</div>
 <div class="g-plus" data-href="https://plus.google.com/110925305542873177884" data-rel="publisher" style="width: 281px" align="right"></div>
 <script type="text/javascript"> window.___gcfg = { lang: 'pl' };
     (function () {
