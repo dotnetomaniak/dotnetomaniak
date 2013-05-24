@@ -119,8 +119,8 @@
         jQuery(function($){
             $.datepicker.regional['pl'] = {
                 closeText: 'Zamknij',
-                prevText: '&#x3c;Poprzedni',
-                nextText: 'Następny&#x3e;',
+                prevText: '&#x3c;',
+                nextText: '&#x3e;',
                 currentText: 'Dziś',
                 monthNames: ['Styczeń','Luty','Marzec','Kwiecień','Maj','Czerwiec',
                 'Lipiec','Sierpień','Wrzesień','Październik','Listopad','Grudzień'],
