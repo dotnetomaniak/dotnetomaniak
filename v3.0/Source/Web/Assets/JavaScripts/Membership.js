@@ -396,7 +396,7 @@
         );
 
         $('#storyEditorClose').click(function () { Membership._hide(false, Membership._StoryEditorBox); });
-        debugger;
+
         $('#frmStoryUpdate').validate(
             {
                 rules: {
