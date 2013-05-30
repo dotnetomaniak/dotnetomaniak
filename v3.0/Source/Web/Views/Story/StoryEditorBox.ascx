@@ -27,10 +27,19 @@
                     <span class="error"></span>
                 </div>
                 <div class="add-article-row">
-                    <label for="txtStoryDescription" class="label">Opis:</label>
-                    <textarea id="txtStoryDescription" name="description" cols="20" rows="4" class="largeTextArea"></textarea>
+                    <input type="hidden" id="hidDescription2" name="description" />
+                    <label for="txtStoryDescription2" class="label">Opis:</label>
+                    <textarea id="txtStoryDescription2" name="description" cols="20" rows="4" class="largeTextArea"></textarea>
                     <span class="error"></span>
                 </div>
+                <div>
+            <div class="wysiwyg-code">
+                <div id="storyPreview2" class="livePreview wysiwyg-code2">
+                </div>
+            </div>
+            <a id="lnkStoryPreview" class="actionLink hide-sample" href="javascript:void(0)">ukryj
+                podgląd</a>
+        </div>
                 <div class="add-article-row">
                     <label for="txtStoryTags" class="label">Tagi:</label>
                     <input id="txtStoryTags" name="tags" type="text" class="largeTextBox"/>

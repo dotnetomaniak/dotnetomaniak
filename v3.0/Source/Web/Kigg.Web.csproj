@@ -603,6 +603,9 @@
     <Content Include="Assets\JavaScripts\Membership.min.js.map">
       <DependentUpon>Membership.js</DependentUpon>
     </Content>
+    <Content Include="Assets\JavaScripts\Story.min.js.map">
+      <DependentUpon>Story.js</DependentUpon>
+    </Content>
     <None Include="Assets\JavaScripts\Tag.js" />
     <None Include="Assets\JavaScripts\Moderation.js" />
     <None Include="Assets\JavaScripts\Administration.js" />
