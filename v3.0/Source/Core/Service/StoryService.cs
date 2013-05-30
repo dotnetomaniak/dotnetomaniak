@@ -198,7 +198,7 @@ namespace Kigg.Service
                 {
                     theStory.HtmlDescription = description.Trim();
                 }
-
+                theStory.RemoveAllTags();
                 AddTagsToContainers(tags, new[] { theStory });
 
                 unitOfWork.Commit();
