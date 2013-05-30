@@ -10,7 +10,9 @@ body
     color: #fff;
     text-align: center;
 }
-
+img {
+    border: none;
+}
 h1
 {
     color: #C2E078;
