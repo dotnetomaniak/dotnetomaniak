@@ -6,7 +6,10 @@
     _minPasswordLength: 5,
     _redirectToPrevious: false,
     _centerMeTimer: null,
-
+    _getStoryUrl: '',
+    _MembershipBox: '#membershipBox',
+    _StoryEditorBox: '#storyEditorBox',
+    _Box:'',
     get_isLoggedIn: function () {
         return Membership._isLoggedIn;
     },
@@ -21,6 +24,10 @@
 
     set_minPasswordLength: function (value) {
         Membership._minPasswordLength = value;
+    },
+    
+    set_getStoryUrl: function (value) {
+        Membership._getStoryUrl = value;
     },
 
     init: function () {
@@ -64,12 +71,12 @@
                                                     function (e) {
                                                         if (e.keyCode === 27) // EscapeKey
                                                         {
-                                                            Membership._hide(false);
+                                                            Membership._hide(false, Membership._MembershipBox);
                                                         }
                                                     }
                                                 );
 
-        $('#membershipClose').bind('click', function () { Membership._hide(false); });
+        $('#membershipClose').bind('click', function () { Membership._hide(false,Membership._MembershipBox); });
 
         $('#frmOpenIdLogin').validate(
                                                 {
@@ -111,7 +118,7 @@
                                                             $U.hideProgress();
 
                                                             if (result.isSuccessful) {
-                                                                Membership._hide(true);
+                                                                Membership._hide(true,Membership._MembershipBox);
                                                                 window.location.reload();
                                                             }
                                                             else {
@@ -157,7 +164,7 @@
 
                                                                             if (result.isSuccessful) {
                                                                                 $U.messageBox('Hasło wysłane', 'Twoje nowe hasło zostało wysłane\r\n na twój adres e-mail.', false, function () {
-                                                                                    Membership._hide(true);
+                                                                                    Membership._hide(true,Membership._MembershipBox);
                                                                                 }
                                                                                                               );
                                                                             }
@@ -215,7 +222,7 @@
 
                                                                     if (result.isSuccessful) {
                                                                         $U.messageBox('Hasło zmienione', 'Twoje hasło zostało zmienione.', false, function () {
-                                                                            Membership._hide(true);
+                                                                            Membership._hide(true,Membership._MembershipBox);
                                                                         }
                                                                                                      );
                                                                     }
@@ -280,7 +287,7 @@
 
                                                             if (result.isSuccessful) {
                                                                 $U.messageBox("Konto utworzone", "Twoje konto zostało poprawnie utworzone. Proszę postępuj zgodnie z informacjami w mailu aby aktywować konto.", false, function () {
-                                                                    Membership._hide(true);
+                                                                    Membership._hide(true,Membership._MembershipBox);
                                                                     window.location.reload();
                                                                 });
                                                             }
@@ -378,6 +385,77 @@
         function onUnhighlight(element, errorClass) {
             $(element).next('span.error').hide();
         }
+        
+        $('#storyEditorBox').keydown(
+            function (e) {
+                if (e.keyCode === 27) // EscapeKey
+                {
+                    Membership._hide(false, Membership._StoryEditorBox);
+                }
+            }
+        );
+
+        $('#storyEditorClose').click(function () { Membership._hide(false, Membership._StoryEditorBox); });
+        debugger;
+        $('#frmStoryUpdate').validate(
+            {
+                rules: {
+                    name: 'required',
+                    createdAt: 'required',
+                    description: {
+                        required: true,
+                        rangelength: [8, 2048]
+                    },
+                    category: 'required',
+                    tags: 'required'
+                },
+                messages: {
+                    name: 'Nazwa nie może być pusta.',
+                    createdAt: 'Pole Utworzono nie może być puste.',
+                    title: {
+                        required: 'Tytuł nie może być pusty.',
+                        maxlength: 'Tytuł nie może być dłuższy niż 256 znaków.'
+                    },
+                    description: {
+                        required: 'Opis nie może być pusty.',
+                        rangelength: 'Opis musi zawierać się pomiędzy 8 a 2048 znakami.'
+                    },
+                    category: 'Kategoria musi być wybrana.',
+                    tags: 'Podaj przynajmniej jeden tag dla artykułu.'
+                },
+                submitHandler: function (form) {
+                    var options = {
+                        dataType: 'json',
+                        beforeSubmit: function (values, form, options) {
+                            $('#updateStoryMessage').text('').css('color', '').hide();
+                            $U.disableInputs('#frmStoryUpdate', true);
+                            $U.showProgress('Aktualizacja wpisu...', '#btnUpdateStory');
+                        },
+                        success: function (result) {
+                            $U.disableInputs('#frmStoryUpdate', false);
+                            $U.hideProgress();
+
+                            if (result.isSuccessful) {
+                                Membership._hide(true, Membership._StoryEditorBox);
+                            } else {
+                                $('#updateStoryMessage').text(result.errorMessage).css({ color: '#ff0000', display: 'block' });
+                            }
+                        }
+                    };
+
+                    $(form).ajaxSubmit(options);
+                },
+                errorPlacement: function (error, element) {
+                    element.parents('p:first').find('span.error').text(error.text());
+                },
+                highlight: function (element, errorClass) {
+                    $(element).parents('p:first').find('span.error').show();
+                },
+                unhighlight: function (element, errorClass) {
+                    $(element).parents('p:first').find('span.error').hide();
+                }
+            }
+        );
     },
 
     dispose: function () {
@@ -391,13 +469,14 @@
         $('#lnkChangePassword').unbind();
         $('#lnkLogout').unbind();
         $('#lostPasswordSection').unbind();
+        $('#storyEditorBox').unbind();
     },
 
     showLostPassword: function (redirectToPrevious) {
         Membership._redirectToPrevious = redirectToPrevious;
         $('.contentContainer > div').hide();
         $('#lostPasswordSection').show();
-        Membership._show();
+        Membership._show(Membership._MembershipBox);
     },
 
     showLogin: function (redirectToPrevious) {
@@ -405,7 +484,7 @@
 
         $('.contentContainer > div').hide();
         $('#loginSection').show();
-        Membership._show();
+        Membership._show(Membership._MembershipBox);
 
         $U.focus('txtOpenId');
     },
@@ -413,7 +492,7 @@
     showChangePassword: function () {
         $('.contentContainer > div').hide();
         $('#changePasswordSection').show();
-        Membership._show();
+        Membership._show(Membership._MembershipBox);
 
         $U.focus('txtChangeOldPassword');
     },
@@ -424,7 +503,7 @@
         $('.contentContainer > div').hide();
         $('#signupSection').show();
         $('#changePasswordSection').show();
-        Membership._show();
+        Membership._show(Membership._MembershipBox);
 
         $U.focus('txtSignupUserName');
     },
@@ -448,14 +527,14 @@
                 );
     },
 
-    _show: function () {
+    _show: function (box) {
         $U.blockUI();
 
-        var modal = $('#membershipBox');
+        var modal = $(box);
         $U.center(modal);
         modal.fadeIn();
 
-        Membership._centerMe();
+        Membership._centerMe(box);
 
         modal.find('input').each(
                                         function () {
@@ -475,13 +554,13 @@
         $('span.message').hide();
     },
 
-    _hide: function (isSuccessful) {
+    _hide: function (isSuccessful,box) {
         //tb_remove();
-        $U.disableInputs('#membershipBox', false);
+        $U.disableInputs(box, false);
         $U.hideProgress();
         Membership._clearCenterMeTimer();
 
-        $('#membershipBox').fadeOut('normal',
+        $(box).fadeOut('normal',
                                         function () {
                                             $U.unblockUI();
 
@@ -492,14 +571,14 @@
                                      );
     },
 
-    _centerMe: function () {
-        var e = $('#membershipBox');
+    _centerMe: function (box) {
+        var e = $(box);
 
         $U.center(e);
         Membership._clearCenterMeTimer();
         Membership._centerMeTimer = setInterval(
                                                     function () {
-                                                        Membership._centerMe();
+                                                        Membership._centerMe(box);
                                                     },
                                                     2000
                                                 );
@@ -510,5 +589,58 @@
             clearInterval(Membership._centerMeTimer);
             Membership._centerMeTimer = null;
         }
+    },
+    
+    editStory: function(storyId) {
+        var data = 'id=' + encodeURIComponent(storyId);
+
+        $U.disableInputs('#frmStoryUpdate', true);
+
+        $.ajax(
+            {
+                url: Membership._getStoryUrl,
+                type: 'POST',
+                dataType: 'json',
+                data: data,
+                beforeSend: function() {
+                    $U.showProgress('Wczytywanie artykułu...');
+                },
+                success: function(result) {
+                    $U.hideProgress();
+                    $U.disableInputs('#frmStoryUpdate', false);
+
+                    if (result.errorMessage) {
+                        $U.messageBox('Error', result.errorMessage, true);
+                    } else {
+                        $U.blockUI();
+
+                        var modal = $('#storyEditorBox');
+
+                        $('span.error').hide();
+                        $('span.message').hide();
+
+                        $('#hidStoryId').val(result.id);
+                        $('#txtStoryName').val(result.name);
+                        $('#txtStoryCreatedAt').val(result.createdAt);
+                        $('#txtStoryTitle').val(result.title);
+                        $('#txtStoryDescription').val(result.description);
+                        $('#txtStoryTags').val(result.tags);
+
+                        $('#frmStoryUpdate input[type=radio]').each(
+                            function() {
+                                var rdo = $(this)[0];
+
+                                if (rdo.value == result.category) {
+                                    rdo.checked = true;
+                                }
+                            }
+                        );
+                        $U.center(modal);
+                        modal.fadeIn();
+                        Membership._centerMe('#storyEditorBox');
+                    }
+                }
+            }
+        );
     }
 };

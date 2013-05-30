@@ -28,6 +28,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContentPlaceHolder" runat="server">
     <% IStory story = Model.Story; %>
+    <% IUser user = Model.CurrentUser;%>
     <%= Html.ArticleHeader("", new string[] { "Strona główna", story.BelongsTo.Name}) %>
     <div id="t-<%= Html.AttributeEncode(story.Id.Shrink()) %>" class="story odd">
         <% Html.RenderPartial("Story", new StoryItemViewData { Story = story, User = Model.CurrentUser, PromoteText = Model.PromoteText, DemoteText = Model.DemoteText, CountText = Model.CountText, SocialServices = Model.SocialServices, DetailMode = true }); %>
@@ -62,7 +63,7 @@
         </div>
     </div>
     <%
-        if (Model.CanCurrentUserModerate || (story.CreatedAt.AddMinutes(20) > DateTime.Now) && story.IsPostedBy(Model.CurrentUser))
+        if (Model.CanCurrentUserModerate || (user.HasRightsToEditStory(story)))
         {
             Html.RenderPartial("StoryEditorBox");
         }

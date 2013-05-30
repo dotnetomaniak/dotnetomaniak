@@ -743,20 +743,18 @@ namespace Kigg.Web
         public ActionResult GetStory(string id)
         {
             id = id.NullSafe();
-
+            IStory story = _storyRepository.FindById(id.ToGuid());
             JsonViewData viewData = Validate<JsonViewData>(
                                                             new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku³u nie mo¿e byæ pusty."),
                                                             new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku³u."),
-                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteœ zalogowany.")
-                                                            //new Validation(() => !CurrentUser.CanModerate(), "Nie masz praw do wo³ywania tej metody.")
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteœ zalogowany."),
+                                                            new Validation(() => !CurrentUser.HasRightsToEditStory(story), "Nie masz praw do wo³ania tej metody.")
                                                           );
 
             if (viewData == null)
             {
                 try
                 {
-                    IStory story = _storyRepository.FindById(id.ToGuid());
-
                     if (story == null)
                     {
                         viewData = new JsonViewData { errorMessage = "Podany artyku³ nie istnieje." };
@@ -789,30 +787,28 @@ namespace Kigg.Web
         }
 
         [AcceptVerbs(HttpVerbs.Post), ValidateInput(false), Compress]
-        public ActionResult Update(string id, string name, DateTime createdAt, string title, string category, string description, string tags)
+        public ActionResult Update(string id, string name, Nullable<DateTime> createdAt, string title, string category, string description, string tags)
         {
             id = id.NullSafe();
-
+            IStory story = _storyRepository.FindById(id.ToGuid());
             JsonViewData viewData = Validate<JsonViewData>(
                                                             new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku³u nie mo¿e byæ pusty."),
                                                             new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku³u."),
-                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteœ zalogowany.")
-                                                            //new Validation(() => !CurrentUser.CanModerate(), "Nie masz praw do wo³ania tej metody.")
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteœ zalogowany."),
+                                                            new Validation(() => !CurrentUser.HasRightsToEditStory(story), "Nie masz praw do wo³ania tej metody.")
                                                           );
 
             if (viewData == null)
             {
                 try
-                {
-                    IStory story = _storyRepository.FindById(id.ToGuid());
-
+                {                  
                     if (story == null)
                     {
                         viewData = new JsonViewData { errorMessage = "Podany artyku³ nie istnieje." };
                     }
                     else
                     {
-                        _storyService.Update(story, name.NullSafe(), createdAt, title.NullSafe(), category.NullSafe(), description.NullSafe(), tags.NullSafe());
+                        _storyService.Update(story, name.NullSafe(), createdAt.HasValue ? createdAt.Value.ToUniversalTime() : DateTime.MinValue, title.NullSafe(), category.NullSafe(), description.NullSafe(), tags.NullSafe());
 
                         viewData = new JsonViewData { isSuccessful = true };
                     }

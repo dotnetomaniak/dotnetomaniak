@@ -60,5 +60,15 @@ namespace Kigg.DomainObjects
         {
             return (user.Role & role) == role;
         }
+
+        //[DebuggerStepThrough]
+        public static bool HasRightsToEditStory(this IUser user, IStory story)
+        {
+            if (story == null || user == null) 
+                return false;
+            return user.CanModerate() || user.Id == story.PostedBy.Id
+                    && SystemTime.Now() < story.CreatedAt.AddMinutes(20)
+                    && story.IsPublished() == false;
+        }
     }
 }

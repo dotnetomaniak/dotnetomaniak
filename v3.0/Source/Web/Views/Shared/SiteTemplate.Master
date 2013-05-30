@@ -114,6 +114,7 @@
         //scriptManager.RegisterOnReady("Search.init();");
         //scriptManager.RegisterOnReady("Tag.init();");
         scriptManager.RegisterOnReady("Membership.init();");
+        scriptManager.RegisterOnReady("Membership.set_getStoryUrl ('{0}');".FormatWith(Url.RouteUrl("GetStory")));
         scriptManager.RegisterOnReady("devMedia.init();");
         scriptManager.RegisterOnDispose("Membership.dispose();");
         //scriptManager.RegisterOnDispose("Tag.dispose();");
@@ -121,27 +122,22 @@
 
         if (Model.IsCurrentUserAuthenticated)
         {
-            scriptManager.RegisterSource(Url.Asset("moderation"));
-            scriptManager.RegisterOnReady("Moderation.init();");
-            scriptManager.RegisterOnReady("Moderation.set_getStoryUrl('{0}');".FormatWith(Url.RouteUrl("GetStory")));
-            scriptManager.RegisterOnDispose("Moderation.dispose();");
-            if (Model.CanCurrentUserModerate)
-            {
-                scriptManager.RegisterSource(Url.Asset("moderation"));
-                scriptManager.RegisterOnReady("Moderation.init();");
-                scriptManager.RegisterOnReady("Moderation.set_getStoryUrl('{0}');".FormatWith(Url.RouteUrl("GetStory")));
-                scriptManager.RegisterOnReady("Moderation.set_deleteStoryUrl('{0}');".FormatWith(Url.RouteUrl("Delete")));
-                scriptManager.RegisterOnReady("Moderation.set_spamStoryUrl('{0}');".FormatWith(Url.RouteUrl("ConfirmSpamStory")));
-                scriptManager.RegisterOnReady("Moderation.set_approveStoryUrl('{0}');".FormatWith(Url.RouteUrl("ApproveStory")));
-                scriptManager.RegisterOnReady("Moderation.set_spamCommentUrl('{0}');".FormatWith(Url.RouteUrl("ConfirmSpamComment")));
-                scriptManager.RegisterOnReady("Moderation.set_markCommentAsOffendedUrl('{0}');".FormatWith(Url.RouteUrl("MarkCommentAsOffended")));
-                scriptManager.RegisterOnReady("Moderation.set_generateMiniatureStoryUrl('{0}');".FormatWith(Url.RouteUrl("GenerateMiniatureStory")));
-                scriptManager.RegisterOnReady("Moderation.set_editAdUrl('{0}');".FormatWith(Url.RouteUrl("GetAd")));
+                if (Model.CanCurrentUserModerate)
+                {
+                    scriptManager.RegisterSource(Url.Asset("moderation"));
+                    scriptManager.RegisterOnReady("Moderation.init();");
+                    scriptManager.RegisterOnReady("Moderation.set_deleteStoryUrl('{0}');".FormatWith(Url.RouteUrl("Delete")));
+                    scriptManager.RegisterOnReady("Moderation.set_spamStoryUrl('{0}');".FormatWith(Url.RouteUrl("ConfirmSpamStory")));
+                    scriptManager.RegisterOnReady("Moderation.set_approveStoryUrl('{0}');".FormatWith(Url.RouteUrl("ApproveStory")));
+                    scriptManager.RegisterOnReady("Moderation.set_spamCommentUrl('{0}');".FormatWith(Url.RouteUrl("ConfirmSpamComment")));
+                    scriptManager.RegisterOnReady("Moderation.set_markCommentAsOffendedUrl('{0}');".FormatWith(Url.RouteUrl("MarkCommentAsOffended")));
+                    scriptManager.RegisterOnReady("Moderation.set_generateMiniatureStoryUrl('{0}');".FormatWith(Url.RouteUrl("GenerateMiniatureStory")));
+                    scriptManager.RegisterOnReady("Moderation.set_editAdUrl('{0}');".FormatWith(Url.RouteUrl("GetAd")));
 
 
-                scriptManager.RegisterOnDispose("Moderation.dispose();");
-            }
-
+                    scriptManager.RegisterOnDispose("Moderation.dispose();");
+                }
+            
             if (Model.CurrentUser.IsAdministrator())
             {
                 scriptManager.RegisterSource(Url.Asset("administration"));
