@@ -456,8 +456,8 @@
                 }
             }
         );
-        
-        RichEditor.create($('#txtStoryDescription2'), $('#hidDescription2'), $('#storyPreview2'));
+        if (typeof RichEditor != "undefined")
+            RichEditor.create($('#txtStoryDescription2'), $('#hidDescription2'), $('#storyPreview2'));
     },
 
     dispose: function () {
