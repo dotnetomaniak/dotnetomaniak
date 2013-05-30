@@ -456,6 +456,8 @@
                 }
             }
         );
+        
+        RichEditor.create($('#txtStoryDescription2'), $('#hidDescription2'), $('#storyPreview2'));
     },
 
     dispose: function () {
@@ -623,7 +625,7 @@
                         $('#txtStoryName').val(result.name);
                         $('#txtStoryCreatedAt').val(result.createdAt);
                         $('#txtStoryTitle').val(result.title);
-                        $('#txtStoryDescription').val(result.description);
+                        $('#txtStoryDescription2').val(result.description);
                         $('#txtStoryTags').val(result.tags);
 
                         $('#frmStoryUpdate input[type=radio]').each(

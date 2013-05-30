@@ -768,7 +768,7 @@ namespace Kigg.Web
                                             name = story.UniqueName,
                                             createdAt = story.CreatedAt.ToString("G", Constants.CurrentCulture),
                                             title = story.Title,
-                                            description = story.HtmlDescription,
+                                            description = story.TextDescription,
                                             category = story.BelongsTo.UniqueName,
                                             tags = string.Join(", ", story.Tags.Select(t => t.Name).ToArray())
                                         }
