@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<StoryItemViewData>" %>
+<%@ Import Namespace="Kigg.LinqToSql.DomainObjects" %>
 <script runat="server">
     string ShareLinks(string id, IEnumerable<string> socialServices)
     {
@@ -182,9 +183,9 @@
         <% if (detailsMode) {%>
             <span class="counter"><a id="a-c" href="javascript:void(0)" class="imageCode actionLink">pokaż kod licznika</a></span>
         <% }%>
-        <% if ((user != null) && ((user.Id == story.PostedBy.Id && DateTime.Now < story.CreatedAt.AddMinutes(20) && story.IsPublished() == false) || user.CanModerate())) %>
+        <% if ((user != null) && (user.CanModerate() || user.HasRightsToEditStory(story) && (detailsMode))) %>
         <% { %>        
-        <span class="edit"><a class="edit actionLink" href="javascript:void(0)" onclick="Moderation.editStory('<%= attributedEncodedStoryId %>')">
+        <span class="edit"><a class="edit actionLink" href="javascript:void(0)" onclick="Membership.editStory('<%= attributedEncodedStoryId %>')">
             edycja</a></span>
         <% } %>
         <% if ((user != null) && user.CanModerate()) %>

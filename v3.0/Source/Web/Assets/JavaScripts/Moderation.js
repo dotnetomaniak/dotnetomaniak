@@ -6,7 +6,7 @@
     _deleteStoryUrl: '',
     _spamStoryUrl: '',
     _approveStoryUrl: '',
-    _getStoryUrl: '',
+    //_getStoryUrl: '',
     _generateMiniatureStoryUrl: '',
     _centerMeTimer: null,
 
@@ -34,85 +34,15 @@
         Moderation._approveStoryUrl = value;
     },
 
-    set_getStoryUrl: function(value) {
-        Moderation._getStoryUrl = value;
-    },
+    //set_getStoryUrl: function(value) {
+    //    Moderation._getStoryUrl = value;
+    //},
 
     set_generateMiniatureStoryUrl: function(value) {
         Moderation._generateMiniatureStoryUrl = value;
     },
 
     init: function() {
-        $('#storyEditorBox').keydown(
-            function(e) {
-                if (e.keyCode === 27) // EscapeKey
-                {
-                    Moderation._hide();
-                }
-            }
-        );
-
-        $('#storyEditorClose').click(function() { Moderation._hide(); });
-
-        $('#frmStoryUpdate').validate(
-            {
-                rules: {
-                    name: 'required',
-                    createdAt: 'required',
-                    description: {
-                        required: true,
-                        rangelength: [8, 2048]
-                    },
-                    category: 'required',
-                    tags: 'required'
-                },
-                messages: {
-                    name: 'Nazwa nie może być pusta.',
-                    createdAt: 'Pole Utworzono nie może być puste.',
-                    title: {
-                        required: 'Tytuł nie może być pusty.',
-                        maxlength: 'Tytuł nie może być dłuższy niż 256 znaków.'
-                    },
-                    description: {
-                        required: 'Opis nie może być pusty.',
-                        rangelength: 'Opis musi zawierać się pomiędzy 8 a 2048 znakami.'
-                    },
-                    category: 'Kategoria musi być wybrana.',
-                    tags: 'Podaj przynajmniej jeden tag dla artykułu.'
-                },
-                submitHandler: function(form) {
-                    var options = {
-                        dataType: 'json',
-                        beforeSubmit: function(values, form, options) {
-                            $('#updateStoryMessage').text('').css('color', '').hide();
-                            $U.disableInputs('#frmStoryUpdate', true);
-                            $U.showProgress('Aktualizacja wpisu...', '#btnUpdateStory');
-                        },
-                        success: function(result) {
-                            $U.disableInputs('#frmStoryUpdate', false);
-                            $U.hideProgress();
-
-                            if (result.isSuccessful) {
-                                Moderation._hide();
-                            } else {
-                                $('#updateStoryMessage').text(result.errorMessage).css({ color: '#ff0000', display: 'block' });
-                            }
-                        }
-                    };
-
-                    $(form).ajaxSubmit(options);
-                },
-                errorPlacement: function(error, element) {
-                    element.parents('p:first').find('span.error').text(error.text());
-                },
-                highlight: function(element, errorClass) {
-                    $(element).parents('p:first').find('span.error').show();
-                },
-                unhighlight: function(element, errorClass) {
-                    $(element).parents('p:first').find('span.error').hide();
-                }
-            }
-        );
 
         /* Polish initialisation for the jQuery UI date picker plugin. */
         /* Written by Jacek Wysocki (jacek.wysocki@gmail.com). */
@@ -318,58 +248,6 @@
     //var newDate = dateFormat(jsonDate, "mm/dd/yyyy");
     //return newDate;
     //},
-    editStory: function(storyId) {
-        var data = 'id=' + encodeURIComponent(storyId);
-
-        $U.disableInputs('#frmStoryUpdate', true);
-
-        $.ajax(
-            {
-                url: Moderation._getStoryUrl,
-                type: 'POST',
-                dataType: 'json',
-                data: data,
-                beforeSend: function() {
-                    $U.showProgress('Wczytywanie artykułu...');
-                },
-                success: function(result) {
-                    $U.hideProgress();
-                    $U.disableInputs('#frmStoryUpdate', false);
-
-                    if (result.errorMessage) {
-                        $U.messageBox('Error', result.errorMessage, true);
-                    } else {
-                        $U.blockUI();
-
-                        var modal = $('#storyEditorBox');
-
-                        $('span.error').hide();
-                        $('span.message').hide();
-
-                        $('#hidStoryId').val(result.id);
-                        $('#txtStoryName').val(result.name);
-                        $('#txtStoryCreatedAt').val(result.createdAt);
-                        $('#txtStoryTitle').val(result.title);
-                        $('#txtStoryDescription').val(result.description);
-                        $('#txtStoryTags').val(result.tags);
-
-                        $('#frmStoryUpdate input[type=radio]').each(
-                            function() {
-                                var rdo = $(this)[0];
-
-                                if (rdo.value == result.category) {
-                                    rdo.checked = true;
-                                }
-                            }
-                        );
-                        $U.center(modal);
-                        modal.fadeIn();
-                        Moderation._centerMe();
-                    }
-                }
-            }
-        );
-    },
 
     approveStory: function(storyId) {
 

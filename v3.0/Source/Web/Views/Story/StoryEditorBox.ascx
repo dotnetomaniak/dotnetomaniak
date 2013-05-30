@@ -7,17 +7,20 @@
     <div class="contentContainer">
         <form id="frmStoryUpdate" action="<%= Url.Action("Update", "Story") %>" method="post">
             <div class="box">
-                <input type="hidden" id="hidStoryId" name="id"/>                
+                <input type="hidden" id="hidStoryId" name="id"/>  
+                <% if (Model.CurrentUser.IsAdministrator())
+                   { %>                 
                 <div class="add-article-row">
                     <label for="txtStoryName" class="label">Nazwa:</label>
                     <input id="txtStoryName" name="name" type="text" class="largeTextBox" />
                     <span class="error"></span>
-                </div>               
+                </div>        
                 <div class="add-article-row">
                     <label for="txtStoryCreatedAt" class="label">Utworzone:</label>
                     <input id="txtStoryCreatedAt" name="createdAt" type="text" class="largeTextBox"/>
                     <span class="error"></span>
                 </div>
+                <% } %>
                 <div class="add-article-row">
                     <label for="txtStoryTitle" class="label">Tytuł:</label>
                     <input id="txtStoryTitle" name="title" type="text" class="largeTextBox"/>
