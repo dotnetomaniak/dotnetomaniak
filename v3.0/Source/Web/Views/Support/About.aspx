@@ -22,6 +22,7 @@
 	<li><a href="#">Michał Laskowski</a></li>
 	<li>Michał Jałbrzykowski (grafika)</li>
 	<li>Łukasz Wawrzyniak</li>
+    <li>Paweł Kubacki</li>
     </ul>
     <p>Chcesz nam pomóc? Napisz do <a href="<%= Url.RouteUrl("Contact") %>">nas</a>.
     </div>
