@@ -54,8 +54,20 @@
     overflow: auto;
     padding: 30px 15px 15px;
     text-align: left;
+    
 }
-
+ @media screen and (max-height: 1020px)
+        {
+                .modalBox .contentContainer
+                {
+                        max-height: 700px;
+                        overflow:auto;
+                }
+                .modalBox
+                {
+                        max-height:800px;
+                }
+        }
 #membershipBox
 {
     width:566px;
