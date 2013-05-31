@@ -183,7 +183,7 @@
         <% if (detailsMode) {%>
             <span class="counter"><a id="a-c" href="javascript:void(0)" class="imageCode actionLink">pokaż kod licznika</a></span>
         <% }%>
-        <% if ((user != null) && (user.CanModerate() || user.HasRightsToEditStory(story) && (detailsMode))) %>
+        <% if ((user != null) && (detailsMode) && (user.CanModerate() || user.HasRightsToEditStory(story))) %>
         <% { %>        
         <span class="edit"><a class="edit actionLink" href="javascript:void(0)" onclick="Membership.editStory('<%= attributedEncodedStoryId %>')">
             edycja</a></span>
