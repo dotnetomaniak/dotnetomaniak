@@ -1570,3 +1570,6 @@ font-size: 15px;
     font-weight:bold;
     color:#1c94c4
 }
+.ui-helper-hidden-accessible{
+    display: none;
+}
