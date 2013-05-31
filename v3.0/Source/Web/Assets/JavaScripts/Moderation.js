@@ -472,7 +472,7 @@
         $('input[name="StartTime"]').datepicker({ dateFormat: 'yy-mm-dd' }).val();
         $('.contentContainer > div').hide();
         $('#RecommendationSection').show();
-        Membership._show();
+        Membership._show('#membershipBox');
         $U.focus('txtRecommendationLink');
     },
 };
