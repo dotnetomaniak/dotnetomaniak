@@ -29,7 +29,7 @@ BEGIN
 	SELECT u.Id, '1FD420BA-3104-436E-A7C8-87897DCFE954','false', GETUTCDate() 
 		FROM [User] u 		
 		WHERE u.Id NOT IN (SELECT ua.UserId FROM UserAchievement ua WHERE AchievementId = '1FD420BA-3104-436E-A7C8-87897DCFE954')
-		AND DATEPART(hour, u.LastActivityAt) BETWEEN 1 AND 2
+		AND DATEPART(hour, u.LastActivityAt) = 0
     SELECT 1;
 END
 GO

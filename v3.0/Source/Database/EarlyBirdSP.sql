@@ -29,7 +29,7 @@ BEGIN
 	SELECT u.Id, 'F5CC5705-5559-4818-A440-8C77F7D0B30C','false', GETUTCDate() 
 		FROM [User] u 		
 		WHERE u.Id NOT IN (SELECT ua.UserId FROM UserAchievement ua WHERE AchievementId = 'F5CC5705-5559-4818-A440-8C77F7D0B30C')
-		AND DATEPART(hour, u.LastActivityAt) BETWEEN 4 AND 5
+		AND DATEPART(hour, u.LastActivityAt) = 3
     SELECT 1;
 END
 GO
