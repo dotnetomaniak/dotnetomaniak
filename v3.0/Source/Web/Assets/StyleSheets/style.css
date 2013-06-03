@@ -291,7 +291,7 @@ p.show-more-articles{
     span.date
     {
     }
-
+    
     .summary span.system{
       background:url(/Assets/Images/icon-system.png) no-repeat left 2px;
     }
@@ -324,6 +324,9 @@ p.show-more-articles{
     }
     .summary span.clicks{
       background:url(/Assets/Images/icon-click.png) no-repeat left 0px;
+    }
+    .summary span.approve{
+      background: url(/Assets/images/approve.png) no-repeat left 3px;
     }
     a.rozwin{
     background: url("/Assets/images/ico-rozwin.png") no-repeat scroll right top transparent;
