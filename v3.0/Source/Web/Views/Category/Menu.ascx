@@ -20,7 +20,7 @@
                 foreach (ICategory category in Model.OrderBy(x => x.Name))
                 {
             %>
-            <li <%: index/4 == count/4 ? "class='last'" : "" %>><strong>
+            <li <%= index/4 == count/4 ? "class='last'" : "" %>><strong>
                 <%= Html.ActionLink(category.Name, "Category", "Story", new { name = category.UniqueName }, new { rel = "tag directory", @class="" })%>
             </strong>
                 <p>
