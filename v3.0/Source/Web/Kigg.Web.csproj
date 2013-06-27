@@ -189,6 +189,7 @@
     <Compile Include="Handlers\Image\GraphicsExtension.cs" />
     <Compile Include="Handlers\Share\WykopRedirector.cs" />
     <Compile Include="Handlers\User\UserHandler.cs" />
+    <Compile Include="Helpers\Encoder.cs" />
     <Compile Include="Helpers\IOpenIdRelyingParty.cs" />
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Extension\HttpCookieExtension.cs" />
