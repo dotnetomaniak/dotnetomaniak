@@ -210,6 +210,7 @@ p.show-more-articles{
       padding-right: 19px;
       padding-top: 28px;
       width: 281px;
+      position:relative;
     } 
     #sub h2{
     font-size:18px
@@ -1575,4 +1576,15 @@ font-size: 15px;
 }
 .ui-helper-hidden-accessible{
     display: none;
+}
+
+.googleHeader{
+    position: absolute;
+    bottom: 150px;
+    width: 281px;
+}
+
+#___plus_0{
+    position: absolute;
+    bottom:10px;
 }
