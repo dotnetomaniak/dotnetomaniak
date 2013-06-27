@@ -444,6 +444,7 @@
     <Content Include="Assets\JavaScripts\jquery-ui-1.8.17.custom.min.js" />
     <Content Include="Assets\JavaScripts\jquery.validate.js" />
     <Content Include="Assets\JavaScripts\load.js" />
+    <Content Include="Assets\JavaScripts\SocialMedia.js" />
     <Content Include="Assets\JavaScripts\whcookies.js" />
     <Content Include="Assets\StyleSheets\autocomplete.css" />
     <Content Include="Assets\StyleSheets\blog.css" />
