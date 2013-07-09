@@ -15,14 +15,17 @@
     <p>Jesteśmy pasjonatami, chcącymi rozwijać społeczność .NET w Polsce. Poprzez portale takie jak ten
     zbliżać wszystkich, którym technologia .NET nie jest obojętna a dzięki umieszczaniu i wymianie artykułów, rozwijać i poszerzać swoją wiedzę.</p>
     <p>Jeśli technologia .NET nie jest Ci obojętna - przyłącz się do nas i zamieszczaj artykuły.</p>
-    <p>Obecnie w rozwoju pomagają</p>
+    <p>Obecnie w rozwoju pomagają:</p>
     <ul>
 	<li><a href="http://pawlos.blogspot.com">Paweł Łukasik</a></li>
+    <li>Paweł Kubacki</li>
+    </ul>
+    <p style="margin: 25px 0 8px 0">Wspierali:</p>
+    <ul>
 	<li><a href="http://geekswithblogs.net/jakubmal/Default.aspx">Jakub Malinowski</a></li>
 	<li><a href="#">Michał Laskowski</a></li>
 	<li>Michał Jałbrzykowski (grafika)</li>
 	<li>Łukasz Wawrzyniak</li>
-    <li>Paweł Kubacki</li>
     </ul>
     <p>Chcesz nam pomóc? Napisz do <a href="<%= Url.RouteUrl("Contact") %>">nas</a>.
     </div>
