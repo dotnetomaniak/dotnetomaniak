@@ -210,6 +210,7 @@ p.show-more-articles{
       padding-right: 19px;
       padding-top: 28px;
       width: 281px;
+      position:relative;
     } 
     #sub h2{
     font-size:18px
@@ -291,7 +292,7 @@ p.show-more-articles{
     span.date
     {
     }
-
+    
     .summary span.system{
       background:url(/Assets/Images/icon-system.png) no-repeat left 2px;
     }
@@ -324,6 +325,9 @@ p.show-more-articles{
     }
     .summary span.clicks{
       background:url(/Assets/Images/icon-click.png) no-repeat left 0px;
+    }
+    .summary span.approve{
+      background: url(/Assets/images/approve.png) no-repeat left 3px;
     }
     a.rozwin{
     background: url("/Assets/images/ico-rozwin.png") no-repeat scroll right top transparent;
@@ -1572,4 +1576,15 @@ font-size: 15px;
 }
 .ui-helper-hidden-accessible{
     display: none;
+}
+
+.googleHeader{
+    position: absolute;
+    bottom: 150px;
+    width: 281px;
+}
+
+#___plus_0{
+    position: absolute;
+    bottom:10px;
 }

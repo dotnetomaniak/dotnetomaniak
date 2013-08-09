@@ -60,7 +60,7 @@ namespace Kigg.Infrastructure
             Check.Argument.IsNotNull(users, "users");
 
             string body = PrepareMailBodyWith("NewComment", "userName", comment.ByUser.UserName, "detailUrl", url, "comment", comment.TextBody);
-            string subject = "{0}: New Comment - {1}".FormatWith(_settings.SiteTitle, comment.ForStory.Title);
+            string subject = "{0}: Nowy Komentarz - {1}".FormatWith(_settings.SiteTitle, comment.ForStory.Title);
 
             ThreadPool.QueueUserWorkItem(state =>
                                                     {
@@ -90,7 +90,7 @@ namespace Kigg.Infrastructure
 
             string body = PrepareMailBodyWith("MarkAsSpamStory", "markedByUserName", byUser.UserName, "title", story.Title, "siteUrl", url, "originalUrl", story.Url, "postedByUserName", story.PostedBy.UserName);
 
-            SendMailAsync(_settings.WebmasterEmail, _settings.SupportEmail, "Story Marked As Spam - {0}".FormatWith(SystemTime.Now().ToLongDateString()), body);
+            SendMailAsync(_settings.WebmasterEmail, _settings.SupportEmail, "Artyku³ oznaczony jako spam - {0}".FormatWith(SystemTime.Now().ToLongDateString()), body);
         }
 
         public void NotifySpamComment(string url, IComment comment, string source)

@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<dynamic>" %>
 
 
-<div class="pageHeader">
+<div class="pageHeader googleHeader">
     <div class="pageTitle">
         <h2>
             Google+</h2>
