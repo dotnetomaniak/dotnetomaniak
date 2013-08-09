@@ -189,6 +189,7 @@
     <Compile Include="Handlers\Image\GraphicsExtension.cs" />
     <Compile Include="Handlers\Share\WykopRedirector.cs" />
     <Compile Include="Handlers\User\UserHandler.cs" />
+    <Compile Include="Helpers\Encoder.cs" />
     <Compile Include="Helpers\IOpenIdRelyingParty.cs" />
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Extension\HttpCookieExtension.cs" />
@@ -443,6 +444,7 @@
     <Content Include="Assets\JavaScripts\jquery-ui-1.8.17.custom.min.js" />
     <Content Include="Assets\JavaScripts\jquery.validate.js" />
     <Content Include="Assets\JavaScripts\load.js" />
+    <Content Include="Assets\JavaScripts\SocialMedia.js" />
     <Content Include="Assets\JavaScripts\whcookies.js" />
     <Content Include="Assets\StyleSheets\autocomplete.css" />
     <Content Include="Assets\StyleSheets\blog.css" />

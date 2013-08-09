@@ -10,14 +10,18 @@
 
     public class StoryRepository : BaseRepository<IStory, Story>, IStoryRepository
     {
-        public StoryRepository(IDatabase database)
+        private readonly IConfigurationSettings _settings;
+
+        public StoryRepository(IDatabase database, IConfigurationSettings settings)
             : base(database)
         {
+            _settings = settings;
         }
 
-        public StoryRepository(IDatabaseFactory factory)
+        public StoryRepository(IDatabaseFactory factory, IConfigurationSettings settings)
             : base(factory)
         {
+            _settings = settings;
         }
 
         public override void Add(IStory entity)
@@ -137,9 +141,10 @@
             Check.Argument.IsNotNegative(max, "max");
 
             int total = CountByUpcoming();
+            var now = SystemTime.Now();
 
             var stories = Database.StoryDataSource
-                                  .Where(s => (s.ApprovedAt != null) && (s.PublishedAt == null) && (s.Rank == null))
+                                  .Where(s => (s.ApprovedAt != null) && (s.PublishedAt == null) && (s.Rank == null) && (s.CreatedAt.AddHours(_settings.MaximumAgeOfStoryInHoursToPublish) > now))
                                   .OrderByDescending(s => s.CreatedAt)
                                   .Skip(start)
                                   .Take(max);
@@ -360,7 +365,8 @@
 
         public virtual int CountByUpcoming()
         {
-            return Database.StoryDataSource.Count(s => (s.ApprovedAt != null) && (s.PublishedAt == null));
+            var now = SystemTime.Now();
+            return Database.StoryDataSource.Count(s => (s.ApprovedAt != null) && (s.PublishedAt == null) && (s.CreatedAt.AddHours(_settings.MaximumAgeOfStoryInHoursToPublish) > now));
         }
 
         public virtual int CountByCategory(Guid categoryId)
