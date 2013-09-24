@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Data;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Web.Mvc;
-using System.Web.UI;
 using System.Web.WebPages;
-using System.Web.WebPages.Instrumentation;
 using Kigg.Core.DomainObjects;
 using Kigg.DomainObjects;
 using Kigg.Infrastructure;
-using Kigg.LinqToSql.DomainObjects;
-using Kigg.LinqToSql.Repository;
 using Kigg.Repository;
 using Kigg.Web.ViewData;
 using UnitOfWork = Kigg.Infrastructure.UnitOfWork;

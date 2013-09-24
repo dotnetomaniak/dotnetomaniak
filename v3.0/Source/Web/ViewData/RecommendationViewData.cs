@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Web.Mvc;
-using System.Web.WebPages.Instrumentation;
 
 namespace Kigg.Web.ViewData
 {
