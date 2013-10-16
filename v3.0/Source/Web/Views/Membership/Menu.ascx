@@ -3,16 +3,16 @@
 <% IUser user = Model.CurrentUser; %>
 <p class="userLinks">
     <strong>
-    <span>Witaj 
+    <span>Witaj
     <%if (isAuthenticated) %>
     <%{%>
         <% string userName = user.UserName; %>
-        <img class="smoothImage" onload="javascript:SmoothImage.show(this)" alt="<%= Html.AttributeEncode(userName) %>" src="<%= Html.AttributeEncode(user.GravatarUrl(24)) %>"/> 
+        <img class="smoothImage" onload="javascript:SmoothImage.show(this)" alt="<%= Html.AttributeEncode(userName) %>" src="<%= Html.AttributeEncode(user.GravatarUrl(24)) %>"/>
         <%= Html.RouteLink(userName, "User", new { name = user.Id.Shrink(), tab = UserDetailTab.Promoted, page = 1 })%>
     <%} %>
     <%else%>
     <%{%>
-        Gościu
+        Maniaku
     <%}%>
     ,</span></strong>
     <%if (isAuthenticated) %>
