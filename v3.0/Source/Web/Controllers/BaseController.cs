@@ -2,156 +2,163 @@ using Kigg.Core.DomainObjects;
 
 namespace Kigg.Web
 {
-    using System;
-    using System.Diagnostics;
-    using System.Net;
-    using System.Web;
-    using System.Web.Mvc;
+	using System;
+	using System.Diagnostics;
+	using System.Net;
+	using System.Web;
+	using System.Web.Mvc;
 
-    using DomainObjects;
-    using Infrastructure;
-    using Repository;
+	using DomainObjects;
+	using Infrastructure;
+	using Repository;
 
-    public abstract class BaseController : Controller
-    {
-        private static readonly Type CurrentUserKey = typeof(IUser);
+	public abstract class BaseController : Controller
+	{
+		private static readonly Type CurrentUserKey = typeof(IUser);
 
-        protected BaseController()
-        {
-            TempDataProvider = new EmptyTempDataProvider();
-        }
+		protected BaseController()
+		{
+			TempDataProvider = new EmptyTempDataProvider();
+		}
 
-        public IConfigurationSettings Settings
-        {
-            get;
-            set;
-        }
+		public IConfigurationSettings Settings
+		{
+			get;
+			set;
+		}
 
-        public IFormsAuthentication FormsAuthentication
-        {
-            get;
-            set;
-        }
+		public IFormsAuthentication FormsAuthentication
+		{
+			get;
+			set;
+		}
 
-        public IUserRepository UserRepository
-        {
-            get;
-            set;
-        }
+		public IUserRepository UserRepository
+		{
+			get;
+			set;
+		}
 
-        public string CurrentUserName
-        {
-            [DebuggerStepThrough]
-            get
-            {
-                return (HttpContext.User == null) ? null : HttpContext.User.Identity.Name;
-            }
-        }
+		public IStoryRepository StoryRepository
+		{
+			get;
+			set;
+		}
 
-        public IUser CurrentUser
-        {
-            get
-            {
-                if (!string.IsNullOrEmpty(CurrentUserName))
-                {
-                    IUser user = HttpContext.Items[CurrentUserKey] as IUser;
+		public string CurrentUserName
+		{
+			[DebuggerStepThrough]
+			get
+			{
+				return (HttpContext.User == null) ? null : HttpContext.User.Identity.Name;
+			}
+		}
 
-                    if (user == null)
-                    {
-                        using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
-                        {
-                            user = UserRepository.FindByUserName(CurrentUserName);
+		public IUser CurrentUser
+		{
+			get
+			{
+				if (!string.IsNullOrEmpty(CurrentUserName))
+				{
+					IUser user = HttpContext.Items[CurrentUserKey] as IUser;
 
-                            if (user != null)
-                            {
-                                try
-                                {
-                                    if (!user.IsLockedOut)
-                                    {
-                                        user.LastActivityAt = SystemTime.Now();
-                                        unitOfWork.Commit();
-                                    }
-                                }
-                                catch (Exception e)
-                                {
-                                    Log.Exception(e);
-                                }
+					if (user == null)
+					{
+						using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
+						{
+							user = UserRepository.FindByUserName(CurrentUserName);
 
-                                HttpContext.Items[CurrentUserKey] = user;
-                            }
-                        }
-                    }
-                    return user;
-                }
+							if (user != null)
+							{
+								try
+								{
+									if (!user.IsLockedOut)
+									{
+										user.LastActivityAt = SystemTime.Now();
+										unitOfWork.Commit();
+									}
+								}
+								catch (Exception e)
+								{
+									Log.Exception(e);
+								}
 
-                return null;
-            }
-        }
+								HttpContext.Items[CurrentUserKey] = user;
+							}
+						}
+					}
+					return user;
+				}
 
-        public bool IsCurrentUserAuthenticated
-        {
-            get
-            {
-                if (HttpContext.User.Identity.IsAuthenticated && (CurrentUser != null))
-                {
-                    if (!CurrentUser.IsLockedOut)
-                    {
-                        return true;
-                    }
+				return null;
+			}
+		}
 
-                    Log.Warning("Logging out User: {0}", CurrentUserName);
+		public bool IsCurrentUserAuthenticated
+		{
+			get
+			{
+				if (HttpContext.User.Identity.IsAuthenticated && (CurrentUser != null))
+				{
+					if (!CurrentUser.IsLockedOut)
+					{
+						return true;
+					}
 
-                    // Logout the user if the account is locked out
-                    FormsAuthentication.SignOut();
+					Log.Warning("Logging out User: {0}", CurrentUserName);
 
-                    Log.Info("User Logged out.");
-                }
+					// Logout the user if the account is locked out
+					FormsAuthentication.SignOut();
 
-                return false;
-            }
-        }
+					Log.Info("User Logged out.");
+				}
 
-        public string CurrentUserIPAddress
-        {
-            get
-            {
-                return HttpContext.Request.UserHostAddress;
-            }
-        }
+				return false;
+			}
+		}
 
-        public T CreateViewData<T>() where T : BaseViewData, new()
-        {
-            T viewData = new T
-                             {
-                                 SiteTitle = Settings.SiteTitle,
-                                 RootUrl = Settings.RootUrl,
-                                 MetaKeywords = Settings.MetaKeywords,
-                                 MetaDescription = Settings.MetaDescription,
-                                 IsCurrentUserAuthenticated = IsCurrentUserAuthenticated,
-                                 CurrentUser = CurrentUser
-                             };
+		public string CurrentUserIPAddress
+		{
+			get
+			{
+				return HttpContext.Request.UserHostAddress;
+			}
+		}
 
-            return viewData;
-        }
+		public T CreateViewData<T>() where T : BaseViewData, new()
+		{
+			T viewData = new T
+											 {
+												 SiteTitle = Settings.SiteTitle,
+												 RootUrl = Settings.RootUrl,
+												 MetaKeywords = Settings.MetaKeywords,
+												 MetaDescription = Settings.MetaDescription,
+												 IsCurrentUserAuthenticated = IsCurrentUserAuthenticated,
+												 CurrentUser = CurrentUser,
+												 UpcomingStoriesCount = StoryRepository.CountByUpcoming()
+											 };
 
-        public static T Validate<T>(params Validation[] validations) where T : JsonViewData, new()
-        {
-            foreach (Validation validation in validations)
-            {
-                bool result = validation.Expression.Compile().Invoke();
+			return viewData;
+		}
 
-                if (result)
-                {
-                    return new T { errorMessage = validation.ErrorMessage };
-                }
-            }
+		public static T Validate<T>(params Validation[] validations) where T : JsonViewData, new()
+		{
+			foreach (Validation validation in validations)
+			{
+				bool result = validation.Expression.Compile().Invoke();
 
-            return null;
-        }
+				if (result)
+				{
+					return new T { errorMessage = validation.ErrorMessage };
+				}
+			}
 
-        public static void ThrowNotFound(string message)
-        {
-            throw new HttpException((int) HttpStatusCode.NotFound, message);
-        }
-    }
+			return null;
+		}
+
+		public static void ThrowNotFound(string message)
+		{
+			throw new HttpException((int)HttpStatusCode.NotFound, message);
+		}
+	}
 }

@@ -218,7 +218,7 @@
                         <%= Html.ActionLink("Dodaj artykuł", "Submit", "Story", null, new {id = "blue-button"})%>
                     </p>
                     <p class="show-more-articles">
-                        <%= Html.ActionLink("Zobacz listę oczekujących artykułów", "Upcoming", "Story")%>
+                        <%= Html.ActionLink("Zobacz listę oczekujących artykułów (" + ViewData.Model.UpcomingStoriesCount.ToString() + ")", "Upcoming", "Story")%> 
                     </p>
                 </div>
             </div>
