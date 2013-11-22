@@ -1588,3 +1588,8 @@ font-size: 15px;
     position: absolute;
     bottom:10px;
 }
+
+.fb_iframe_widget_fluid {
+	display: inline-block !important;
+	height: 271px !important;
+}
