@@ -808,7 +808,7 @@ namespace Kigg.Web
                     }
                     else
                     {
-                        _storyService.Update(story, name.NullSafe(), createdAt.HasValue ? createdAt.Value.ToUniversalTime() : DateTime.MinValue, title.NullSafe(), category.NullSafe(), description.NullSafe(), tags.NullSafe());
+                        _storyService.Update(story, name.NullSafe(), createdAt.HasValue ? createdAt.Value : DateTime.MinValue, title.NullSafe(), category.NullSafe(), description.NullSafe(), tags.NullSafe());
 
                         viewData = new JsonViewData { isSuccessful = true };
                     }
