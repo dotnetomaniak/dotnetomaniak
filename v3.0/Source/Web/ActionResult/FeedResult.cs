@@ -243,6 +243,11 @@ namespace Kigg.Web
             entry.Add(new XElement(_ns + "voteCount", story.VoteCount));
             entry.Add(new XElement(_ns + "viewCount", story.ViewCount));
             entry.Add(new XElement(_ns + "commentCount", story.CommentCount));
+            //GH:71 begin
+            entry.Add(new XElement(_ns + "textContent", story.TextDescription));
+            entry.Add(new XElement(_ns + "articleLink", story.Url));
+            entry.Add(new XElement(_ns + "imageLink", ThumbnailHelper.GetThumbnailVirtualPathForStory(story.Id.Shrink(), ThumbnailSize.Small, true).AttributeEncode()));
+            //GH:71 end
 
             ICategory category = story.BelongsTo;
             string categoryUrl = string.Concat(_model.RootUrl, urlHelper.Action("Category", "Story", new { name = category.UniqueName }));
