@@ -111,9 +111,9 @@
 <div itemscope itemtype="http://schema.org/Article" class="article">
     <div class="title">
         <h2>
-            <a itemprop="name" class="entry-title taggedlink" rel="<%= rel %>" href="<%= Html.AttributeEncode(detailUrl) %>"
+            <a class="entry-title taggedlink" rel="<%= rel %>" href="<%= Html.AttributeEncode(detailUrl) %>"
                 <%= onClick %> >
-                <%= Html.Encode(story.Title)%></a></h2>
+                <span itemprop="name"><%= Html.Encode(story.Title)%></span></a></h2>
     </div>
     <div itemprop="description" class="entry-content description" <%= detailsMode ? "style='height: auto'" : "" %>>
         <% if (detailsMode) %>
