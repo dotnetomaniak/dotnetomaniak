@@ -1,4 +1,4 @@
-namespace Kigg.Web
+Ôªønamespace Kigg.Web
 {
     using System;
     using System.Collections.Generic;
@@ -59,11 +59,11 @@ namespace Kigg.Web
             viewData.Stories = pagedResult.Result;
             viewData.TotalStoryCount = pagedResult.Total;
 
-            viewData.Title = "{0} - Najnowsze artyku≥y o .NET".FormatWith(Settings.SiteTitle);
+            viewData.Title = "{0} - Najnowsze artyku≈Çy o .NET".FormatWith(Settings.SiteTitle);
             if (page.HasValue && page > 1)
                 viewData.Title += " - Strona {0}".FormatWith(page);
 
-            viewData.MetaDescription = "Czytaj najnowsze artyku≥y o .NET";
+            viewData.MetaDescription = "Czytaj najnowsze artyku≈Çy o .NET";
             if (page.HasValue && page > 1)
             {
                 viewData.MetaDescription += " - Strona {0}".FormatWith(page);
@@ -71,7 +71,7 @@ namespace Kigg.Web
             viewData.RssUrl = string.IsNullOrEmpty(Settings.PublishedStoriesFeedBurnerUrl) ? Url.RouteUrl("FeedPublished") : Settings.PublishedStoriesFeedBurnerUrl;
             viewData.AtomUrl = Url.RouteUrl("FeedPublished", new { format = "Atom" });
             viewData.Subtitle = "Wszystkie";
-            viewData.NoStoryExistMessage = "Brak opublikowanych artyku≥Ûw.";
+            viewData.NoStoryExistMessage = "Brak opublikowanych artyku≈Ç√≥w.";
 
             return View("List", viewData);
         }
@@ -125,13 +125,13 @@ namespace Kigg.Web
                 uniqueName = category.UniqueName;
             }
 
-            viewData.Title = "{0} - Najnowsze artyku≥y o .NET w dziale {1}".FormatWith(Settings.SiteTitle, name);
+            viewData.Title = "{0} - Najnowsze artyku≈Çy o .NET w dziale {1}".FormatWith(Settings.SiteTitle, name);
             if (page.HasValue && page > 1)
             {
                 viewData.Title += " - Strona {0}".FormatWith(page);
             }
 
-            viewData.MetaDescription = "Najnowsze artyku≥y o .NET w dziale {0}".FormatWith(name);
+            viewData.MetaDescription = "Najnowsze artyku≈Çy o .NET w dziale {0}".FormatWith(name);
             if (page.HasValue && page > 1)
             {
                 viewData.MetaDescription += " - Strona {0}".FormatWith(page);
@@ -139,7 +139,7 @@ namespace Kigg.Web
             viewData.RssUrl = Url.Action("Category", "Feed", new { name = uniqueName });
             viewData.AtomUrl = Url.Action("Category", "Feed", new { name = uniqueName, format = "Atom" });
             viewData.Subtitle = name;
-            viewData.NoStoryExistMessage = "Brak opublikowanych artyku≥Ûw w \"{0}\".".FormatWith(name.HtmlEncode());
+            viewData.NoStoryExistMessage = "Brak opublikowanych artyku≈Ç√≥w w \"{0}\".".FormatWith(name.HtmlEncode());
 
             return View("List", viewData);
         }
@@ -153,12 +153,12 @@ namespace Kigg.Web
             viewData.Stories = pagedResult.Result;
             viewData.TotalStoryCount = pagedResult.Total;
 
-            viewData.Title = "{0} - Nadchodzπce artyku≥y".FormatWith(Settings.SiteTitle);
-            viewData.MetaDescription = "Nadchodzπce artyku≥y";
+            viewData.Title = "{0} - NadchodzƒÖce artyku≈Çy".FormatWith(Settings.SiteTitle);
+            viewData.MetaDescription = "NadchodzƒÖce artyku≈Çy";
             viewData.RssUrl = string.IsNullOrEmpty(Settings.UpcomingStoriesFeedBurnerUrl) ? Url.RouteUrl("FeedUpcoming") : Settings.UpcomingStoriesFeedBurnerUrl;
             viewData.AtomUrl = Url.RouteUrl("FeedUpcoming", new { format = "Atom" });
-            viewData.Subtitle = "Nadchodzπce artyku≥y";
-            viewData.NoStoryExistMessage = "Brak nadchodzπcych artyku≥Ûw.";
+            viewData.Subtitle = "NadchodzƒÖce artyku≈Çy";
+            viewData.NoStoryExistMessage = "Cisza g≈Çucha i posucha :( - dodaj co≈õ!";
 
             return View("List", viewData);
         }
@@ -186,13 +186,13 @@ namespace Kigg.Web
         public ActionResult New(int? page)
         {
             StoryListViewData viewData = CreateStoryListViewData<StoryListViewData>(page);
-            viewData.Title = "{0} - Nowe artyku≥y".FormatWith(Settings.SiteTitle);
-            viewData.MetaDescription = "Nowe artyku≥y";
+            viewData.Title = "{0} - Nowe artyku≈Çy".FormatWith(Settings.SiteTitle);
+            viewData.MetaDescription = "Nowe artyku≈Çy";
             viewData.Subtitle = "Nowe";
 
             if (!IsCurrentUserAuthenticated || !CurrentUser.CanModerate())
             {
-                viewData.NoStoryExistMessage = "Nie masz uprawnieÒ do przeglπdania nowych artyku≥Ûw.";
+                viewData.NoStoryExistMessage = "Nie masz uprawnie≈Ñ do przeglƒÖdania nowych artyku≈Ç√≥w.";
             }
             else
             {
@@ -201,7 +201,7 @@ namespace Kigg.Web
                 viewData.Stories = pagedResult.Result;
                 viewData.TotalStoryCount = pagedResult.Total;
 
-                viewData.NoStoryExistMessage = "Brak nowych artyku≥Ûw.";
+                viewData.NoStoryExistMessage = "Brak nowych artyku≈Ç√≥w.";
             }
 
             return View("List", viewData);
@@ -211,13 +211,13 @@ namespace Kigg.Web
         public ActionResult Unapproved(int? page)
         {
             StoryListViewData viewData = CreateStoryListViewData<StoryListViewData>(page);
-            viewData.Title = "{0} - Niezatwierdzone artyku≥y".FormatWith(Settings.SiteTitle);
-            viewData.MetaDescription = "Niezatwierdzone artyku≥y";
+            viewData.Title = "{0} - Niezatwierdzone artyku≈Çy".FormatWith(Settings.SiteTitle);
+            viewData.MetaDescription = "Niezatwierdzone artyku≈Çy";
             viewData.Subtitle = "Niezatwierdzone";
 
             if (!IsCurrentUserAuthenticated || !CurrentUser.CanModerate())
             {
-                viewData.NoStoryExistMessage = "Nie masz uprawnieÒ do przeglπdania niezatwierdzonych artyku≥Ûw.";
+                viewData.NoStoryExistMessage = "Nie masz uprawnie≈Ñ do przeglƒÖdania niezatwierdzonych artyku≈Ç√≥w.";
             }
             else
             {
@@ -226,7 +226,7 @@ namespace Kigg.Web
                 viewData.Stories = pagedResult.Result;
                 viewData.TotalStoryCount = pagedResult.Total;
 
-                viewData.NoStoryExistMessage = "Brak niezatwierdzonych artyku≥Ûw.";
+                viewData.NoStoryExistMessage = "Brak niezatwierdzonych artyku≈Ç√≥w.";
             }
 
             return View("List", viewData);
@@ -242,7 +242,7 @@ namespace Kigg.Web
 
             if (!IsCurrentUserAuthenticated || !CurrentUser.CanModerate())
             {
-                viewData.NoStoryExistMessage = "Nie masz uprawnieÒ do przeglπdania artyku≥Ûw do opublikowania.";
+                viewData.NoStoryExistMessage = "Nie masz uprawnie≈Ñ do przeglƒÖdania artyku≈Ç√≥w do opublikowania.";
             }
             else
             {
@@ -255,7 +255,7 @@ namespace Kigg.Web
                 viewData.Stories = pagedResult.Result;
                 viewData.TotalStoryCount = pagedResult.Total;
 
-                viewData.NoStoryExistMessage = "Brak artyku≥Ûw do apublikowania.";
+                viewData.NoStoryExistMessage = "Brak artyku≈Ç√≥w do apublikowania.";
             }
 
             return View("List", viewData);
@@ -292,12 +292,12 @@ namespace Kigg.Web
                 uniqueName = tag.UniqueName;
             }
 
-            viewData.Title = "{0} - Artyku≥y z tagiem {1}".FormatWith(Settings.SiteTitle, name);
-            viewData.MetaDescription = "Artyku≥y z tagiem {0}".FormatWith(name);
+            viewData.Title = "{0} - Artyku≈Çy z tagiem {1}".FormatWith(Settings.SiteTitle, name);
+            viewData.MetaDescription = "Artyku≈Çy z tagiem {0}".FormatWith(name);
             viewData.RssUrl = Url.Action("Tags", "Feed", new { name = uniqueName });
             viewData.AtomUrl = Url.Action("Tags", "Feed", new { name = uniqueName, format = "Atom" });
             viewData.Subtitle = name;
-            viewData.NoStoryExistMessage = "Brak artyku≥Ûw z \"{0}\".".FormatWith(name.HtmlEncode());
+            viewData.NoStoryExistMessage = "Brak artyku≈Ç√≥w z \"{0}\".".FormatWith(name.HtmlEncode());
 
             return View("List", viewData);
         }
@@ -322,7 +322,7 @@ namespace Kigg.Web
             viewData.RssUrl = Url.Action("Search", "Feed", new { q });
             viewData.AtomUrl = Url.Action("Search", "Feed", new { q, format = "Atom" });
             viewData.Subtitle = "Wyniki wyszukiwania : {0}".FormatWith(q);
-            viewData.NoStoryExistMessage = "Brak artyku≥Ûw dla \"{0}\".".FormatWith(q.HtmlEncode());
+            viewData.NoStoryExistMessage = "Brak artyku≈Ç√≥w dla \"{0}\".".FormatWith(q.HtmlEncode());
 
             return View("List", viewData);
         }
@@ -341,7 +341,7 @@ namespace Kigg.Web
 
             if (story == null)
             {
-                ThrowNotFound("Artyku≥ nie istnieje.");
+                ThrowNotFound("Artyku≈Ç nie istnieje.");
             }
 
             StoryDetailViewData viewData = CreateStoryViewData<StoryDetailViewData>();
@@ -433,7 +433,7 @@ namespace Kigg.Web
         public ActionResult Retrieve(string url)
         {
             JsonViewData viewData = Validate<JsonViewData>(
-                                                            new Validation(() => string.IsNullOrEmpty(url), "Url nie moøe byÊ pusty."),
+                                                            new Validation(() => string.IsNullOrEmpty(url), "Url nie mo≈ºe byƒá pusty."),
                                                             new Validation(() => !url.IsWebUrl(), "Niepoprawny format Url.")
                                                           );
 
@@ -483,9 +483,9 @@ namespace Kigg.Web
             }
 
             JsonViewData viewData = Validate<JsonViewData>(
-                                                            new Validation(() => captchaEnabled && string.IsNullOrEmpty(captchaChallenge), "Pole Captcha nie moøe byÊ puste."),
-                                                            new Validation(() => captchaEnabled && string.IsNullOrEmpty(captchaResponse), "Pole Captcha nie moøe byÊ puste."),
-                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteú zalogowany"),
+                                                            new Validation(() => captchaEnabled && string.IsNullOrEmpty(captchaChallenge), "Pole Captcha nie mo≈ºe byƒá puste."),
+                                                            new Validation(() => captchaEnabled && string.IsNullOrEmpty(captchaResponse), "Pole Captcha nie mo≈ºe byƒá puste."),
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jeste≈õ zalogowany"),
                                                             new Validation(() => captchaEnabled && !CaptchaValidator.Validate(CurrentUserIPAddress, captchaChallenge, captchaResponse), "Nieudana weryfikacja Captcha")
                                                           );
 
@@ -518,7 +518,7 @@ namespace Kigg.Web
                 {
                     Log.Exception(e);
 
-                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("dodania artyku≥u") };
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("dodania artyku≈Çu") };
                 }
             }
 
@@ -531,8 +531,8 @@ namespace Kigg.Web
             id = id.NullSafe();
 
             JsonViewData viewData = Validate<JsonViewData>(
-                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku≥u nie moøe byÊ pusty."),
-                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikatory artyku≥u.")
+                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku≈Çu nie mo≈ºe byƒá pusty."),
+                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikatory artyku≈Çu.")
                                                           );
 
             if (viewData == null)
@@ -543,7 +543,7 @@ namespace Kigg.Web
 
                     if (story == null)
                     {
-                        viewData = new JsonViewData { errorMessage = "Podany artyku≥ nie istnieje." };
+                        viewData = new JsonViewData { errorMessage = "Podany artyku≈Ç nie istnieje." };
                     }
                     else
                     {
@@ -569,9 +569,9 @@ namespace Kigg.Web
             id = id.NullSafe();
 
             JsonViewData viewData = Validate<JsonViewData>(
-                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku≥u nie moøe byÊ pusty."),
-                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku≥u."),
-                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteú zalogowany.")
+                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku≈Çu nie mo≈ºe byƒá pusty."),
+                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku≈Çu."),
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jeste≈õ zalogowany.")
                                                           );
 
             if (viewData == null)
@@ -582,15 +582,15 @@ namespace Kigg.Web
 
                     if (story == null)
                     {
-                        viewData = new JsonViewData { errorMessage = "Podany artyku≥ nie istnieje." };
+                        viewData = new JsonViewData { errorMessage = "Podany artyku≈Ç nie istnieje." };
                     }
                     else
                     {
                         if (!story.CanPromote(CurrentUser))
                         {
                             viewData = story.HasPromoted(CurrentUser) ?
-                                       new JsonViewData { errorMessage = "Juø wypromowa≥eú ten artyku≥." } :
-                                       new JsonViewData { errorMessage = "Nie moøesz promowaÊ tego artyku≥u." };
+                                       new JsonViewData { errorMessage = "Ju≈º wypromowa≈Çe≈õ ten artyku≈Ç." } :
+                                       new JsonViewData { errorMessage = "Nie mo≈ºesz promowaƒá tego artyku≈Çu." };
                         }
                         else
                         {
@@ -604,7 +604,7 @@ namespace Kigg.Web
                 {
                     Log.Exception(e);
 
-                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("promowaniu artyku≥u") };
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("promowaniu artyku≈Çu") };
                 }
             }
 
@@ -615,7 +615,7 @@ namespace Kigg.Web
         {
             if (count == 1)
                 return ".netomaniak";
-            return count < 5 ? ".netomaniaki" : ".netomaniakÛw";
+            return count < 5 ? ".netomaniaki" : ".netomaniak√≥w";
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -624,9 +624,9 @@ namespace Kigg.Web
             id = id.NullSafe();
 
             JsonViewData viewData = Validate<JsonViewData>(
-                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku≥u nie moøe byÊ pusty."),
-                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku≥u."),
-                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteú zalogowany.")
+                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku≈Çu nie mo≈ºe byƒá pusty."),
+                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku≈Çu."),
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jeste≈õ zalogowany.")
                                                           );
 
             if (viewData == null)
@@ -637,13 +637,13 @@ namespace Kigg.Web
 
                     if (story == null)
                     {
-                        viewData = new JsonViewData { errorMessage = "Podany artyku≥ nie istnieje." };
+                        viewData = new JsonViewData { errorMessage = "Podany artyku≈Ç nie istnieje." };
                     }
                     else
                     {
                         if (!story.CanDemote(CurrentUser))
                         {
-                            viewData = new JsonViewData { errorMessage = "Nie moøesz degradowaÊ tego artyku≥u." };
+                            viewData = new JsonViewData { errorMessage = "Nie mo≈ºesz degradowaƒá tego artyku≈Çu." };
                         }
                         else
                         {
@@ -657,7 +657,7 @@ namespace Kigg.Web
                 {
                     Log.Exception(e);
 
-                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("degradowania artyku≥u") };
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("degradowania artyku≈Çu") };
                 }
             }
 
@@ -670,9 +670,9 @@ namespace Kigg.Web
             id = id.NullSafe();
 
             JsonViewData viewData = Validate<JsonViewData>(
-                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku≥u nie moøe byÊ pusty."),
-                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku≥u."),
-                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteú zalogowany.")
+                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku≈Çu nie mo≈ºe byƒá pusty."),
+                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku≈Çu."),
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jeste≈õ zalogowany.")
                                                           );
 
             if (viewData == null)
@@ -683,15 +683,15 @@ namespace Kigg.Web
 
                     if (story == null)
                     {
-                        viewData = new JsonViewData { errorMessage = "Podany artyku≥ nie istnieje." };
+                        viewData = new JsonViewData { errorMessage = "Podany artyku≈Ç nie istnieje." };
                     }
                     else
                     {
                         if (!story.CanMarkAsSpam(CurrentUser))
                         {
                             viewData = story.HasMarkedAsSpam(CurrentUser) ?
-                                        new JsonViewData { errorMessage = "Juø zaznaczy≥eú ten artyku≥ jako spam." } :
-                                        new JsonViewData { errorMessage = "Nie masz uprawnieÒ do zaznaczania tego artyku≥u jako spam." };
+                                        new JsonViewData { errorMessage = "Ju≈º zaznaczy≈Çe≈õ ten artyku≈Ç jako spam." } :
+                                        new JsonViewData { errorMessage = "Nie masz uprawnie≈Ñ do zaznaczania tego artyku≈Çu jako spam." };
                         }
                         else
                         {
@@ -705,7 +705,7 @@ namespace Kigg.Web
                 {
                     Log.Exception(e);
 
-                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("oznaczania artyku≥u jako spam") };
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("oznaczania artyku≈Çu jako spam") };
                 }
             }
 
@@ -716,8 +716,8 @@ namespace Kigg.Web
         public ActionResult Publish()
         {
             JsonViewData viewData = Validate<JsonViewData>(
-                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteú zalogowany."),
-                                                            new Validation(() => !CurrentUser.IsAdministrator(), "Nie masz praw do wo≥ywania tej metody.")
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jeste≈õ zalogowany."),
+                                                            new Validation(() => !CurrentUser.IsAdministrator(), "Nie masz praw do wo≈Çywania tej metody.")
                                                           );
 
             if (viewData == null)
@@ -732,7 +732,7 @@ namespace Kigg.Web
                 {
                     Log.Exception(e);
 
-                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("publikowania artyku≥u") };
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("publikowania artyku≈Çu") };
                 }
             }
 
@@ -745,10 +745,10 @@ namespace Kigg.Web
             id = id.NullSafe();
             IStory story = _storyRepository.FindById(id.ToGuid());
             JsonViewData viewData = Validate<JsonViewData>(
-                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku≥u nie moøe byÊ pusty."),
-                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku≥u."),
-                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteú zalogowany."),
-                                                            new Validation(() => !CurrentUser.HasRightsToEditStory(story), "Nie masz praw do wo≥ania tej metody.")
+                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku≈Çu nie mo≈ºe byƒá pusty."),
+                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku≈Çu."),
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jeste≈õ zalogowany."),
+                                                            new Validation(() => !CurrentUser.HasRightsToEditStory(story), "Nie masz praw do wo≈Çania tej metody.")
                                                           );
 
             if (viewData == null)
@@ -757,7 +757,7 @@ namespace Kigg.Web
                 {
                     if (story == null)
                     {
-                        viewData = new JsonViewData { errorMessage = "Podany artyku≥ nie istnieje." };
+                        viewData = new JsonViewData { errorMessage = "Podany artyku≈Ç nie istnieje." };
                     }
                     else
                     {
@@ -779,7 +779,7 @@ namespace Kigg.Web
                 {
                     Log.Exception(e);
 
-                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("pobierania artyku≥u") };
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("pobierania artyku≈Çu") };
                 }
             }
 
@@ -792,10 +792,10 @@ namespace Kigg.Web
             id = id.NullSafe();
             IStory story = _storyRepository.FindById(id.ToGuid());
             JsonViewData viewData = Validate<JsonViewData>(
-                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku≥u nie moøe byÊ pusty."),
-                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku≥u."),
-                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteú zalogowany."),
-                                                            new Validation(() => !CurrentUser.HasRightsToEditStory(story), "Nie masz praw do wo≥ania tej metody.")
+                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku≈Çu nie mo≈ºe byƒá pusty."),
+                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku≈Çu."),
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jeste≈õ zalogowany."),
+                                                            new Validation(() => !CurrentUser.HasRightsToEditStory(story), "Nie masz praw do wo≈Çania tej metody.")
                                                           );
 
             if (viewData == null)
@@ -804,7 +804,7 @@ namespace Kigg.Web
                 {                  
                     if (story == null)
                     {
-                        viewData = new JsonViewData { errorMessage = "Podany artyku≥ nie istnieje." };
+                        viewData = new JsonViewData { errorMessage = "Podany artyku≈Ç nie istnieje." };
                     }
                     else
                     {
@@ -817,7 +817,7 @@ namespace Kigg.Web
                 {
                     Log.Exception(e);
 
-                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("edycji artyku≥u") };
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("edycji artyku≈Çu") };
                 }
             }
 
@@ -830,10 +830,10 @@ namespace Kigg.Web
             id = id.NullSafe();
 
             JsonViewData viewData = Validate<JsonViewData>(
-                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku≥u nie moøe byÊ pusty."),
-                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku≥u."),
-                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteú zalogowany."),
-                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz praw do wo≥ania tej metody.")
+                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku≈Çu nie mo≈ºe byƒá pusty."),
+                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku≈Çu."),
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jeste≈õ zalogowany."),
+                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz praw do wo≈Çania tej metody.")
                                                           );
 
             if (viewData == null)
@@ -844,7 +844,7 @@ namespace Kigg.Web
 
                     if (story == null)
                     {
-                        viewData = new JsonViewData { errorMessage = "Podany artyku≥ nie istnieje." };
+                        viewData = new JsonViewData { errorMessage = "Podany artyku≈Ç nie istnieje." };
                     }
                     else
                     {
@@ -857,7 +857,7 @@ namespace Kigg.Web
                 {
                     Log.Exception(e);
 
-                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("usuwania artyku≥u") };
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("usuwania artyku≈Çu") };
                 }
             }
 
@@ -870,10 +870,10 @@ namespace Kigg.Web
             id = id.NullSafe();
 
             JsonViewData viewData = Validate<JsonViewData>(
-                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku≥u nie moøe byÊ pusty."),
-                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku≥u."),
-                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteú zalogowany."),
-                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz praw do wo≥ania tej metody.")
+                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku≈Çu nie mo≈ºe byƒá pusty."),
+                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku≈Çu."),
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jeste≈õ zalogowany."),
+                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz praw do wo≈Çania tej metody.")
                                                           );
 
             if (viewData == null)
@@ -884,13 +884,13 @@ namespace Kigg.Web
 
                     if (story == null)
                     {
-                        viewData = new JsonViewData { errorMessage = "Podany artyku≥ nie istnieje." };
+                        viewData = new JsonViewData { errorMessage = "Podany artyku≈Ç nie istnieje." };
                     }
                     else
                     {
                         if (story.IsApproved())
                         {
-                            viewData = new JsonViewData { errorMessage = "Podany artyku≥ juø zosta≥ zatwierdzony jako spam." };
+                            viewData = new JsonViewData { errorMessage = "Podany artyku≈Ç ju≈º zosta≈Ç zatwierdzony jako spam." };
                         }
                         else
                         {
@@ -904,7 +904,7 @@ namespace Kigg.Web
                 {
                     Log.Exception(e);
 
-                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("aprobowania artyku≥u") };
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("aprobowania artyku≈Çu") };
                 }
             }
 
@@ -917,10 +917,10 @@ namespace Kigg.Web
             id = id.NullSafe();
 
             JsonViewData viewData = Validate<JsonViewData>(
-                                                            new Validation(() => string.IsNullOrEmpty(id), "Indentyfikator artyku≥u nie moøe byÊ pusty."),
-                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawy identyfikator artyku≥u."),
-                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteú obecnie zalogowany."),
-                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz uprawnieÒ do wywo≥ania tej metody.")
+                                                            new Validation(() => string.IsNullOrEmpty(id), "Indentyfikator artyku≈Çu nie mo≈ºe byƒá pusty."),
+                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawy identyfikator artyku≈Çu."),
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jeste≈õ obecnie zalogowany."),
+                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz uprawnie≈Ñ do wywo≈Çania tej metody.")
                                                           );
 
             if (viewData == null)
@@ -931,7 +931,7 @@ namespace Kigg.Web
 
                     if (story == null)
                     {
-                        viewData = new JsonViewData { errorMessage = "Podany artyku≥ nie istnieje." };
+                        viewData = new JsonViewData { errorMessage = "Podany artyku≈Ç nie istnieje." };
                     }
                     else
                     {
@@ -944,7 +944,7 @@ namespace Kigg.Web
                 {
                     Log.Exception(e);
 
-                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("zatwierdzania artyku≥u jako spam") };
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("zatwierdzania artyku≈Çu jako spam") };
                 }
             }
 
@@ -957,10 +957,10 @@ namespace Kigg.Web
             id = id.NullSafe();
 
             JsonViewData viewData = Validate<JsonViewData>(
-                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku≥u nie moøe byÊ pusty."),
-                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku≥u."),
-                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteú zalogowany."),
-                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz praw do wo≥ania tej metody.")
+                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku≈Çu nie mo≈ºe byƒá pusty."),
+                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku≈Çu."),
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jeste≈õ zalogowany."),
+                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz praw do wo≈Çania tej metody.")
                                                           );
 
             if (viewData == null)
@@ -971,7 +971,7 @@ namespace Kigg.Web
 
                     if (story == null)
                     {
-                        viewData = new JsonViewData { errorMessage = "Podany artyku≥ nie istnieje." };
+                        viewData = new JsonViewData { errorMessage = "Podany artyku≈Ç nie istnieje." };
                     }
                     else
                     {
@@ -984,7 +984,7 @@ namespace Kigg.Web
                 {
                     Log.Exception(e);
 
-                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("odswieøania miniaturki") };
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("odswie≈ºania miniaturki") };
                 }
             }
 
@@ -1002,7 +1002,7 @@ namespace Kigg.Web
             viewData.TotalStoryCount = pagedResult.Total;
             viewData.RssUrl = Url.Action("PromotedBy", "Feed", new { name });
             viewData.AtomUrl = Url.Action("PromotedBy", "Feed", new { name, format = "Atom" });
-            viewData.NoStoryExistMessage = "Brak artyku≥Ûw promowanych przez \"{0}\".".FormatWith(user.UserName.HtmlEncode());
+            viewData.NoStoryExistMessage = "Brak artyku≈Ç√≥w promowanych przez \"{0}\".".FormatWith(user.UserName.HtmlEncode());
             viewData.SelectedTab = UserDetailTab.Promoted;
             viewData.TheUser = user;
 
@@ -1020,7 +1020,7 @@ namespace Kigg.Web
             viewData.TotalStoryCount = pagedResult.Total;
             viewData.RssUrl = Url.Action("PostedBy", "Feed", new { name });
             viewData.AtomUrl = Url.Action("PostedBy", "Feed", new { name, format = "Atom" });
-            viewData.NoStoryExistMessage = "Brak artyku≥Ûw opublikowanych przez \"{0}\".".FormatWith(user.UserName.HtmlEncode());
+            viewData.NoStoryExistMessage = "Brak artyku≈Ç√≥w opublikowanych przez \"{0}\".".FormatWith(user.UserName.HtmlEncode());
             viewData.SelectedTab = UserDetailTab.Posted;
             viewData.TheUser = user;
 
@@ -1038,7 +1038,7 @@ namespace Kigg.Web
             viewData.TotalStoryCount = pagedResult.Total;
             viewData.RssUrl = Url.Action("CommentedBy", "Feed", new { name });
             viewData.AtomUrl = Url.Action("CommentedBy", "Feed", new { name, format = "Atom" });
-            viewData.NoStoryExistMessage = "Brak artyku≥Ûw skomentowanych przez \"{0}\".".FormatWith(user.UserName.HtmlEncode());
+            viewData.NoStoryExistMessage = "Brak artyku≈Ç√≥w skomentowanych przez \"{0}\".".FormatWith(user.UserName.HtmlEncode());
             viewData.SelectedTab = UserDetailTab.Commented;
             viewData.TheUser = user;
 
