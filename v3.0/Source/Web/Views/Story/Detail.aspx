@@ -13,6 +13,7 @@
     }
     
 </script>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadPlaceHolder" runat="server" >
     <% if (Model.Story.IsAuthorshipOn())
        {%>
@@ -25,6 +26,7 @@
        <meta property="og:url" content="<%= Url.RouteUrl("Detail", new { name = Model.Story.UniqueName }, "http") %>" />
        <meta property="og:type" content="article" />
        <meta property="og:image" content="<%= Html.AttributeEncode(Model.Story.GetMediumThumbnailPath(true)) %>" />
+       <meta property="article:tag" content= <%= Model.Story.Tags.Select(x=>x.UniqueName).Aggregate((x,y)=>x+","+y) %> />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContentPlaceHolder" runat="server">
     <% IStory story = Model.Story; %>
