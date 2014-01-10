@@ -26,7 +26,10 @@
        <meta property="og:url" content="<%= Url.RouteUrl("Detail", new { name = Model.Story.UniqueName }, "http") %>" />
        <meta property="og:type" content="article" />
        <meta property="og:image" content="<%= Html.AttributeEncode(Model.Story.GetMediumThumbnailPath(true)) %>" />
-       <meta property="article:tag" content= <%= Model.Story.Tags.Select(x=>x.UniqueName).Aggregate((x,y)=>x+","+y) %> />
+       <% foreach (var tag in Model.Story.Tags.Select(x=>x.UniqueName))
+          { %>
+              <meta property="article:tag" content="<%= tag %>" />
+          <%} %>       
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContentPlaceHolder" runat="server">
     <% IStory story = Model.Story; %>
