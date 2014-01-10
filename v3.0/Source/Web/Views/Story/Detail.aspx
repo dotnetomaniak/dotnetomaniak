@@ -30,6 +30,10 @@
           { %>
               <meta property="article:tag" content="<%= tag %>" />
           <%} %>       
+       <meta property="article:published_time" content="<%= Model.Story.PublishedAt %>" />
+       <meta property="article:publisher" content="http://www.facebook.com/dotnetomaniakpl" />
+       <meta property="article:published_time" content="<%= Model.Story.PublishedAt %>" />
+       <meta property="article:publisher" content="http://www.facebook.com/dotnetomaniakpl" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContentPlaceHolder" runat="server">
     <% IStory story = Model.Story; %>
