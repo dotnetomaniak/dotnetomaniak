@@ -42,7 +42,7 @@ margin:0 auto;}
         padding-top:15px;
         float:left;
          height: 94px;
-          width: 656px;
+          width: 338px;
 } 
 .links, .links a{
     color: #D8D8D8;
@@ -77,7 +77,7 @@ margin:0 auto;}
 }
 .top-right{
   float:right;
-  width: 300px;
+  width: 600px;
 }
 a#blue-button{
     background: url("/Assets/images/button-blue.png") no-repeat scroll 0 0 transparent;
