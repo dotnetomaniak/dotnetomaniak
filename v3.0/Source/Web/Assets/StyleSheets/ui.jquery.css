@@ -64,8 +64,8 @@ ul.ui-autocomplete
     color:#222 !important;
     outline:none;
 }
-
-/*.ui-tabs-nav
+/*
+.ui-tabs-nav
 {
     margin:0;
     padding:0px 0px 0px 30px;
@@ -152,7 +152,9 @@ ul.ui-autocomplete
 .ui-tabs-hide
 {
     display:none;
-}*/
+}
+
+*/
 
 .ui-dialog
 {

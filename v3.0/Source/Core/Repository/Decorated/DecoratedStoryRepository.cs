@@ -188,5 +188,10 @@
             return _innerRepository.CountPostedByUser(userId);
         }
 
+        [DebuggerStepThrough]
+        public System.Collections.Generic.ICollection<IStory> FindSimilar(ICategory category)
+        {
+            return _innerRepository.FindSimilar(category);
+        }
     }
 }
