@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Kigg.Repository
 {
     using System;
@@ -38,6 +40,8 @@ namespace Kigg.Repository
 
         PagedResult<IStory> FindCommentedByUser(Guid userId, int start, int max);
 
+        ICollection<IStory> FindSimilar(ICategory category);
+
         int CountByPublished();
 
         int CountByUpcoming();
@@ -53,5 +57,6 @@ namespace Kigg.Repository
         int CountByPublishable(DateTime minimumDate, DateTime maximumDate);
 
         int CountPostedByUser(Guid userId);
+        
     }
 }

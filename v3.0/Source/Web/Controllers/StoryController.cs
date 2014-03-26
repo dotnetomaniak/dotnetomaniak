@@ -382,6 +382,18 @@
             return View(entries);
         }
 
+        public ActionResult Similars(Guid id)
+        {
+            var story = _storyRepository.FindById(id);
+            var model = CreateViewData<StoryListViewData>();
+            if (story != null)
+            {
+                model.Stories = _storyRepository.FindSimilar(story.BelongsTo);
+                model.TotalStoryCount = model.Stories.Count;
+            }
+            return View(model);
+        }
+
         [AcceptVerbs(HttpVerbs.Get), ValidateInput(false), Compress]
         public ActionResult Submit(string url, string title)
         {

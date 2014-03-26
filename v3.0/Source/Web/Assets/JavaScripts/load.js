@@ -98,7 +98,7 @@ $(document).ready(function () {
     $(".add-article-row input, .add-article-row textarea").focusout(function () {
         $(this).css('border-color', '#e1e1e1');
     });
-
+    
 });    
 
 

@@ -357,6 +357,11 @@
             return BuildPagedResult<IStory>(stories, total);
         }
 
+        public ICollection<IStory> FindSimilar(ICategory category)
+        {            
+            return Database.StoryDataSource.Where(x => x.CategoryId == category.Id).Take(10).Cast<IStory>().ToList();            
+        }
+
         public virtual int CountByPublished()
         {
             return Database.StoryDataSource
