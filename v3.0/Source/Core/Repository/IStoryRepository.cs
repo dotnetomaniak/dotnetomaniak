@@ -40,7 +40,7 @@ namespace Kigg.Repository
 
         PagedResult<IStory> FindCommentedByUser(Guid userId, int start, int max);
 
-        ICollection<IStory> FindSimilar(ICategory category);
+        ICollection<IStory> FindSimilar(IStory story);
 
         int CountByPublished();
 

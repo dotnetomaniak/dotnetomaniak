@@ -388,7 +388,7 @@
             var model = CreateViewData<StoryListViewData>();
             if (story != null)
             {
-                model.Stories = _storyRepository.FindSimilar(story.BelongsTo);
+                model.Stories = _storyRepository.FindSimilar(story);                    
                 model.TotalStoryCount = model.Stories.Count;
             }
             return View(model);

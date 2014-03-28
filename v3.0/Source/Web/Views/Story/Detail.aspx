@@ -47,7 +47,7 @@
     <% Html.RenderPartial("ImageCode", Model); %>
     <div id="commentTabs" name="tabsy" class="tabs-nav">
         <ul class="tabs-list">
-            <li class="ui-tabs-nav-item"><a id="first-tab" href="#questions">Pytania</a></li>
+            <li class="ui-tabs-nav-item"><a id="first-tab" class="active" href="#questions">Pytania</a></li>
             <li class="ui-tabs-nav-item"><a id="second-tab" href="#comments">Komentarze</a></li>
             <li class="ui-tabs-nav-item"><a id="third-tab" href="#votes">Wypromowane przez</a></li>
             <li class="ui-tabs-nav-item"><a id="fourth-tab" href="#similar">Podobne</a></li>
