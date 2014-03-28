@@ -357,9 +357,23 @@
             return BuildPagedResult<IStory>(stories, total);
         }
 
-        public ICollection<IStory> FindSimilar(ICategory category)
-        {            
-            return Database.StoryDataSource.Where(x => x.CategoryId == category.Id).Take(10).Cast<IStory>().ToList();            
+        public ICollection<IStory> FindSimilar(IStory storyToFindSimilarTo)
+        {
+            var tagsCount = storyToFindSimilarTo.Tags.Count;
+//            var tags = storyToFindSimilarTo.Tags.ToList();
+            var tags = storyToFindSimilarTo.Tags.Select(x => x.Name).ToList();
+
+            var list = Database.StoryDataSource
+                               .SelectMany(x => x.StoryTags).Where(x => tags.Contains(x.Tag.Name)).Select(x => x.Story).GroupBy(x=>x.Id).Select(x=>x.First())
+                               .Cast<IStory>()
+                               .OrderByDescending(x=>x.CreatedAt).Take(10).ToList();
+                //.Where(y => y.Tags.Select(x=>x.Name)(tags))
+                //               .Cast<IStory>()
+                //               .OrderByDescending(z=>z.CreatedAt)
+                //               .Take(10)
+                //               .ToList();
+            return list;
+
         }
 
         public virtual int CountByPublished()
