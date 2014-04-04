@@ -47,14 +47,17 @@
     <% Html.RenderPartial("ImageCode", Model); %>
     <div id="commentTabs" name="tabsy" class="tabs-nav">
         <ul class="tabs-list">
-            <li class="ui-tabs-nav-item"><a id="first-tab" class="active" href="#questions">Pytania</a></li>
-            <li class="ui-tabs-nav-item"><a id="second-tab" href="#comments">Komentarze</a></li>
-            <li class="ui-tabs-nav-item"><a id="third-tab" href="#votes">Wypromowane przez</a></li>
-            <li class="ui-tabs-nav-item"><a id="fourth-tab" href="#similar">Podobne</a></li>
+            <li class="ui-tabs-nav-item"><a id="first-tab" class="active" href="#similar">Podobne</a></li>
+            <li class="ui-tabs-nav-item"><a id="second-tab" href="#questions">Pytania</a></li>
+            <li class="ui-tabs-nav-item"><a id="third-tab" href="#comments">Komentarze</a></li>
+            <li class="ui-tabs-nav-item"><a id="fourth-tab" href="#votes">Wypromowane przez</a></li>
         </ul>
     </div>
     <div class="tabs-contents">
-        <div id="first-tab-content" class="tab-content partialContents" data-url="<%= Model.Story.TagCount > 0 ? Url.Action("Questions", "Story", new { tags = Model.Story.Tags.Select(x=>x.UniqueName).Aggregate((x,y)=>x+","+y) }) : string.Empty%>">
+        <div id="first-tab-content" class="tab-content partialContents" data-url="<%=Url.Action("Similars", "Story", new { id = Model.Story.Id }) %>">
+            Wczytywanie artykułów...            
+        </div>
+        <div id="second-tab-content" class="tab-content partialContents" data-url="<%= Model.Story.TagCount > 0 ? Url.Action("Questions", "Story", new { tags = Model.Story.Tags.Select(x=>x.UniqueName).Aggregate((x,y)=>x+","+y) }) : string.Empty%>">
             <% if (Model.Story.TagCount > 0)
                { %>
                    Wczytywanie
@@ -65,15 +68,12 @@
                     Brak powiązanych pytań.
                <% } %>
         </div>
-        <div id="second-tab-content" class="tab-content">
+        <div id="third-tab-content" class="tab-content">
             <% Html.RenderPartial("Comments", Model); %>
         </div>
-        <div id="third-tab-content" class="tab-content">
+        <div id="fourth-tab-content" class="tab-content">
             <% Html.RenderPartial("Votes", story.Votes); %>
-        </div>
-        <div id="fourth-tab-content" class="tab-content partialContents" data-url="<%=Url.Action("Similars", "Story", new { id = Model.Story.Id }) %>">
-            Wczytywanie artykułów...            
-        </div>
+        </div>        
     </div>
     <%
         if (Model.CanCurrentUserModerate || (user.HasRightsToEditStory(story)))

@@ -360,29 +360,20 @@
         public ICollection<IStory> FindSimilar(IStory storyToFindSimilarTo)
         {           
             var tags = storyToFindSimilarTo.Tags.Select(x => x.Name).ToList();
+            tags = tags.Where(x => x != "C#").Where(x => x != ".Net").ToList();
 
-            if (tags.Contains("C#"))
-                tags.Remove("C#");
-            
-            if (tags.Contains(".Net"))
-                tags.Remove(".Net");
-
-            var list = Database.StoryDataSource
-                               .OrderByDescending(x => x.CreatedAt)
-                               .SelectMany(x => x.StoryTags)
-                               .Where(x => tags.Contains(x.Tag.Name))
-                               .GroupBy(x => x.Story)
-                               .Select(x => new {Element = x.Key, Count = x.Count()})
-                               .OrderByDescending(x => x.Count)
-                               .Select(x => x.Element)
-                               .Cast<IStory>()
-                               .Take(11)
-                               .ToList();
-                        
-            if (list.Contains(storyToFindSimilarTo))
-                list.Remove(storyToFindSimilarTo);
-
-            return list;
+            return Database.StoryDataSource
+                           .OrderByDescending(x => x.CreatedAt)
+                           .SelectMany(x => x.StoryTags)
+                           .Where(x => tags.Contains(x.Tag.Name))
+                           .GroupBy(x => x.Story)
+                           .Select(x => new { Element = x.Key, Count = x.Count() })
+                           .OrderByDescending(x => x.Count)
+                           .Select(x => x.Element)
+                           .Where(x => x != storyToFindSimilarTo)
+                           .Cast<IStory>()
+                           .Take(11)
+                           .ToList();                      
         }
 
         public virtual int CountByPublished()
