@@ -358,38 +358,31 @@
         }
 
         public ICollection<IStory> FindSimilar(IStory storyToFindSimilarTo)
-        {            
+        {           
             var tags = storyToFindSimilarTo.Tags.Select(x => x.Name).ToList();
+
             if (tags.Contains("C#"))
                 tags.Remove("C#");
+            
             if (tags.Contains(".Net"))
                 tags.Remove(".Net");
 
-            var listByTag = Database.StoryDataSource
-                                    .SelectMany(x => x.StoryTags)
-                                    .Where(x => tags.Contains(x.Tag.Name))
-                                    .Select(x => x.Story)
-                                    .GroupBy(x => x.Id)
-                                    .Select(x => x.First())
-                                    .Cast<IStory>()
-                                    .OrderByDescending(x => x.CreatedAt).Take(11).ToList();
+            var list = Database.StoryDataSource
+                               .OrderByDescending(x => x.CreatedAt)
+                               .SelectMany(x => x.StoryTags)
+                               .Where(x => tags.Contains(x.Tag.Name))
+                               .GroupBy(x => x.Story)
+                               .Select(x => new {Element = x.Key, Count = x.Count()})
+                               .OrderByDescending(x => x.Count)
+                               .Select(x => x.Element)
+                               .Cast<IStory>()
+                               .Take(11)
+                               .ToList();
+                        
+            if (list.Contains(storyToFindSimilarTo))
+                list.Remove(storyToFindSimilarTo);
 
-            if (listByTag.Contains(storyToFindSimilarTo))
-                listByTag.Remove(storyToFindSimilarTo);
-
-            var listByAuthor = Database.StoryDataSource
-                                       .Where(x => x.User == storyToFindSimilarTo.PostedBy)
-                                       .Cast<IStory>().OrderByDescending(x => x.CreatedAt).Take(11).ToList();
-
-            if (listByAuthor.Contains(storyToFindSimilarTo))
-                listByAuthor.Remove(storyToFindSimilarTo);
-
-            var list=new List<IStory>();
-            list.AddRange(listByTag);
-            list.AddRange(listByAuthor);
-            
-            var listToDisplay = list.OrderByDescending(x => x.CreatedAt).Distinct().Take(10).ToList();
-            return listToDisplay;
+            return list;
         }
 
         public virtual int CountByPublished()
