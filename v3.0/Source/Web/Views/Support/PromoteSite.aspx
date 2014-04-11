@@ -56,7 +56,7 @@
         <div class="promo">
         <p>
             Jeœli masz swój blog, lub stronê mo¿esz umo¿liwiæ swoim czytelnikom wypromowanie
-            mojego artyku³u na dotnetomaniak.pl. Naj³atwiej bêdzie Ci skorzystaæ z <a href="http://www.feedburner.com/fb/a/publishers/feedflare">
+            swojego artyku³u na dotnetomaniak.pl. Naj³atwiej bêdzie Ci skorzystaæ z <a href="http://www.feedburner.com/fb/a/publishers/feedflare">
                 FeedFlare</a>. Niezbêdny plik znajduje siê tu: <a href="http://static.dotnetomaniak.pl/feedflare-v2.0.0.2.xml">
                     http://static.dotnetomaniak.pl/feedflare-v2.0.0.2.xml</a>. Jeœli nie mo¿esz
             skorzystaæ z tego pliku skontaktuj siê z nami po wiêcej informacji.
