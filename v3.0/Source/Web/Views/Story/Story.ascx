@@ -115,16 +115,17 @@
                 <%= onClick %> >
                 <span itemprop="name"><%= Html.Encode(story.Title)%></span></a></h2>
     </div>
-    <div itemscope itemtype="http://schema.org/Article" class="entry-content description" <%= detailsMode ? "style='height: auto'" : "" %>>
+    <div class="entry-content description" <%= detailsMode ? "style='height: auto'" : "" %>>        
+        <p itemprop="description"><span itemprop="articleBody">
         <% if (detailsMode) %>
-        <% { %>
-        <%= story.HtmlDescription %>
+        <% { %>        
+        <%= story.StrippedDescription() %>
         <% } %>
         <% else %>
-        <% { %>
-        <span itemprop="description" itemprop="articleBody">
-            <%= story.StrippedDescription() %></span>
+        <% { %>        
+        <%= story.StrippedDescription() %>
         <% } %>
+        </span></p>
         <div class="more">
             <div class="more-row">
                 Tagi:
