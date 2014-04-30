@@ -5,7 +5,8 @@ Dziękujemy za rejestrację na <%=siteTitle%>! Mamy nadzieję, że podoba Ci si�
 Poniżej znajdują się Twoje dane rejestracyjne. Prosimy potwierdzić Twój e-mail klikając na poniższy link:
 
 Użytkownik:<%=userName%>
-Hasło:<%=password%>
+Hasło: nie sądziłeś chyba, że będziemy przesyłać Twoje hasło w mailu ;)
+
 Url:<%=url%>
 
 Jeśli nie możesz kliknąć na powyższy link, skopiuj go i wklej do paska adresu swojej przeglądarki.
