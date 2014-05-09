@@ -11,6 +11,9 @@ namespace Kigg.Web.ViewData
         public string Id { get; set; }
         public int Position { get; set; }
         public DateTime EndTime { get; set; }
+        public string Email { get; set; }
+        public bool NotificationIsSent { get; set; }
+
         public string HowLongAdShows()
         {
             string tableRowClass = "Visible";
