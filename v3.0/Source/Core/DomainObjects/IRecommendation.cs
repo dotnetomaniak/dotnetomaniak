@@ -43,7 +43,23 @@ namespace Kigg.Core.DomainObjects
             set;
         }
 
-        int Position { get; set; }
+        int Position
+        {
+            get;
+            set;
+        }
+
+        string Email
+        {
+            get;
+            set;
+        }
+
+        bool NotificationIsSent
+        {
+            get;
+            set;
+        }
     }
 }
 

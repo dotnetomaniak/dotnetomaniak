@@ -51,7 +51,7 @@ namespace Kigg.LinqToSql.Repository
             return Database.RecommendationDataSource.SingleOrDefault(r => r.RecommendationTitle == recommendationTitle.Trim());
         }
 
-        public void EditAd(IRecommendation recommendation, string recommendationLink, string recommendationTitle, string imageLink, string imageTitle, DateTime startTime, DateTime endTime, int position)
+        public void EditAd(IRecommendation recommendation, string recommendationLink, string recommendationTitle, string imageLink, string imageTitle, DateTime startTime, DateTime endTime, string email, int position, bool notificationIsSent)
         {
             Check.Argument.IsNotNull(recommendation, "Recommendation");
 
@@ -85,6 +85,10 @@ namespace Kigg.LinqToSql.Repository
                 recommendation.StartTime = startTime;
 
                 recommendation.EndTime = endTime;
+
+                recommendation.Email = email;
+
+                recommendation.NotificationIsSent = notificationIsSent;
 
                 unitOfWork.Commit();
             }

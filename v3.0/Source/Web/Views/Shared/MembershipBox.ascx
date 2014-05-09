@@ -215,6 +215,11 @@
                         <input id="txtPosition" name="Position" type="text" class="textBox"/>
                     </div>
                     <div class="add-article-row">
+                        <label for="txtEmail" class="label">
+                            Email:</label>
+                        <input id="txtEmail" name="Email" type="text" class="textBox"/>
+                    </div>
+                    <div class="add-article-row">
                         <span id="RecommendationMessage" class="message"></span>
                     </div>
                     <div class="add-article-row">

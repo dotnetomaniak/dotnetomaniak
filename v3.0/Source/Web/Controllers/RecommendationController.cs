@@ -59,6 +59,8 @@ namespace Kigg.Web
                                             startTime = recommendation.StartTime.ToString("yyyy-MM-dd"),
                                             endTime = recommendation.EndTime.ToString("yyyy-MM-dd"),
                                             position = recommendation.Position,
+                                            email = recommendation.Email,
+                                            notificationIsSent = recommendation.NotificationIsSent,
                                         }
                                     );
                     }
@@ -76,7 +78,7 @@ namespace Kigg.Web
 
         [AcceptVerbs(HttpVerbs.Post), ValidateInput(false), Compress]
         public ActionResult EditAd(string id, string recommendationLink, string recommendationTitle, string imageLink,
-            string imageTitle, DateTime startTime, DateTime endTime, int position = 999)
+            string imageTitle, DateTime startTime, DateTime endTime, string email, int position = 999, bool notificationIsSent = false)
         {
             JsonViewData viewData = Validate<JsonViewData>(
                 new Validation(() => CurrentUser.CanModerate() == false, "Nie masz praw do wykonowania tej operacji."),
@@ -96,7 +98,7 @@ namespace Kigg.Web
                         if (id == null || id.IsEmpty())
                         {
                             IRecommendation recommendation = _factory.CreateRecommendation(recommendationLink.Trim(),
-                                recommendationTitle.Trim(), imageLink.Trim(), imageTitle.Trim(), startTime, endTime, position);
+                                recommendationTitle.Trim(), imageLink.Trim(), imageTitle.Trim(), startTime, endTime, email, position, notificationIsSent);
                             _recommendationRepository.Add(recommendation);
 
                             unitOfWork.Commit();
@@ -116,7 +118,7 @@ namespace Kigg.Web
                             else
                             {
                                 _recommendationRepository.EditAd(recommendation, recommendationLink.NullSafe(), recommendationTitle.NullSafe(), imageLink.NullSafe(), imageTitle.NullSafe(), startTime,
-                                    endTime, position);
+                                    endTime, email, position, notificationIsSent);
 
                                 viewData = new JsonViewData { isSuccessful = true };
                             }
@@ -161,7 +163,9 @@ namespace Kigg.Web
                 ImageName = x.ImageLink,
                 ImageAlt = x.ImageTitle,
                 Position = x.Position,
-                EndTime = x.EndTime,
+                EndTime = x.EndTime,                
+                Email = x.Email,
+                NotificationIsSent = x.NotificationIsSent,
                 Id = x.Id.Shrink()
             };
         }
