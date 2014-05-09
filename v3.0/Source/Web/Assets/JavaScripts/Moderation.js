@@ -238,6 +238,7 @@
                         $('#txtStartTime').val(result.startTime);
                         $('#txtEndTime').val(result.endTime);
                         $('#txtPosition').val(result.position);
+                        $('#txtEmail').val(result.email);
                     }
                 }
             }
