@@ -114,5 +114,30 @@ namespace Kigg.LinqToSql.Repository
                 .Where(r => r.Position == 999)
                 .OrderBy(r => r.StartTime).Take(howMany);
         }
+
+        public IQueryable<IRecommendation> FindRecommendationToSendNotification()
+        {
+            var time = new TimeSpan(5, 0, 0, 0);
+            return Database.RecommendationDataSource.Where(x => x.NotificationIsSent == false).Where(x => x.EndTime - time < DateTime.Now).Where(x=>x.Email != "0");            
+        }
+
+
+        //public void SendNotifications(IQueryable<IRecommendation> recommendations)
+        //{
+        //    foreach (IRecommendation recommendation in recommendations)
+        //    {                
+        //        _emailSender.NotifyRecommendationEnds(recommendation);
+
+        //        this.EditAd(recommendation, recommendation.RecommendationLink, recommendation.RecommendationLink, recommendation.ImageLink,
+        //                                         recommendation.ImageTitle, recommendation.StartTime, recommendation.EndTime, recommendation.Email,
+        //                                         recommendation.Position, true);                
+        //    }
+        //}
+
+
+        public void SendNotifications(IQueryable<IRecommendation> recommendations)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -8,6 +8,7 @@ using Kigg.Infrastructure;
 using Kigg.Repository;
 using Kigg.Web.ViewData;
 using UnitOfWork = Kigg.Infrastructure.UnitOfWork;
+using System.Collections.Generic;
 
 namespace Kigg.Web
 {
@@ -15,14 +16,17 @@ namespace Kigg.Web
     {
         private readonly IDomainObjectFactory _factory;
         private readonly IRecommendationRepository _recommendationRepository;
+        private readonly IEmailSender _emailSender;
 
-        public RecommendationController(IDomainObjectFactory factory, IRecommendationRepository recommendationRepository)
+        public RecommendationController(IDomainObjectFactory factory, IRecommendationRepository recommendationRepository, IEmailSender emailSender)
         {
             Check.Argument.IsNotNull(factory, "factory");
             Check.Argument.IsNotNull(recommendationRepository, "recommendationRepository");
+            Check.Argument.IsNotNull(emailSender, "emailSender");
 
             _factory = factory;
             _recommendationRepository = recommendationRepository;
+            _emailSender = emailSender;
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -231,6 +235,16 @@ namespace Kigg.Web
                 ThrowNotFound("Nie ma takiej strony");
             }
             return View("RecommendationListBox", viewModel);
+        }
+
+        public IQueryable<IRecommendation> FindRecommendetionToSendNotification()
+        {
+            return _recommendationRepository.FindRecommendationToSendNotification();
+        }
+
+        public void SendNotifications(IQueryable<IRecommendation> recommendations)
+        {
+            _recommendationRepository.SendNotifications(recommendations);
         }
     }
 }
