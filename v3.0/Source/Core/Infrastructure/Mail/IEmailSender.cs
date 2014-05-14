@@ -5,6 +5,7 @@
 
     using DomainObjects;
     using Service;
+using Kigg.Core.DomainObjects;
 
     public interface IEmailSender
     {
@@ -33,5 +34,7 @@
         void NotifyPublishedStories(DateTime timestamp, IEnumerable<PublishedStory> stories);
 
         void NotifyFeedback(string email, string name, string content);
+
+        void NotifyRecommendationEnds(IRecommendation recommendation);
     }
 }
