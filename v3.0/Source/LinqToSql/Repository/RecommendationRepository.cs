@@ -115,17 +115,14 @@ namespace Kigg.LinqToSql.Repository
                 .OrderBy(r => r.StartTime).Take(howMany);
         }
 
-        public IQueryable<IRecommendation> FindRecommendationToSendNotification()
+        public IQueryable<IRecommendation> FindRecommendationToSendNotification(int intervalToCheckEndingRecommendationInDays)
         {
-            var time = new TimeSpan(5, 0, 0, 0);
+            
+            var time = new TimeSpan(intervalToCheckEndingRecommendationInDays, 0, 0, 0);
             return Database.RecommendationDataSource.Where(x=>x.NotificationIsSent == false)
                                                     .Where(x=>x.EndTime < DateTime.Now + time)
                                                     .Where(x=>x.Email != "");
         }
         
-        public void SendNotifications(IQueryable<IRecommendation> recommendations)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

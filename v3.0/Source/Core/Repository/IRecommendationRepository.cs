@@ -18,8 +18,7 @@ namespace Kigg.Repository
 
         IQueryable<IRecommendation> GetAllDefault(int howMany);
 
-        IQueryable<IRecommendation> FindRecommendationToSendNotification();
-
-        void SendNotifications(IQueryable<IRecommendation> recommendations);
+        IQueryable<IRecommendation> FindRecommendationToSendNotification(int intervalToCheckEndingRecommendationInDays);
+        
     }
 }
