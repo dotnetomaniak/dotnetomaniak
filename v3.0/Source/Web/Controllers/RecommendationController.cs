@@ -90,9 +90,11 @@ namespace Kigg.Web
                 new Validation(() => string.IsNullOrEmpty(recommendationTitle.NullSafe()), "Tytuł rekomendacji nie może być pusty."),
                 new Validation(() => string.IsNullOrEmpty(imageLink.NullSafe()), "Link obrazka nie może być pusty."),
                 new Validation(() => string.IsNullOrEmpty(imageTitle.NullSafe()), "Tytuł obrazka nie może być pusty."),
-                new Validation(() => startTime >= endTime, "Data zakończenia reklamy musi być większa od daty początkowej")
+                new Validation(() => startTime >= endTime, "Data zakończenia reklamy musi być większa od daty początkowej"),
+                new Validation(() => string.IsNullOrEmpty(email), "Adres e-mail nie może być pusty."),
+                new Validation(() => !email.NullSafe().IsEmail(), "Niepoprawny adres e-mail.")
                 );
-
+                        
             if (viewData == null)
             {
                 try
