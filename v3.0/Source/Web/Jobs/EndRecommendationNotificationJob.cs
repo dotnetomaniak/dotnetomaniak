@@ -32,24 +32,21 @@ namespace Kigg.Web.Jobs
         {
             if (reason != CacheItemRemovedReason.Expired)
                 return;
-
             try
             {
                 using (var databaseFactory = new DatabaseFactory(IoC.Resolve<IConnectionString>()))
                 {
-                    var _recommendationRepository = new RecommendationRepository(databaseFactory);
-
-                    var recommendations = _recommendationRepository.FindRecommendationToSendNotification();
-
-
-                    foreach (IRecommendation recommendation in recommendations)
+                    using (IUnitOfWork unitOfWork = new Kigg.LinqToSql.Repository.UnitOfWork(databaseFactory))
                     {
-                        _emailSender.NotifyRecommendationEnds(recommendation);
+                        var _recommendationRepository = new RecommendationRepository(databaseFactory);
+                        var recommendations = _recommendationRepository.FindRecommendationToSendNotification();
 
-                        _recommendationRepository.EditAd(recommendation, recommendation.RecommendationLink, recommendation.RecommendationLink, recommendation.ImageLink,
-                                                         recommendation.ImageTitle, recommendation.StartTime, recommendation.EndTime, recommendation.Email,
-                                                         recommendation.Position, true);
-                        
+                        foreach (IRecommendation recommendation in recommendations)
+                        {
+                            _emailSender.NotifyRecommendationEnds(recommendation);
+                            recommendation.NotificationIsSent = true;
+                        }
+                        unitOfWork.Commit();
                     }
                 }
             }
@@ -58,7 +55,6 @@ namespace Kigg.Web.Jobs
                 Insert();
             }
         }
-
 
         protected TimeSpan Interval
         {
