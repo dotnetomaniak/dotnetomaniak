@@ -23,15 +23,15 @@ namespace Kigg.Web
             Check.Argument.IsNotNull(factory, "factory");
             Check.Argument.IsNotNull(recommendationRepository, "recommendationRepository");
             Check.Argument.IsNotNull(emailSender, "emailSender");
-
+            
             _factory = factory;
             _recommendationRepository = recommendationRepository;
             _emailSender = emailSender;
         }
-
+        
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult GetAd(string id)
-        {
+        {            
             id = id.NullSafe();
             JsonViewData viewData = Validate<JsonViewData>(
                                                             new Validation(() => string.IsNullOrEmpty(id), "Identyfikator reklamy nie może być pusty."),
@@ -239,14 +239,10 @@ namespace Kigg.Web
             return View("RecommendationListBox", viewModel);
         }
 
-        public IQueryable<IRecommendation> FindRecommendetionToSendNotification()
+        public IQueryable<IRecommendation> FindRecommendetionToSendNotification(int intervalToCheckEndingRecommendationInDays)
         {
-            return _recommendationRepository.FindRecommendationToSendNotification();
+            return _recommendationRepository.FindRecommendationToSendNotification(intervalToCheckEndingRecommendationInDays);
         }
 
-        public void SendNotifications(IQueryable<IRecommendation> recommendations)
-        {
-            _recommendationRepository.SendNotifications(recommendations);
-        }
     }
 }

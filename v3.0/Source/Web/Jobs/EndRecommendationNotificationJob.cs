@@ -13,9 +13,11 @@ namespace Kigg.Web.Jobs
     public class EndRecommendationNotificationJob : IBootstrapperTask
     {
         private readonly IEmailSender _emailSender;
+        private int _intervalToCheckEndingRecommendationInDays;
 
-        public EndRecommendationNotificationJob(IEmailSender emailSender)
+        public EndRecommendationNotificationJob(IEmailSender emailSender, int intervalToCheckEndingRecommendationInDays)
         {
+            _intervalToCheckEndingRecommendationInDays = intervalToCheckEndingRecommendationInDays;
             _emailSender = emailSender;
             Insert();
         }
@@ -39,7 +41,7 @@ namespace Kigg.Web.Jobs
                     using (IUnitOfWork unitOfWork = new Kigg.LinqToSql.Repository.UnitOfWork(databaseFactory))
                     {
                         var _recommendationRepository = new RecommendationRepository(databaseFactory);
-                        var recommendations = _recommendationRepository.FindRecommendationToSendNotification();
+                        var recommendations = _recommendationRepository.FindRecommendationToSendNotification(_intervalToCheckEndingRecommendationInDays);
 
                         foreach (IRecommendation recommendation in recommendations)
                         {
