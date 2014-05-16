@@ -118,23 +118,11 @@ namespace Kigg.LinqToSql.Repository
         public IQueryable<IRecommendation> FindRecommendationToSendNotification()
         {
             var time = new TimeSpan(5, 0, 0, 0);
-            return Database.RecommendationDataSource.Where(x => x.NotificationIsSent == false).Where(x => x.EndTime - time < DateTime.Now).Where(x=>x.Email != "0");            
+            return Database.RecommendationDataSource.Where(x=>x.NotificationIsSent == false)
+                                                    .Where(x=>x.EndTime < DateTime.Now + time)
+                                                    .Where(x=>x.Email != "");
         }
-
-
-        //public void SendNotifications(IQueryable<IRecommendation> recommendations)
-        //{
-        //    foreach (IRecommendation recommendation in recommendations)
-        //    {                
-        //        _emailSender.NotifyRecommendationEnds(recommendation);
-
-        //        this.EditAd(recommendation, recommendation.RecommendationLink, recommendation.RecommendationLink, recommendation.ImageLink,
-        //                                         recommendation.ImageTitle, recommendation.StartTime, recommendation.EndTime, recommendation.Email,
-        //                                         recommendation.Position, true);                
-        //    }
-        //}
-
-
+        
         public void SendNotifications(IQueryable<IRecommendation> recommendations)
         {
             throw new NotImplementedException();

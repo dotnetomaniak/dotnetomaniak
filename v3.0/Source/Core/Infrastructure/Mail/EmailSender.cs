@@ -76,9 +76,9 @@ using Kigg.Core.DomainObjects;
         {
             Check.Argument.IsNotNull(recommendation.Email, "email");
 
-            string body = PrepareMailBodyWith("RecommendationEndNotification", "recommendationTitle", recommendation.RecommendationTitle);
+            string body = PrepareMailBodyWith("RecommendationEndNotification", "endTime", recommendation.EndTime.ToShortDateString(), "recommendationLink", recommendation.RecommendationLink);
             
-            SendMailAsync(_settings.WebmasterEmail, recommendation.Email, "Koñcz¹ca siê reklama!", body);            
+            SendMailAsync(_settings.WebmasterEmail, recommendation.Email, "Powiadomienie o koñcz¹cej siê reklamie", body);            
         }
 
         public void NotifySpamStory(string url, IStory story, string source)
