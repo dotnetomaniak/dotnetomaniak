@@ -14,11 +14,15 @@ namespace Kigg.Web.Jobs
     {
         private readonly IEmailSender _emailSender;
         private int _intervalToCheckEndingRecommendationInDays;
+        private int _beginBusinessHours;
+        private int _finishBusinessHours;
 
-        public EndRecommendationNotificationJob(IEmailSender emailSender, int intervalToCheckEndingRecommendationInDays)
+        public EndRecommendationNotificationJob(IEmailSender emailSender, int intervalToCheckEndingRecommendationInDays, int beginBusinessHours, int finishBusinessHours)
         {
             _intervalToCheckEndingRecommendationInDays = intervalToCheckEndingRecommendationInDays;
             _emailSender = emailSender;
+            _beginBusinessHours = beginBusinessHours;
+            _finishBusinessHours = finishBusinessHours;
             Insert();
         }
 
@@ -31,25 +35,14 @@ namespace Kigg.Web.Jobs
         }
 
         private void Callback(string key, object value, CacheItemRemovedReason reason)
-        {
+        {         
             if (reason != CacheItemRemovedReason.Expired)
                 return;
             try
             {
-                using (var databaseFactory = new DatabaseFactory(IoC.Resolve<IConnectionString>()))
+                if (WithinBusinessHours(_beginBusinessHours, _finishBusinessHours))
                 {
-                    using (IUnitOfWork unitOfWork = new Kigg.LinqToSql.Repository.UnitOfWork(databaseFactory))
-                    {
-                        var _recommendationRepository = new RecommendationRepository(databaseFactory);
-                        var recommendations = _recommendationRepository.FindRecommendationToSendNotification(_intervalToCheckEndingRecommendationInDays);
-
-                        foreach (IRecommendation recommendation in recommendations)
-                        {
-                            _emailSender.NotifyRecommendationEnds(recommendation);
-                            recommendation.NotificationIsSent = true;
-                        }
-                        unitOfWork.Commit();
-                    }
+                    CheckRecommendationsEndAndSendNotification();
                 }
             }
             finally
@@ -58,9 +51,33 @@ namespace Kigg.Web.Jobs
             }
         }
 
+        private static bool WithinBusinessHours(int beginBusinessHours, int finishBusinessHours)
+        {
+            return DateTime.UtcNow.Hour >= beginBusinessHours && DateTime.UtcNow.Hour <= finishBusinessHours;
+        }
+
+        private void CheckRecommendationsEndAndSendNotification()
+        {
+            using (var databaseFactory = new DatabaseFactory(IoC.Resolve<IConnectionString>()))
+            {
+                using (IUnitOfWork unitOfWork = new Kigg.LinqToSql.Repository.UnitOfWork(databaseFactory))
+                {
+                    var _recommendationRepository = new RecommendationRepository(databaseFactory);
+                    var recommendations = _recommendationRepository.FindRecommendationToSendNotification(_intervalToCheckEndingRecommendationInDays);
+
+                    foreach (IRecommendation recommendation in recommendations)
+                    {
+                        _emailSender.NotifyRecommendationEnds(recommendation);
+                        recommendation.NotificationIsSent = true;
+                    }
+                    unitOfWork.Commit();
+                }
+            }
+        }
+
         protected TimeSpan Interval
         {
-            get { return new TimeSpan(0, 0, 3); }
+            get { return new TimeSpan(6, 0, 0); }
         }
 
         public void Execute()
