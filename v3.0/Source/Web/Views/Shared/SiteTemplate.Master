@@ -120,7 +120,7 @@
         scriptManager.RegisterOnDispose("Membership.dispose();");
         //scriptManager.RegisterOnDispose("Tag.dispose();");
         //scriptManager.RegisterOnDispose("Search.dispose();");
-
+        
         if (Model.IsCurrentUserAuthenticated)
         {
                 if (Model.CanCurrentUserModerate)
@@ -198,8 +198,61 @@
     <script src="/Assets/JavaScripts/whcookies.js" type="text/javascript"></script>
     <asp:ContentPlaceHolder ID="HeadPlaceHolder" runat="server">
     </asp:ContentPlaceHolder>
+    <script>
+        window.fbAsyncInit = function () {
+            
+            FB.Event.subscribe('auth.authResponseChange', function (response) {
+                if (response.status === 'connected') {
+                    takeFbUserData();
+                } else if (response.status === 'not_authorized') {
+                    FB.login();
+                } else {
+                    FB.login();
+                }
+            });
+        }
+
+        (function (d) {
+            var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement('script'); js.id = id; js.async = true;
+            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=263922737127866";
+            ref.parentNode.insertBefore(js, ref);
+        }(document));
+
+        function checkLoginState() {
+            var data;
+            FB.api('/me', function (response) {
+                data = response;
+            })
+            var dataString = JSON.stringify(data)
+            $.ajax({
+                url: 'Facebook/GetFBData',
+                type: 'POST',
+                data: {'data': dataString},
+                success: function (result) {
+                    if (result.isSuccessful) {
+                        window.location.reload();
+                    }
+                    else {
+                    }
+                }
+            });
+        };
+    </script>   
+
 </head>
-<body>
+<body>       
+
+    <div id="fb-root"></div>
+<%--<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&appId=263922737127866&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>--%>
+
     <div id="info"></div>
     <div id="container">
         <div id="top">
@@ -221,6 +274,12 @@
                         <%= Html.ActionLink("Zobacz listę oczekujących artykułów (" + ViewData.Model.UpcomingStoriesCount.ToString() + ")", "Upcoming", "Story")%> 
                     </p>
                 </div>
+
+                <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+
+                <div id="status">
+                </div>
+
             </div>
             <div id="menuwrapper">
                 <% Html.RenderAction("Menu", "Category"); %>
@@ -265,6 +324,7 @@
     <% Html.RenderPartial("MembershipBox", Model); %>
     <kigg:jQueryScriptManager ID="scripts" runat="server">
     </kigg:jQueryScriptManager>
-    <%= MiniProfiler.RenderIncludes() %>
+    <%= MiniProfiler.RenderIncludes() %>    
+
 </body>
 </html>
