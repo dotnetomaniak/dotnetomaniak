@@ -69,6 +69,13 @@ namespace Kigg.LinqToSql.Repository
             return Database.UserDataSource.SingleOrDefault(u => u.Id == id);
         }
 
+        public virtual IUser FindByFbId(string fbId)
+        {
+            Check.Argument.IsNotEmpty(fbId, "fbId");
+
+            return Database.UserDataSource.SingleOrDefault(x => x.FbId == fbId);
+        }
+
         public virtual IUser FindByUserName(string userName)
         {
             Check.Argument.IsNotEmpty(userName, "userName");

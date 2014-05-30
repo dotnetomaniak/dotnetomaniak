@@ -3218,6 +3218,8 @@ namespace Kigg.LinqToSql.DomainObjects
 		
 		private System.DateTime _CreatedAt;
 		
+		private string _FbId;
+		
 		private EntitySet<UserTag> _UserTags;
 		
 		private EntitySet<CommentSubscribtion> _CommentSubscribtions;
@@ -3258,6 +3260,8 @@ namespace Kigg.LinqToSql.DomainObjects
     partial void OnLastActivityAtChanged();
     partial void OnCreatedAtChanging(System.DateTime value);
     partial void OnCreatedAtChanged();
+    partial void OnFbIdChanging(string value);
+    partial void OnFbIdChanged();
     #endregion
 		
 		public User()
@@ -3454,8 +3458,29 @@ namespace Kigg.LinqToSql.DomainObjects
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FbId", DbType="NVarChar(256)", CanBeNull=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=10)]
+		public string FbId
+		{
+			get
+			{
+				return this._FbId;
+			}
+			set
+			{
+				if ((this._FbId != value))
+				{
+					this.OnFbIdChanging(value);
+					this.SendPropertyChanging();
+					this._FbId = value;
+					this.SendPropertyChanged("FbId");
+					this.OnFbIdChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserTag", Storage="_UserTags", ThisKey="Id", OtherKey="UserId")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=10, EmitDefaultValue=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=11, EmitDefaultValue=false)]
 		public EntitySet<UserTag> UserTags
 		{
 			get
@@ -3474,7 +3499,7 @@ namespace Kigg.LinqToSql.DomainObjects
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_CommentSubscribtion", Storage="_CommentSubscribtions", ThisKey="Id", OtherKey="UserId")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=11, EmitDefaultValue=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=12, EmitDefaultValue=false)]
 		public EntitySet<CommentSubscribtion> CommentSubscribtions
 		{
 			get
@@ -3493,7 +3518,7 @@ namespace Kigg.LinqToSql.DomainObjects
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Story", Storage="_Stories", ThisKey="Id", OtherKey="UserId")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=12, EmitDefaultValue=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=13, EmitDefaultValue=false)]
 		public EntitySet<Story> Stories
 		{
 			get
@@ -3512,7 +3537,7 @@ namespace Kigg.LinqToSql.DomainObjects
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_StoryComment", Storage="_StoryComments", ThisKey="Id", OtherKey="UserId")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=13, EmitDefaultValue=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=14, EmitDefaultValue=false)]
 		public EntitySet<StoryComment> StoryComments
 		{
 			get
@@ -3531,7 +3556,7 @@ namespace Kigg.LinqToSql.DomainObjects
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_StoryMarkAsSpam", Storage="_StoryMarkAsSpams", ThisKey="Id", OtherKey="UserId")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=14, EmitDefaultValue=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=15, EmitDefaultValue=false)]
 		public EntitySet<StoryMarkAsSpam> StoryMarkAsSpams
 		{
 			get
@@ -3550,7 +3575,7 @@ namespace Kigg.LinqToSql.DomainObjects
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_StoryVote", Storage="_StoryVotes", ThisKey="Id", OtherKey="UserId")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=15, EmitDefaultValue=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=16, EmitDefaultValue=false)]
 		public EntitySet<StoryVote> StoryVotes
 		{
 			get
@@ -3569,7 +3594,7 @@ namespace Kigg.LinqToSql.DomainObjects
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserScore", Storage="_UserScores", ThisKey="Id", OtherKey="UserId")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=16, EmitDefaultValue=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=17, EmitDefaultValue=false)]
 		public EntitySet<UserScore> UserScores
 		{
 			get
@@ -3588,7 +3613,7 @@ namespace Kigg.LinqToSql.DomainObjects
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserAchievement", Storage="_UserAchievements", ThisKey="Id", OtherKey="UserId")]
-		[global::System.Runtime.Serialization.DataMemberAttribute(Order=17, EmitDefaultValue=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=18, EmitDefaultValue=false)]
 		public EntitySet<UserAchievement> UserAchievements
 		{
 			get
