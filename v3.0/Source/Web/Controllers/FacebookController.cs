@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
 using Kigg.Repository;
+using Kigg.Infrastructure;
 
 namespace Kigg.Web.Controllers
 {
@@ -24,9 +25,22 @@ namespace Kigg.Web.Controllers
         //[AcceptVerbs(HttpVerbs.Post), Compress]
         public ActionResult GetFBData(string data)
         {
-            var myself = new JavaScriptSerializer().Deserialize<FbUserDataView>(data);                
-            
-            var user = _userRepository.FindByFbId(myself.Id);
+            var myself = new JavaScriptSerializer().Deserialize<FbUserDataView>(data);            
+
+            using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
+            {                
+                var user = _userRepository.FindByFbId(myself.Id);
+
+                if (user != null)
+                {
+                    user.LastActivityAt = SystemTime.Now();
+                    unitOfWork.Commit();
+                   
+                    FormsAuthentication.SetAuthCookie(user.UserName, false);                    
+
+                }
+
+            }
             return Json(new {status = "hura" });
         }
     }
