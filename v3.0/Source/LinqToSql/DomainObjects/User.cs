@@ -197,5 +197,10 @@ namespace Kigg.LinqToSql.DomainObjects
                 return new PagedResult<IUserAchievement>(list, list.Count);
             }
         }
+
+        public void SetFbId(string fbId)
+        {
+            FbId = fbId;
+        }
     }
 }
