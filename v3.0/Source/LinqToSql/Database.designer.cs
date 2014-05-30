@@ -3458,7 +3458,7 @@ namespace Kigg.LinqToSql.DomainObjects
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FbId", DbType="NVarChar(256)", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FbId", DbType="NVarChar(256)")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=10)]
 		public string FbId
 		{
