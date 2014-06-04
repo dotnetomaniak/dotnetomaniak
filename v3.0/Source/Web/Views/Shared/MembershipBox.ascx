@@ -70,7 +70,15 @@
                     </div>
                 </fieldset>
                 </form>
-            </div>    
+            </div>
+            <h6>
+                lub...</h6>
+            <p>
+                Zaloguj się przy użyciu facebooka.
+            </p>
+            <div class="box">                                                                      
+                <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+            </div>         
         </div> 
         <%}%>
         <%if ((isAuthenticated) && (!Model.CurrentUser.IsOpenIDAccount())) %>
@@ -143,8 +151,12 @@
                     <div class="add-article-row">
                         <span id="signupMessage" class="message"></span>
                     </div>
+                    <div class="add-article-row">
+                        <input id="btnSignup" type="submit" class="button" value="Sign up" />
+                    </div>                    
                 </fieldset>
                 </form>
+                <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true"></div>
             </div>
         </div>
         <div id="lostPasswordSection">

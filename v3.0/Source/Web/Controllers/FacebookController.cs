@@ -23,25 +23,79 @@ namespace Kigg.Web.Controllers
         }
 
         //[AcceptVerbs(HttpVerbs.Post), Compress]
-        public ActionResult GetFBData(string data)
+        public ActionResult LogByFbData(string data)
         {
-            var myself = new JavaScriptSerializer().Deserialize<FbUserDataView>(data);            
+            JsonViewData viewData = Validate<JsonViewData>(
+                new Validation(() => string.IsNullOrEmpty(data.NullSafe()), "Nie udało nam się uzyskać Twoich danych z serwisu Facebook, spróbuj ponownie.")
+                                                          );
+            if (viewData == null)
+            {
+                try
+                {                    
+                    var fbUserViewData = new JavaScriptSerializer().Deserialize<FbUserDataView>(data);
+                    fbUserViewData = AssignViewData<FbUserDataView>(fbUserViewData);
 
-            using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
-            {                
-                var user = _userRepository.FindByFbId(myself.Id);
+                    using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
+                    {
+                        var user = _userRepository.FindByFbId(fbUserViewData.Id);
 
-                if (user != null)
-                {
-                    user.LastActivityAt = SystemTime.Now();
-                    unitOfWork.Commit();
-                   
-                    FormsAuthentication.SetAuthCookie(user.UserName, false);                    
+                        if (user != null)
+                        {
+                            viewData = LogUserByFb(viewData, unitOfWork, user);
+                        }
+                        else
+                        {                            
+                            user = _userRepository.FindByEmail(fbUserViewData.Email);
 
+                            if (user != null)
+                            {
+                                viewData = LogUserByFb(viewData, unitOfWork, user);
+
+                                user.FbId = fbUserViewData.Id;
+                                unitOfWork.Commit();
+                            }
+                            else
+                            {
+
+                                return Json(new { redirectUrl = Url.Action("FbLog", "Facebook"), isSuccessful = true, isRedirect = true });
+                            }
+                        }
+                    }
                 }
-
+                catch (Exception e)
+                {
+                    Log.Exception(e);
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("logowania") };
+                }         
             }
-            return Json(new {status = "hura" });
+            return Json(viewData);
+        }
+
+
+        private JsonViewData LogUserByFb(JsonViewData viewData, IUnitOfWork unitOfWork, DomainObjects.IUser user)
+        {
+            viewData = Validate<JsonViewData>(
+                                                new Validation(() => user.IsLockedOut, "Twoje konto jest aktualnie zablokowane. Skontaktuj się z pomocą aby rozwiązać ten problem."),
+                                                new Validation(() => !user.IsActive, "Twoje konto nie zostało jeszcze aktywowane. Posłóż się linkiem aktywacyjnym z wiadomości rejestracyjnej aby aktywować konto.")
+                                             );
+
+            if (user != null)
+            {
+                user.LastActivityAt = SystemTime.Now();
+                unitOfWork.Commit();
+
+                FormsAuthentication.SetAuthCookie(user.UserName, false);
+                viewData = new JsonViewData { isSuccessful = true };
+
+                Log.Info("Użytkownik zalogowany: {0}", user.UserName);
+            }
+            return viewData;
+        }
+
+        [Compress]
+        public ActionResult FbLog()
+        {
+            return View();
         }
     }
 }
