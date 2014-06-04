@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Kigg.Web.ViewData
 {
-    public class FbUserDataView
+    public class FbUserDataView : BaseViewData
     {
         public string Id { get; set; }
         public string Email { get; set; }

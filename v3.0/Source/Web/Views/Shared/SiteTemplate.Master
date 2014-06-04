@@ -224,20 +224,26 @@
             var data;
             FB.api('/me', function (response) {
                 data = response;
+                var dataString = JSON.stringify(data)
+                $.ajax({
+                    url: 'Facebook/LogByFbData',
+                    type: 'POST',
+                    data: { 'data': dataString },
+                    success: function (result) {
+                        if (result.isSuccessful) {
+                            if (result.isRedirect) {
+                                window.location = json.redirectUrl;                                
+                            }
+                            else {
+                                window.location.reload();
+                            }
+                        }
+                        else {
+                            
+                        }
+                    }
+                });
             })
-            var dataString = JSON.stringify(data)
-            $.ajax({
-                url: 'Facebook/GetFBData',
-                type: 'POST',
-                data: {'data': dataString},
-                success: function (result) {
-                    if (result.isSuccessful) {
-                        window.location.reload();
-                    }
-                    else {
-                    }
-                }
-            });
         };
     </script>   
 
@@ -245,14 +251,6 @@
 <body>       
 
     <div id="fb-root"></div>
-<%--<script>(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&appId=263922737127866&version=v2.0";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>--%>
-
     <div id="info"></div>
     <div id="container">
         <div id="top">
@@ -273,18 +271,12 @@
                     <p class="show-more-articles">
                         <%= Html.ActionLink("Zobacz listę oczekujących artykułów (" + ViewData.Model.UpcomingStoriesCount.ToString() + ")", "Upcoming", "Story")%> 
                     </p>
-                </div>
-
-                <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
-
-                <div id="status">
-                </div>
-
+                </div>               
             </div>
             <div id="menuwrapper">
                 <% Html.RenderAction("Menu", "Category"); %>
             </div>
-            <% Html.RenderPartial("Fb"); %>
+            <%--<% Html.RenderPartial("FbLog", ViewData.Model); %>--%>
             <%--<% Html.RenderPartial("SearchBox", ViewData.Model); %>--%>
         </div>
         <div id="content">
