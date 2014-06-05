@@ -1,4 +1,4 @@
-namespace Kigg.Web
+ï»¿namespace Kigg.Web
 {
     using System;
     using System.Text;
@@ -21,10 +21,10 @@ namespace Kigg.Web
                         result.Append(", ");
                     }
 
-                    if (u == "dzieñ" && v > 1)
+                    if (u == "dzieÅ„" && v > 1)
                         u = "dni";
 
-                    if (u == "godzinê" && v > 1)
+                    if (u == "godzinÄ™" && v > 1)
                     {
                         if ((v % 10 >= 5) || (v % 10 <= 1) || (v > 4 && v < 22))
                         {
@@ -36,7 +36,7 @@ namespace Kigg.Web
                         }
                     }
 
-                    if (u == "minutê" && v > 1)
+                    if (u == "minutÄ™" && v > 1)
                     {
                         if ((v % 10 >= 5) || (v % 10 <= 1) || (v > 4 && v < 22))
                         {
@@ -52,12 +52,12 @@ namespace Kigg.Web
                 }
             };
 
-            format(diff.Days, "dzieñ");
-            format(diff.Hours, "godzinê");
-            format(diff.Minutes, "minutê");
+            format(diff.Days, "dzieÅ„");
+            format(diff.Hours, "godzinÄ™");
+            format(diff.Minutes, "minutÄ™");
 
 
-            return (result.Length == 0) ? "chwilê" : result.ToString();
+            return (result.Length == 0) ? "chwilÄ™" : result.ToString();
         }
 
 
