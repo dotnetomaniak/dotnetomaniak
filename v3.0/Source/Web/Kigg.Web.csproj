@@ -241,6 +241,7 @@
     <Compile Include="Jobs\CommenterBadge.cs" />
     <Compile Include="Jobs\DotnetomaniakBadge.cs" />
     <Compile Include="Jobs\EarlyBirdBadge.cs" />
+    <Compile Include="Jobs\EndRecommendationNotificationJob.cs" />
     <Compile Include="Jobs\GlobetrotterBadge.cs" />
     <Compile Include="Jobs\GoodStoryBadge.cs" />
     <Compile Include="Jobs\GreatStoryBadge.cs" />
