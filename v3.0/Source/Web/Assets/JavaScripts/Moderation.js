@@ -68,7 +68,8 @@
         $.datepicker.setDefaults($.datepicker.regional['pl']);
     });
         $('#lnkAddRecomendation').click(
-            function() {
+            function () {
+                $('#hidAdId').val("");
                 Moderation.showRecommendation();
             }
         );
