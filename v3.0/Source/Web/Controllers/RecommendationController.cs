@@ -126,6 +126,8 @@ namespace Kigg.Web
                                 _recommendationRepository.EditAd(recommendation, recommendationLink.NullSafe(), recommendationTitle.NullSafe(), imageLink.NullSafe(), imageTitle.NullSafe(), startTime,
                                     endTime, email, position, notificationIsSent);
 
+                                unitOfWork.Commit();
+
                                 viewData = new JsonViewData { isSuccessful = true };
                             }
                         }

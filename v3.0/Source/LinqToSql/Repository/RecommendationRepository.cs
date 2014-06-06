@@ -54,9 +54,7 @@ namespace Kigg.LinqToSql.Repository
         public void EditAd(IRecommendation recommendation, string recommendationLink, string recommendationTitle, string imageLink, string imageTitle, DateTime startTime, DateTime endTime, string email, int position, bool notificationIsSent)
         {
             Check.Argument.IsNotNull(recommendation, "Recommendation");
-
-            using (IUnitOfWork unitOfWork = Infrastructure.UnitOfWork.Begin())
-            {
+            
                 if (!string.IsNullOrEmpty(recommendationLink))
                 {
                     recommendation.RecommendationLink = recommendationLink;
@@ -88,10 +86,7 @@ namespace Kigg.LinqToSql.Repository
 
                 recommendation.Email = email;
 
-                recommendation.NotificationIsSent = notificationIsSent;
-
-                unitOfWork.Commit();
-            }
+                recommendation.NotificationIsSent = notificationIsSent;        
         }
 
         public IQueryable<IRecommendation> GetAllVisible()
