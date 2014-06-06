@@ -51,7 +51,7 @@ namespace Kigg.LinqToSql.Repository
             return Database.RecommendationDataSource.SingleOrDefault(r => r.RecommendationTitle == recommendationTitle.Trim());
         }
 
-        public void EditAd(IRecommendation recommendation, string recommendationLink, string recommendationTitle, string imageLink, string imageTitle, DateTime startTime, DateTime endTime, int position)
+        public void EditAd(IRecommendation recommendation, string recommendationLink, string recommendationTitle, string imageLink, string imageTitle, DateTime startTime, DateTime endTime, string email, int position, bool notificationIsSent)
         {
             Check.Argument.IsNotNull(recommendation, "Recommendation");
 
@@ -86,6 +86,10 @@ namespace Kigg.LinqToSql.Repository
 
                 recommendation.EndTime = endTime;
 
+                recommendation.Email = email;
+
+                recommendation.NotificationIsSent = notificationIsSent;
+
                 unitOfWork.Commit();
             }
         }
@@ -110,5 +114,15 @@ namespace Kigg.LinqToSql.Repository
                 .Where(r => r.Position == 999)
                 .OrderBy(r => r.StartTime).Take(howMany);
         }
+
+        public IQueryable<IRecommendation> FindRecommendationToSendNotification(int intervalToCheckEndingRecommendationInDays)
+        {
+            
+            var time = new TimeSpan(intervalToCheckEndingRecommendationInDays, 0, 0, 0);
+            return Database.RecommendationDataSource.Where(x=>x.NotificationIsSent == false)
+                                                    .Where(x=>x.EndTime < DateTime.Now + time)
+                                                    .Where(x=>x.Email != "");
+        }
+        
     }
 }

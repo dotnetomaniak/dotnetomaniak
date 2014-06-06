@@ -8,6 +8,7 @@ using Kigg.Infrastructure;
 using Kigg.Repository;
 using Kigg.Web.ViewData;
 using UnitOfWork = Kigg.Infrastructure.UnitOfWork;
+using System.Collections.Generic;
 
 namespace Kigg.Web
 {
@@ -15,19 +16,22 @@ namespace Kigg.Web
     {
         private readonly IDomainObjectFactory _factory;
         private readonly IRecommendationRepository _recommendationRepository;
+        private readonly IEmailSender _emailSender;
 
-        public RecommendationController(IDomainObjectFactory factory, IRecommendationRepository recommendationRepository)
+        public RecommendationController(IDomainObjectFactory factory, IRecommendationRepository recommendationRepository, IEmailSender emailSender)
         {
             Check.Argument.IsNotNull(factory, "factory");
             Check.Argument.IsNotNull(recommendationRepository, "recommendationRepository");
-
+            Check.Argument.IsNotNull(emailSender, "emailSender");
+            
             _factory = factory;
             _recommendationRepository = recommendationRepository;
+            _emailSender = emailSender;
         }
-
+        
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult GetAd(string id)
-        {
+        {            
             id = id.NullSafe();
             JsonViewData viewData = Validate<JsonViewData>(
                                                             new Validation(() => string.IsNullOrEmpty(id), "Identyfikator reklamy nie może być pusty."),
@@ -59,6 +63,8 @@ namespace Kigg.Web
                                             startTime = recommendation.StartTime.ToString("yyyy-MM-dd"),
                                             endTime = recommendation.EndTime.ToString("yyyy-MM-dd"),
                                             position = recommendation.Position,
+                                            email = recommendation.Email,
+                                            notificationIsSent = recommendation.NotificationIsSent,
                                         }
                                     );
                     }
@@ -76,7 +82,7 @@ namespace Kigg.Web
 
         [AcceptVerbs(HttpVerbs.Post), ValidateInput(false), Compress]
         public ActionResult EditAd(string id, string recommendationLink, string recommendationTitle, string imageLink,
-            string imageTitle, DateTime startTime, DateTime endTime, int position = 999)
+            string imageTitle, DateTime startTime, DateTime endTime, string email, int position = 999, bool notificationIsSent = false)
         {
             JsonViewData viewData = Validate<JsonViewData>(
                 new Validation(() => CurrentUser.CanModerate() == false, "Nie masz praw do wykonowania tej operacji."),
@@ -84,9 +90,11 @@ namespace Kigg.Web
                 new Validation(() => string.IsNullOrEmpty(recommendationTitle.NullSafe()), "Tytuł rekomendacji nie może być pusty."),
                 new Validation(() => string.IsNullOrEmpty(imageLink.NullSafe()), "Link obrazka nie może być pusty."),
                 new Validation(() => string.IsNullOrEmpty(imageTitle.NullSafe()), "Tytuł obrazka nie może być pusty."),
-                new Validation(() => startTime >= endTime, "Data zakończenia reklamy musi być większa od daty początkowej")
+                new Validation(() => startTime >= endTime, "Data zakończenia reklamy musi być większa od daty początkowej"),
+                new Validation(() => string.IsNullOrEmpty(email), "Adres e-mail nie może być pusty."),
+                new Validation(() => !email.NullSafe().IsEmail(), "Niepoprawny adres e-mail.")
                 );
-
+                        
             if (viewData == null)
             {
                 try
@@ -96,7 +104,7 @@ namespace Kigg.Web
                         if (id == null || id.IsEmpty())
                         {
                             IRecommendation recommendation = _factory.CreateRecommendation(recommendationLink.Trim(),
-                                recommendationTitle.Trim(), imageLink.Trim(), imageTitle.Trim(), startTime, endTime, position);
+                                recommendationTitle.Trim(), imageLink.Trim(), imageTitle.Trim(), startTime, endTime, email, position, notificationIsSent);
                             _recommendationRepository.Add(recommendation);
 
                             unitOfWork.Commit();
@@ -116,7 +124,7 @@ namespace Kigg.Web
                             else
                             {
                                 _recommendationRepository.EditAd(recommendation, recommendationLink.NullSafe(), recommendationTitle.NullSafe(), imageLink.NullSafe(), imageTitle.NullSafe(), startTime,
-                                    endTime, position);
+                                    endTime, email, position, notificationIsSent);
 
                                 viewData = new JsonViewData { isSuccessful = true };
                             }
@@ -161,7 +169,9 @@ namespace Kigg.Web
                 ImageName = x.ImageLink,
                 ImageAlt = x.ImageTitle,
                 Position = x.Position,
-                EndTime = x.EndTime,
+                EndTime = x.EndTime,                
+                Email = x.Email,
+                NotificationIsSent = x.NotificationIsSent,
                 Id = x.Id.Shrink()
             };
         }
@@ -228,5 +238,11 @@ namespace Kigg.Web
             }
             return View("RecommendationListBox", viewModel);
         }
+
+        public IQueryable<IRecommendation> FindRecommendetionToSendNotification(int intervalToCheckEndingRecommendationInDays)
+        {
+            return _recommendationRepository.FindRecommendationToSendNotification(intervalToCheckEndingRecommendationInDays);
+        }
+
     }
 }

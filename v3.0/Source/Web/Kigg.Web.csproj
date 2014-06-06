@@ -477,6 +477,7 @@
     <Content Include="ErrorPages\Offline.aspx" />
     <Content Include="Logs\exception.txt" />
     <Content Include="MailTemplates\NewPassword.txt" />
+    <Content Include="MailTemplates\RecommendationEndNotification.txt" />
     <Content Include="MailTemplates\Registration.txt" />
     <Content Include="Views\Badges\All.aspx" />
     <Content Include="Views\Badges\List.ascx" />

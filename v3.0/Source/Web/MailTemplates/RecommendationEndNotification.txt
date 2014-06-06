@@ -1,0 +1,2 @@
+﻿Twoja reklama kierująca do witryny <%=recommendationLink%> w serwisie dotnetomaniak wygasa <%=endTime%>
+Prosimy o kontakt jeżeli chcesz ją przedłużyć.
