@@ -57,7 +57,7 @@ namespace Kigg.Web.Controllers
                             else
                             {
 
-                                return Json(new { redirectUrl = Url.Action("FbLog", "Facebook"), isSuccessful = true, isRedirect = true });
+                                return Json(new { redirectUrl = Url.Action("FbLog", "Facebook",null, "http"), isSuccessful = true, isRedirect = true });
                             }
                         }
                     }
@@ -92,10 +92,21 @@ namespace Kigg.Web.Controllers
             return viewData;
         }
 
-        [Compress]
-        public ActionResult FbLog()
+        public ActionResult FbLog(string id)
         {
-            return View();
+            var fbIdViewData = new FbIdViewData();
+            fbIdViewData.Id = id;
+            fbIdViewData = AssignViewData<FbIdViewData>(fbIdViewData);
+
+            return View(fbIdViewData);
+        }
+
+        public ActionResult CreateUserByFb(string data)
+        {
+            var fbUserViewData = new JavaScriptSerializer().Deserialize<FbUserDataView>(data);
+            fbUserViewData = AssignViewData<FbUserDataView>(fbUserViewData);
+
+            return Json("abcd");
         }
     }
 }

@@ -232,15 +232,28 @@
                     success: function (result) {
                         if (result.isSuccessful) {
                             if (result.isRedirect) {
-                                window.location = json.redirectUrl;                                
+                                window.location = result.redirectUrl+'?id='+data.id;
                             }
                             else {
                                 window.location.reload();
                             }
-                        }
-                        else {
-                            
-                        }
+                        }                        
+                    }
+                });
+            })
+        };
+
+        function createUserByFb() {
+            var data;
+            FB.api('/me', function (response) {
+                data = response;                
+                var dataString = JSON.stringify(data)
+                $.ajax({
+                    url: 'Facebook/CreateUserByFb',
+                    type: 'POST',
+                    data: { 'data': dataString },
+                    success: function (result) {
+
                     }
                 });
             })
