@@ -4659,7 +4659,7 @@ namespace Kigg.LinqToSql.DomainObjects
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="Varchar(50)", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="Varchar(50)")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=10)]
 		public string Email
 		{
