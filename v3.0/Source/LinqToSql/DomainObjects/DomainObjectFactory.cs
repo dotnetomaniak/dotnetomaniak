@@ -178,7 +178,7 @@ namespace Kigg.LinqToSql.DomainObjects
         }
 
     public IRecommendation CreateRecommendation(string recommendationLink, string recommendationTitle, string imageLink,
-            string imageTitle, DateTime startTime, DateTime endTime, int position)
+            string imageTitle, DateTime startTime, DateTime endTime, string email, int position, bool notificationIsSent)
         {
             Check.Argument.IsNotEmpty(recommendationLink, "RecommendationLink");
             Check.Argument.IsNotEmpty(recommendationTitle, "RecommendationTitle");
@@ -192,6 +192,7 @@ namespace Kigg.LinqToSql.DomainObjects
 
             var recommendation = new Recommendation
             {
+                
                 Id = Guid.NewGuid(),
                 RecommendationLink = recommendationLink,
                 RecommendationTitle = recommendationTitle,
@@ -200,7 +201,9 @@ namespace Kigg.LinqToSql.DomainObjects
                 CreatedAt = now,
                 StartTime = startTime,
                 EndTime = endTime,
-                Position = position,
+                Position = position, 
+                Email = email,
+                NotificationIsSent = notificationIsSent,
             };
 
             return recommendation;

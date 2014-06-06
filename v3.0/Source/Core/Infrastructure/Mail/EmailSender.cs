@@ -10,6 +10,7 @@ namespace Kigg.Infrastructure
 
     using DomainObjects;
     using Service;
+using Kigg.Core.DomainObjects;
 
     public class EmailSender : IEmailSender
     {
@@ -69,6 +70,15 @@ namespace Kigg.Infrastructure
                                                              SendMail(_settings.WebmasterEmail, user.Email, subject, body);
                                                          }
                                                     });
+        }
+
+        public void NotifyRecommendationEnds(IRecommendation recommendation)
+        {
+            Check.Argument.IsNotNull(recommendation.Email, "email");
+
+            string body = PrepareMailBodyWith("RecommendationEndNotification", "endTime", recommendation.EndTime.ToShortDateString(), "recommendationLink", recommendation.RecommendationLink);
+            
+            SendMailAsync(_settings.WebmasterEmail, recommendation.Email, "Powiadomienie o koñcz¹cej siê reklamie", body);            
         }
 
         public void NotifySpamStory(string url, IStory story, string source)
@@ -161,6 +171,8 @@ namespace Kigg.Infrastructure
 
             SendMailAsync(_settings.WebmasterEmail, _settings.SupportEmail, "Artyku³ usuniêty - {0}".FormatWith(SystemTime.Now().ToLongDateString()), body);
         }
+
+
 
         public void NotifyPublishedStories(DateTime timestamp, IEnumerable<PublishedStory> stories)
         {

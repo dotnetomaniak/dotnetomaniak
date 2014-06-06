@@ -182,6 +182,8 @@
       <Column Name="StartTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="EndTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Position" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="Varchar(50)" CanBeNull="false" />
+      <Column Name="NotificationIsSent" Type="System.Boolean" DbType="bit" CanBeNull="false" />
     </Type>
   </Table>
   <Function Name="dbo.CommentSearch" Method="CommentSearch" IsComposable="true">
