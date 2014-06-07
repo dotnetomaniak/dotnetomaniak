@@ -1,4 +1,4 @@
-namespace Kigg.Infrastructure
+Ôªønamespace Kigg.Infrastructure
 {
     using System;
     using System.Collections.Generic;
@@ -51,7 +51,7 @@ using Kigg.Core.DomainObjects;
 
             string body = PrepareMailBodyWith("NewPassword", "userName", userName, "password", password);
 
-            SendMailAsync(_settings.WebmasterEmail, email, "{0}: Twoje nowe has≥o".FormatWith(_settings.SiteTitle), body);
+            SendMailAsync(_settings.WebmasterEmail, email, "{0}: Twoje nowe has≈Ço".FormatWith(_settings.SiteTitle), body);
         }
 
         public void SendComment(string url, IComment comment, IEnumerable<IUser> users)
@@ -78,7 +78,7 @@ using Kigg.Core.DomainObjects;
 
             string body = PrepareMailBodyWith("RecommendationEndNotification", "endTime", recommendation.EndTime.ToShortDateString(), "recommendationLink", recommendation.RecommendationLink);
             
-            SendMailAsync(_settings.WebmasterEmail, recommendation.Email, "Powiadomienie o koÒczπcej siÍ reklamie", body);            
+            SendMailAsync(_settings.WebmasterEmail, recommendation.Email, "Powiadomienie o ko≈ÑczƒÖcej siƒô reklamie", body);            
         }
 
         public void NotifySpamStory(string url, IStory story, string source)
@@ -89,7 +89,7 @@ using Kigg.Core.DomainObjects;
 
             string body = PrepareMailBodyWith("SpamStory", "title", story.Title, "siteUrl", url, "originalUrl", story.Url, "userName", story.PostedBy.UserName, "protection", source);
 
-            SendMailAsync(_settings.WebmasterEmail, _settings.SupportEmail, "Opublikowano spam artyku≥ - {0}".FormatWith(SystemTime.Now().ToLongDateString()), body);
+            SendMailAsync(_settings.WebmasterEmail, _settings.SupportEmail, "Opublikowano spam artyku≈Ç - {0}".FormatWith(SystemTime.Now().ToLongDateString()), body);
         }
 
         public void NotifyStoryMarkedAsSpam(string url, IStory story, IUser byUser)
@@ -100,7 +100,7 @@ using Kigg.Core.DomainObjects;
 
             string body = PrepareMailBodyWith("MarkAsSpamStory", "markedByUserName", byUser.UserName, "title", story.Title, "siteUrl", url, "originalUrl", story.Url, "postedByUserName", story.PostedBy.UserName);
 
-            SendMailAsync(_settings.WebmasterEmail, _settings.SupportEmail, "Artyku≥ oznaczony jako spam - {0}".FormatWith(SystemTime.Now().ToLongDateString()), body);
+            SendMailAsync(_settings.WebmasterEmail, _settings.SupportEmail, "Artyku≈Ç oznaczony jako spam - {0}".FormatWith(SystemTime.Now().ToLongDateString()), body);
         }
 
         public void NotifySpamComment(string url, IComment comment, string source)
@@ -122,7 +122,7 @@ using Kigg.Core.DomainObjects;
 
             string body = PrepareMailBodyWith("ApproveStory", "approvedByUserName", byUser.UserName, "title", story.Title, "siteUrl", url, "originalUrl", story.Url, "postedByUserName", story.PostedBy.UserName);
 
-            SendMailAsync(_settings.WebmasterEmail, _settings.SupportEmail, "Artyku≥ zatwierdzony - {0}".FormatWith(SystemTime.Now().ToLongDateString()), body);
+            SendMailAsync(_settings.WebmasterEmail, _settings.SupportEmail, "Artyku≈Ç zatwierdzony - {0}".FormatWith(SystemTime.Now().ToLongDateString()), body);
         }
 
         public void NotifyConfirmSpamStory(string url, IStory story, IUser byUser)
@@ -135,7 +135,7 @@ using Kigg.Core.DomainObjects;
 
             string body = PrepareMailBodyWith("ConfirmSpamStory", "confirmedByUserName", byUser.UserName, "title", story.Title, "siteUrl", url, "originalUrl", story.Url, "postedByUserName", postedBy);
 
-            SendMailAsync(_settings.WebmasterEmail, _settings.SupportEmail, "Artyku≥ zaznaczony jako spam - {0}".FormatWith(SystemTime.Now().ToLongDateString()), body);
+            SendMailAsync(_settings.WebmasterEmail, _settings.SupportEmail, "Artyku≈Ç zaznaczony jako spam - {0}".FormatWith(SystemTime.Now().ToLongDateString()), body);
         }
 
         public void NotifyConfirmSpamComment(string url, IComment comment, IUser byUser)
@@ -157,7 +157,7 @@ using Kigg.Core.DomainObjects;
 
             string body = PrepareMailBodyWith("OffendedComment", "offendedByUserName", byUser.UserName, "siteUrl", url, "postedByUserName", comment.ByUser.UserName, "comment", comment.HtmlBody);
 
-            SendMailAsync(_settings.WebmasterEmail, _settings.SupportEmail, "Komentarz zaznaczony jako obraüliwy - {0}".FormatWith(SystemTime.Now().ToLongDateString()), body);
+            SendMailAsync(_settings.WebmasterEmail, _settings.SupportEmail, "Komentarz zaznaczony jako obra≈∏liwy - {0}".FormatWith(SystemTime.Now().ToLongDateString()), body);
         }
 
         public void NotifyStoryDelete(IStory story, IUser byUser)
@@ -169,7 +169,7 @@ using Kigg.Core.DomainObjects;
 
             string body = PrepareMailBodyWith("StoryDeleted", "deletedByUserName", byUser.UserName, "title", story.Title, "url", story.Url, "postedByUserName", postedBy);
 
-            SendMailAsync(_settings.WebmasterEmail, _settings.SupportEmail, "Artyku≥ usuniÍty - {0}".FormatWith(SystemTime.Now().ToLongDateString()), body);
+            SendMailAsync(_settings.WebmasterEmail, _settings.SupportEmail, "Artyku≈Ç usuni√™ty - {0}".FormatWith(SystemTime.Now().ToLongDateString()), body);
         }
 
 
@@ -179,7 +179,7 @@ using Kigg.Core.DomainObjects;
             Check.Argument.IsNotInFuture(timestamp, "timestamp");
             Check.Argument.IsNotNull(stories, "stories");
 
-            string subject = "{0}: Opublikowane artyku≥y - {1}".FormatWith(_settings.SiteTitle, timestamp.ToString());
+            string subject = "{0}: Opublikowane artyku≈Çy - {1}".FormatWith(_settings.SiteTitle, timestamp.ToString());
             string body = PrepareMailBodyWith("PublishedStories", "timestamp", timestamp.ToLongDateString());
 
             StringBuilder bodyBuilder = new StringBuilder(body);
