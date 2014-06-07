@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Threading;
 using System.Web;
 using System.Web.Caching;
 using Kigg.Infrastructure;
 using Kigg.LinqToSql.Repository;
 using Cache = System.Web.Caching.Cache;
-using Kigg.Repository;
 using Kigg.Core.DomainObjects;
 
 namespace Kigg.Web.Jobs
@@ -60,10 +58,10 @@ namespace Kigg.Web.Jobs
         {
             using (var databaseFactory = new DatabaseFactory(IoC.Resolve<IConnectionString>()))
             {
-                using (IUnitOfWork unitOfWork = new Kigg.LinqToSql.Repository.UnitOfWork(databaseFactory))
+                using (IUnitOfWork unitOfWork = new LinqToSql.Repository.UnitOfWork(databaseFactory))
                 {
-                    var _recommendationRepository = new RecommendationRepository(databaseFactory);
-                    var recommendations = _recommendationRepository.FindRecommendationToSendNotification(_intervalToCheckEndingRecommendationInDays);
+                    var recommendationRepository = new RecommendationRepository(databaseFactory);
+                    var recommendations = recommendationRepository.FindRecommendationToSendNotification(_intervalToCheckEndingRecommendationInDays);
 
                     foreach (IRecommendation recommendation in recommendations)
                     {
