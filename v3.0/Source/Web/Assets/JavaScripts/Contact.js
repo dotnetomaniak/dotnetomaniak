@@ -1,6 +1,11 @@
 ﻿var Contact =
 {
     init: function () {
+        jQuery.validator.addMethod(
+            "checkHtml", function (value) {
+                return $(value).length == 0;
+            }
+        );
         $('#frmContact').validate(
                                         {
                                             rules: {
@@ -14,7 +19,8 @@
                                                 },
                                                 message: {
                                                     required: true,
-                                                    minlength: 16
+                                                    minlength: 16,
+                                                    checkHtml: true
                                                 }
                                             },
                                             messages: {
@@ -28,7 +34,8 @@
                                                 },
                                                 message: {
                                                     required: 'Wiadomość nie może być pusta.',
-                                                    minlength: 'Wiadomość nie może być krótsza niż 16 znaków.'
+                                                    minlength: 'Wiadomość nie może być krótsza niż 16 znaków.',
+                                                    checkHtml: 'Pole nie może zawierać HTML.'
                                                 }
                                             },
                                             submitHandler: function (form) {
