@@ -60,6 +60,11 @@
                                                         else {
                                                             $('#contactMessage').text(result.errorMessage).css('color', '#ff0000').show();
                                                         }
+                                                    },
+                                                    error: function (result) {
+                                                        $U.disableInputs('#frmContact', false);
+                                                        $U.hideProgress();
+                                                        $('#contactMessage').text('Wprowadzone dane są nieprawidłowe. Popraw powyższe pola i spróbuj ponownie.').css('color', '#ff0000').show();
                                                     }
                                                 };
 
