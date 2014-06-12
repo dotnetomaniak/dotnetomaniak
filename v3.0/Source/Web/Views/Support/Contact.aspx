@@ -39,7 +39,7 @@
             </div>            
             <div class="add-article-row">
                 <label for="txtContactMessage" class="label" id="no-padding">Wiadomość:</label>
-                <textarea id="txtContactMessage" name="message" class="largeTextArea" cols="52" rows="10"></textarea>
+                <textarea id="txtContactMessage" name="message" class="largeTextArea" cols="52" rows="10" style="width: 436px"></textarea>
                 <span class="error"></span>
             </div>
             <p>
