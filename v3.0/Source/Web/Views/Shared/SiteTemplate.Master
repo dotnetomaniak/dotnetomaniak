@@ -226,7 +226,7 @@
                 data = response;
                 var dataString = JSON.stringify(data)
                 $.ajax({
-                    url: 'Facebook/LogByFbData',
+                    url: '/Facebook/LogByFbData',
                     type: 'POST',
                     data: { 'data': dataString },
                     success: function (result) {
@@ -249,7 +249,7 @@
                 data = response;                
                 var dataString = JSON.stringify(data)
                 $.ajax({
-                    url: 'Facebook/CreateUserByFb',
+                    url: '/Facebook/CreateUserByFb',
                     type: 'POST',
                     data: { 'data': dataString },
                     success: function (result) {
