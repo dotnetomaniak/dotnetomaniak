@@ -8,18 +8,26 @@ using System.Web.Script.Serialization;
 
 using Kigg.Repository;
 using Kigg.Infrastructure;
+using Kigg.DomainObjects;
+using Kigg.Service;
 
 namespace Kigg.Web.Controllers
 {
     public class FacebookController : BaseController
     {
         private readonly IUserRepository _userRepository;
+        private readonly IDomainObjectFactory _factory;
+        private readonly IEventAggregator _eventAggregator;
 
-        public FacebookController(IUserRepository userRepository)
+        public FacebookController(IUserRepository userRepository, IDomainObjectFactory factory, IEventAggregator eventAggregator)
         {
             Check.Argument.IsNotNull(userRepository, "userRepository");
+            Check.Argument.IsNotNull(factory, "factory");
+            Check.Argument.IsNotNull(eventAggregator, "eventAggregator");
 
-            _userRepository=userRepository;
+            _userRepository = userRepository;
+            _factory = factory;
+            _eventAggregator = eventAggregator;
         }
 
         //[AcceptVerbs(HttpVerbs.Post), Compress]
@@ -103,8 +111,40 @@ namespace Kigg.Web.Controllers
 
         public ActionResult CreateUserByFb(string data)
         {
-            var fbUserViewData = new JavaScriptSerializer().Deserialize<FbUserDataView>(data);
-            fbUserViewData = AssignViewData<FbUserDataView>(fbUserViewData);
+            JsonViewData viewData = Validate<JsonViewData>(
+                new Validation(() => string.IsNullOrEmpty(data.NullSafe()), "Nie udało nam się uzyskać Twoich danych z serwisu Facebook, spróbuj ponownie.")
+                );
+            
+
+            if (viewData == null)
+            {
+                try
+                {
+                    var fbUserViewData = new JavaScriptSerializer().Deserialize<FbUserDataView>(data);
+                    fbUserViewData = AssignViewData<FbUserDataView>(fbUserViewData);
+
+                    using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
+                    {
+                        IUser user = _factory.CreateUser(fbUserViewData.Name, fbUserViewData.Email, null);
+                        user.FbId = fbUserViewData.Id;
+                        user.LastActivityAt = SystemTime.Now();
+                        UserRepository.Add(user);
+
+                        _eventAggregator.GetEvent<UserActivateEvent>().Publish(new UserActivateEventArgs(user));
+                        
+                        unitOfWork.Commit();
+                        viewData = LogUserByFb(viewData, unitOfWork, user);
+                        
+                    }
+                }
+                catch (Exception e)
+                {
+                    Log.Exception(e);
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("logowania") };
+                }                
+
+
+            }
 
             return Json("abcd");
         }
