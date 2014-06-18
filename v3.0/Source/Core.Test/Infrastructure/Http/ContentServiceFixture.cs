@@ -1,10 +1,9 @@
+using Kigg.Infrastructure;
 using Moq;
 using Xunit;
 
 namespace Kigg.Core.Test
 {
-    using Infrastructure;
-
     public class ContentServiceFixture
     {
         private readonly Mock<IHttpForm> _httpForm;

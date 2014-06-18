@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Specialized;
-
+using Kigg.Infrastructure;
 using Moq;
 using Xunit;
 

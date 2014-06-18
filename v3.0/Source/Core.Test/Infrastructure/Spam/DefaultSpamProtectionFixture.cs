@@ -1,5 +1,5 @@
 using System;
-
+using Kigg.Infrastructure;
 using Moq;
 using Xunit;
 

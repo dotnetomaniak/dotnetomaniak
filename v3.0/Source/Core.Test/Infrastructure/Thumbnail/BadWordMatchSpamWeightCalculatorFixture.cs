@@ -1,10 +1,9 @@
+using Kigg.Infrastructure;
 using Moq;
 using Xunit;
 
 namespace Kigg.Core.Test
 {
-    using Infrastructure;
-
     public class BadWordMatchSpamWeightCalculatorFixture
     {
         private readonly Mock<IFile> _file;

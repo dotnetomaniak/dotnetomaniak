@@ -1,11 +1,10 @@
 using System;
-
+using Kigg.Infrastructure;
 using Moq;
 using Xunit;
 
 namespace Kigg.Core.Test
 {
-    using Infrastructure;
     using Service;
 
     public class BaseBackgroundTaskFixture

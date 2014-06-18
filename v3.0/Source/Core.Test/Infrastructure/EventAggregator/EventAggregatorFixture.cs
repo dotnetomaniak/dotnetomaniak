@@ -1,8 +1,8 @@
+using Kigg.Infrastructure;
 using Xunit;
 
 namespace Kigg.Core.Test
 {
-    using Infrastructure;
     using Service;
 
     public class EventAggregatorFixture

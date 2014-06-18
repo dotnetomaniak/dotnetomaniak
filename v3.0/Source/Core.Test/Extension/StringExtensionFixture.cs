@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Kigg.DomainObjects;
 using Xunit;
 using Xunit.Extensions;
 

@@ -1,10 +1,10 @@
+using Kigg.DomainObjects;
+using Kigg.Infrastructure;
 using Moq;
 using Xunit;
 
 namespace Kigg.Core.Test
 {
-    using DomainObjects;
-    using Infrastructure;
     using Service;
     using Kigg.Test.Infrastructure;
 
