@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using Kigg.Infrastructure;
+using Moq;
 using Xunit;
 
 namespace Kigg.Core.Test

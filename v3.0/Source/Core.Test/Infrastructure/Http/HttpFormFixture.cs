@@ -3,14 +3,12 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Net;
 using System.Text;
-
+using Kigg.Infrastructure;
 using Moq;
 using Xunit;
 
 namespace Kigg.Core.Test
 {
-    using Infrastructure;
-
     public class HttpFormFixture
     {
         private const string UserAgent = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; SLCC1; .NET CLR 2.0.50727; .NET CLR 1.1.4322; .NET CLR 3.0.04506; .NET CLR 3.5.21022)";

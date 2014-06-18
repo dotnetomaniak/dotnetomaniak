@@ -1,12 +1,12 @@
 using System;
+using Kigg.DomainObjects;
+using Kigg.Infrastructure.DomainRepositoryExtensions;
 using Moq;
 using Xunit;
 
 namespace Kigg.Core.Test
 {
-    using DomainObjects;
     using Repository;
-    using Infrastructure.DomainRepositoryExtensions;
     using Kigg.Test.Infrastructure;
 
     public class UserExtensionFixture : BaseFixture

@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-
+using Kigg.DomainObjects;
 using Moq;
 using Xunit;
 

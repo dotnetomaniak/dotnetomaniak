@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-
+using Kigg.DomainObjects;
+using Kigg.Infrastructure;
 using Moq;
 using Xunit;
 

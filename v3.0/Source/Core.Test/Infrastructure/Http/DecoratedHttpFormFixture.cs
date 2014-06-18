@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Specialized;
-
+using Kigg.Infrastructure;
 using Moq;
 using Xunit;
 
 namespace Kigg.Core.Test
 {
-    using Infrastructure;
-
     public class DecoratedHttpFormFixture : IDisposable
     {
         private readonly Mock<IHttpForm> _innerHttpForm;

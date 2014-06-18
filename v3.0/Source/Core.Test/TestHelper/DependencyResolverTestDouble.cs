@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Kigg.Infrastructure;
 
 namespace Kigg.Core.Test
 {

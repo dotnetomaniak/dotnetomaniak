@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Kigg.Infrastructure;
 using Xunit;
 
 namespace Kigg.Core.Test

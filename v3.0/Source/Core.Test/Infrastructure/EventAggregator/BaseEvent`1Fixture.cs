@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-
+using Kigg.Infrastructure;
 using Xunit;
 
 namespace Kigg.Core.Test
