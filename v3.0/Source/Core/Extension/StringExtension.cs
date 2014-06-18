@@ -36,7 +36,10 @@ using System.Collections.Generic;
                                                                                      {'Ż','Z'},
                                                                                      {'Ź','Z'}
                                                                                  };
-        private static readonly char[] IllegalUrlCharacters = new[] { ';', '/', '\\', '?', ':', '@', '&', '=', '+', '$', ',', '<', '>', '#', '%', '.', '!', '*', '\'', '"', '(', ')', '[', ']', '{', '}', '|', '^', '`', '~', '–', '‘', '’', '“', '”', '»', '«' };
+        private static readonly char[] IllegalUrlCharacters = new[] 
+        { ';', '/', '\\', '?', ':', '@', '&', '=', '+', '$', ',', '<', '>', '#', '%', 
+          '.', '!', '*', '\'', '"', '(', ')', '[', ']', '{', '}', '|', '^', '`', '~', 
+          '–', '‘', '’', '“', '”', '»', '«', '„', '…' };
 
         [DebuggerStepThrough]
         public static bool IsWebUrl(this string target)
