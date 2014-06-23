@@ -10,7 +10,7 @@
 
     using DomainObjects;
     using Service;
-using Kigg.Core.DomainObjects;
+    using Core.DomainObjects;
 
     public class EmailSender : IEmailSender
     {
@@ -157,7 +157,7 @@ using Kigg.Core.DomainObjects;
 
             string body = PrepareMailBodyWith("OffendedComment", "offendedByUserName", byUser.UserName, "siteUrl", url, "postedByUserName", comment.ByUser.UserName, "comment", comment.HtmlBody);
 
-            SendMailAsync(_settings.WebmasterEmail, _settings.SupportEmail, "Komentarz zaznaczony jako obraŸliwy - {0}".FormatWith(SystemTime.Now().ToLongDateString()), body);
+            SendMailAsync(_settings.WebmasterEmail, _settings.SupportEmail, "Komentarz zaznaczony jako obraźliwy - {0}".FormatWith(SystemTime.Now().ToLongDateString()), body);
         }
 
         public void NotifyStoryDelete(IStory story, IUser byUser)
@@ -169,7 +169,7 @@ using Kigg.Core.DomainObjects;
 
             string body = PrepareMailBodyWith("StoryDeleted", "deletedByUserName", byUser.UserName, "title", story.Title, "url", story.Url, "postedByUserName", postedBy);
 
-            SendMailAsync(_settings.WebmasterEmail, _settings.SupportEmail, "Artykuł usuniêty - {0}".FormatWith(SystemTime.Now().ToLongDateString()), body);
+            SendMailAsync(_settings.WebmasterEmail, _settings.SupportEmail, "Artykuł usunięty - {0}".FormatWith(SystemTime.Now().ToLongDateString()), body);
         }
 
 
