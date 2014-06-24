@@ -9,8 +9,5 @@
     <fb:login-button scope="public_profile,email" onlogin="createUserByFb();"></fb:login-button>
 </div> 
 <h2>Jeżeli posiadasz konto na dotnetomaniak.pl, zaloguj się do naszego portalu, aby zsynchronizować je z Facebookiem.</h2>
-     
-</asp:Content>
-
-<asp:Content ID="Content2" ContentPlaceHolderID="HeadPlaceHolder" runat="server">
+    
 </asp:Content>

@@ -249,7 +249,6 @@
     <Compile Include="Jobs\MultiAdderBadge.cs" />
     <Compile Include="Jobs\PlaqueBadge.cs" />
     <Compile Include="Jobs\PopularStoryBadge.cs" />
-    <Compile Include="Jobs\Reccomendation.cs" />
     <Compile Include="Jobs\UpVoterBadge.cs" />
     <Compile Include="Jobs\NightOwlBadge.cs" />
     <Compile Include="Jobs\StoryAdderBadge.cs" />
@@ -316,6 +315,7 @@
     <Compile Include="ViewData\JsonVoteViewData.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewData\LogViewData.cs" />
     <Compile Include="ViewData\PromoteSiteViewData.cs">
       <SubType>Code</SubType>
     </Compile>
