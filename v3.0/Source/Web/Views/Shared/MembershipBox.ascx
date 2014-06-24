@@ -20,6 +20,12 @@
                 </p>
                 <form id="frmOpenIdLogin" action="<%= Url.Action("OpenId", "Membership") %>" method="post">
                 <fieldset>
+                    <%--<% if(Model.WantFbSynchronize) %>
+                    <% { %>
+                        <input type="hidden" name="FbSynchronize" value="true">
+                    <% }else{ %>
+                        <input type="hidden" name="FbSynchronize" value="false">
+                    <% } %>--%>
                     <div class="add-article-row">
                         <label for="openid_identifier" class="label" id="openId">
                             Wprowadź URL swojego OpenID:</label>
@@ -43,6 +49,12 @@
             <div class="box">
                 <form id="frmLogin" action="<%= Url.Action("Login", "Membership") %>" method="post">
                 <fieldset>
+<%--                    <% if(Model.WantFbSynchronize) %>
+                    <% { %>
+                        <input type="hidden" name="FbSynchronize" value="true">
+                    <% }else{ %>
+                        <input type="hidden" name="FbSynchronize" value="false">
+                    <% } %>--%>
                     <div class="add-article-row">
                         <label for="txtLoginUserName" class="label">
                             Nazwa użytkownika:</label>

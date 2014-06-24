@@ -141,12 +141,67 @@ namespace Kigg.Web.Controllers
                 {
                     Log.Exception(e);
                     viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("logowania") };
-                }                
-
-
+                }
             }
 
-            return Json("abcd");
+            return Json("Utworzono konto użytkownika, przy użyciu danych z Facebooka.");
         }
+
+        // metoda do usunięcia po wykonaniu synchronizacji po logowaniu...
+        //public ActionResult Synchronize(string userName, string password, string fbId)
+        //{
+        //    JsonViewData viewData = Validate<JsonViewData>(
+        //                                                        new Validation(() => string.IsNullOrEmpty(userName.NullSafe()), "Nazwa użytkownika nie może być pusta."),
+        //                                                        new Validation(() => string.IsNullOrEmpty(password.NullSafe()), "Hasło nie może być puste.")
+        //                                                  );
+        //    if (viewData == null)
+        //    {
+        //        try
+        //        {
+        //            using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
+        //            {
+        //                IUser user = UserRepository.FindByUserName(userName.Trim());
+
+        //                if (user != null)
+        //                {
+        //                    viewData = Validate<JsonViewData>(
+        //                                                        new Validation(() => user.IsLockedOut, "Twoje konto jest aktualnie zablokowane. Skontaktuj się z pomocą aby rozwiązać ten problem."),
+        //                                                        new Validation(() => !user.IsActive, "Twoje konto nie zostało jeszcze aktywowane. Posłóż się linkiem aktywacyjnym z wiadomości rejestracyjnej aby aktywować konto."),
+        //                                                        new Validation(() => user.IsOpenIDAccount(), "Podany login jest poprawny tylko z OpenID.")
+        //                                                     );
+
+        //                    if (viewData == null)
+        //                    {
+        //                        if (string.Compare(user.Password, password.Trim().Hash(), StringComparison.OrdinalIgnoreCase) == 0)
+        //                        {
+        //                            user.LastActivityAt = SystemTime.Now();
+        //                            user.FbId = fbId;
+
+        //                            unitOfWork.Commit();
+
+        //                            FormsAuthentication.SetAuthCookie(userName, false);
+        //                            viewData = new JsonViewData { isSuccessful = true };
+
+        //                            Log.Info("Użytkownik zalogowany: {0}", user.UserName);
+        //                        }
+        //                    }
+        //                }
+
+        //                if (viewData == null)
+        //                {
+        //                    viewData = new JsonViewData { errorMessage = "Niepoprawne dane zalogowania." };
+        //                }
+        //            }
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            Log.Exception(e);
+        //            viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("logowania") };
+        //        }
+        //    }
+
+        //    return Json("Zsynchronizowano z danymi z Facebooka.");
+        //}
+
     }
 }

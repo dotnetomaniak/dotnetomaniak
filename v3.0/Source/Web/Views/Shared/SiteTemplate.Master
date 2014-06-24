@@ -326,6 +326,8 @@
     <div id="confirmationBox"></div>
     <div id="messageBox"></div>
     <div id="dimBackground" class="dimBackground"></div>
+    <%--<% var viewData = CreateViewData<LogViewData>();%>--%>
+    
     <% Html.RenderPartial("MembershipBox", Model); %>
     <kigg:jQueryScriptManager ID="scripts" runat="server">
     </kigg:jQueryScriptManager>
