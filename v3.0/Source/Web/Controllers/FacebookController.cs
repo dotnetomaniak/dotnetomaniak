@@ -100,13 +100,13 @@ namespace Kigg.Web.Controllers
             return viewData;
         }
 
-        public ActionResult FbLog(string id)
+        public ActionResult FbLog(string email)
         {
-            var fbIdViewData = new FbIdViewData();
-            fbIdViewData.Id = id;
-            fbIdViewData = AssignViewData<FbIdViewData>(fbIdViewData);
+            var fbEmailViewData = new FbEmailViewData();
+            fbEmailViewData.Email = email;
+            fbEmailViewData = AssignViewData<FbEmailViewData>(fbEmailViewData);
 
-            return View(fbIdViewData);
+            return View(fbEmailViewData);
         }
 
         public ActionResult CreateUserByFb(string data)
@@ -147,61 +147,35 @@ namespace Kigg.Web.Controllers
             return Json("Utworzono konto użytkownika, przy użyciu danych z Facebooka.");
         }
 
-        // metoda do usunięcia po wykonaniu synchronizacji po logowaniu...
-        //public ActionResult Synchronize(string userName, string password, string fbId)
-        //{
-        //    JsonViewData viewData = Validate<JsonViewData>(
-        //                                                        new Validation(() => string.IsNullOrEmpty(userName.NullSafe()), "Nazwa użytkownika nie może być pusta."),
-        //                                                        new Validation(() => string.IsNullOrEmpty(password.NullSafe()), "Hasło nie może być puste.")
-        //                                                  );
-        //    if (viewData == null)
-        //    {
-        //        try
-        //        {
-        //            using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
-        //            {
-        //                IUser user = UserRepository.FindByUserName(userName.Trim());
+        public ActionResult SynchronizeWithFb(string data, string userName)
+        {
+            JsonViewData viewData = Validate<JsonViewData>(
+                new Validation(() => string.IsNullOrEmpty(data.NullSafe()), "Nie udało nam się uzyskać Twoich danych z serwisu Facebook, spróbuj ponownie.")
+                );
 
-        //                if (user != null)
-        //                {
-        //                    viewData = Validate<JsonViewData>(
-        //                                                        new Validation(() => user.IsLockedOut, "Twoje konto jest aktualnie zablokowane. Skontaktuj się z pomocą aby rozwiązać ten problem."),
-        //                                                        new Validation(() => !user.IsActive, "Twoje konto nie zostało jeszcze aktywowane. Posłóż się linkiem aktywacyjnym z wiadomości rejestracyjnej aby aktywować konto."),
-        //                                                        new Validation(() => user.IsOpenIDAccount(), "Podany login jest poprawny tylko z OpenID.")
-        //                                                     );
+            if (viewData == null)
+            {
+                try
+                {
+                    var fbUserViewData = new JavaScriptSerializer().Deserialize<FbUserDataView>(data);
+                    fbUserViewData = AssignViewData<FbUserDataView>(fbUserViewData);
 
-        //                    if (viewData == null)
-        //                    {
-        //                        if (string.Compare(user.Password, password.Trim().Hash(), StringComparison.OrdinalIgnoreCase) == 0)
-        //                        {
-        //                            user.LastActivityAt = SystemTime.Now();
-        //                            user.FbId = fbId;
+                    using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
+                    {                        
+                        IUser user = _userRepository.FindByUserName(HttpContext.User.Identity.Name);
 
-        //                            unitOfWork.Commit();
+                        user.FbId = fbUserViewData.Id;
+                        unitOfWork.Commit();
+                    }
+                }
+                catch (Exception e)
+                {
+                    Log.Exception(e);
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("synchronizowania") };
+                }
+            }
 
-        //                            FormsAuthentication.SetAuthCookie(userName, false);
-        //                            viewData = new JsonViewData { isSuccessful = true };
-
-        //                            Log.Info("Użytkownik zalogowany: {0}", user.UserName);
-        //                        }
-        //                    }
-        //                }
-
-        //                if (viewData == null)
-        //                {
-        //                    viewData = new JsonViewData { errorMessage = "Niepoprawne dane zalogowania." };
-        //                }
-        //            }
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            Log.Exception(e);
-        //            viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("logowania") };
-        //        }
-        //    }
-
-        //    return Json("Zsynchronizowano z danymi z Facebooka.");
-        //}
-
+            return Json("Zsynchronizowano Twoje konto z kontem Facebooka.");
+        }       
     }
 }

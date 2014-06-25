@@ -232,7 +232,7 @@
                     success: function (result) {
                         if (result.isSuccessful) {
                             if (result.isRedirect) {
-                                window.location = result.redirectUrl+'?id='+data.id;
+                                window.location = result.redirectUrl+'?email='+data.email;
                             }
                             else {
                                 window.location.reload();
@@ -258,10 +258,26 @@
                 });
             })
         };
-    </script>   
+
+        function synchronizeWithFb() {
+            var data;            
+            FB.api('/me', function (response) {
+                data = response;
+                var dataString = JSON.stringify(data)
+                $.ajax({
+                    url: '/Facebook/SynchronizeWithFb',
+                    type: 'POST',
+                    data: { 'data': dataString },
+                    success: function (result) {
+                        window.location.reload();
+                    }
+                });
+            })
+        };
+    </script>
 
 </head>
-<body>       
+<body>
 
     <div id="fb-root"></div>
     <div id="info"></div>
@@ -326,12 +342,11 @@
     <div id="confirmationBox"></div>
     <div id="messageBox"></div>
     <div id="dimBackground" class="dimBackground"></div>
-    <%--<% var viewData = CreateViewData<LogViewData>();%>--%>
     
     <% Html.RenderPartial("MembershipBox", Model); %>
     <kigg:jQueryScriptManager ID="scripts" runat="server">
     </kigg:jQueryScriptManager>
     <%= MiniProfiler.RenderIncludes() %>    
-
+    
 </body>
 </html>
