@@ -141,6 +141,7 @@ namespace Kigg.Web
             data.IsCurrentUserAuthenticated = IsCurrentUserAuthenticated;
             data.CurrentUser = CurrentUser;
             data.UpcomingStoriesCount = StoryRepository.CountByUpcoming();
+            data.FacebookAppId = Settings.FacebookAppId;
 
             return data;
         }

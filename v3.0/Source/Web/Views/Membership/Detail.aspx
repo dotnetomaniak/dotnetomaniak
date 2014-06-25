@@ -132,13 +132,23 @@
                         <% } %>
                     </div>
                     <%}%>
-                    <%if (isVisitingOwnPage && user.FbId==null) %>
-                    <%{%>                      
-                      <div class="avatar-content-row">                    
-                        <div id="synchronizeButton" class="form">
-                            <fb:login-button scope="public_profile,email" onlogin="synchronizeWithFb();">Zsynchronizuj</fb:login-button>
-                        </div>                                                
-                      </div>
+                    </div>
+                    <%if (isVisitingOwnPage) %>
+                    <%{%>                         
+                    <div class="avatar-content-row">
+                        <div class="avatar-content-label">
+                            Powiązane z:
+                        </div>
+                        <div class="avatar-content-content">
+                            <% if(user.FbId==null) %>
+                            <% { %>
+                               <fb:login-button scope="public_profile,email" onlogin="synchronizeWithFb();">Facebook</fb:login-button>
+                            <% }else %>
+                            <% { %>
+                                <span>Facebook</span>
+                            <% } %>
+                        </div>                                                                                                                                                               
+                    </div>
                     <%} %>
                 <%}%>
                 <%if (!user.IsPublicUser() || isAdmin) %>
