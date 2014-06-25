@@ -132,7 +132,14 @@
                         <% } %>
                     </div>
                     <%}%>
-                </div>
+                    <%if (isVisitingOwnPage && user.FbId==null) %>
+                    <%{%>                      
+                      <div class="avatar-content-row">                    
+                        <div id="synchronizeButton" class="form">
+                            <fb:login-button scope="public_profile,email" onlogin="synchronizeWithFb();">Zsynchronizuj</fb:login-button>
+                        </div>                                                
+                      </div>
+                    <%} %>
                 <%}%>
                 <%if (!user.IsPublicUser() || isAdmin) %>
                 <%{%>

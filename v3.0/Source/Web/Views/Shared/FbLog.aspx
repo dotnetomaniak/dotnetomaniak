@@ -1,13 +1,13 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/SiteTemplate.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/SiteTemplate.Master" Inherits="System.Web.Mvc.ViewPage<FbEmailViewData>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContentPlaceHolder" runat="server">
 
-<h2>Użytkownik o podanym przez Ciebie adresie e-mail nie istnieje w naszej bazie danych.</h2>
+<p>Użytkownik o adresie e-mail <b><%= Model.Email %></b> nie istnieje w naszej bazie danych.</p>
 
-<h2>Jeżeli nie masz konta na dotnetomaniak.pl, utwórz nowe konto za pomocą Facebooka.</h2>
-<div class="box">
-    <fb:login-button scope="public_profile,email" onlogin="createUserByFb();"></fb:login-button>
-</div> 
-<h2>Jeżeli posiadasz konto na dotnetomaniak.pl, zaloguj się do naszego portalu, aby zsynchronizować je z Facebookiem.</h2>
+<p>Utwórz nowe konto za pomocą Facebooka klikając na przycisk poniżej.</p> 
+    <br />
+        <fb:login-button scope="public_profile,email" onlogin="createUserByFb();"></fb:login-button>
+    <br />
+<p>Jeśli masz już konto, połącz je z Facebookiem w panelu użytkownika.</p>
     
 </asp:Content>

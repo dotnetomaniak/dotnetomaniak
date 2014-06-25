@@ -298,7 +298,9 @@
     <Compile Include="ViewData\ControlPanelViewData.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewData\FbIdViewData.cs" />
+    <Compile Include="ViewData\FbEmailViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ViewData\FbUserDataView.cs" />
     <Compile Include="ViewData\FeedViewData.cs">
       <SubType>Code</SubType>
@@ -315,7 +317,6 @@
     <Compile Include="ViewData\JsonVoteViewData.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewData\LogViewData.cs" />
     <Compile Include="ViewData\PromoteSiteViewData.cs">
       <SubType>Code</SubType>
     </Compile>
