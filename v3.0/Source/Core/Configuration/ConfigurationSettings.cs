@@ -171,5 +171,11 @@ namespace Kigg
             get;
             set;
         }
+
+        public string FacebookAppId
+        {
+            get;
+            set;
+        }
     }
 }

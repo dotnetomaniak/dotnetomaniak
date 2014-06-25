@@ -198,9 +198,9 @@
     <script src="/Assets/JavaScripts/whcookies.js" type="text/javascript"></script>
     <asp:ContentPlaceHolder ID="HeadPlaceHolder" runat="server">
     </asp:ContentPlaceHolder>
-    <script>
-        window.fbAsyncInit = function () {
-            
+
+    <script type="text/javascript">        
+        window.fbAsyncInit = function () {            
             FB.Event.subscribe('auth.authResponseChange', function (response) {
                 if (response.status === 'connected') {
                     takeFbUserData();
@@ -216,7 +216,7 @@
             var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
             if (d.getElementById(id)) { return; }
             js = d.createElement('script'); js.id = id; js.async = true;
-            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=263922737127866";
+            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId="+<%= Model.FacebookAppId %>;
             ref.parentNode.insertBefore(js, ref);
         }(document));
 

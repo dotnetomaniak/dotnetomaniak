@@ -53,5 +53,11 @@ namespace Kigg.Web
 			get;
 			set;
 		}
+
+        public string FacebookAppId
+        {
+            get;
+            set;
+        }
 	}
 }

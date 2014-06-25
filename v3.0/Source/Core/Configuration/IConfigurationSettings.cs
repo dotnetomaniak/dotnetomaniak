@@ -143,5 +143,7 @@
         {
             get;
         }
+
+        string FacebookAppId { get; }
     }
 }
