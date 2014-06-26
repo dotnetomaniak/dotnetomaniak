@@ -124,16 +124,28 @@ namespace Kigg.Web.Controllers
 
                     using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
                     {
-                        IUser user = _factory.CreateUser(fbUserViewData.Name, fbUserViewData.Email, null);
-                        user.FbId = fbUserViewData.Id;
-                        user.LastActivityAt = SystemTime.Now();
-                        UserRepository.Add(user);
+                        IUser user = _userRepository.FindByFbId(fbUserViewData.Id);
 
-                        _eventAggregator.GetEvent<UserActivateEvent>().Publish(new UserActivateEventArgs(user));
-                        
-                        unitOfWork.Commit();
-                        viewData = LogUserByFb(viewData, unitOfWork, user);
-                        
+                        if (user == null)
+                        {
+                            user = _factory.CreateUser(fbUserViewData.Name, fbUserViewData.Email, null);
+
+                            user.FbId = fbUserViewData.Id;
+                            unitOfWork.Commit();
+
+                            user.FbId = fbUserViewData.Id;
+                            user.LastActivityAt = SystemTime.Now();
+                            UserRepository.Add(user);
+
+                            _eventAggregator.GetEvent<UserActivateEvent>().Publish(new UserActivateEventArgs(user));
+
+                            unitOfWork.Commit();
+                            viewData = LogUserByFb(viewData, unitOfWork, user);
+                        }
+                        else
+                        {
+                            return Json(new { isSuccessful = false, errorMessage = "Użytkownik o podanym koncie Facebook'a istnieje już na dotnetomaniak.pl." });
+                        }
                     }
                 }
                 catch (Exception e)
@@ -142,8 +154,8 @@ namespace Kigg.Web.Controllers
                     viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("logowania") };
                 }
             }
-
-            return Json(new { redirectUrl = Url.Action("Published", "Story", null, "http") });
+            
+            return Json(new { isSuccessful = true, redirectUrl = Url.Action("Published", "Story", null, "http") });
         }
 
         public ActionResult SynchronizeWithFb(string data, string userName)
@@ -160,11 +172,20 @@ namespace Kigg.Web.Controllers
                     fbUserViewData = AssignViewData<FbUserDataView>(fbUserViewData);
 
                     using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
-                    {                        
-                        IUser user = _userRepository.FindByUserName(HttpContext.User.Identity.Name);
+                    {
+                        IUser user = _userRepository.FindByFbId(fbUserViewData.Id);
 
-                        user.FbId = fbUserViewData.Id;
-                        unitOfWork.Commit();
+                        if (user == null)
+                        {
+                            user = _userRepository.FindByUserName(HttpContext.User.Identity.Name);
+
+                            user.FbId = fbUserViewData.Id;
+                            unitOfWork.Commit();
+                        }
+                        else
+                        {
+                            return Json(new { isSuccessful = false, errorMessage = "Użytkownik o podanym koncie Facebook'a istnieje już na dotnetomaniak.pl." });
+                        }
                     }
                 }
                 catch (Exception e)
@@ -174,7 +195,7 @@ namespace Kigg.Web.Controllers
                 }
             }
 
-            return Json("Zsynchronizowano Twoje konto z kontem Facebooka.");
+            return Json(new { isSuccessful = true, message = "Zsynchronizowano Twoje konto z kontem Facebooka." });            
         }       
     }
 }

@@ -253,7 +253,12 @@
                     type: 'POST',
                     data: { 'data': dataString },
                     success: function (result) {
-                        window.location = result.redirectUrl;
+                        if (result.isSuccessful) {
+                            window.location = result.redirectUrl;
+                        }
+                        else {
+                            $U.messageBox('Error', result.errorMessage, false);
+                        }
                     }
                 });
             })
@@ -269,7 +274,12 @@
                     type: 'POST',
                     data: { 'data': dataString },
                     success: function (result) {
-                        window.location.reload();
+                        if (result.isSuccessful) {
+                            window.location.reload(); 
+                        }
+                        else {
+                            $U.messageBox('Error', result.errorMessage, false);
+                        }                                                                       
                     }
                 });
             })
