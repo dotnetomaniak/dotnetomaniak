@@ -64,8 +64,7 @@ namespace Kigg.Web.Controllers
                             }
                             else
                             {
-
-                                return Json(new { redirectUrl = Url.Action("FbLog", "Facebook",null, "http"), isSuccessful = true, isRedirect = true });
+                                return Json(new { redirectUrl = Url.Action("FbLog", "Facebook", null, "http"), isSuccessful = true, isRedirect = true });
                             }
                         }
                     }
@@ -144,7 +143,7 @@ namespace Kigg.Web.Controllers
                 }
             }
 
-            return Json("Utworzono konto użytkownika, przy użyciu danych z Facebooka.");
+            return Json(viewData);
         }
 
         public ActionResult SynchronizeWithFb(string data, string userName)

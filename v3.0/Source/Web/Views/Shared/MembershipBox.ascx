@@ -72,13 +72,18 @@
                 </form>
             </div>
             <h6>
-                lub...</h6>
+                lub...
+            </h6>
             <p>
-                Zaloguj się przy użyciu facebooka.
+                Zaloguj się przy użyciu Facebooka.
             </p>
-            <div class="box">                                                                      
-                <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">Zaloguj</fb:login-button>
-                
+            <div class="box">                
+                <div class="add-article-row">
+                    <div class="add-row2">
+                        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" data-size="large">Zaloguj</fb:login-button>
+                    </div>
+                    <br />
+                </div>
             </div>         
         </div> 
         <%}%>
