@@ -253,7 +253,7 @@
                     type: 'POST',
                     data: { 'data': dataString },
                     success: function (result) {
-                        window.location.reload();
+                        window.location = result.redirectUrl;
                     }
                 });
             })

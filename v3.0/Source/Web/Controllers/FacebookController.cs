@@ -143,7 +143,7 @@ namespace Kigg.Web.Controllers
                 }
             }
 
-            return Json(viewData);
+            return Json(new { redirectUrl = Url.Action("Published", "Story", null, "http") });
         }
 
         public ActionResult SynchronizeWithFb(string data, string userName)
