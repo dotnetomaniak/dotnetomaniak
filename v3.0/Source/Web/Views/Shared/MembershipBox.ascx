@@ -19,7 +19,7 @@
                     hasło zawsze jest poufne i nie musisz zapamiętywać kolejnego.
                 </p>
                 <form id="frmOpenIdLogin" action="<%= Url.Action("OpenId", "Membership") %>" method="post">
-                <fieldset>
+                <fieldset>                    
                     <div class="add-article-row">
                         <label for="openid_identifier" class="label" id="openId">
                             Wprowadź URL swojego OpenID:</label>
@@ -70,7 +70,21 @@
                     </div>
                 </fieldset>
                 </form>
-            </div>    
+            </div>
+            <h6>
+                lub...
+            </h6>
+            <p>
+                Zaloguj się przy użyciu Facebooka.
+            </p>
+            <div class="box">                
+                <div class="add-article-row">
+                    <div class="add-row2">
+                        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" data-size="large">Zaloguj</fb:login-button>
+                    </div>
+                    <br />
+                </div>
+            </div>         
         </div> 
         <%}%>
         <%if ((isAuthenticated) && (!Model.CurrentUser.IsOpenIDAccount())) %>
@@ -143,8 +157,11 @@
                     <div class="add-article-row">
                         <span id="signupMessage" class="message"></span>
                     </div>
+                    <div class="add-article-row">
+                        <input id="btnSignup" type="submit" class="button" value="Sign up" />
+                    </div>                    
                 </fieldset>
-                </form>
+                </form>                
             </div>
         </div>
         <div id="lostPasswordSection">

@@ -63,6 +63,8 @@ namespace Kigg.Web
             _routes.MapRoute("About", "About", new { controller = "Support", action = "About" });
             _routes.MapRoute("PromoteSite", "PromoteSite", new {controller = "Support", action = "PromoteSite"});
             _routes.MapRoute("Badges", "Odznaki", new {controller = "Badges", action = "All"});
+            
+            _routes.MapRoute("Facebook", "Facebook/{action}", new { controller = "Facebook", action = "LogByFbData" });
 
             _routes.MapRoute("Login", "Login", new { controller = "Membership", action = "Login" });
             _routes.MapRoute("OpenId", "OpenId", new { controller = "Membership", action = "OpenId" });
@@ -117,8 +119,9 @@ namespace Kigg.Web
             _routes.MapRoute("StoryList", "{action}/{name}/{page}", new { controller = "Story", page = 1 });
             _routes.MapRoute("Published", "{page}", new { controller = "Story", action = "Published", page = 1 }, new { page = @"^\d+$" });
             _routes.MapRoute("Detail", "{name}", new { controller = "Story", action = "Detail" });
-           
-            _routes.MapRoute("Default", "{controller}/{action}", new { controller = "Story", action = "Published" });
+            
+            _routes.MapRoute("Default", "{controller}/{action}", new { controller = "Story", action = "Published" });     
+
         }
     }
 }

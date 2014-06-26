@@ -132,6 +132,7 @@
       <Column Name="Role" Type="global::Kigg.DomainObjects.Roles" DbType="Int NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="LastActivityAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="FbId" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
       <Association Name="User_UserTag" Member="UserTags" ThisKey="Id" OtherKey="UserId" Type="UserTag" />
       <Association Name="User_CommentSubscribtion" Member="CommentSubscribtions" ThisKey="Id" OtherKey="UserId" Type="CommentSubscribtion" />
       <Association Name="User_Story" Member="Stories" ThisKey="Id" OtherKey="UserId" Type="Story" />

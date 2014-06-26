@@ -49,6 +49,12 @@ namespace Kigg.DomainObjects
             get;
         }
 
+        string FbId
+        {
+            get;
+            set;
+        }
+
         PagedResult<IUserAchievement> Achievements { get; }
         PagedResult<IUserAchievement> NewAchievements { get; }
 
@@ -69,5 +75,7 @@ namespace Kigg.DomainObjects
         void DecreaseScoreBy(decimal score, UserAction reason);
 
         void MarkAchievementsAsDisplayed();
+
+        void SetFbId(string fbId);
     }
 }

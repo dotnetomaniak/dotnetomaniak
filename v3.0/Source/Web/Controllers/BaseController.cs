@@ -127,19 +127,24 @@ namespace Kigg.Web
 
 		public T CreateViewData<T>() where T : BaseViewData, new()
 		{
-			T viewData = new T
-											 {
-												 SiteTitle = Settings.SiteTitle,
-												 RootUrl = Settings.RootUrl,
-												 MetaKeywords = Settings.MetaKeywords,
-												 MetaDescription = Settings.MetaDescription,
-												 IsCurrentUserAuthenticated = IsCurrentUserAuthenticated,
-												 CurrentUser = CurrentUser,
-												 UpcomingStoriesCount = StoryRepository.CountByUpcoming()
-											 };
+            T viewData = new T();
 
-			return viewData;
+            return AssignViewData(viewData);
 		}
+
+        public T AssignViewData<T>(T data) where T : BaseViewData
+        {
+            data.SiteTitle = Settings.SiteTitle;
+            data.RootUrl = Settings.RootUrl;
+            data.MetaKeywords = Settings.MetaKeywords;
+            data.MetaDescription = Settings.MetaDescription;
+            data.IsCurrentUserAuthenticated = IsCurrentUserAuthenticated;
+            data.CurrentUser = CurrentUser;
+            data.UpcomingStoriesCount = StoryRepository.CountByUpcoming();
+            data.FacebookAppId = Settings.FacebookAppId;
+
+            return data;
+        }
 
 		public static T Validate<T>(params Validation[] validations) where T : JsonViewData, new()
 		{
