@@ -129,7 +129,7 @@ namespace Kigg.Web
         }
 
         [Compress]
-        public ActionResult OpenId(string identifier, bool? rememberMe)
+        public ActionResult OpenId(string identifier, bool FbSynchronize, bool? rememberMe)
         {
             string errorMessage = null;
 
@@ -294,7 +294,7 @@ namespace Kigg.Web
         }
 
         [AcceptVerbs(HttpVerbs.Post), Compress]
-        public ActionResult Login(string userName, string password, bool? rememberMe)
+        public ActionResult Login(string userName, string password, bool FbSynchronize, bool? rememberMe)
         {
             JsonViewData viewData = Validate<JsonViewData>(
                                                                 new Validation(() => string.IsNullOrEmpty(userName.NullSafe()), "Nazwa u¿ytkownika nie mo¿e byæ pusta."),

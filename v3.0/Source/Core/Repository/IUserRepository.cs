@@ -10,6 +10,8 @@ namespace Kigg.Repository
     {
         IUser FindById(Guid id);
 
+        IUser FindByFbId(string fbId);
+
         IUser FindByUserName(string userName);
 
         IUser FindByEmail(string email);

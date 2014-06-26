@@ -83,5 +83,13 @@ namespace Kigg.Repository
 
             return _innerRepository.FindAllThatMatches(rule);
         }
+
+
+        public IUser FindByFbId(string fbId)
+        {
+            Check.Argument.IsNotNull(fbId, "fbId");
+
+            return _innerRepository.FindByFbId(fbId);
+        }
     }
 }

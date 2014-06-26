@@ -201,6 +201,7 @@
     <Compile Include="ActionResult\FeedResult.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\FacebookController.cs" />
     <Compile Include="Controllers\QuizController.cs" />
     <Compile Include="Controllers\RecommendationController.cs" />
     <Compile Include="Handlers\Image\DefaultColors.cs" />
@@ -297,6 +298,10 @@
     <Compile Include="ViewData\ControlPanelViewData.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewData\FbEmailViewData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewData\FbUserDataView.cs" />
     <Compile Include="ViewData\FeedViewData.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -459,6 +464,7 @@
     <Content Include="Assets\Images\zaloz-konto_07.jpg" />
     <Content Include="Assets\Images\zaloz-konto_15.jpg" />
     <Content Include="Assets\JavaScripts\devmedia.js" />
+    <Content Include="Assets\JavaScripts\Facebook.js" />
     <Content Include="Assets\JavaScripts\jquery-1.7.1.min.js" />
     <Content Include="Assets\JavaScripts\jquery-ui-1.8.17.custom.min.js" />
     <Content Include="Assets\JavaScripts\jquery.validate.js" />
@@ -484,7 +490,7 @@
     <Content Include="Views\Badges\List.ascx" />
     <Content Include="Views\Membership\Achievements.ascx" />
     <Content Include="Views\Quiz\QuizView.aspx" />
-    <Content Include="Views\Shared\Fb.ascx" />
+    <Content Include="Views\Shared\FbLog.aspx" />
     <Content Include="Views\Shared\FeedBox.ascx" />
     <Content Include="Views\Shared\GooglePlusBox.ascx" />
     <Content Include="Views\Shared\RecommendationListBox.aspx" />
