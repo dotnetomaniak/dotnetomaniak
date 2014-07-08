@@ -29,11 +29,11 @@
        <% foreach (var tag in Model.Story.Tags.Select(x=>x.UniqueName))
           { %>
               <meta property="article:tag" content="<%= tag %>" />
-          <%} %>       
+          <%} %>    
+       <meta itemprop="description" content="<%= Html.AttributeEncode(Model.Story.TextDescription) %>" />	  
        <meta property="article:published_time" content="<%= Model.Story.PublishedAt %>" />
        <meta property="article:publisher" content="http://www.facebook.com/dotnetomaniakpl" />
-       <meta property="article:published_time" content="<%= Model.Story.PublishedAt %>" />
-       <meta property="article:publisher" content="http://www.facebook.com/dotnetomaniakpl" />
+       <meta property="fb:app_id" content ="<%= Model.FacebookAppId %>" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContentPlaceHolder" runat="server">
     <% IStory story = Model.Story; %>
@@ -69,7 +69,8 @@
                <% } %>
         </div>
         <div id="third-tab-content" class="tab-content">
-            <% Html.RenderPartial("Comments", Model); %>
+            <div class="fb-comments" data-href="<%= Url.RouteUrl("Detail", new { name = Model.Story.UniqueName }, "http")  %>" data-numposts="5" data-colorscheme="light" data-width="600"></div>
+            <%--<% Html.RenderPartial("Comments", Model); %>--%>
         </div>
         <div id="fourth-tab-content" class="tab-content">
             <% Html.RenderPartial("Votes", story.Votes); %>
