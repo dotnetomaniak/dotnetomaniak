@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Web.Mvc;
 
 using Moq;
@@ -31,8 +31,11 @@ namespace Kigg.Web.Test
             _controller = new SupportController(_storyRepository.Object, _emailSender.Object)
                               {
                                   Settings = settings.Object,
-                                  UserRepository = _userRepository.Object
+                                  UserRepository = _userRepository.Object,
+                                  StoryRepository = _storyRepository.Object
                               };
+
+            _storyRepository.Setup(x => x.CountByUpcoming()).Returns(0);
 
             _httpContext = _controller.MockHttpContext("/Kigg", null, null);
             _httpContext.HttpRequest.SetupGet(r => r.UserHostAddress).Returns("192.168.0.1");
@@ -78,7 +81,7 @@ namespace Kigg.Web.Test
             JsonViewData viewData = (JsonViewData)((JsonResult)_controller.Contact(string.Empty, new string('x', 4), new string('x', 16))).Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("Email cannot be blank.", viewData.errorMessage);
+            Assert.Equal("Pole e-mail nie może być puste.", viewData.errorMessage);
         }
 
         [Fact]
@@ -87,7 +90,7 @@ namespace Kigg.Web.Test
             JsonViewData viewData = (JsonViewData)((JsonResult)_controller.Contact("xxx", new string('x', 4), new string('x', 16))).Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("Invalid email format.", viewData.errorMessage);
+            Assert.Equal("Niepoprawny adres e-mail.", viewData.errorMessage);
         }
 
         [Fact]
@@ -96,7 +99,7 @@ namespace Kigg.Web.Test
             JsonViewData viewData = (JsonViewData)((JsonResult)_controller.Contact("xxx@xxx.com", string.Empty, new string('x', 16))).Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("Name cannot be blank.", viewData.errorMessage);
+            Assert.Equal("Nazwa nie może być pusta.", viewData.errorMessage);
         }
 
         [Fact]
@@ -105,7 +108,7 @@ namespace Kigg.Web.Test
             JsonViewData viewData = (JsonViewData)((JsonResult)_controller.Contact("xxx@xxx.com", "xxx", new string('x', 16))).Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("Name cannot be less than 4 character.", viewData.errorMessage);
+            Assert.Equal("Nazwa nie może być krótsza niż 4 znaki.", viewData.errorMessage);
         }
 
         [Fact]
@@ -114,7 +117,7 @@ namespace Kigg.Web.Test
             JsonViewData viewData = (JsonViewData)((JsonResult)_controller.Contact("xxx@xxx.com", new string('x', 4), string.Empty)).Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("Message cannot be blank.", viewData.errorMessage);
+            Assert.Equal("Wiadomość nie może być pusta.", viewData.errorMessage);
         }
 
         [Fact]
@@ -123,7 +126,7 @@ namespace Kigg.Web.Test
             JsonViewData viewData = (JsonViewData)((JsonResult)_controller.Contact("xxx@xxx.com", "xxxx", new string('x', 15))).Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("Message cannot be less than 16 character.", viewData.errorMessage);
+            Assert.Equal("Wiadomość nie może być krótsza niż 16 znaków.", viewData.errorMessage);
         }
 
         [Fact]
@@ -155,7 +158,7 @@ namespace Kigg.Web.Test
         {
             var viewData = (ControlPanelViewData) ControlPanel(false).ViewData.Model;
 
-            Assert.Equal("You do not have the privilege to view it.", viewData.ErrorMessage);
+            Assert.Equal("Nie masz uprawnień do oglądania tej części strony.", viewData.ErrorMessage);
         }
 
         private ViewResult ControlPanel(bool permitted)

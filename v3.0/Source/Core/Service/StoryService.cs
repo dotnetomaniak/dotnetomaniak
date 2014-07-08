@@ -1,4 +1,4 @@
-namespace Kigg.Service
+ï»¿namespace Kigg.Service
 {
     using System;
     using System.Collections.Generic;
@@ -76,7 +76,7 @@ namespace Kigg.Service
 
                     if (alreadyExists != null)
                     {
-                        return new StoryCreateResult { ErrorMessage = "Artyku³ z danym url ju¿ istnieje.", DetailUrl = buildDetailUrl(alreadyExists) };
+                        return new StoryCreateResult { ErrorMessage = "ArtykuÅ‚ z danym url juÅ¼ istnieje.", DetailUrl = buildDetailUrl(alreadyExists) };
                     }
 
                     ICategory storyCategory = _categoryRepository.FindByUniqueName(category);
@@ -90,7 +90,7 @@ namespace Kigg.Service
 
                     if (content == StoryContent.Empty)
                     {
-                        return new StoryCreateResult { ErrorMessage = "Podany Url wydaje siê byæ wadliwy." };
+                        return new StoryCreateResult { ErrorMessage = "Podany Url wydaje siÄ™ byÄ‡ wadliwy." };
                     }
 
                     var splittedTags = tags.NullSafe().Split(',');
@@ -99,7 +99,7 @@ namespace Kigg.Service
                         var tag = splittedTags[0].Trim();
                         if (string.Compare(".net", tag, true) == 0 || string.Compare("c#", tag, true) == 0)
                         {
-                            return new StoryCreateResult {ErrorMessage = "Proszê, pomyœl chwilê nad lepszymi tagami."};
+                            return new StoryCreateResult {ErrorMessage = "ProszÄ™, pomyÅ›l chwilÄ™ nad lepszymi tagami."};
                         }
                     }
                     if (splittedTags.Length == 2) //two tags, maybe not .net and C#
@@ -119,7 +119,7 @@ namespace Kigg.Service
 
                     if (!_settings.AllowPossibleSpamStorySubmit && ShouldCheckSpamForUser(byUser))
                     {
-                        result = EnsureNotSpam<StoryCreateResult>(byUser, userIPAddress, userAgent, url, urlReferer, description, "social news", serverVariables, "Artyku³ odrzucony: {0}, {1}".FormatWith(url, byUser), "Twój artyku³ wydaje siê byæ spamem.");
+                        result = EnsureNotSpam<StoryCreateResult>(byUser, userIPAddress, userAgent, url, urlReferer, description, "social news", serverVariables, "ArtykuÅ‚ odrzucony: {0}, {1}".FormatWith(url, byUser), "TwÃ³j artykuÅ‚ wydaje siÄ™ byÄ‡ spamem.");
 
                         if (result != null)
                         {

@@ -1,8 +1,4 @@
-using System.Web.UI.WebControls;
-using Kigg.Core.DomainObjects;
-using Kigg.Repository;
-
-namespace Kigg.Web
+Ôªønamespace Kigg.Web
 {
     using System;
     using System.Collections.Generic;
@@ -177,7 +173,7 @@ namespace Kigg.Web
 
                         if ((user != null) && user.IsLockedOut)
                         {
-                            errorMessage = "Twoje konto jest obecnie zablokowane. Skontaktuj siÍ z nami w tej sprawie.";
+                            errorMessage = "Twoje konto jest obecnie zablokowane. Skontaktuj si√™ z nami w tej sprawie.";
                         }
                         else
                         {
@@ -219,7 +215,7 @@ namespace Kigg.Web
                     }
                     if (String.IsNullOrEmpty(errorMessage))
                     {
-                        errorMessage = "Nie uda≥o siÍ zalogowaÊ przez wybranego dostawcÍ OpenID.";
+                        errorMessage = "Nie uda¬≥o si√™ zalogowa√¶ przez wybranego dostawc√™ OpenID.";
                     }
                 }
             }
@@ -247,12 +243,12 @@ namespace Kigg.Web
         public ActionResult Signup(string userName, string password, string email)
         {
             JsonViewData viewData = Validate<JsonViewData>(
-                                                                new Validation(() => string.IsNullOrEmpty(userName.NullSafe()), "Nazwa uøytkownika nie moøe byÊ pusta."),
-                                                                new Validation(() => userName.Trim().Length < MinimumLength, "Nazwa uøytkownika nie moøe byÊ krÛtsza niø {0} znaki.".FormatWith(MinimumLength)),
-                                                                new Validation(() => !UserNameExpression.IsMatch(userName), "Nazwa uøytkownika moøe zawieraÊ znaki i cyfry i zaczynaÊ siÍ literπ. Dopuszczalne znaki specjalne: -,_."),
-                                                                new Validation(() => string.IsNullOrEmpty(password.NullSafe()), "Has≥o nie moøe byÊ puste."),
-                                                                new Validation(() => password.Trim().Length < MinimumLength, "Has≥o nie moøe byÊ krÛtsze niø {0} znakÛw.".FormatWith(MinimumLength)),
-                                                                new Validation(() => string.IsNullOrEmpty(email), "Adres e-mail nie moøe byÊ pusty."),
+                                                                new Validation(() => string.IsNullOrEmpty(userName.NullSafe()), "Nazwa u≈ºytkownika nie mo≈ºe byƒá pusta."),
+                                                                new Validation(() => userName.Trim().Length < MinimumLength, "Nazwa u≈ºytkownika nie mo≈ºe byƒá kr√≥tsza ni≈º {0} znaki.".FormatWith(MinimumLength)),
+                                                                new Validation(() => !UserNameExpression.IsMatch(userName), "Nazwa u≈ºytkownika mo≈ºe zawieraƒá znaki i cyfry i zaczynaƒá siƒô literƒÖ. Dopuszczalne znaki specjalne: -,_."),
+                                                                new Validation(() => string.IsNullOrEmpty(password.NullSafe()), "Has≈Ço nie mo≈ºe by√¶ puste."),
+                                                                new Validation(() => password.Trim().Length < MinimumLength, "Has≈Ço nie mo≈ºe byƒá kr√≥tsze ni≈º {0} znak√≥w.".FormatWith(MinimumLength)),
+                                                                new Validation(() => string.IsNullOrEmpty(email), "Adres e-mail nie mo≈ºe byƒá pusty."),
                                                                 new Validation(() => !email.NullSafe().IsEmail(), "Niepoprawny adres e-mail.")
                                                           );
 
@@ -297,8 +293,8 @@ namespace Kigg.Web
         public ActionResult Login(string userName, string password, bool? rememberMe)
         {
             JsonViewData viewData = Validate<JsonViewData>(
-                                                                new Validation(() => string.IsNullOrEmpty(userName.NullSafe()), "Nazwa uøytkownika nie moøe byÊ pusta."),
-                                                                new Validation(() => string.IsNullOrEmpty(password.NullSafe()), "Has≥o nie moøe byÊ puste.")
+                                                                new Validation(() => string.IsNullOrEmpty(userName.NullSafe()), "Nazwa u≈ºytkownika nie mo≈ºe byƒá pusta."),
+                                                                new Validation(() => string.IsNullOrEmpty(password.NullSafe()), "Has≈Ço nie mo≈ºe byƒá puste.")
                                                           );
 
             if (viewData == null)
@@ -312,8 +308,8 @@ namespace Kigg.Web
                         if (user != null)
                         {
                             viewData = Validate<JsonViewData>(
-                                                                new Validation(() => user.IsLockedOut, "Twoje konto jest aktualnie zablokowane. Skontaktuj siÍ z pomocπ aby rozwiπzaÊ ten problem."),
-                                                                new Validation(() => !user.IsActive, "Twoje konto nie zosta≥o jeszcze aktywowane. Pos≥Ûø siÍ linkiem aktywacyjnym z wiadomoúci rejestracyjnej aby aktywowaÊ konto."),
+                                                                new Validation(() => user.IsLockedOut, "Twoje konto jest aktualnie zablokowane. Skontaktuj siƒô z pomocƒÖ aby rozwiƒÖzaƒá ten problem."),
+                                                                new Validation(() => !user.IsActive, "Twoje konto nie zosta≈Ço jeszcze aktywowane. Pos≈Ç√≥≈º siƒô linkiem aktywacyjnym z wiadomo≈õci rejestracyjnej aby aktywowaƒá konto."),
                                                                 new Validation(() => user.IsOpenIDAccount(), "Podany login jest poprawny tylko z OpenID.")
                                                              );
 
@@ -327,14 +323,14 @@ namespace Kigg.Web
                                     FormsAuthentication.SetAuthCookie(userName, rememberMe ?? false);
                                     viewData = new JsonViewData { isSuccessful = true };
 
-                                    Log.Info("Uøytkownik zalogowany: {0}", user.UserName);
+                                    Log.Info("U≈ºytkownik zalogowany: {0}", user.UserName);
                                 }
                             }
                         }
 
                         if (viewData == null)
                         {
-                            viewData = new JsonViewData { errorMessage = "Niepoprawne dane zalogowania." };
+                            viewData = new JsonViewData { errorMessage = "Niepoprawne dane logowania." };
                         }
                     }
                 }
@@ -363,7 +359,7 @@ namespace Kigg.Web
                         unitOfWork.Commit();
 
                         FormsAuthentication.SignOut();
-                        Log.Info("Wylogowano uøytkownika: {0}", CurrentUserName);
+                        Log.Info("Wylogowano u≈ºytkownika: {0}", CurrentUserName);
                         viewData = new JsonViewData { isSuccessful = true  };
                     }
                 }
@@ -376,7 +372,7 @@ namespace Kigg.Web
             }
             else
             {
-                viewData = new JsonViewData { errorMessage = "Nie jesteú zalogowany." };
+                viewData = new JsonViewData { errorMessage = "Nie jeste≈õ zalogowany." };
             }
 
             return Json(viewData);
@@ -386,7 +382,7 @@ namespace Kigg.Web
         public ActionResult ForgotPassword(string email)
         {
             JsonViewData viewData = Validate<JsonViewData>(
-                                                                new Validation(() => string.IsNullOrEmpty(email.NullSafe()), "Pole e-mail nie moøe byÊ puste."),
+                                                                new Validation(() => string.IsNullOrEmpty(email.NullSafe()), "Pole e-mail nie mo≈ºe byƒá puste."),
                                                                 new Validation(() => !email.NullSafe().IsEmail(), "Niepoprawny adres e-mail.")
                                                           );
 
@@ -400,7 +396,7 @@ namespace Kigg.Web
 
                         if (user == null)
                         {
-                            viewData = new JsonViewData { errorMessage = "Nie znaleziono uøytkownika z podanym adresem e-mail." };
+                            viewData = new JsonViewData { errorMessage = "Nie znaleziono u≈ºytkownika z podanym adresem e-mail." };
                         }
                         else
                         {
@@ -414,7 +410,7 @@ namespace Kigg.Web
 
                                 viewData = new JsonViewData { isSuccessful = true };
 
-                                Log.Info("Wygenerowany nowe has≥o dla: {0}", user.UserName);
+                                Log.Info("Wygenerowany nowe has≈Ço dla: {0}", user.UserName);
                             }
                             catch (InvalidOperationException invalidOperation)
                             {
@@ -427,7 +423,7 @@ namespace Kigg.Web
                 {
                     Log.Exception(e);
 
-                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("resetowania has≥a") };
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("resetowania has≈Ça") };
                 }
             }
 
@@ -438,11 +434,11 @@ namespace Kigg.Web
         public ActionResult ChangePassword(string oldPassword, string newPassword, string confirmPassword)
         {
             JsonViewData viewData = Validate<JsonViewData>(
-                                                                new Validation(() => string.IsNullOrEmpty(oldPassword.NullSafe()), "Stare has≥o nie moøe byÊ puste."),
-                                                                new Validation(() => string.IsNullOrEmpty(newPassword.NullSafe()), "Nowe has≥o nie moøe byÊ puste."),
-                                                                new Validation(() => newPassword.Trim().Length < MinimumLength, "Nowe has≥o nie moøe byÊ krÛtsz niø {0} znakÛw.".FormatWith(MinimumLength)),
-                                                                new Validation(() => string.CompareOrdinal(newPassword.NullSafe(), confirmPassword.NullSafe()) != 0, "Nowe has≥o i jego potwierdzenie sπ rÛøne."),
-                                                                new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteú zalogowany.")
+                                                                new Validation(() => string.IsNullOrEmpty(oldPassword.NullSafe()), "Stare has≈Ço nie mo≈ºe byƒá puste."),
+                                                                new Validation(() => string.IsNullOrEmpty(newPassword.NullSafe()), "Nowe has≈Ço nie mo≈ºe byƒá puste."),
+                                                                new Validation(() => newPassword.Trim().Length < MinimumLength, "Nowe has≈Ço nie mo≈ºe byƒá kr√≥tsze ni≈º {0} znaki.".FormatWith(MinimumLength)),
+                                                                new Validation(() => string.CompareOrdinal(newPassword.NullSafe(), confirmPassword.NullSafe()) != 0, "Nowe has≈Ço i jego potwierdzenie sƒÖ r√≥≈ºne."),
+                                                                new Validation(() => !IsCurrentUserAuthenticated, "Nie jeste≈õ zalogowany.")
                                                           );
 
             if (viewData == null)
@@ -465,7 +461,7 @@ namespace Kigg.Web
                 {
                     Log.Exception(e);
 
-                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("zmiany has≥a") };
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("zmiany has≈Ça") };
                 }
             }
 
@@ -476,9 +472,9 @@ namespace Kigg.Web
         public ActionResult ChangeEmail(string email)
         {
             JsonViewData viewData = Validate<JsonViewData>(
-                                                                new Validation(() => string.IsNullOrEmpty(email.NullSafe()), "Adres e-mail nie moøe byÊ pusty."),
-                                                                new Validation(() => !email.NullSafe().IsEmail(), "Niepoprawny adres e-mial."),
-                                                                new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteú zalogowany.")
+                                                                new Validation(() => string.IsNullOrEmpty(email.NullSafe()), "Adres e-mail nie mo≈ºe byƒá pusty."),
+                                                                new Validation(() => !email.NullSafe().IsEmail(), "Niepoprawny adres e-mail."),
+                                                                new Validation(() => !IsCurrentUserAuthenticated, "Nie jeste≈õ zalogowany.")
                                                           );
 
             if (viewData == null)
@@ -512,11 +508,11 @@ namespace Kigg.Web
         public ActionResult ChangeRole(string id, string role)
         {
             JsonViewData viewData = Validate<JsonViewData>(
-                                                                new Validation(() => string.IsNullOrEmpty(id), "Identyfikator uøytkownika nie moøe byÊ pusty."),
-                                                                new Validation(() => string.IsNullOrEmpty(role), "Rola nie moøe byÊ pusta."),
-                                                                new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator uøytkownika."),
-                                                                new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteú zalogowany."),
-                                                                new Validation(() => !CurrentUser.IsAdministrator(), "Nie masz praw wo≥aÊ tÍ metodÍ.")
+                                                                new Validation(() => string.IsNullOrEmpty(id), "Identyfikator u≈ºytkownika nie mo≈ºe byƒá pusty."),
+                                                                new Validation(() => string.IsNullOrEmpty(role), "Rola nie mo≈ºe byƒá pusta."),
+                                                                new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator u≈ºytkownika."),
+                                                                new Validation(() => !IsCurrentUserAuthenticated, "Nie jeste≈õ zalogowany."),
+                                                                new Validation(() => !CurrentUser.IsAdministrator(), "Nie masz uprawnie≈Ñ do wywo≈Çywania tej metody.")
                                                           );
 
             if (viewData == null)
@@ -529,7 +525,7 @@ namespace Kigg.Web
 
                         if (user == null)
                         {
-                            viewData = new JsonViewData { errorMessage = "Podany uøytkownik nie istnieje." };
+                            viewData = new JsonViewData { errorMessage = "Podany u≈ºytkownik nie istnieje." };
                         }
                         else
                         {
@@ -567,10 +563,10 @@ namespace Kigg.Web
         public ActionResult AllowIps(string id, ICollection<string> ipAddress)
         {
             JsonViewData viewData = Validate<JsonViewData>(
-                                                                new Validation(() => string.IsNullOrEmpty(id), "Identyfikator uøytkownika nie moøe byÊ pusty."),
-                                                                new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator uøytkownika."),
-                                                                new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteú zalogowany."),
-                                                                new Validation(() => !CurrentUser.IsAdministrator(), "Nie masz praw wo≥aÊ tej metody.")
+                                                                new Validation(() => string.IsNullOrEmpty(id), "Identyfikator u≈ºytkownika nie mo≈ºe byƒá pusty."),
+                                                                new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator u≈ºytkownika."),
+                                                                new Validation(() => !IsCurrentUserAuthenticated, "Nie jeste≈õ zalogowany."),
+                                                                new Validation(() => !CurrentUser.IsAdministrator(), "Nie masz uprawnie≈Ñ do wywo≈Çywania tej metody.")
                                                           );
 
             if (viewData == null)
@@ -581,7 +577,7 @@ namespace Kigg.Web
 
                     if (user == null)
                     {
-                        viewData = new JsonViewData { errorMessage = "Podany uøytkownik nie istnieje." };
+                        viewData = new JsonViewData { errorMessage = "Podany u≈ºytkownik nie istnieje." };
                     }
                     else
                     {
@@ -618,7 +614,7 @@ namespace Kigg.Web
                 {
                     Log.Exception(e);
 
-                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("odblokowywania adresÛw Ip uøytkownika") };
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("odblokowywania adres√≥w Ip u≈ºytkownika") };
                 }
             }
 
@@ -647,9 +643,9 @@ namespace Kigg.Web
 
                             unitOfWork.Commit();
 
-                            Log.Info("Aktywacja konta dla uøytkownika: {0}", user.UserName);
+                            Log.Info("Aktywacja konta dla u≈ºytkownika: {0}", user.UserName);
 
-                            GenerateMessageCookie("Twoje konto zosta≥o aktywowane. Moøesz siÍ teraz zalogowaÊ.", false);
+                            GenerateMessageCookie("Twoje konto zosta≈Ço aktywowane. Mo≈ºesz si√™ teraz zalogowaƒá.", false);
                         }
                         else
                         {
@@ -679,9 +675,9 @@ namespace Kigg.Web
             viewData.Users = pagedResult.Result;
             viewData.TotalUserCount = pagedResult.Total;
 
-            viewData.Title = "{0} - Uøytkownicy".FormatWith(Settings.SiteTitle);
-            viewData.Subtitle = "Uøytkownicy";
-            viewData.NoUserExistMessage = "Brak uøytkownikÛw";
+            viewData.Title = "{0} - U≈ºytkownicy".FormatWith(Settings.SiteTitle);
+            viewData.Subtitle = "U≈ºytkownicy";
+            viewData.NoUserExistMessage = "Brak u≈ºytkownik√≥w";
 
             return View(viewData);
         }
@@ -720,7 +716,7 @@ namespace Kigg.Web
 
             if (user == null)
             {
-                ThrowNotFound("Uøytkownik nie istnieje.");
+                ThrowNotFound("U¬øytkownik nie istnieje.");
             }
 
             UserDetailTab selectedTab = tab.ToEnum(UserDetailTab.Promoted);
@@ -780,10 +776,10 @@ namespace Kigg.Web
         private ActionResult LockOrUnlock(string id, bool unlock)
         {
             JsonViewData viewData = Validate<JsonViewData>(
-                                                                new Validation(() => string.IsNullOrEmpty(id), "Identyfikator uøytkownika nie moøe byÊ pusty."),
-                                                                new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator uøytkownika."),
-                                                                new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteú zalogowany."),
-                                                                new Validation(() => !CurrentUser.IsAdministrator(), "Nie masz praw do wywo≥ywania tej metody.")
+                                                                new Validation(() => string.IsNullOrEmpty(id), "Identyfikator u≈ºytkownika nie mo≈ºe byƒá pusty."),
+                                                                new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator u≈ºytkownika."),
+                                                                new Validation(() => !IsCurrentUserAuthenticated, "Nie jeste≈õ zalogowany."),
+                                                                new Validation(() => !CurrentUser.IsAdministrator(), "Nie masz uprawnie≈Ñ do wywo≈Çywania tej metody.")
                                                           );
 
             if (viewData == null)
@@ -796,7 +792,7 @@ namespace Kigg.Web
 
                         if (user == null)
                         {
-                            viewData = new JsonViewData { errorMessage = "Podany uøytkownik nie istnieje." };
+                            viewData = new JsonViewData { errorMessage = "Podany u≈ºytkownik nie istnieje." };
                         }
                         else
                         {
@@ -819,7 +815,7 @@ namespace Kigg.Web
                 {
                     Log.Exception(e);
 
-                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("{0} uøytkownika".FormatWith(unlock ? "odblokowywanie" : "blokowanie")) };
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("{0} u≈ºytkownika".FormatWith(unlock ? "odblokowywanie" : "blokowanie")) };
                 }
             }
 

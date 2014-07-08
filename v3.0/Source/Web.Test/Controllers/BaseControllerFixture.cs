@@ -18,6 +18,7 @@ namespace Kigg.Web.Test
 
         private readonly Mock<IFormsAuthentication> _formsAuthentication;
         private readonly Mock<IUserRepository> _userRepository;
+        private readonly Mock<IStoryRepository> _storyRepository;
 
         private readonly BaseController _controller;
 
@@ -25,12 +26,15 @@ namespace Kigg.Web.Test
         {
             _formsAuthentication = new Mock<IFormsAuthentication>();
             _userRepository = new Mock<IUserRepository>();
+            _storyRepository = new Mock<IStoryRepository>();
 
+            _storyRepository.Setup(r => r.CountByUpcoming()).Returns(0);
             _controller = new BaseControllerTestDouble
                                   {
                                       Settings = settings.Object,
                                       FormsAuthentication = _formsAuthentication.Object,
-                                      UserRepository = _userRepository.Object
+                                      UserRepository = _userRepository.Object,
+                                      StoryRepository = _storyRepository.Object
                                   };
 
             _httpContext = _controller.MockHttpContext();

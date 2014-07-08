@@ -255,7 +255,7 @@
                 viewData.Stories = pagedResult.Result;
                 viewData.TotalStoryCount = pagedResult.Total;
 
-                viewData.NoStoryExistMessage = "Brak artykułów do apublikowania.";
+                viewData.NoStoryExistMessage = "Brak artykułów do opublikowania.";
             }
 
             return View("List", viewData);
@@ -497,8 +497,8 @@
             JsonViewData viewData = Validate<JsonViewData>(
                                                             new Validation(() => captchaEnabled && string.IsNullOrEmpty(captchaChallenge), "Pole Captcha nie może być puste."),
                                                             new Validation(() => captchaEnabled && string.IsNullOrEmpty(captchaResponse), "Pole Captcha nie może być puste."),
-                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteś zalogowany"),
-                                                            new Validation(() => captchaEnabled && !CaptchaValidator.Validate(CurrentUserIPAddress, captchaChallenge, captchaResponse), "Nieudana weryfikacja Captcha")
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteś zalogowany."),
+                                                            new Validation(() => captchaEnabled && !CaptchaValidator.Validate(CurrentUserIPAddress, captchaChallenge, captchaResponse), "Nieudana weryfikacja Captcha.")
                                                           );
 
             if (viewData == null)
@@ -544,7 +544,7 @@
 
             JsonViewData viewData = Validate<JsonViewData>(
                                                             new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artykułu nie może być pusty."),
-                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikatory artykułu.")
+                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artykułu.")
                                                           );
 
             if (viewData == null)
@@ -729,7 +729,7 @@
         {
             JsonViewData viewData = Validate<JsonViewData>(
                                                             new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteś zalogowany."),
-                                                            new Validation(() => !CurrentUser.IsAdministrator(), "Nie masz praw do woływania tej metody.")
+                                                            new Validation(() => !CurrentUser.IsAdministrator(), "Nie masz uprawnień do wywoływania tej metody.")
                                                           );
 
             if (viewData == null)
@@ -755,12 +755,22 @@
         public ActionResult GetStory(string id)
         {
             id = id.NullSafe();
-            IStory story = _storyRepository.FindById(id.ToGuid());
+            IStory story = null;
+            try
+            {
+                story = _storyRepository.FindById(id.ToGuid());
+            }
+            catch (Exception e)
+            {
+                Log.Exception(e);
+
+                return Json(new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("pobierania artykułu") });
+            }
             JsonViewData viewData = Validate<JsonViewData>(
                                                             new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artykułu nie może być pusty."),
                                                             new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artykułu."),
                                                             new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteś zalogowany."),
-                                                            new Validation(() => !CurrentUser.HasRightsToEditStory(story), "Nie masz praw do wołania tej metody.")
+                                                            new Validation(() => !CurrentUser.HasRightsToEditStory(story), "Nie masz uprawnień do wywoływania tej metody.")
                                                           );
 
             if (viewData == null)
@@ -802,12 +812,21 @@
         public ActionResult Update(string id, string name, Nullable<DateTime> createdAt, string title, string category, string description, string tags)
         {
             id = id.NullSafe();
-            IStory story = _storyRepository.FindById(id.ToGuid());
+            IStory story;
+            try
+            {
+                story = _storyRepository.FindById(id.ToGuid());
+            }
+            catch (Exception e)
+            {
+                Log.Exception(e);
+                return Json(new JsonViewData {errorMessage = FormatStrings.UnknownError.FormatWith("edycji artykułu")});
+            }
             JsonViewData viewData = Validate<JsonViewData>(
                                                             new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artykułu nie może być pusty."),
                                                             new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artykułu."),
                                                             new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteś zalogowany."),
-                                                            new Validation(() => !CurrentUser.HasRightsToEditStory(story), "Nie masz praw do wołania tej metody.")
+                                                            new Validation(() => !CurrentUser.HasRightsToEditStory(story), "Nie masz uprawnień do wywoływania tej metody.")
                                                           );
 
             if (viewData == null)
@@ -845,7 +864,7 @@
                                                             new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artykułu nie może być pusty."),
                                                             new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artykułu."),
                                                             new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteś zalogowany."),
-                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz praw do wołania tej metody.")
+                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz uprawnień do wywoływania tej metody.")
                                                           );
 
             if (viewData == null)
@@ -885,7 +904,7 @@
                                                             new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artykułu nie może być pusty."),
                                                             new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artykułu."),
                                                             new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteś zalogowany."),
-                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz praw do wołania tej metody.")
+                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz uprawnień do wywoływania tej metody.")
                                                           );
 
             if (viewData == null)
@@ -902,7 +921,7 @@
                     {
                         if (story.IsApproved())
                         {
-                            viewData = new JsonViewData { errorMessage = "Podany artykuł już został zatwierdzony jako spam." };
+                            viewData = new JsonViewData { errorMessage = "Podany artykuł już został zatwierdzony." };
                         }
                         else
                         {
@@ -929,10 +948,10 @@
             id = id.NullSafe();
 
             JsonViewData viewData = Validate<JsonViewData>(
-                                                            new Validation(() => string.IsNullOrEmpty(id), "Indentyfikator artykułu nie może być pusty."),
-                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawy identyfikator artykułu."),
-                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteś obecnie zalogowany."),
-                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz uprawnień do wywołania tej metody.")
+                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artykułu nie może być pusty."),
+                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artykułu."),
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteś zalogowany."),
+                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz uprawnień do wywoływania tej metody.")
                                                           );
 
             if (viewData == null)
@@ -1014,7 +1033,7 @@
             viewData.TotalStoryCount = pagedResult.Total;
             viewData.RssUrl = Url.Action("PromotedBy", "Feed", new { name });
             viewData.AtomUrl = Url.Action("PromotedBy", "Feed", new { name, format = "Atom" });
-            viewData.NoStoryExistMessage = "Brak artykułów promowanych przez \"{0}\".".FormatWith(user.UserName.HtmlEncode());
+            viewData.NoStoryExistMessage = "Brak artykułów wypromowanych przez \"{0}\".".FormatWith(user.UserName.HtmlEncode());
             viewData.SelectedTab = UserDetailTab.Promoted;
             viewData.TheUser = user;
 

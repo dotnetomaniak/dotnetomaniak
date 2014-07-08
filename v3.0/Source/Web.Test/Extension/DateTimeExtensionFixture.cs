@@ -11,7 +11,7 @@ namespace Kigg.Web.Test
         {
             var since = new DateTime(2001, 1, 1).ToRelative();
 
-            Assert.Contains("days", since);
+            Assert.Contains("dni", since);
         }
     }
 }

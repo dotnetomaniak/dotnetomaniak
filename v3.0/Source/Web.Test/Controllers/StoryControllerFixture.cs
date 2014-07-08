@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Web;
@@ -56,8 +56,9 @@ namespace Kigg.Web.Test
                                   UserRepository = _userRepository.Object,
                                   Settings = settings.Object,
                                   CaptchaValidator = _reCAPTCHA.Object,
+                                  StoryRepository = _storyRepository.Object
                               };
-
+            _storyRepository.Setup(x => x.CountByUpcoming()).Returns(0);
             _httpContext = _controller.MockHttpContext("/Kigg", null, null);
             _httpContext.HttpRequest.SetupGet(r => r.UserHostAddress).Returns("192.168.0.1");
         }
@@ -71,9 +72,9 @@ namespace Kigg.Web.Test
             Assert.Equal("List", result.ViewName);
             Assert.Equal(0, viewData.TotalStoryCount);
             Assert.Empty(viewData.Stories);
-            Assert.Equal("{0} - Latest published stories".FormatWith(settings.Object.SiteTitle), viewData.Title);
-            Assert.Equal("All", viewData.Subtitle);
-            Assert.Equal("No published story exists.", viewData.NoStoryExistMessage);
+            Assert.Equal("{0} - Najnowsze artykuły o .NET".FormatWith(settings.Object.SiteTitle), viewData.Title);
+            Assert.Equal("Wszystkie", viewData.Subtitle);
+            Assert.Equal("Brak opublikowanych artykułów.", viewData.NoStoryExistMessage);
         }
 
         [Fact]
@@ -127,9 +128,9 @@ namespace Kigg.Web.Test
             Assert.Equal("List", result.ViewName);
             Assert.Equal(0, viewData.TotalStoryCount);
             Assert.Empty(viewData.Stories);
-            Assert.Equal("{0} - Latest published stories in {1}".FormatWith(settings.Object.SiteTitle, CategoryName), viewData.Title);
+            Assert.Equal("{0} - Najnowsze artykuły o .NET w dziale {1}".FormatWith(settings.Object.SiteTitle, CategoryName), viewData.Title);
             Assert.Equal(CategoryName, viewData.Subtitle);
-            Assert.Equal("No published story exists under \"{0}\".".FormatWith(CategoryName), viewData.NoStoryExistMessage);
+            Assert.Equal("Brak opublikowanych artykułów w \"{0}\".".FormatWith(CategoryName), viewData.NoStoryExistMessage);
         }
 
         [Fact]
@@ -173,9 +174,9 @@ namespace Kigg.Web.Test
             Assert.Equal("List", result.ViewName);
             Assert.Equal(0, viewData.TotalStoryCount);
             Assert.Empty(viewData.Stories);
-            Assert.Equal("{0} - Upcoming stories".FormatWith(settings.Object.SiteTitle), viewData.Title);
-            Assert.Equal("Upcoming", viewData.Subtitle);
-            Assert.Equal("No upcoming story exists.", viewData.NoStoryExistMessage);
+            Assert.Equal("{0} - Nadchodzące artykuły".FormatWith(settings.Object.SiteTitle), viewData.Title);
+            Assert.Equal("Nadchodzące artykuły", viewData.Subtitle);
+            Assert.Equal("Cisza głucha i posucha :( - dodaj coś!", viewData.NoStoryExistMessage);
         }
 
         [Fact]
@@ -231,9 +232,9 @@ namespace Kigg.Web.Test
             Assert.Equal("List", result.ViewName);
             Assert.Equal(0, viewData.TotalStoryCount);
             Assert.Empty(viewData.Stories);
-            Assert.Equal("{0} - New stories".FormatWith(settings.Object.SiteTitle), viewData.Title);
-            Assert.Equal("New", viewData.Subtitle);
-            Assert.Equal("No new story exists.", viewData.NoStoryExistMessage);
+            Assert.Equal("{0} - Nowe artykuły".FormatWith(settings.Object.SiteTitle), viewData.Title);
+            Assert.Equal("Nowe", viewData.Subtitle);
+            Assert.Equal("Brak nowych artykułów.", viewData.NoStoryExistMessage);
         }
 
         [Fact]
@@ -252,7 +253,7 @@ namespace Kigg.Web.Test
             var result = New();
             var viewData = (StoryListViewData)(result).ViewData.Model;
 
-            Assert.Equal("You do not have the privilege to view new stories.", viewData.NoStoryExistMessage);
+            Assert.Equal("Nie masz uprawnień do przeglądania nowych artykułów.", viewData.NoStoryExistMessage);
         }
 
         [Fact]
@@ -266,9 +267,9 @@ namespace Kigg.Web.Test
             Assert.Equal("List", result.ViewName);
             Assert.Equal(0, viewData.TotalStoryCount);
             Assert.Empty(viewData.Stories);
-            Assert.Equal("{0} - Unapproved stories".FormatWith(settings.Object.SiteTitle), viewData.Title);
-            Assert.Equal("Unapproved", viewData.Subtitle);
-            Assert.Equal("No unapproved story exists.", viewData.NoStoryExistMessage);
+            Assert.Equal("{0} - Niezatwierdzone artykuły".FormatWith(settings.Object.SiteTitle), viewData.Title);
+            Assert.Equal("Niezatwierdzone", viewData.Subtitle);
+            Assert.Equal("Brak niezatwierdzonych artykułów.", viewData.NoStoryExistMessage);
         }
 
         [Fact]
@@ -287,7 +288,7 @@ namespace Kigg.Web.Test
             var result = Unapproved();
             var viewData = (StoryListViewData)(result).ViewData.Model;
 
-            Assert.Equal("You do not have the privilege to view unapproved stories.", viewData.NoStoryExistMessage);
+            Assert.Equal("Nie masz uprawnień do przeglądania niezatwierdzonych artykułów.", viewData.NoStoryExistMessage);
         }
 
         [Fact]
@@ -301,9 +302,9 @@ namespace Kigg.Web.Test
             Assert.Equal("List", result.ViewName);
             Assert.Equal(0, viewData.TotalStoryCount);
             Assert.Empty(viewData.Stories);
-            Assert.Equal("{0} - Publishable stories".FormatWith(settings.Object.SiteTitle), viewData.Title);
-            Assert.Equal("Publishable", viewData.Subtitle);
-            Assert.Equal("No publishable story exists.", viewData.NoStoryExistMessage);
+            Assert.Equal("{0} - Do opublikowania".FormatWith(settings.Object.SiteTitle), viewData.Title);
+            Assert.Equal("Do opublikowania", viewData.Subtitle);
+            Assert.Equal("Brak artykułów do opublikowania.", viewData.NoStoryExistMessage);
         }
 
         [Fact]
@@ -322,7 +323,7 @@ namespace Kigg.Web.Test
             var result = Publishable();
             var viewData = (StoryListViewData)(result).ViewData.Model;
 
-            Assert.Equal("You do not have the privilege to view publishable stories.", viewData.NoStoryExistMessage);
+            Assert.Equal("Nie masz uprawnień do przeglądania artykułów do opublikowania.", viewData.NoStoryExistMessage);
         }
 
         [Fact]
@@ -334,9 +335,9 @@ namespace Kigg.Web.Test
             Assert.Equal("List", result.ViewName);
             Assert.Equal(0, viewData.TotalStoryCount);
             Assert.Empty(viewData.Stories);
-            Assert.Equal("{0} - Stories tagged with {1}".FormatWith(settings.Object.SiteTitle, TagName), viewData.Title);
+            Assert.Equal("{0} - Artykuły z tagiem {1}".FormatWith(settings.Object.SiteTitle, TagName), viewData.Title);
             Assert.Equal(TagName, viewData.Subtitle);
-            Assert.Equal("No story exists with \"{0}\".".FormatWith(TagName), viewData.NoStoryExistMessage);
+            Assert.Equal("Brak artykułów z \"{0}\".".FormatWith(TagName), viewData.NoStoryExistMessage);
         }
 
         [Fact]
@@ -380,9 +381,9 @@ namespace Kigg.Web.Test
             Assert.Equal("List", result.ViewName);
             Assert.Equal(0, viewData.TotalStoryCount);
             Assert.Empty(viewData.Stories);
-            Assert.Equal("{0} - Search Result for \"Linq\"".FormatWith(settings.Object.SiteTitle), viewData.Title);
-            Assert.Equal("Search Result : Linq", viewData.Subtitle);
-            Assert.Equal("No story found for \"Linq\".", viewData.NoStoryExistMessage);
+            Assert.Equal("{0} - Wyniki wyszukiwania dla \"Linq\"".FormatWith(settings.Object.SiteTitle), viewData.Title);
+            Assert.Equal("Wyniki wyszukiwania : Linq", viewData.Subtitle);
+            Assert.Equal("Brak artykułów dla \"Linq\".", viewData.NoStoryExistMessage);
         }
 
         [Fact]
@@ -491,7 +492,7 @@ namespace Kigg.Web.Test
         {
             var result = Retrieve(StoryContent.Empty);
 
-            Assert.Equal("Specified url does not exist.", result.errorMessage);
+            Assert.Equal("Podany Url nie istnieje.", result.errorMessage);
         }
 
         [Fact]
@@ -540,7 +541,7 @@ namespace Kigg.Web.Test
         {
             var result = (JsonViewData) ((JsonResult) _controller.Retrieve("foo")).Data;
 
-            Assert.Equal("Invalid Url format.", result.errorMessage);
+            Assert.Equal("Niepoprawny format Url.", result.errorMessage);
         }
 
         [Fact]
@@ -548,7 +549,7 @@ namespace Kigg.Web.Test
         {
             var result = (JsonViewData)((JsonResult)_controller.Retrieve(string.Empty)).Data;
 
-            Assert.Equal("Url cannot be blank.", result.errorMessage);
+            Assert.Equal("Url nie może być pusty.", result.errorMessage);
         }
 
         [Fact]
@@ -601,7 +602,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Submit("http://astory.com", "Dummy story", "Dummy", "Dummy Story Description", "Dummy, Test")).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Captcha verification words are incorrect.", result.errorMessage);
+            Assert.Equal("Nieudana weryfikacja Captcha.", result.errorMessage);
         }
 
         [Fact]
@@ -612,7 +613,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Submit("http://astory.com", "Dummy story", "Dummy", "Dummy Story Description", "Dummy, Test")).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You are currently not authenticated.", result.errorMessage);
+            Assert.Equal("Nie jesteś zalogowany.", result.errorMessage);
         }
 
         [Fact]
@@ -623,7 +624,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Submit("http://astory.com", "Dummy story", "Dummy", "Dummy Story Description", "Dummy, Test")).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Captcha verification words cannot be blank.", result.errorMessage);
+            Assert.Equal("Pole Captcha nie może być puste.", result.errorMessage);
         }
 
         [Fact]
@@ -634,7 +635,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Submit("http://astory.com", "Dummy story", "Dummy", "Dummy Story Description", "Dummy, Test")).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Captcha challenge cannot be blank.", result.errorMessage);
+            Assert.Equal("Pole Captcha nie może być puste.", result.errorMessage);
         }
 
         [Fact]
@@ -680,7 +681,7 @@ namespace Kigg.Web.Test
             var result = Click(null);
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Specified story does not exist.", result.errorMessage);
+            Assert.Equal("Podany artykuł nie istnieje.", result.errorMessage);
         }
 
         [Fact]
@@ -689,7 +690,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData) ((JsonResult) _controller.Click("foobar")).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Invalid story identifier.", result.errorMessage);
+            Assert.Equal("Niepoprawny identyfikator artykułu.", result.errorMessage);
         }
 
         [Fact]
@@ -698,7 +699,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Click(string.Empty)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Story identifier cannot be blank.", result.errorMessage);
+            Assert.Equal("Identyfikator artykułu nie może być pusty.", result.errorMessage);
         }
 
         [Fact]
@@ -755,7 +756,7 @@ namespace Kigg.Web.Test
             var result = Promote(story.Object);
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You are not allowed to promote this story.", result.errorMessage);
+            Assert.Equal("Nie możesz promować tego artykułu.", result.errorMessage);
         }
 
         [Fact]
@@ -768,7 +769,7 @@ namespace Kigg.Web.Test
             var result = Promote(story.Object);
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You have already promoted this story.", result.errorMessage);
+            Assert.Equal("Już wypromowałeś ten artykuł.", result.errorMessage);
         }
 
         [Fact]
@@ -777,7 +778,7 @@ namespace Kigg.Web.Test
             var result = Promote(null);
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Specified story does not exist.", result.errorMessage);
+            Assert.Equal("Podany artykuł nie istnieje.", result.errorMessage);
         }
 
         [Fact]
@@ -786,7 +787,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Promote(Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You are currently not authenticated.", result.errorMessage);
+            Assert.Equal("Nie jesteś zalogowany.", result.errorMessage);
         }
 
         [Fact]
@@ -795,7 +796,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Promote("foobar")).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Invalid story identifier.", result.errorMessage);
+            Assert.Equal("Niepoprawny identyfikator artykułu.", result.errorMessage);
         }
 
         [Fact]
@@ -804,7 +805,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Promote(string.Empty)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Story identifier cannot be blank.", result.errorMessage);
+            Assert.Equal("Identyfikator artykułu nie może być pusty.", result.errorMessage);
         }
 
         [Fact]
@@ -861,7 +862,7 @@ namespace Kigg.Web.Test
             var result = Demote(story.Object);
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You are not allowed to demote this story.", result.errorMessage);
+            Assert.Equal("Nie możesz degradować tego artykułu.", result.errorMessage);
         }
 
         [Fact]
@@ -870,7 +871,7 @@ namespace Kigg.Web.Test
             var result = Demote(null);
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Specified story does not exist.", result.errorMessage);
+            Assert.Equal("Podany artykuł nie istnieje.", result.errorMessage);
         }
 
         [Fact]
@@ -879,7 +880,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Demote(Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You are currently not authenticated.", result.errorMessage);
+            Assert.Equal("Nie jesteś zalogowany.", result.errorMessage);
         }
 
         [Fact]
@@ -888,7 +889,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Demote("foobar")).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Invalid story identifier.", result.errorMessage);
+            Assert.Equal("Niepoprawny identyfikator artykułu.", result.errorMessage);
         }
 
         [Fact]
@@ -897,7 +898,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Demote(string.Empty)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Story identifier cannot be blank.", result.errorMessage);
+            Assert.Equal("Identyfikator artykułu nie może być pusty.", result.errorMessage);
         }
 
         [Fact]
@@ -954,7 +955,7 @@ namespace Kigg.Web.Test
             var result = MarkAsSpam(story.Object);
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You are not allowed to mark this story as spam.", result.errorMessage);
+            Assert.Equal("Nie masz uprawnień do zaznaczania tego artykułu jako spam.", result.errorMessage);
         }
 
         [Fact]
@@ -967,7 +968,7 @@ namespace Kigg.Web.Test
             var result = MarkAsSpam(story.Object);
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You have already marked this story as spam.", result.errorMessage);
+            Assert.Equal("Już zaznaczyłeś ten artykuł jako spam.", result.errorMessage);
         }
 
         [Fact]
@@ -976,7 +977,7 @@ namespace Kigg.Web.Test
             var result = MarkAsSpam(null);
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Specified story does not exist.", result.errorMessage);
+            Assert.Equal("Podany artykuł nie istnieje.", result.errorMessage);
         }
 
         [Fact]
@@ -985,7 +986,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.MarkAsSpam(Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You are currently not authenticated.", result.errorMessage);
+            Assert.Equal("Nie jesteś zalogowany.", result.errorMessage);
         }
 
         [Fact]
@@ -994,7 +995,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Promote("foobar")).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Invalid story identifier.", result.errorMessage);
+            Assert.Equal("Niepoprawny identyfikator artykułu.", result.errorMessage);
         }
 
         [Fact]
@@ -1003,7 +1004,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.MarkAsSpam(string.Empty)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Story identifier cannot be blank.", result.errorMessage);
+            Assert.Equal("Identyfikator artykułu nie może być pusty.", result.errorMessage);
         }
 
         [Fact]
@@ -1043,7 +1044,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData) ((JsonResult) _controller.Publish()).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You do not have the privilege to call this method.", result.errorMessage);
+            Assert.Equal("Nie masz uprawnień do wywoływania tej metody.", result.errorMessage);
         }
 
         [Fact]
@@ -1052,7 +1053,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Publish()).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You are currently not authenticated.", result.errorMessage);
+            Assert.Equal("Nie jesteś zalogowany.", result.errorMessage);
         }
 
         [Fact]
@@ -1094,7 +1095,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData) ((JsonResult) _controller.GetStory(Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Specified story does not exist.", result.errorMessage);
+            Assert.Equal("Nie masz uprawnień do wywoływania tej metody.", result.errorMessage);
         }
 
         [Fact]
@@ -1105,7 +1106,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.GetStory(Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You do not have the privilege to call this method.", result.errorMessage);
+            Assert.Equal("Nie masz uprawnień do wywoływania tej metody.", result.errorMessage);
         }
 
         [Fact]
@@ -1114,7 +1115,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.GetStory(Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You are currently not authenticated.", result.errorMessage);
+            Assert.Equal("Nie jesteś zalogowany.", result.errorMessage);
         }
 
         [Fact]
@@ -1123,7 +1124,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.GetStory("foobar")).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Invalid story identifier.", result.errorMessage);
+            Assert.Equal("Niepoprawny identyfikator artykułu.", result.errorMessage);
         }
 
         [Fact]
@@ -1132,7 +1133,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.GetStory(string.Empty)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Story identifier cannot be blank.", result.errorMessage);
+            Assert.Equal("Identyfikator artykułu nie może być pusty.", result.errorMessage);
         }
 
         [Fact]
@@ -1163,7 +1164,7 @@ namespace Kigg.Web.Test
             var resuslt = Update(null);
 
             Assert.False(resuslt.isSuccessful);
-            Assert.Equal("Specified story does not exist.", resuslt.errorMessage);
+            Assert.Equal("Nie masz uprawnień do wywoływania tej metody.", resuslt.errorMessage);
         }
 
         [Fact]
@@ -1174,7 +1175,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData) ((JsonResult) _controller.Update(Guid.NewGuid().Shrink(), "Dummy-Story", SystemTime.Now(), "Dummy Story", "Dummy", "Dummy Description", "foo,bar")).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You do not have the privilege to call this method.", result.errorMessage);
+            Assert.Equal("Nie masz uprawnień do wywoływania tej metody.", result.errorMessage);
         }
 
         [Fact]
@@ -1183,7 +1184,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Update(Guid.NewGuid().Shrink(), "Dummy-Story", SystemTime.Now(), "Dummy Story", "Dummy", "Dummy Description", "foo,bar")).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You are currently not authenticated.", result.errorMessage);
+            Assert.Equal("Nie jesteś zalogowany.", result.errorMessage);
         }
 
         [Fact]
@@ -1192,7 +1193,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Update("foobar", "Dummy-Story", SystemTime.Now(), "Dummy Story", "Dummy", "Dummy Description", "foo,bar")).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Invalid story identifier.", result.errorMessage);
+            Assert.Equal("Niepoprawny identyfikator artykułu.", result.errorMessage);
         }
 
         [Fact]
@@ -1201,7 +1202,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Update(string.Empty, "Dummy-Story", SystemTime.Now(), "Dummy Story", "Dummy", "Dummy Description", "foo,bar")).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Story identifier cannot be blank.", result.errorMessage);
+            Assert.Equal("Identyfikator artykułu nie może być pusty.", result.errorMessage);
         }
 
         [Fact]
@@ -1232,7 +1233,7 @@ namespace Kigg.Web.Test
             var resuslt = Delete(null);
 
             Assert.False(resuslt.isSuccessful);
-            Assert.Equal("Specified story does not exist.", resuslt.errorMessage);
+            Assert.Equal("Podany artykuł nie istnieje.", resuslt.errorMessage);
         }
 
         [Fact]
@@ -1243,7 +1244,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Delete(Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You do not have the privilege to call this method.", result.errorMessage);
+            Assert.Equal("Nie masz uprawnień do wywoływania tej metody.", result.errorMessage);
         }
 
         [Fact]
@@ -1252,7 +1253,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Delete(Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You are currently not authenticated.", result.errorMessage);
+            Assert.Equal("Nie jesteś zalogowany.", result.errorMessage);
         }
 
         [Fact]
@@ -1261,7 +1262,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Delete("foobar")).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Invalid story identifier.", result.errorMessage);
+            Assert.Equal("Niepoprawny identyfikator artykułu.", result.errorMessage);
         }
 
         [Fact]
@@ -1270,7 +1271,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Delete(string.Empty)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Story identifier cannot be blank.", result.errorMessage);
+            Assert.Equal("Identyfikator artykułu nie może być pusty.", result.errorMessage);
         }
 
         [Fact]
@@ -1320,7 +1321,7 @@ namespace Kigg.Web.Test
             var result = Approve(story.Object);
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Specified story has been already approved.", result.errorMessage);
+            Assert.Equal("Podany artykuł już został zatwierdzony.", result.errorMessage);
         }
 
         [Fact]
@@ -1329,7 +1330,7 @@ namespace Kigg.Web.Test
             var result = Approve(null);
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Specified story does not exist.", result.errorMessage);
+            Assert.Equal("Podany artykuł nie istnieje.", result.errorMessage);
         }
 
         [Fact]
@@ -1340,7 +1341,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Approve(Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You do not have the privilege to call this method.", result.errorMessage);
+            Assert.Equal("Nie masz uprawnień do wywoływania tej metody.", result.errorMessage);
         }
 
         [Fact]
@@ -1349,7 +1350,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Approve(Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You are currently not authenticated.", result.errorMessage);
+            Assert.Equal("Nie jesteś zalogowany.", result.errorMessage);
         }
 
         [Fact]
@@ -1358,7 +1359,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Approve("foobar")).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Invalid story identifier.", result.errorMessage);
+            Assert.Equal("Niepoprawny identyfikator artykułu.", result.errorMessage);
         }
 
         [Fact]
@@ -1367,7 +1368,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Approve(string.Empty)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Story identifier cannot be blank.", result.errorMessage);
+            Assert.Equal("Identyfikator artykułu nie może być pusty.", result.errorMessage);
         }
 
         [Fact]
@@ -1413,7 +1414,7 @@ namespace Kigg.Web.Test
             var result = ConfirmSpam(null);
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Specified story does not exist.", result.errorMessage);
+            Assert.Equal("Podany artykuł nie istnieje.", result.errorMessage);
         }
 
         [Fact]
@@ -1424,7 +1425,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.ConfirmSpam(Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You do not have the privilege to call this method.", result.errorMessage);
+            Assert.Equal("Nie masz uprawnień do wywoływania tej metody.", result.errorMessage);
         }
 
         [Fact]
@@ -1433,7 +1434,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.ConfirmSpam(Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You are currently not authenticated.", result.errorMessage);
+            Assert.Equal("Nie jesteś zalogowany.", result.errorMessage);
         }
 
         [Fact]
@@ -1442,7 +1443,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.ConfirmSpam("foobar")).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Invalid story identifier.", result.errorMessage);
+            Assert.Equal("Niepoprawny identyfikator artykułu.", result.errorMessage);
         }
 
         [Fact]
@@ -1451,7 +1452,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.ConfirmSpam(string.Empty)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Story identifier cannot be blank.", result.errorMessage);
+            Assert.Equal("Identyfikator artykułu nie może być pusty.", result.errorMessage);
         }
 
         [Fact]
@@ -1464,7 +1465,7 @@ namespace Kigg.Web.Test
             Assert.Equal(0, viewData.TotalStoryCount);
             Assert.Empty(viewData.Stories);
             Assert.Equal(UserDetailTab.Promoted, viewData.SelectedTab);
-            Assert.Equal("No story promoted by \"{0}\".".FormatWith(UserName), viewData.NoStoryExistMessage);
+            Assert.Equal("Brak artykułów wypromowanych przez \"{0}\".".FormatWith(UserName), viewData.NoStoryExistMessage);
         }
 
         [Fact]
@@ -1493,7 +1494,7 @@ namespace Kigg.Web.Test
             Assert.Equal(0, viewData.TotalStoryCount);
             Assert.Empty(viewData.Stories);
             Assert.Equal(UserDetailTab.Posted, viewData.SelectedTab);
-            Assert.Equal("No story posted by \"{0}\".".FormatWith(UserName), viewData.NoStoryExistMessage);
+            Assert.Equal("Brak artykułów opublikowanych przez \"{0}\".".FormatWith(UserName), viewData.NoStoryExistMessage);
         }
 
         [Fact]
@@ -1522,7 +1523,7 @@ namespace Kigg.Web.Test
             Assert.Equal(0, viewData.TotalStoryCount);
             Assert.Empty(viewData.Stories);
             Assert.Equal(UserDetailTab.Commented, viewData.SelectedTab);
-            Assert.Equal("No story commented by \"{0}\".".FormatWith(UserName), viewData.NoStoryExistMessage);
+            Assert.Equal("Brak artykułów skomentowanych przez \"{0}\".".FormatWith(UserName), viewData.NoStoryExistMessage);
         }
 
         [Fact]
@@ -1552,6 +1553,7 @@ namespace Kigg.Web.Test
         {
             var story1 = new Mock<IStory>();
 
+            story1.SetupGet(s => s.Id).Returns(new Guid("AD46E159-B6A3-4A69-BC68-8A990CDAC4BA"));
             story1.SetupGet(s => s.Title).Returns("TestStory1");
             story1.SetupGet(s => s.UniqueName).Returns("TestStory1");
             story1.SetupGet(s => s.Url).Returns("http://story1.com");
@@ -1559,6 +1561,7 @@ namespace Kigg.Web.Test
 
             var story2 = new Mock<IStory>();
 
+            story2.SetupGet(s => s.Id).Returns(new Guid("20559AB2-4769-4EB3-AB23-D460412BF164"));
             story2.SetupGet(s => s.Title).Returns("TestStory2");
             story2.SetupGet(s => s.UniqueName).Returns("TestStory2");
             story2.SetupGet(s => s.Url).Returns("http://story2.com");
@@ -1604,6 +1607,7 @@ namespace Kigg.Web.Test
         {
             var story1 = new Mock<IStory>();
 
+            story1.SetupGet(s => s.Id).Returns(new Guid("5F77DB1D-74D3-44D7-9C8C-97E1729C040C"));
             story1.SetupGet(s => s.Title).Returns("TestStory1");
             story1.SetupGet(s => s.UniqueName).Returns("TestStory1");
             story1.SetupGet(s => s.Url).Returns("http://story1.com");
@@ -1611,6 +1615,7 @@ namespace Kigg.Web.Test
 
             var story2 = new Mock<IStory>();
 
+            story2.SetupGet(s => s.Id).Returns(new Guid("AEAE691E-C05C-4FB0-A1D2-FFE18ED4CD01"));
             story2.SetupGet(s => s.Title).Returns("TestStory2");
             story2.SetupGet(s => s.UniqueName).Returns("TestStory2");
             story2.SetupGet(s => s.Url).Returns("http://story2.com");

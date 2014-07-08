@@ -1,4 +1,4 @@
-namespace Kigg.Web
+﻿namespace Kigg.Web
 {
     using System;
     using System.Diagnostics;
@@ -37,7 +37,7 @@ namespace Kigg.Web
             EnsureInRange(ref start, ref max);
 
             FeedViewData model = CreateViewData(start.Value, max.Value);
-            model.Title = "{0} - Ostatnio opublikowane artyku�y".FormatWith(Settings.SiteTitle.HtmlEncode());
+            model.Title = "{0} - Ostatnio opublikowane artykuły".FormatWith(Settings.SiteTitle.HtmlEncode());
             model.Description = model.Title;
             model.Url = Url.RouteUrl("Published");
 
@@ -63,7 +63,7 @@ namespace Kigg.Web
             name = name.NullSafe();
 
             FeedViewData model = CreateViewData(start.Value, max.Value);
-            model.Title = "{0} - Ostatnio opublikowane artyku�y w {1}".FormatWith(Settings.SiteTitle.HtmlEncode(), name.HtmlEncode());
+            model.Title = "{0} - Ostatnio opublikowane artykuły w {1}".FormatWith(Settings.SiteTitle.HtmlEncode(), name.HtmlEncode());
             model.Description = model.Title;
 
             if (!string.IsNullOrEmpty(name))
@@ -98,7 +98,7 @@ namespace Kigg.Web
 
             FeedViewData model = CreateViewData(start.Value, max.Value);
 
-            model.Title = "{0} - Nadchodzce artykuy".FormatWith(Settings.SiteTitle.HtmlEncode());
+            model.Title = "{0} - Nadchodzące artykuły".FormatWith(Settings.SiteTitle.HtmlEncode());
             model.Description = model.Title;
             model.Url = Url.RouteUrl("Upcoming");
 
@@ -124,7 +124,7 @@ namespace Kigg.Web
             name = name.NullSafe();
 
             FeedViewData model = CreateViewData(start.Value, max.Value);
-            model.Title = "{0} - Artykuy z tagiem {1}".FormatWith(Settings.SiteTitle.HtmlEncode(), name.HtmlEncode());
+            model.Title = "{0} - Artykuły z tagiem {1}".FormatWith(Settings.SiteTitle.HtmlEncode(), name.HtmlEncode());
             model.Description = model.Title;
 
             if (!string.IsNullOrEmpty(name))
@@ -184,7 +184,7 @@ namespace Kigg.Web
                 }
             }
 
-            model.Title = "{0} - Artykuy wypoomowane przez uytkownika {1}".FormatWith(Settings.SiteTitle.HtmlEncode(), userName.HtmlEncode());
+            model.Title = "{0} - Artykuły wypromowane przez użytkownika {1}".FormatWith(Settings.SiteTitle.HtmlEncode(), userName.HtmlEncode());
             model.Description = model.Title;
             model.Url = Url.RouteUrl("User", new { name, tab = UserDetailTab.Promoted });
 
@@ -222,7 +222,7 @@ namespace Kigg.Web
                 }
             }
 
-            model.Title = "{0} - Artykuy dodane przez uytkownika {1}".FormatWith(Settings.SiteTitle.HtmlEncode(), userName.HtmlEncode());
+            model.Title = "{0} - Artykuły dodane przez użytkownika {1}".FormatWith(Settings.SiteTitle.HtmlEncode(), userName.HtmlEncode());
             model.Description = model.Title;
 
             model.Url = Url.RouteUrl("User", new { name, tab = UserDetailTab.Posted });
@@ -261,7 +261,7 @@ namespace Kigg.Web
                 }
             }
 
-            model.Title = "{0} - Artykuy skomentowane przez u�ytkownika {1}".FormatWith(Settings.SiteTitle.HtmlEncode(), userName.HtmlEncode());
+            model.Title = "{0} - Artykuły skomentowane przez użytkownika {1}".FormatWith(Settings.SiteTitle.HtmlEncode(), userName.HtmlEncode());
             model.Description = model.Title;
             model.Url = Url.RouteUrl("User", new { name, tab = UserDetailTab.Commented });
 

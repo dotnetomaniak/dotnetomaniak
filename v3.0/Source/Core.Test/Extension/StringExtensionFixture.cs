@@ -9,6 +9,15 @@ namespace Kigg.Core.Test
 
     public class StringExtensionFixture
     {
+
+        [Fact]
+        public void NullSafe_Should_Return_Empty_String_When_Null_String_Is_Passed()
+        {
+            const string nullString = null;
+
+            Assert.Equal(string.Empty, nullString.NullSafe());
+        }
+
         [Theory]
         [InlineData("http://dotnetshoutout.com", true)]
         [InlineData("htp://dotnetshoutout.com", false)]
@@ -31,13 +40,7 @@ namespace Kigg.Core.Test
             Assert.Equal(result, target.IsEmail());
         }
 
-        [Fact]
-        public void NullSafe_Should_Return_Empty_String_When_Null_String_Is_Passed()
-        {
-            const string nullString = null;
 
-            Assert.Equal(string.Empty, nullString.NullSafe());
-        }
 
         [Fact]
         public void FormatWith_Should_Replace_Place_Holder_Tokens_With_Provided_Value()

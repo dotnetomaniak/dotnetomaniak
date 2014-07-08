@@ -26,6 +26,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Test.Infrastructure", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Infrastructure.HtmlAgilityPack.Test", "HtmlAgilityPack.Test\Kigg.Infrastructure.HtmlAgilityPack.Test.csproj", "{1A8C7B96-CF84-4389-B1D9-DE38BFA6C207}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.DataServices.Test", "DataServices.Test\Kigg.DataServices.Test.csproj", "{8202AEF2-608B-44B3-A763-DF01D1D8ADCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Infrastructure.EnterpriseLibrary.Test", "EnterpriseLibrary.Test\Kigg.Infrastructure.EnterpriseLibrary.Test.csproj", "{96E668A5-16AF-4192-988D-7A4D70337969}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Web.Test", "Web.Test\Kigg.Web.Test.csproj", "{8D913567-3D14-4F7C-82B5-BB12FB52F68A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -125,6 +131,36 @@ Global
 		{1A8C7B96-CF84-4389-B1D9-DE38BFA6C207}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1A8C7B96-CF84-4389-B1D9-DE38BFA6C207}.SqlServer|Any CPU.ActiveCfg = SqlServer|Any CPU
 		{1A8C7B96-CF84-4389-B1D9-DE38BFA6C207}.SqlServer|Any CPU.Build.0 = SqlServer|Any CPU
+		{8202AEF2-608B-44B3-A763-DF01D1D8ADCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8202AEF2-608B-44B3-A763-DF01D1D8ADCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8202AEF2-608B-44B3-A763-DF01D1D8ADCA}.MySql|Any CPU.ActiveCfg = MySql|Any CPU
+		{8202AEF2-608B-44B3-A763-DF01D1D8ADCA}.MySql|Any CPU.Build.0 = MySql|Any CPU
+		{8202AEF2-608B-44B3-A763-DF01D1D8ADCA}.PublishingRelease|Any CPU.ActiveCfg = PublishingRelease|Any CPU
+		{8202AEF2-608B-44B3-A763-DF01D1D8ADCA}.PublishingRelease|Any CPU.Build.0 = PublishingRelease|Any CPU
+		{8202AEF2-608B-44B3-A763-DF01D1D8ADCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8202AEF2-608B-44B3-A763-DF01D1D8ADCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8202AEF2-608B-44B3-A763-DF01D1D8ADCA}.SqlServer|Any CPU.ActiveCfg = SqlServer|Any CPU
+		{8202AEF2-608B-44B3-A763-DF01D1D8ADCA}.SqlServer|Any CPU.Build.0 = SqlServer|Any CPU
+		{96E668A5-16AF-4192-988D-7A4D70337969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96E668A5-16AF-4192-988D-7A4D70337969}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96E668A5-16AF-4192-988D-7A4D70337969}.MySql|Any CPU.ActiveCfg = MySql|Any CPU
+		{96E668A5-16AF-4192-988D-7A4D70337969}.MySql|Any CPU.Build.0 = MySql|Any CPU
+		{96E668A5-16AF-4192-988D-7A4D70337969}.PublishingRelease|Any CPU.ActiveCfg = PublishingRelease|Any CPU
+		{96E668A5-16AF-4192-988D-7A4D70337969}.PublishingRelease|Any CPU.Build.0 = PublishingRelease|Any CPU
+		{96E668A5-16AF-4192-988D-7A4D70337969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96E668A5-16AF-4192-988D-7A4D70337969}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96E668A5-16AF-4192-988D-7A4D70337969}.SqlServer|Any CPU.ActiveCfg = SqlServer|Any CPU
+		{96E668A5-16AF-4192-988D-7A4D70337969}.SqlServer|Any CPU.Build.0 = SqlServer|Any CPU
+		{8D913567-3D14-4F7C-82B5-BB12FB52F68A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D913567-3D14-4F7C-82B5-BB12FB52F68A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D913567-3D14-4F7C-82B5-BB12FB52F68A}.MySql|Any CPU.ActiveCfg = MySql|Any CPU
+		{8D913567-3D14-4F7C-82B5-BB12FB52F68A}.MySql|Any CPU.Build.0 = MySql|Any CPU
+		{8D913567-3D14-4F7C-82B5-BB12FB52F68A}.PublishingRelease|Any CPU.ActiveCfg = PublishingRelease|Any CPU
+		{8D913567-3D14-4F7C-82B5-BB12FB52F68A}.PublishingRelease|Any CPU.Build.0 = PublishingRelease|Any CPU
+		{8D913567-3D14-4F7C-82B5-BB12FB52F68A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D913567-3D14-4F7C-82B5-BB12FB52F68A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D913567-3D14-4F7C-82B5-BB12FB52F68A}.SqlServer|Any CPU.ActiveCfg = SqlServer|Any CPU
+		{8D913567-3D14-4F7C-82B5-BB12FB52F68A}.SqlServer|Any CPU.Build.0 = SqlServer|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Specialized;
 using System.Web.Routing;
-
+using Kigg.Test.Infrastructure;
 using Moq;
 using Xunit;
 
 namespace Kigg.Web.Test
 {
-    using Kigg.Test.Infrastructure;
 
     public class XrdsHandlerFixture : BaseFixture
     {

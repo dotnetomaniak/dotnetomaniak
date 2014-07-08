@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Web.Configuration;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -62,7 +62,7 @@ namespace Kigg.Web.Test
             var result = Published(format);
             var viewData = result.Data;
 
-            Assert.Contains("Latest published stories", viewData.Title);
+            Assert.Contains("Ostatnio opublikowane artykuły", viewData.Title);
             Assert.Equal(viewData.Title, viewData.Description);
             Assert.Equal("{0}/".FormatWith(AppPath), viewData.Url);
             Assert.Equal(format, result.Format);
@@ -98,7 +98,7 @@ namespace Kigg.Web.Test
             var result = Category(format, CategoryName);
             var viewData = result.Data;
 
-            Assert.Contains("Latest published stories in {0}".FormatWith(CategoryName), viewData.Title);
+            Assert.Contains("Ostatnio opublikowane artykuły w {0}".FormatWith(CategoryName), viewData.Title);
             Assert.Equal(viewData.Title, viewData.Description);
             Assert.Equal("{0}/Category/{1}".FormatWith(AppPath, CategoryName), viewData.Url);
             Assert.Equal(format, result.Format);
@@ -140,7 +140,7 @@ namespace Kigg.Web.Test
             var result = Upcoming(format);
             var viewData = result.Data;
 
-            Assert.Contains("Upcoming stories", viewData.Title);
+            Assert.Contains("Nadchodzące artykuły", viewData.Title);
             Assert.Equal(viewData.Title, viewData.Description);
             Assert.Equal("{0}/Upcoming".FormatWith(AppPath), viewData.Url);
             Assert.Equal(format, result.Format);
@@ -176,7 +176,7 @@ namespace Kigg.Web.Test
             var result = Tags(format, TagName);
             var viewData = result.Data;
 
-            Assert.Contains("Stories tagged with {0}".FormatWith(TagName), viewData.Title);
+            Assert.Contains("Artykuły z tagiem {0}".FormatWith(TagName), viewData.Title);
             Assert.Equal(viewData.Title, viewData.Description);
             Assert.Equal("{0}/Tags/{1}".FormatWith(AppPath, TagName), viewData.Url);
             Assert.Equal(format, result.Format);
@@ -220,7 +220,7 @@ namespace Kigg.Web.Test
             var result = PromotedBy(format, userId);
             var viewData = result.Data;
 
-            Assert.Contains("Stories promoted by {0}".FormatWith(userId), viewData.Title);
+            Assert.Contains("Artykuły wypromowane przez użytkownika {0}".FormatWith(userId), viewData.Title);
             Assert.Equal(viewData.Title, viewData.Description);
             Assert.Equal("{0}/Users/{1}".FormatWith(AppPath, userId), viewData.Url);
             Assert.Equal(format, result.Format);
@@ -264,7 +264,7 @@ namespace Kigg.Web.Test
             var result = PostedBy(format, userId);
             var viewData = result.Data;
 
-            Assert.Contains("Stories posted by {0}".FormatWith(userId), viewData.Title);
+            Assert.Contains("Artykuły dodane przez użytkownika {0}".FormatWith(userId), viewData.Title);
             Assert.Equal(viewData.Title, viewData.Description);
             Assert.Equal("{0}/Users/{1}/Posted".FormatWith(AppPath, userId), viewData.Url);
             Assert.Equal(format, result.Format);
@@ -308,7 +308,7 @@ namespace Kigg.Web.Test
             var result = CommentedBy(format, userId);
             var viewData = result.Data;
 
-            Assert.Contains("Stories commented by {0}".FormatWith(userId), viewData.Title);
+            Assert.Contains("Artykuły skomentowane przez użytkownika {0}".FormatWith(userId), viewData.Title);
             Assert.Equal(viewData.Title, viewData.Description);
             Assert.Equal("{0}/Users/{1}/Commented".FormatWith(AppPath, userId), viewData.Url);
             Assert.Equal(format, result.Format);
@@ -352,7 +352,7 @@ namespace Kigg.Web.Test
             var result = Search(format, Query);
             var viewData = result.Data;
 
-            Assert.Contains("Search Result for {0}".FormatWith(Query), viewData.Title);
+            Assert.Contains("Wyniki wyszukiwania dla {0}".FormatWith(Query), viewData.Title);
             Assert.Equal(viewData.Title, viewData.Description);
             Assert.Equal("{0}/Search?q={1}".FormatWith(AppPath, Query), viewData.Url);
             Assert.Equal(format, result.Format);
