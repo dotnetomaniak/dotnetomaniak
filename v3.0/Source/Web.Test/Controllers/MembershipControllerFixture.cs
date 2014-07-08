@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
@@ -30,6 +30,7 @@ namespace Kigg.Web.Test
         private readonly Mock<IFormsAuthentication> _formsAuthentication;
         private readonly Mock<IOpenIdRelyingParty> _openIdRelyingParty;
         private readonly Mock<IUserRepository> _userRepository;
+        private readonly Mock<IStoryRepository> _storyRepository;
 
         private readonly HttpContextMock _httpContext;
         private readonly MembershipController _controller;
@@ -47,6 +48,9 @@ namespace Kigg.Web.Test
             _formsAuthentication = new Mock<IFormsAuthentication>();
             _openIdRelyingParty = new Mock<IOpenIdRelyingParty>();
             _userRepository = new Mock<IUserRepository>();
+            _storyRepository = new Mock<IStoryRepository>();
+
+            _storyRepository.Setup(x => x.CountByUpcoming()).Returns(0);
 
             resolver.Setup(r => r.Resolve<IUserRepository>()).Returns(_userRepository.Object);
 
@@ -55,7 +59,8 @@ namespace Kigg.Web.Test
                                   Settings = settings.Object,
                                   UserRepository = _userRepository.Object,
                                   FormsAuthentication = _formsAuthentication.Object,
-                                  OpenIdRelyingParty = _openIdRelyingParty.Object
+                                  OpenIdRelyingParty = _openIdRelyingParty.Object,
+                                  StoryRepository = _storyRepository.Object
                               };
 
             _httpContext = _controller.MockHttpContext("/Kigg", null, null);
@@ -248,7 +253,7 @@ namespace Kigg.Web.Test
             var data = (JsonViewData)((JsonResult)_controller.Signup("dummyuser", "xxxxxx", "foo")).Data;
 
             Assert.False(data.isSuccessful);
-            Assert.Equal("Invalid email address format.", data.errorMessage);
+            Assert.Equal("Niepoprawny adres e-mail.", data.errorMessage);
         }
 
         [Fact]
@@ -257,7 +262,7 @@ namespace Kigg.Web.Test
             var data = (JsonViewData)((JsonResult)_controller.Signup("dummyuser", "xxxxxx", string.Empty)).Data;
 
             Assert.False(data.isSuccessful);
-            Assert.Equal("Email cannot be blank.", data.errorMessage);
+            Assert.Equal("Adres e-mail nie może być pusty.", data.errorMessage);
         }
 
         [Fact]
@@ -330,7 +335,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Login("dummyuser", "xxxxxx", true)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Invalid login credentials.", result.errorMessage);
+            Assert.Equal("Niepoprawne dane logowania.", result.errorMessage);
         }
 
         [Fact]
@@ -346,7 +351,7 @@ namespace Kigg.Web.Test
             var result =(JsonViewData)((JsonResult)_controller.Login("dummyuser", "xxxxxx", true)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Specified user login is only valid for OpenID.", result.errorMessage);
+            Assert.Equal("Podany login jest poprawny tylko z OpenID.", result.errorMessage);
         }
 
         [Fact]
@@ -359,7 +364,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Login("dummyuser", "xxxxxx", true)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Your account is not activated yet. Please click the activation link in the registration mail to activate your account.", result.errorMessage);
+            Assert.Equal("Twoje konto nie zostało jeszcze aktywowane. Posłóż się linkiem aktywacyjnym z wiadomości rejestracyjnej aby aktywować konto.", result.errorMessage);
         }
 
         [Fact]
@@ -374,7 +379,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Login("dummyuser", "xxxxxx", true)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Your account is currently locked out. Please contact the support for this issue.", result.errorMessage);
+            Assert.Equal("Twoje konto jest aktualnie zablokowane. Skontaktuj się z pomocą aby rozwiązać ten problem.", result.errorMessage);
         }
 
         [Fact]
@@ -383,7 +388,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Login("dummyuser", string.Empty, null)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Password cannot be blank.", result.errorMessage);
+            Assert.Equal("Hasło nie może być puste.", result.errorMessage);
         }
 
         [Fact]
@@ -392,7 +397,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Login(string.Empty, "xxxxxx", null)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("User name cannot be blank.", result.errorMessage);
+            Assert.Equal("Nazwa użytkownika nie może być pusta.", result.errorMessage);
         }
 
         [Fact]
@@ -457,7 +462,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("You are currently not logged in.", viewData.errorMessage);
+            Assert.Equal("Nie jesteś zalogowany.", viewData.errorMessage);
         }
 
         [Fact]
@@ -531,7 +536,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("Did not find any user with the specified email.", viewData.errorMessage);
+            Assert.Equal("Nie znaleziono użytkownika z podanym adresem e-mail.", viewData.errorMessage);
         }
 
         [Fact]
@@ -556,7 +561,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("Invalid email address format.", viewData.errorMessage);
+            Assert.Equal("Niepoprawny adres e-mail.", viewData.errorMessage);
         }
 
         [Fact]
@@ -566,7 +571,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("Email cannot be blank.", viewData.errorMessage);
+            Assert.Equal("Pole e-mail nie może być puste.", viewData.errorMessage);
         }
 
         [Fact]
@@ -626,7 +631,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("You are currently not authenticated.", viewData.errorMessage);
+            Assert.Equal("Nie jesteś zalogowany.", viewData.errorMessage);
         }
 
         [Fact]
@@ -636,7 +641,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("Confirm password does not match with the new password.", viewData.errorMessage);
+            Assert.Equal("Nowe hasło i jego potwierdzenie są różne.", viewData.errorMessage);
         }
 
         [Fact]
@@ -646,7 +651,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("New password cannot be less than 4 character.", viewData.errorMessage);
+            Assert.Equal("Nowe hasło nie może być krótsze niż 4 znaki.", viewData.errorMessage);
         }
 
         [Fact]
@@ -656,7 +661,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("New password cannot be blank.", viewData.errorMessage);
+            Assert.Equal("Nowe hasło nie może być puste.", viewData.errorMessage);
         }
 
         [Fact]
@@ -666,7 +671,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("Old password cannot be blank.", viewData.errorMessage);
+            Assert.Equal("Stare hasło nie może być puste.", viewData.errorMessage);
         }
 
         [Fact]
@@ -729,7 +734,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("You are currently not authenticated.", viewData.errorMessage);
+            Assert.Equal("Nie jesteś zalogowany.", viewData.errorMessage);
         }
 
         [Fact]
@@ -739,7 +744,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("Invalid email address format.", viewData.errorMessage);
+            Assert.Equal("Niepoprawny adres e-mail.", viewData.errorMessage);
         }
 
         [Fact]
@@ -749,7 +754,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("Email cannot be blank.", viewData.errorMessage);
+            Assert.Equal("Adres e-mail nie może być pusty.", viewData.errorMessage);
         }
 
         [Fact]
@@ -807,7 +812,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("Specified user no longer exist.", viewData.errorMessage);
+            Assert.Equal("Podany użytkownik nie istnieje.", viewData.errorMessage);
         }
 
         [Fact]
@@ -817,7 +822,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("You are currently not authenticated.", viewData.errorMessage);
+            Assert.Equal("Nie jesteś zalogowany.", viewData.errorMessage);
         }
 
         [Fact]
@@ -829,7 +834,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("You do not have the privilege to call this method.", viewData.errorMessage);
+            Assert.Equal("Nie masz uprawnień do wywoływania tej metody.", viewData.errorMessage);
         }
 
         [Fact]
@@ -839,7 +844,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("Invalid user identifier.", viewData.errorMessage);
+            Assert.Equal("Niepoprawny identyfikator użytkownika.", viewData.errorMessage);
         }
 
         [Fact]
@@ -849,7 +854,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("User Id cannot be blank.", viewData.errorMessage);
+            Assert.Equal("Identyfikator użytkownika nie może być pusty.", viewData.errorMessage);
         }
 
         [Fact]
@@ -859,7 +864,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("Role cannot be blank.", viewData.errorMessage);
+            Assert.Equal("Rola nie może być pusta.", viewData.errorMessage);
         }
 
         [Fact]
@@ -903,7 +908,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData) result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("Specified user no longer exist.", viewData.errorMessage);
+            Assert.Equal("Podany użytkownik nie istnieje.", viewData.errorMessage);
         }
 
         [Fact]
@@ -913,7 +918,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("You are currently not authenticated.", viewData.errorMessage);
+            Assert.Equal("Nie jesteś zalogowany.", viewData.errorMessage);
         }
 
         [Fact]
@@ -925,7 +930,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("You do not have the privilege to call this method.", viewData.errorMessage);
+            Assert.Equal("Nie masz uprawnień do wywoływania tej metody.", viewData.errorMessage);
         }
 
         [Fact]
@@ -935,7 +940,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("Invalid user identifier.", viewData.errorMessage);
+            Assert.Equal("Niepoprawny identyfikator użytkownika.", viewData.errorMessage);
         }
 
         [Fact]
@@ -945,7 +950,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("User Id cannot be blank.", viewData.errorMessage);
+            Assert.Equal("Identyfikator użytkownika nie może być pusty.", viewData.errorMessage);
         }
 
         [Fact]
@@ -1003,7 +1008,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("Specified user no longer exist.", viewData.errorMessage);
+            Assert.Equal("Podany użytkownik nie istnieje.", viewData.errorMessage);
         }
 
         [Fact]
@@ -1013,7 +1018,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("You are currently not authenticated.", viewData.errorMessage);
+            Assert.Equal("Nie jesteś zalogowany.", viewData.errorMessage);
         }
 
         [Fact]
@@ -1025,7 +1030,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("You do not have the privilege to call this method.", viewData.errorMessage);
+            Assert.Equal("Nie masz uprawnień do wywoływania tej metody.", viewData.errorMessage);
         }
 
         [Fact]
@@ -1035,7 +1040,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("Invalid user identifier.", viewData.errorMessage);
+            Assert.Equal("Niepoprawny identyfikator użytkownika.", viewData.errorMessage);
         }
 
         [Fact]
@@ -1045,7 +1050,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("User Id cannot be blank.", viewData.errorMessage);
+            Assert.Equal("Identyfikator użytkownika nie może być pusty.", viewData.errorMessage);
         }
 
         [Fact]
@@ -1097,7 +1102,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData) result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("Specified user no longer exist.", viewData.errorMessage);
+            Assert.Equal("Podany użytkownik nie istnieje.", viewData.errorMessage);
         }
 
         [Fact]
@@ -1107,7 +1112,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("You are currently not authenticated.", viewData.errorMessage);
+            Assert.Equal("Nie jesteś zalogowany.", viewData.errorMessage);
         }
 
         [Fact]
@@ -1119,7 +1124,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("You do not have the privilege to call this method.", viewData.errorMessage);
+            Assert.Equal("Nie masz uprawnień do wywoływania tej metody.", viewData.errorMessage);
         }
 
         [Fact]
@@ -1129,7 +1134,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("Invalid user identifier.", viewData.errorMessage);
+            Assert.Equal("Niepoprawny identyfikator użytkownika.", viewData.errorMessage);
         }
 
         [Fact]
@@ -1139,7 +1144,7 @@ namespace Kigg.Web.Test
             var viewData = (JsonViewData)result.Data;
 
             Assert.False(viewData.isSuccessful);
-            Assert.Equal("User Id cannot be blank.", viewData.errorMessage);
+            Assert.Equal("Identyfikator użytkownika nie może być pusty.", viewData.errorMessage);
         }
 
         [Fact]

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using Kigg.DomainObjects;
@@ -8,8 +8,6 @@ using Xunit;
 
 namespace Kigg.Core.Test
 {
-    using DomainObjects;
-    using Infrastructure;
     using Repository;
     using Service;
 
@@ -254,7 +252,7 @@ namespace Kigg.Core.Test
 
             var result = Create();
 
-            Assert.Equal("Specifed url has match with our banned url list.", result.ErrorMessage);
+            Assert.Equal("Podany url jest zablokowany.", result.ErrorMessage);
         }
 
         [Fact]
@@ -269,7 +267,7 @@ namespace Kigg.Core.Test
 
             var result = Create(story);
 
-            Assert.Equal("Your story appears to be a spam.", result.ErrorMessage);
+            Assert.Equal("Twój artykuł wydaje się być spamem.", result.ErrorMessage);
         }
 
         [Fact]
@@ -280,7 +278,7 @@ namespace Kigg.Core.Test
 
             var result = Create();
 
-            Assert.Equal("Specified url appears to be broken.", result.ErrorMessage);
+            Assert.Equal("Podany Url wydaje się być wadliwy.", result.ErrorMessage);
         }
 
         [Fact]
@@ -290,7 +288,7 @@ namespace Kigg.Core.Test
 
             var result = Create();
 
-            Assert.Contains("category does not exist.", result.ErrorMessage);
+            Assert.Contains("\"dummy\" nie istnieje.", result.ErrorMessage);
         }
 
         [Fact]
@@ -300,7 +298,7 @@ namespace Kigg.Core.Test
 
             var result = Create();
 
-            Assert.Equal("Story with the same url already exists.", result.ErrorMessage);
+            Assert.Equal("Artykuł z danym url już istnieje.", result.ErrorMessage);
         }
 
         [Fact]

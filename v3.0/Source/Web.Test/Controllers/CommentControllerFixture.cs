@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Specialized;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -115,7 +115,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData) ((JsonResult) _controller.Post(Guid.NewGuid().Shrink(), "This is a dummy comment", true)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Specified story does not exist.", result.errorMessage);
+            Assert.Equal("Podany artykuł nie istnieje.", result.errorMessage);
         }
 
         [Fact]
@@ -129,7 +129,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Post(Guid.NewGuid().Shrink(), "This is a dummy comment", true)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Captcha verification words are incorrect.", result.errorMessage);
+            Assert.Equal("Weryfikacja Captcha nieudana.", result.errorMessage);
         }
 
         [Fact]
@@ -140,7 +140,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Post(Guid.NewGuid().Shrink(), "This is a dummy comment", true)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You are currently not authenticated.", result.errorMessage);
+            Assert.Equal("Nie jesteś zalogowany.", result.errorMessage);
         }
 
         [Fact]
@@ -151,7 +151,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Post(Guid.NewGuid().Shrink(), "This is a dummy comment", true)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Captcha verification words cannot be blank.", result.errorMessage);
+            Assert.Equal("Pole Captcha nie może być puste.", result.errorMessage);
         }
 
         [Fact]
@@ -162,7 +162,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Post(Guid.NewGuid().Shrink(), "This is a dummy comment", true)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Captcha challenge cannot be blank.", result.errorMessage);
+            Assert.Equal("Pole Captcha nie może być puste.", result.errorMessage);
         }
 
         [Fact]
@@ -171,7 +171,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Post(Guid.NewGuid().Shrink(), string.Empty, true)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Comment cannot be blank.", result.errorMessage);
+            Assert.Equal("Komentarz nie może być pusty.", result.errorMessage);
         }
 
         [Fact]
@@ -180,7 +180,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Post("foobar", "This is a dummy comment", true)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Invalid story identifier.", result.errorMessage);
+            Assert.Equal("Niepoprawny identyfikator artykułu.", result.errorMessage);
         }
 
         [Fact]
@@ -189,7 +189,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Post(string.Empty, "This is a dummy comment", true)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Story identifier cannot be blank.", result.errorMessage);
+            Assert.Equal("Identyfikator artykułu nie może być pusty.", result.errorMessage);
         }
 
         [Fact]
@@ -253,7 +253,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData) ((JsonResult) _controller.ConfirmSpam(Guid.NewGuid().Shrink(), Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Specified comment does not exist.", result.errorMessage);
+            Assert.Equal("Podany komentarz nie istnieje.", result.errorMessage);
         }
 
         [Fact]
@@ -266,7 +266,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.ConfirmSpam(Guid.NewGuid().Shrink(), Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Specified story does not exist.", result.errorMessage);
+            Assert.Equal("Podany artykuł nie istnieje.", result.errorMessage);
         }
 
         [Fact]
@@ -277,7 +277,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.ConfirmSpam(Guid.NewGuid().Shrink(), Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You do not have the privilege to call this method.", result.errorMessage);
+            Assert.Equal("Nie masz uprawnień do wołania tej metody.", result.errorMessage);
         }
 
         [Fact]
@@ -286,7 +286,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.ConfirmSpam(Guid.NewGuid().Shrink(), Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You are currently not authenticated.", result.errorMessage);
+            Assert.Equal("Nie jesteś zalogowany.", result.errorMessage);
         }
 
         [Fact]
@@ -295,7 +295,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.ConfirmSpam(Guid.NewGuid().Shrink(), "foobar")).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Invalid comment identifier.", result.errorMessage);
+            Assert.Equal("Niepoprawny identyfikator komentarza.", result.errorMessage);
         }
 
         [Fact]
@@ -304,7 +304,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.ConfirmSpam(Guid.NewGuid().Shrink(), string.Empty)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Comment identifier cannot be blank.", result.errorMessage);
+            Assert.Equal("Identyfikator komentarza nie może być pusty.", result.errorMessage);
         }
 
         [Fact]
@@ -313,7 +313,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.ConfirmSpam("foobar", Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Invalid story identifier.", result.errorMessage);
+            Assert.Equal("Niepoprawny identyfikator artykułu.", result.errorMessage);
         }
 
         [Fact]
@@ -322,7 +322,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.ConfirmSpam(string.Empty, Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Story identifier cannot be blank.", result.errorMessage);
+            Assert.Equal("Identyfikator artykułu nie może być pusty.", result.errorMessage);
         }
 
         [Fact]
@@ -386,7 +386,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.MarkAsOffended(Guid.NewGuid().Shrink(), Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Specified comment does not exist.", result.errorMessage);
+            Assert.Equal("Podany komentarz nie istnieje.", result.errorMessage);
         }
 
         [Fact]
@@ -399,7 +399,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.MarkAsOffended(Guid.NewGuid().Shrink(), Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Specified story does not exist.", result.errorMessage);
+            Assert.Equal("Podany artykuł nie istnieje.", result.errorMessage);
         }
 
         [Fact]
@@ -410,7 +410,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.MarkAsOffended(Guid.NewGuid().Shrink(), Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You do not have the privilege to call this method.", result.errorMessage);
+            Assert.Equal("Nie masz uprawnień do wywoływania tej metody.", result.errorMessage);
         }
 
         [Fact]
@@ -419,7 +419,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.MarkAsOffended(Guid.NewGuid().Shrink(), Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("You are currently not authenticated.", result.errorMessage);
+            Assert.Equal("Nie jesteś zalogowany.", result.errorMessage);
         }
 
         [Fact]
@@ -428,7 +428,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.MarkAsOffended(Guid.NewGuid().Shrink(), "foobar")).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Invalid comment identifier.", result.errorMessage);
+            Assert.Equal("Niepoprawny identyfikator komentarza.", result.errorMessage);
         }
 
         [Fact]
@@ -437,7 +437,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.MarkAsOffended(Guid.NewGuid().Shrink(), string.Empty)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Comment identifier cannot be blank.", result.errorMessage);
+            Assert.Equal("Identyfikator komentarza nie może być pusty.", result.errorMessage);
         }
 
         [Fact]
@@ -446,7 +446,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.MarkAsOffended("foobar", Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Invalid story identifier.", result.errorMessage);
+            Assert.Equal("Niepoprawny identyfikator artykułu.", result.errorMessage);
         }
 
         [Fact]
@@ -455,7 +455,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.MarkAsOffended(string.Empty, Guid.NewGuid().Shrink())).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Story identifier cannot be blank.", result.errorMessage);
+            Assert.Equal("Identyfikator artykułu nie może być pusty.", result.errorMessage);
         }
 
         private void SetupCaptcha()

@@ -29,7 +29,9 @@ namespace Kigg.Web.Test
         [Fact]
         public void PageHeader_With_SyndicationIcons_Should_Return_Correct_Html()
         {
-            var html = GetHtmlHelper().PageHeader("This is a dummy title", "/feed/rss/published", "/feed/atom/published");
+            var html = GetHtmlHelper()
+                .PageHeader("This is a dummy title", "/feed/rss/published", "/feed/atom/published", "Facebook",
+                            "Google+");
 
             Assert.Contains("<h2>{0}</h2>".FormatWith(Title), html);
         }
@@ -45,10 +47,13 @@ namespace Kigg.Web.Test
         [Fact]
         public void SyndicationIcons_Should_Return_Both_Icons()
         {
-            var html = GetHtmlHelper().SyndicationIcons("/Feed/Rss/Published", "/Feed/Atom/Published");
+            var html = GetHtmlHelper()
+                .SyndicationIcons("/Feed/Rss/Published", "/Feed/Atom/Published", "Facebook", "Google+");
 
             Assert.Contains("rss", html);
             Assert.Contains("atom", html);
+            Assert.Contains("Facebook", html);
+            Assert.Contains("Google+", html);
         }
 
         [Fact]
@@ -66,21 +71,14 @@ namespace Kigg.Web.Test
         public void StoryListPager_For_Published_Should_Return_Correct_Html_When_Current_Page_Is_One_And_Total_Story_Count_Is_Two_Hundred()
         {
             string output = "<div class=\"pager\"> " +
-                                "<span class=\"disabled\">Previous</span> " +
-                                "<span class=\"current\">1</span> " +
+                                "<span class=\"active\">1</span> " +
                                 "<a href=\"{0}/2\">2</a> ".FormatWith(AppPath) +
                                 "<a href=\"{0}/3\">3</a> ".FormatWith(AppPath) +
                                 "<a href=\"{0}/4\">4</a> ".FormatWith(AppPath) +
-                                "<a href=\"{0}/5\">5</a> ".FormatWith(AppPath) +
-                                "<a href=\"{0}/6\">6</a> ".FormatWith(AppPath) +
-                                "<a href=\"{0}/7\">7</a> ".FormatWith(AppPath) +
-                                "<a href=\"{0}/8\">8</a> ".FormatWith(AppPath) +
-                                "<a href=\"{0}/9\">9</a> ".FormatWith(AppPath) +
-                                "<a href=\"{0}/10\">10</a> ".FormatWith(AppPath) +
-                                "... " +
+                                "<a href=\"{0}/5\">5</a>".FormatWith(AppPath) +
+                                "<span>...</span> " +
                                 "<a href=\"{0}/19\">19</a> ".FormatWith(AppPath) +
-                                "<a href=\"{0}/20\">20</a> ".FormatWith(AppPath) +
-                                "<a href=\"{0}/2\">Next</a>".FormatWith(AppPath) +
+                                "<a href=\"{0}/20\">20</a>".FormatWith(AppPath) +
                             "</div>";
 
             var helper = GetHtmlHelperForStoryListPager("Published", 1, 200);
@@ -94,24 +92,18 @@ namespace Kigg.Web.Test
         public void StoryListPager_For_Published_Should_Return_Correct_Html_When_Current_Page_Is_Ten_And_Total_Story_Count_Is_Two_Hundred()
         {
             string output = "<div class=\"pager\"> " +
-                                "<a href=\"{0}/9\">Previous</a> ".FormatWith(AppPath) +
                                 "<a href=\"{0}/\">1</a> ".FormatWith(AppPath) +
-                                "<a href=\"{0}/2\">2</a> ".FormatWith(AppPath) +
-                                "... " +
-                                "<a href=\"{0}/6\">6</a> ".FormatWith(AppPath) +
-                                "<a href=\"{0}/7\">7</a> ".FormatWith(AppPath) +
+                                "<a href=\"{0}/2\">2</a>".FormatWith(AppPath) +
+                                "<span>...</span> " +
                                 "<a href=\"{0}/8\">8</a> ".FormatWith(AppPath) +
                                 "<a href=\"{0}/9\">9</a> ".FormatWith(AppPath) +
-                                "<span class=\"current\">10</span> " +
+                                "<span class=\"active\">10</span> " +
                                 "<a href=\"{0}/11\">11</a> ".FormatWith(AppPath) +
                                 "<a href=\"{0}/12\">12</a> ".FormatWith(AppPath) +
-                                "<a href=\"{0}/13\">13</a> ".FormatWith(AppPath) +
-                                "<a href=\"{0}/14\">14</a> ".FormatWith(AppPath) +
-                                "<a href=\"{0}/15\">15</a> ".FormatWith(AppPath) +
-                                "... " +
+                                "<a href=\"{0}/13\">13</a>".FormatWith(AppPath) +
+                                "<span>...</span> " +
                                 "<a href=\"{0}/19\">19</a> ".FormatWith(AppPath) +
-                                "<a href=\"{0}/20\">20</a> ".FormatWith(AppPath) +
-                                "<a href=\"{0}/11\">Next</a>".FormatWith(AppPath) +
+                                "<a href=\"{0}/20\">20</a>".FormatWith(AppPath) +
                             "</div>";
 
             var helper = GetHtmlHelperForStoryListPager("Published", 10, 200);
@@ -125,22 +117,14 @@ namespace Kigg.Web.Test
         public void StoryListPager_For_Published_Should_Return_Correct_Html_When_Current_Page_Is_Twenty_And_Total_Story_Count_Is_Two_Hundred()
         {
             string output = "<div class=\"pager\"> " +
-                                "<a href=\"{0}/19\">Previous</a> ".FormatWith(AppPath) +
                                 "<a href=\"{0}/\">1</a> ".FormatWith(AppPath) +
-                                "<a href=\"{0}/2\">2</a> ".FormatWith(AppPath) +
-                                "... " +
-                                "<a href=\"{0}/11\">11</a> ".FormatWith(AppPath) +
-                                "<a href=\"{0}/12\">12</a> ".FormatWith(AppPath) +
-                                "<a href=\"{0}/13\">13</a> ".FormatWith(AppPath) +
-                                "<a href=\"{0}/14\">14</a> ".FormatWith(AppPath) +
-                                "<a href=\"{0}/15\">15</a> ".FormatWith(AppPath) +
+                                "<a href=\"{0}/2\">2</a>".FormatWith(AppPath) +
+                                "<span>...</span> " +
                                 "<a href=\"{0}/16\">16</a> ".FormatWith(AppPath) +
                                 "<a href=\"{0}/17\">17</a> ".FormatWith(AppPath) +
                                 "<a href=\"{0}/18\">18</a> ".FormatWith(AppPath) +
                                 "<a href=\"{0}/19\">19</a> ".FormatWith(AppPath) +
-                                "<span class=\"current\">20</span> " +
-                                "<span class=\"disabled\">Next</span>" +
-                            "</div>";
+                                "<span class=\"active\">20</span></div>";
 
             var helper = GetHtmlHelperForStoryListPager("Published", 20, 200);
 
@@ -155,15 +139,13 @@ namespace Kigg.Web.Test
             const string Query = "Test";
 
             string output = "<div class=\"pager\"> " + 
-                                "<span class=\"disabled\">Previous</span> " +
-                                "<span class=\"current\">1</span> " +
+                                "<span class=\"active\">1</span> " +
                                 "<a href=\"{0}/Search?page=2&amp;q={1}\">2</a> ".FormatWith(AppPath, Query) +
                                 "<a href=\"{0}/Search?page=3&amp;q={1}\">3</a> ".FormatWith(AppPath, Query) +
                                 "<a href=\"{0}/Search?page=4&amp;q={1}\">4</a> ".FormatWith(AppPath, Query) +
                                 "<a href=\"{0}/Search?page=5&amp;q={1}\">5</a> ".FormatWith(AppPath, Query) +
                                 "<a href=\"{0}/Search?page=6&amp;q={1}\">6</a> ".FormatWith(AppPath, Query) +
-                                "<a href=\"{0}/Search?page=7&amp;q={1}\">7</a> ".FormatWith(AppPath, Query) +
-                                "<a href=\"{0}/Search?page=2&amp;q={1}\">Next</a>".FormatWith(AppPath, Query) +
+                                "<a href=\"{0}/Search?page=7&amp;q={1}\">7</a>".FormatWith(AppPath, Query) +
                             "</div>";
 
             var html = GetHtmlHelperForSearchStoryListPager("Test", 1, 62).StoryListPager();
@@ -177,21 +159,14 @@ namespace Kigg.Web.Test
             string userId = Guid.NewGuid().Shrink();
 
             string output = "<div class=\"pager\"> " +
-                                "<span class=\"disabled\">Previous</span> " +
-                                "<span class=\"current\">1</span> " +
+                                "<span class=\"active\">1</span> " +
                                 "<a href=\"{0}/Users/{1}/Promoted/2\">2</a> ".FormatWith(AppPath, userId) +
                                 "<a href=\"{0}/Users/{1}/Promoted/3\">3</a> ".FormatWith(AppPath, userId) +
                                 "<a href=\"{0}/Users/{1}/Promoted/4\">4</a> ".FormatWith(AppPath, userId) +
-                                "<a href=\"{0}/Users/{1}/Promoted/5\">5</a> ".FormatWith(AppPath, userId) +
-                                "<a href=\"{0}/Users/{1}/Promoted/6\">6</a> ".FormatWith(AppPath, userId) +
-                                "<a href=\"{0}/Users/{1}/Promoted/7\">7</a> ".FormatWith(AppPath, userId) +
-                                "<a href=\"{0}/Users/{1}/Promoted/8\">8</a> ".FormatWith(AppPath, userId) +
-                                "<a href=\"{0}/Users/{1}/Promoted/9\">9</a> ".FormatWith(AppPath, userId) +
-                                "<a href=\"{0}/Users/{1}/Promoted/10\">10</a> ".FormatWith(AppPath, userId) +
-                                "... " +
+                                "<a href=\"{0}/Users/{1}/Promoted/5\">5</a>".FormatWith(AppPath, userId) +
+                                "<span>...</span> " +
                                 "<a href=\"{0}/Users/{1}/Promoted/19\">19</a> ".FormatWith(AppPath, userId) +
-                                "<a href=\"{0}/Users/{1}/Promoted/20\">20</a> ".FormatWith(AppPath, userId) +
-                                "<a href=\"{0}/Users/{1}/Promoted/2\">Next</a>".FormatWith(AppPath, userId) +
+                                "<a href=\"{0}/Users/{1}/Promoted/20\">20</a>".FormatWith(AppPath, userId) +
                             "</div>";
 
             var routeData = new RouteData();

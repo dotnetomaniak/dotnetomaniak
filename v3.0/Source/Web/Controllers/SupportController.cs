@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 
 namespace Kigg.Web
 {
@@ -83,12 +83,12 @@ namespace Kigg.Web
         public ActionResult Contact(string email, string name, string message)
         {
             JsonViewData viewData = Validate<JsonViewData>(
-                                                                new Validation(() => string.IsNullOrEmpty(email), "Pole e-mail nie mo¿e byæ puste."),
+                                                                new Validation(() => string.IsNullOrEmpty(email), "Pole e-mail nie moÅ¼e byÄ‡ puste."),
                                                                 new Validation(() => !email.IsEmail(), "Niepoprawny adres e-mail."),
-                                                                new Validation(() => string.IsNullOrEmpty(name), "Nazwa nie mo¿e byæ puste."),
-                                                                new Validation(() => name.Length < 4, "Nazwa nie mo¿e byæ krótsza ni¿ 4 znaki."),
-                                                                new Validation(() => string.IsNullOrEmpty(message), "Wiadomoœæ nie mo¿e byæ pusta."),
-                                                                new Validation(() => message.Length < 16, "Wiadomoœæ nie mo¿e byæ krótsza ni¿ 16 znaków.")
+                                                                new Validation(() => string.IsNullOrEmpty(name), "Nazwa nie moÅ¼e byÄ‡ pusta."),
+                                                                new Validation(() => name.Length < 4, "Nazwa nie moÅ¼e byÄ‡ krÃ³tsza niÅ¼ 4 znaki."),
+                                                                new Validation(() => string.IsNullOrEmpty(message), "WiadomoÅ›Ä‡ nie moÅ¼e byÄ‡ pusta."),
+                                                                new Validation(() => message.Length < 16, "WiadomoÅ›Ä‡ nie moÅ¼e byÄ‡ krÃ³tsza niÅ¼ 16 znakÃ³w.")
                                                           );
 
             if (viewData == null)
@@ -112,7 +112,7 @@ namespace Kigg.Web
 
             if (!IsCurrentUserAuthenticated || !CurrentUser.CanModerate())
             {
-                viewData.ErrorMessage = "Nie masz uprawnieñ do ogl¹dania tej czêœci.";
+                viewData.ErrorMessage = "Nie masz uprawnieÅ„ do oglÄ…dania tej czÄ™Å›ci strony.";
             }
             else
             {

@@ -1,4 +1,4 @@
-namespace Kigg.Web
+Ôªønamespace Kigg.Web
 {
     using System;
     using System.Web.Mvc;
@@ -46,13 +46,13 @@ namespace Kigg.Web
             }
 
             JsonViewData viewData = Validate<JsonViewData>(
-                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku≥u nie moøe byÊ pusty."),
-                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku≥u."),
-                                                            new Validation(() => string.IsNullOrEmpty(body.NullSafe()), "Komentarz nie moøe byÊ pusty."),
-                                                            new Validation(() => captchaEnabled && string.IsNullOrEmpty(captchaChallenge), "Pole Captcha nie moøe byÊ puste."),
-                                                            new Validation(() => captchaEnabled && string.IsNullOrEmpty(captchaResponse), "Pole Captcha nie moøe byÊ puste."),
-                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteú zalogowany."),
-                                                            new Validation(() => captchaEnabled && !CaptchaValidator.Validate(CurrentUserIPAddress, captchaChallenge, captchaResponse), "Weryfikacja Captcha nie powiod≥a siÍ")
+                                                            new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artyku≈Çu nie mo≈ºe byƒá pusty."),
+                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku≈Çu."),
+                                                            new Validation(() => string.IsNullOrEmpty(body.NullSafe()), "Komentarz nie mo≈ºe byƒá pusty."),
+                                                            new Validation(() => captchaEnabled && string.IsNullOrEmpty(captchaChallenge), "Pole Captcha nie mo≈ºe byƒá puste."),
+                                                            new Validation(() => captchaEnabled && string.IsNullOrEmpty(captchaResponse), "Pole Captcha nie mo≈ºe byƒá puste."),
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jeste≈õ zalogowany."),
+                                                            new Validation(() => captchaEnabled && !CaptchaValidator.Validate(CurrentUserIPAddress, captchaChallenge, captchaResponse), "Weryfikacja Captcha nieudana.")
                                                           );
 
             if (viewData == null)
@@ -63,7 +63,7 @@ namespace Kigg.Web
 
                     if (story == null)
                     {
-                        viewData = new JsonViewData { errorMessage = "Podany artyku≥ nie istnieje." };
+                        viewData = new JsonViewData { errorMessage = "Podany artyku≈Ç nie istnieje." };
                     }
                     else
                     {
@@ -97,12 +97,12 @@ namespace Kigg.Web
         public ActionResult ConfirmSpam(string storyId, string commentId)
         {
             JsonViewData viewData = Validate<JsonViewData>(
-                                                            new Validation(() => string.IsNullOrEmpty(storyId), "Identyfikator artyku≥u nie moøe byÊ pusty."),
-                                                            new Validation(() => storyId.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku≥u."),
-                                                            new Validation(() => string.IsNullOrEmpty(commentId), "Identyfikator komentarza nie moøe byÊ pusty."),
+                                                            new Validation(() => string.IsNullOrEmpty(storyId), "Identyfikator artyku≈Çu nie mo≈ºe byƒá pusty."),
+                                                            new Validation(() => storyId.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku≈Çu."),
+                                                            new Validation(() => string.IsNullOrEmpty(commentId), "Identyfikator komentarza nie mo≈ºe byƒá pusty."),
                                                             new Validation(() => commentId.ToGuid().IsEmpty(), "Niepoprawny identyfikator komentarza."),
-                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteú zalogowany."),
-                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz praw do wo≥ania tej metody.")
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jeste≈õ zalogowany."),
+                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz uprawnie≈Ñ do wo≈Çania tej metody.")
                                                           );
 
             if (viewData == null)
@@ -113,7 +113,7 @@ namespace Kigg.Web
 
                     if (story == null)
                     {
-                        viewData = new JsonViewData { errorMessage = "Specified story does not exist." };
+                        viewData = new JsonViewData { errorMessage = "Podany artyku≈Ç nie istnieje." };
                     }
                     else
                     {
@@ -121,7 +121,7 @@ namespace Kigg.Web
 
                         if (comment == null)
                         {
-                            viewData = new JsonViewData { errorMessage = "Poday artyku≥ nie istnieje." };
+                            viewData = new JsonViewData { errorMessage = "Podany komentarz nie istnieje." };
                         }
                         else
                         {
@@ -146,12 +146,12 @@ namespace Kigg.Web
         public ActionResult MarkAsOffended(string storyId, string commentId)
         {
             JsonViewData viewData = Validate<JsonViewData>(
-                                                            new Validation(() => string.IsNullOrEmpty(storyId), "Identyfikator artyku≥u nie moøe byÊ pusty."),
-                                                            new Validation(() => storyId.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku≥u."),
-                                                            new Validation(() => string.IsNullOrEmpty(commentId), "Identyfikator komentarza nie moøe byÊ pusty."),
+                                                            new Validation(() => string.IsNullOrEmpty(storyId), "Identyfikator artyku≈Çu nie mo≈ºe byƒá pusty."),
+                                                            new Validation(() => storyId.ToGuid().IsEmpty(), "Niepoprawny identyfikator artyku≈Çu."),
+                                                            new Validation(() => string.IsNullOrEmpty(commentId), "Identyfikator komentarza nie mo≈ºe byƒá pusty."),
                                                             new Validation(() => commentId.ToGuid().IsEmpty(), "Niepoprawny identyfikator komentarza."),
-                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteú zalogowany."),
-                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz praw do wo≥ania tej metody.")
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jeste≈õ zalogowany."),
+                                                            new Validation(() => !CurrentUser.CanModerate(), "Nie masz uprawnie≈Ñ do wywo≈Çywania tej metody.")
                                                           );
 
             if (viewData == null)
@@ -162,7 +162,7 @@ namespace Kigg.Web
 
                     if (story == null)
                     {
-                        viewData = new JsonViewData { errorMessage = "Podany artyku≥ nie istnieje." };
+                        viewData = new JsonViewData { errorMessage = "Podany artyku≈Ç nie istnieje." };
                     }
                     else
                     {
@@ -184,7 +184,7 @@ namespace Kigg.Web
                 {
                     Log.Exception(e);
 
-                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("zaznaczania komentarza jako obraüliwy") };
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("zaznaczania komentarza jako obra≈∏liwy") };
                 }
             }
 

@@ -16,7 +16,7 @@ namespace Kigg.Web.Test
 
             string url = user.Object.GravatarUrl(50);
 
-            Assert.Equal("http://www.gravatar.com/avatar/19bc7253102000b3a64c290f74f3ae83?r=G&s=50&d=wavatar", url);
+            Assert.Equal("http://www.gravatar.com/avatar/19bc7253102000b3a64c290f74f3ae83?r=G&s=50&d=identicon", url);
         }
     }
 }
