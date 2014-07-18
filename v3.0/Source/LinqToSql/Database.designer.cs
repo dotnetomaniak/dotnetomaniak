@@ -327,6 +327,12 @@ namespace Kigg.LinqToSql.Repository
         {
             return ((int)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod()))).ReturnValue));
         }
+        
+        [global::System.Data.Linq.Mapping.FunctionAttribute(Name = "Facebook", IsComposable = false)]
+        public int Facebook()
+        {
+            return ((int)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod()))).ReturnValue));
+        }
 	}
 }
 namespace Kigg.LinqToSql.DomainObjects

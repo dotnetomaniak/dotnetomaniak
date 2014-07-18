@@ -129,6 +129,10 @@
     <value>Poranny ptaszek</value>
     <comment>Badge</comment>
   </data>
+  <data name="FacebookBadge" xml:space="preserve">
+    <value>Facebook</value>
+    <comment>Badge</comment>
+  </data>
   <data name="GlobetrotterBadge" xml:space="preserve">
     <value>Światowiec</value>
     <comment>Badge</comment>
