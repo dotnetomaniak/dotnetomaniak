@@ -240,6 +240,7 @@
     <Compile Include="Jobs\1kPointsBadge.cs" />
     <Compile Include="Jobs\AwardBadgeJob.cs" />
     <Compile Include="Jobs\CommenterBadge.cs" />
+    <Compile Include="Jobs\FacebookBadge.cs" />
     <Compile Include="Jobs\DotnetomaniakBadge.cs" />
     <Compile Include="Jobs\EarlyBirdBadge.cs" />
     <Compile Include="Jobs\EndRecommendationNotificationJob.cs" />
