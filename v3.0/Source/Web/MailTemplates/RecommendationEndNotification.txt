@@ -1,7 +1,7 @@
 ﻿Witaj,
 
-Twoja reklama kierująca do witryny <%=recommendationLink%> w serwisie dotnetomaniak wygasa <%=endTime%>
-Prosimy o kontakt jeżeli chcesz ją przedłużyć.
+Twoja reklama kierująca do witryny <%=recommendationLink%> w serwisie dotnetomaniak wygasa <%=endTime%>.
+Dziękujemy za wspólną współpracę i prosimy o kontakt jeżeli chcesz ją przedłużyć.
 
 Pozdrawiamy,
 Zespół dotnetomaniak.pl
