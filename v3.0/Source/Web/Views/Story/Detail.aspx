@@ -31,7 +31,7 @@
               <meta property="article:tag" content="<%= tag %>" />
           <%} %>    
        <meta itemprop="description" content="<%= Html.AttributeEncode(Model.Story.TextDescription) %>" />	  
-       <meta property="article:published_time" content="<%= Model.Story.PublishedAt.GetValueOrDefault().ToString("yyyy-MM-ddThh:mm:sszzz") %>" />
+       <%--meta property="article:published_time" content="<%= Model.Story.PublishedAt.GetValueOrDefault().ToString("yyyy-MM-ddThh:mm:sszzz") %>" /--%>
        <meta property="article:publisher" content="http://www.facebook.com/dotnetomaniakpl" />
        <meta property="fb:app_id" content ="<%= Model.FacebookAppId %>" />
 </asp:Content>
