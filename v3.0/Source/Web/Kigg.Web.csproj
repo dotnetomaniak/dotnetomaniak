@@ -391,6 +391,16 @@
     <Content Include="Assets\Images\crumb.jpg" />
     <Content Include="Assets\Images\dalej.jpg" />
     <Content Include="Assets\Images\delete.png" />
+    <Content Include="Assets\Images\devmedia\ic_16x16_97rzeczy.png" />
+    <Content Include="Assets\Images\devmedia\ic_16x16_antylama.png" />
+    <Content Include="Assets\Images\devmedia\ic_16x16_devBlogi.png" />
+    <Content Include="Assets\Images\devmedia\ic_16x16_devMedia.png" />
+    <Content Include="Assets\Images\devmedia\ic_16x16_devPytania.png" />
+    <Content Include="Assets\Images\devmedia\ic_16x16_dotnetomaniak.png" />
+    <Content Include="Assets\Images\devmedia\ic_16x16_metadm.png" />
+    <Content Include="Assets\Images\devmedia\ic_16x16_mnmlzm.png" />
+    <Content Include="Assets\Images\devmedia\ic_16x16_sysPytania.png" />
+    <Content Include="Assets\Images\devmedia\ic_16x16_zenblogi.png" />
     <Content Include="Assets\Images\dodaj-artykul.jpg" />
     <Content Include="Assets\Images\dodaj-grey.jpg" />
     <Content Include="Assets\Images\dodaj.png" />
@@ -465,6 +475,7 @@
     <Content Include="Assets\Images\zaloz-konto_07.jpg" />
     <Content Include="Assets\Images\zaloz-konto_15.jpg" />
     <Content Include="Assets\JavaScripts\devmedia.js" />
+    <Content Include="Assets\JavaScripts\devmediaBody.js" />
     <Content Include="Assets\JavaScripts\Facebook.js" />
     <Content Include="Assets\JavaScripts\jquery-1.7.1.min.js" />
     <Content Include="Assets\JavaScripts\jquery-ui-1.8.17.custom.min.js" />
@@ -475,6 +486,7 @@
     <Content Include="Assets\StyleSheets\autocomplete.css" />
     <Content Include="Assets\StyleSheets\blog.css" />
     <Content Include="Assets\StyleSheets\colorPicker.min.css" />
+    <Content Include="Assets\StyleSheets\devmedia.css" />
     <Content Include="Assets\StyleSheets\error.css" />
     <Content Include="Assets\StyleSheets\jquery-ui.css" />
     <Content Include="Assets\StyleSheets\marItUp.css" />
