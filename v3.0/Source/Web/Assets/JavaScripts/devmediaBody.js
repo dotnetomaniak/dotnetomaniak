@@ -378,7 +378,7 @@ function appendDevMediaSideBar(leftOrRight) {
       '    </li>' +
       '    <li id="devmedia-sidebar-devblogi-icon-container">' +
       '      <a href="http://www.devblogi.pl" target="_blank" title="devBlogi" class="dm-sidebar-icon">' +
-      '        <img src="http://www.devmedia.pl/static/gfx/logos/ic_16x16_devBlogi.png" alt="devBlogi" />' +
+      '        <img src="~/Assets/Images/devmedia/ic_16x16_devBlogi.png" alt="devBlogi" />' +
       '      </a>' +
       '      <ul>' +
       '        <li>' +
@@ -395,7 +395,7 @@ function appendDevMediaSideBar(leftOrRight) {
       '    </li>' +
       '    <li id="devmedia-sidebar-devpytania-icon-container">' +
       '      <a href="http://devpytania.pl" target="_blank" title="devPytania" class="dm-sidebar-icon">' +
-      '        <img src="http://www.devmedia.pl/static/gfx/logos/ic_16x16_devPytania.png" alt="devPytania" />' +
+      '        <img src="~/Assets/Images/devmedia/ic_16x16_devPytania.png" alt="devPytania" />' +
       '      </a>' +
       '      <ul>' +
       '        <li>' +
@@ -412,7 +412,7 @@ function appendDevMediaSideBar(leftOrRight) {
       '    </li>' +
       '    <li id="devmedia-sidebar-syspytania-icon-container">' +
       '      <a href="http://syspytania.pl" target="_blank" title="sysPytania" class="dm-sidebar-icon">' +
-      '        <img src="http://www.devmedia.pl/static/gfx/logos/ic_16x16_sysPytania.png" alt="sysPytania" />' +
+      '        <img src="~/Assets/Images/devmedia/ic_16x16_sysPytania.png" alt="sysPytania" />' +
       '      </a>' +
       '      <ul>' +
       '        <li>' +
@@ -429,7 +429,7 @@ function appendDevMediaSideBar(leftOrRight) {
       '    </li>' +
       '    <li id="devmedia-sidebar-antylama-icon-container">' +
       '      <a href="http://antylama.pl" target="_blank" title="antylama" class="dm-sidebar-icon">' +
-      '        <img src="http://www.devmedia.pl/static/gfx/logos/ic_16x16_antylama.png" alt="antylama" />' +
+      '        <img src="~/Assets/Images/devmedia/ic_16x16_antylama.png" alt="antylama" />' +
       '      </a>' +
       '      <ul>' +
       '        <li>' +
@@ -446,7 +446,7 @@ function appendDevMediaSideBar(leftOrRight) {
       '    </li>' +
       '    <li id="devmedia-sidebar-97rzeczy-icon-container">' +
       '      <a href="http://97rzeczy.devblogi.pl" target="_blank" title="97rzeczy" class="dm-sidebar-icon">' +
-      '        <img src="http://www.devmedia.pl/static/gfx/logos/ic_16x16_97rzeczy.png" alt="97rzeczy" />' +
+      '        <img src="~/Assets/Images/devmedia/ic_16x16_97rzeczy.png" alt="97rzeczy" />' +
       '      </a>' +
       '      <ul>' +
       '        <li>' +
@@ -463,7 +463,7 @@ function appendDevMediaSideBar(leftOrRight) {
       '    </li>' +
       '    <li id="devmedia-sidebar-dotnetomaniak-icon-container">' +
       '      <a href="http://dotnetomaniak.pl" target="_blank" title="dotnetomaniak" class="dm-sidebar-icon">' +
-      '        <img src="http://www.devmedia.pl/static/gfx/logos/ic_16x16_dotnetomaniak.png" alt="dotnetomaniak" />' +
+      '        <img src="~/Assets/Images/devmedia/ic_16x16_dotnetomaniak.png" alt="dotnetomaniak" />' +
       '      </a>' +
       '      <ul>' +
       '        <li>' +
@@ -480,7 +480,7 @@ function appendDevMediaSideBar(leftOrRight) {
       '    </li>' +
       '    <li id="devmedia-sidebar-zenblogi-icon-container">' +
       '      <a href="http://www.zenblogi.pl" target="_blank" title="zenblogi" class="dm-sidebar-icon">' +
-      '        <img src="http://www.devmedia.pl/static/gfx/logos/ic_16x16_zenblogi.png" alt="zenblogi" />' +
+      '        <img src="~/Assets/Images/devmedia/ic_16x16_zenblogi.png" alt="zenblogi" />' +
       '      </a>' +
       '      <ul>' +
       '        <li>' +
@@ -497,7 +497,7 @@ function appendDevMediaSideBar(leftOrRight) {
       '    </li>' +
       '    <li id="devmedia-sidebar-mnmlzm-icon-container">' +
       '      <a href="http://www.mnmlzm.pl" target="_blank" title="mnmlzm" class="dm-sidebar-icon">' +
-      '        <img src="http://www.devmedia.pl/static/gfx/logos/ic_16x16_mnmlzm.png" alt="mnmlzm" />' +
+      '        <img src="~/Assets/Images/devmedia/ic_16x16_mnmlzm.png" alt="mnmlzm" />' +
       '      </a>' +
       '      <ul>' +
       '        <li>' +
@@ -514,7 +514,7 @@ function appendDevMediaSideBar(leftOrRight) {
       '    </li>' +
       '    <li id="devmedia-sidebar-metadm-icon-container">' +
       '      <a href="http://meta.devmedia.pl" target="_blank" title="meta devMedia" class="dm-sidebar-icon">' +
-      '        <img src="http://www.devmedia.pl/static/gfx/logos/ic_16x16_metadm.png" alt="meta devMedia" />' +
+      '        <img src="~/Assets/Images/devmedia/ic_16x16_metadm.png" alt="meta devMedia" />' +
       '      </a>' +
       '      <ul>' +
       '        <li>' +
