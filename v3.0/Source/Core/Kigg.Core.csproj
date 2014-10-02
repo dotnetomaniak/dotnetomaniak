@@ -107,6 +107,7 @@
     </Compile>
     <Compile Include="DomainObjects\IAchievement.cs" />
     <Compile Include="DomainObjects\ICommentSubscribtion.cs" />
+    <Compile Include="DomainObjects\ICommingEvent.cs" />
     <Compile Include="DomainObjects\IKnownSource.cs" />
     <Compile Include="DomainObjects\IRecommendation.cs" />
     <Compile Include="DomainObjects\ITagContainer.cs" />

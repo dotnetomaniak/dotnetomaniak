@@ -224,5 +224,11 @@
         <elementListCompartment Id="b322c523-0583-4f16-8afe-9b89eb34799d" absoluteBounds="6.265, 4.585, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="9d17e79b-8476-468a-bcbf-fa56c01e0fec" absoluteBounds="8.75, 3.25, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/Database/CommingEvents" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1aed76ac-7788-4d7d-b73a-885682b1a956" absoluteBounds="8.765, 3.71, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

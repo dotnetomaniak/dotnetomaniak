@@ -76,6 +76,9 @@ namespace Kigg.LinqToSql.Repository
     partial void InsertRecommendation(Kigg.LinqToSql.DomainObjects.Recommendation instance);
     partial void UpdateRecommendation(Kigg.LinqToSql.DomainObjects.Recommendation instance);
     partial void DeleteRecommendation(Kigg.LinqToSql.DomainObjects.Recommendation instance);
+    partial void InsertCommingEvents(Kigg.LinqToSql.DomainObjects.CommingEvents instance);
+    partial void UpdateCommingEvents(Kigg.LinqToSql.DomainObjects.CommingEvents instance);
+    partial void DeleteCommingEvents(Kigg.LinqToSql.DomainObjects.CommingEvents instance);
     #endregion
 		
 		public Database() : 
@@ -233,6 +236,14 @@ namespace Kigg.LinqToSql.Repository
 			get
 			{
 				return this.GetTable<Kigg.LinqToSql.DomainObjects.Recommendation>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Kigg.LinqToSql.DomainObjects.CommingEvents> CommingEvents
+		{
+			get
+			{
+				return this.GetTable<Kigg.LinqToSql.DomainObjects.CommingEvents>();
 			}
 		}
 		
@@ -4728,6 +4739,307 @@ namespace Kigg.LinqToSql.DomainObjects
 					this._NotificationIsSent = value;
 					this.SendPropertyChanged("NotificationIsSent");
 					this.OnNotificationIsSentChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void Initialize()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Runtime.Serialization.OnDeserializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnDeserializing(StreamingContext context)
+		{
+			this.Initialize();
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="")]
+	[global::System.Runtime.Serialization.DataContractAttribute()]
+	public partial class CommingEvents : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _Id;
+		
+		private string _EventLink;
+		
+		private string _EventName;
+		
+		private System.DateTime _EventDate;
+		
+		private string _ImageLink;
+		
+		private string _ImageTitle;
+		
+		private System.DateTime _CreatedAt;
+		
+		private System.DateTime _StartTime;
+		
+		private System.DateTime _EndTime;
+		
+		private int _Position;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    partial void OnEventLinkChanging(string value);
+    partial void OnEventLinkChanged();
+    partial void OnEventNameChanging(string value);
+    partial void OnEventNameChanged();
+    partial void OnEventDateChanging(System.DateTime value);
+    partial void OnEventDateChanged();
+    partial void OnImageLinkChanging(string value);
+    partial void OnImageLinkChanged();
+    partial void OnImageTitleChanging(string value);
+    partial void OnImageTitleChanged();
+    partial void OnCreatedAtChanging(System.DateTime value);
+    partial void OnCreatedAtChanged();
+    partial void OnStartTimeChanging(System.DateTime value);
+    partial void OnStartTimeChanged();
+    partial void OnEndTimeChanging(System.DateTime value);
+    partial void OnEndTimeChanged();
+    partial void OnPositionChanging(int value);
+    partial void OnPositionChanged();
+    #endregion
+		
+		public CommingEvents()
+		{
+			this.Initialize();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventLink", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+		public string EventLink
+		{
+			get
+			{
+				return this._EventLink;
+			}
+			set
+			{
+				if ((this._EventLink != value))
+				{
+					this.OnEventLinkChanging(value);
+					this.SendPropertyChanging();
+					this._EventLink = value;
+					this.SendPropertyChanged("EventLink");
+					this.OnEventLinkChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3)]
+		public string EventName
+		{
+			get
+			{
+				return this._EventName;
+			}
+			set
+			{
+				if ((this._EventName != value))
+				{
+					this.OnEventNameChanging(value);
+					this.SendPropertyChanging();
+					this._EventName = value;
+					this.SendPropertyChanged("EventName");
+					this.OnEventNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventDate", DbType="DateTime NOT NULL")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
+		public System.DateTime EventDate
+		{
+			get
+			{
+				return this._EventDate;
+			}
+			set
+			{
+				if ((this._EventDate != value))
+				{
+					this.OnEventDateChanging(value);
+					this.SendPropertyChanging();
+					this._EventDate = value;
+					this.SendPropertyChanged("EventDate");
+					this.OnEventDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageLink", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=5)]
+		public string ImageLink
+		{
+			get
+			{
+				return this._ImageLink;
+			}
+			set
+			{
+				if ((this._ImageLink != value))
+				{
+					this.OnImageLinkChanging(value);
+					this.SendPropertyChanging();
+					this._ImageLink = value;
+					this.SendPropertyChanged("ImageLink");
+					this.OnImageLinkChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageTitle", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=6)]
+		public string ImageTitle
+		{
+			get
+			{
+				return this._ImageTitle;
+			}
+			set
+			{
+				if ((this._ImageTitle != value))
+				{
+					this.OnImageTitleChanging(value);
+					this.SendPropertyChanging();
+					this._ImageTitle = value;
+					this.SendPropertyChanged("ImageTitle");
+					this.OnImageTitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedAt", DbType="DateTime NOT NULL")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=7)]
+		public System.DateTime CreatedAt
+		{
+			get
+			{
+				return this._CreatedAt;
+			}
+			set
+			{
+				if ((this._CreatedAt != value))
+				{
+					this.OnCreatedAtChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedAt = value;
+					this.SendPropertyChanged("CreatedAt");
+					this.OnCreatedAtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartTime", DbType="DateTime NOT NULL")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=8)]
+		public System.DateTime StartTime
+		{
+			get
+			{
+				return this._StartTime;
+			}
+			set
+			{
+				if ((this._StartTime != value))
+				{
+					this.OnStartTimeChanging(value);
+					this.SendPropertyChanging();
+					this._StartTime = value;
+					this.SendPropertyChanged("StartTime");
+					this.OnStartTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndTime", DbType="DateTime NOT NULL")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=9)]
+		public System.DateTime EndTime
+		{
+			get
+			{
+				return this._EndTime;
+			}
+			set
+			{
+				if ((this._EndTime != value))
+				{
+					this.OnEndTimeChanging(value);
+					this.SendPropertyChanging();
+					this._EndTime = value;
+					this.SendPropertyChanged("EndTime");
+					this.OnEndTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Position", DbType="Int NOT NULL")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=10)]
+		public int Position
+		{
+			get
+			{
+				return this._Position;
+			}
+			set
+			{
+				if ((this._Position != value))
+				{
+					this.OnPositionChanging(value);
+					this.SendPropertyChanging();
+					this._Position = value;
+					this.SendPropertyChanged("Position");
+					this.OnPositionChanged();
 				}
 			}
 		}
