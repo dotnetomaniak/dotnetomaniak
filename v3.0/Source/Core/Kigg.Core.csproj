@@ -168,6 +168,7 @@
     <Compile Include="Infrastructure\Thumbnail\IEncoder.cs" />
     <Compile Include="Infrastructure\Thumbnail\ThumbalizrThumbnail.cs" />
     <Compile Include="Repository\IAchievementRepository.cs" />
+    <Compile Include="Repository\ICommingEventRepository.cs" />
     <Compile Include="Repository\ICountByStoryRepository.cs" />
     <Compile Include="Repository\IRecommendationRepository.cs" />
     <Compile Include="Service\ISpamPostprocessor.cs" />

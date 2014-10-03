@@ -89,6 +89,11 @@
             get;
         }
 
+        IQueryable<CommingEvents> CommingEventDataSource
+        {
+            get;
+        }
+
         IQueryable<TEntity> GetQueryable<TEntity>() where TEntity : class;
 
         ITable GetEditable<TEntity>() where TEntity : class;
