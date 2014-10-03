@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Kigg.Core.DomainObjects
 {
-    public partial interface class ICommingEvent : IEntity
+    public partial interface ICommingEvent : IEntity
     {
         string EventLink
         {
