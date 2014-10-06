@@ -132,6 +132,7 @@
     <Compile Include="Infrastructure\BackgroundTask\SendMail.cs" />
     <Compile Include="Infrastructure\BackgroundTask\PingServer.cs" />
     <Compile Include="Infrastructure\BackgroundTask\SendTwitterMessage.cs" />
+    <Compile Include="Infrastructure\BackgroundTask\SlackIntegration.cs" />
     <Compile Include="Infrastructure\Bootstrapper\Bootstrapper.cs" />
     <Compile Include="Infrastructure\Bootstrapper\CreateDefaultUsers.cs" />
     <Compile Include="Infrastructure\Bootstrapper\DefaultUser.cs" />
