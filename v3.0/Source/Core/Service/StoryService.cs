@@ -97,7 +97,7 @@
                     if (splittedTags.Length == 1) //only one tag
                     {
                         var tag = splittedTags[0].Trim();
-                        if (string.Compare(".net", tag, true) == 0 || string.Compare("c#", tag, true) == 0)
+                        if (String.Compare(".net", tag, StringComparison.OrdinalIgnoreCase) == 0 || String.Compare("c#", tag, StringComparison.OrdinalIgnoreCase) == 0)
                         {
                             return new StoryCreateResult {ErrorMessage = "Proszę, pomyśl chwilę nad lepszymi tagami."};
                         }
@@ -107,8 +107,8 @@
                         var tag1 = splittedTags[0].Trim();
                         var tag2 = splittedTags[1].Trim();
                         if (
-                                (string.Compare(".net", tag1, true) == 0 && string.Compare("c#", tag2, true) == 0) ||
-                                (string.Compare(".net", tag1, true) == 0 && string.Compare("c#", tag2, true) == 0)
+                                (String.Compare(".net", tag1, StringComparison.OrdinalIgnoreCase) == 0 && String.Compare("c#", tag2, StringComparison.OrdinalIgnoreCase) == 0) ||
+                                (String.Compare(".net", tag1, StringComparison.OrdinalIgnoreCase) == 0 && String.Compare("c#", tag2, StringComparison.OrdinalIgnoreCase) == 0)
                             )
                         {
                             return new StoryCreateResult {ErrorMessage = "Tagi: .Net i C#. Srsly?"};
