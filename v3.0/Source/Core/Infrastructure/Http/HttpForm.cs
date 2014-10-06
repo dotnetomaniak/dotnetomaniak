@@ -121,7 +121,7 @@ namespace Kigg.Infrastructure
 
             WebRequest request = CreateRequest(postRequest.Url, postRequest.UserName, postRequest.Password, postRequest.ContentType, postRequest.Headers, postRequest.Cookies, true);
 
-            byte[] content = Encoding.ASCII.GetBytes(rawData);
+            byte[] content = Encoding.UTF8.GetBytes(rawData);
             request.ContentLength = content.Length;
 
             try
@@ -223,7 +223,7 @@ namespace Kigg.Infrastructure
 
         internal static void PreapreRequestToPost(WebRequest request,string rawData)
         {
-            byte[] content = Encoding.ASCII.GetBytes(rawData);
+            byte[] content = Encoding.UTF8.GetBytes(rawData);
             request.ContentLength = content.Length;
 
             using (Stream requestStream = request.GetRequestStream())
