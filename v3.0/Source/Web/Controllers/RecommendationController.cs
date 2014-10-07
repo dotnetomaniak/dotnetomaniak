@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using Kigg.Core.DomainObjects;
@@ -8,7 +10,6 @@ using Kigg.Infrastructure;
 using Kigg.Repository;
 using Kigg.Web.ViewData;
 using UnitOfWork = Kigg.Infrastructure.UnitOfWork;
-using System.Collections.Generic;
 
 namespace Kigg.Web
 {
@@ -101,6 +102,18 @@ namespace Kigg.Web
             {
                 try
                 {
+                    if (bannerType)
+                    {
+                        var request = WebRequest.Create(Server.MapPath(string.Format("/Assets/Images/{0}", imageLink)));
+                        var response = request.GetResponse();
+                        var image = Image.FromStream(response.GetResponseStream());
+
+                        if (image.Width != 960)
+                        {
+                            viewData = new JsonViewData {errorMessage = string.Format("Oczekiwana szerokość banera to 960px, twoja to: {0}", image.Width)};
+                            return Json(viewData);
+                        }
+                    }
                     using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
                     {
                         if (id == null || id.IsEmpty())
@@ -138,6 +151,10 @@ namespace Kigg.Web
                 catch (ArgumentException argument)
                 {
                     viewData = new JsonViewData { errorMessage = argument.Message };
+                }
+                catch (WebException e)
+                {
+                    viewData = new JsonViewData { errorMessage = "Podany link do zdjęcia jest nieprawidłowy" };
                 }
                 catch (Exception e)
                 {
