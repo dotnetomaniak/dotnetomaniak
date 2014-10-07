@@ -1,4 +1,4 @@
-﻿using Kigg.Core.Repository;
+﻿using Kigg.Repository;
 using Kigg.DomainObjects;
 using System;
 using System.Collections.Generic;

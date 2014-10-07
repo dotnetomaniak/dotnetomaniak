@@ -1,6 +1,6 @@
 ﻿using System;
-using Kigg.Core.DomainObjects;
-using Kigg.DomainObjects;
+    using Kigg.Core.DomainObjects;
+    using Kigg.DomainObjects;
 
 namespace Kigg.LinqToSql.DomainObjects
 {

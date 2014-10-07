@@ -162,6 +162,15 @@ namespace Kigg.LinqToSql.Repository
             }
         }
 
+        public IQueryable<CommingEvent> CommingEventDataSource
+        {
+            [DebuggerStepThrough]
+            get
+            {
+                return GetQueryable<CommingEvent>();
+            }
+        }
+
         public virtual IQueryable<TEntity> GetQueryable<TEntity>() where TEntity : class
         {
             return GetTable<TEntity>();

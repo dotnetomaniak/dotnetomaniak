@@ -38,12 +38,6 @@ namespace Kigg.Core.DomainObjects
             set;
         }
 
-        DateTime CreatedAt
-        {
-            get;
-            set;
-        }
-
         DateTime StartTime
         {
             get;

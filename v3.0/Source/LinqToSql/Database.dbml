@@ -187,8 +187,8 @@
       <Column Name="NotificationIsSent" Type="System.Boolean" DbType="bit" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="" Member="CommingEvents">
-    <Type Name="CommingEvents">
+  <Table Name="dbo.CommingEvent" Member="CommingEvents">
+    <Type Name="CommingEvent">
       <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="EventLink" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="EventName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />

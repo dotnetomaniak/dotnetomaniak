@@ -76,9 +76,9 @@ namespace Kigg.LinqToSql.Repository
     partial void InsertRecommendation(Kigg.LinqToSql.DomainObjects.Recommendation instance);
     partial void UpdateRecommendation(Kigg.LinqToSql.DomainObjects.Recommendation instance);
     partial void DeleteRecommendation(Kigg.LinqToSql.DomainObjects.Recommendation instance);
-    partial void InsertCommingEvents(Kigg.LinqToSql.DomainObjects.CommingEvents instance);
-    partial void UpdateCommingEvents(Kigg.LinqToSql.DomainObjects.CommingEvents instance);
-    partial void DeleteCommingEvents(Kigg.LinqToSql.DomainObjects.CommingEvents instance);
+    partial void InsertCommingEvent(Kigg.LinqToSql.DomainObjects.CommingEvent instance);
+    partial void UpdateCommingEvent(Kigg.LinqToSql.DomainObjects.CommingEvent instance);
+    partial void DeleteCommingEvent(Kigg.LinqToSql.DomainObjects.CommingEvent instance);
     #endregion
 		
 		public Database() : 
@@ -239,11 +239,11 @@ namespace Kigg.LinqToSql.Repository
 			}
 		}
 		
-		public System.Data.Linq.Table<Kigg.LinqToSql.DomainObjects.CommingEvents> CommingEvents
+		public System.Data.Linq.Table<Kigg.LinqToSql.DomainObjects.CommingEvent> CommingEvents
 		{
 			get
 			{
-				return this.GetTable<Kigg.LinqToSql.DomainObjects.CommingEvents>();
+				return this.GetTable<Kigg.LinqToSql.DomainObjects.CommingEvent>();
 			}
 		}
 		
@@ -4776,9 +4776,9 @@ namespace Kigg.LinqToSql.DomainObjects
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CommingEvent")]
 	[global::System.Runtime.Serialization.DataContractAttribute()]
-	public partial class CommingEvents : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class CommingEvent : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -4829,7 +4829,7 @@ namespace Kigg.LinqToSql.DomainObjects
     partial void OnPositionChanged();
     #endregion
 		
-		public CommingEvents()
+		public CommingEvent()
 		{
 			this.Initialize();
 		}
