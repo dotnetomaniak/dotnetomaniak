@@ -8,7 +8,7 @@ namespace Kigg.Repository
     {
         IRecommendation FindById(Guid id);
 
-        void EditAd(IRecommendation recommendation, string recommendationLink, string recommendationTitle, string imageLink, string imageTitle, DateTime startTime, DateTime endTime, string email, int position, bool notificationIsSent);
+        void EditAd(IRecommendation recommendation, string recommendationLink, string recommendationTitle, string imageLink, string imageTitle, DateTime startTime, DateTime endTime, string email, int position, bool notificationIsSent, bool isBanner);
 
         IRecommendation FindByRecommendationTitle(string recommendationTitle);
         
