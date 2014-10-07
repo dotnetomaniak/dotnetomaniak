@@ -185,6 +185,7 @@
       <Column Name="Position" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Email" Type="System.String" DbType="Varchar(50)" CanBeNull="true" />
       <Column Name="NotificationIsSent" Type="System.Boolean" DbType="bit" CanBeNull="false" />
+      <Column Name="IsBanner" Type="System.Boolean" DbType="bit" CanBeNull="false" />
     </Type>
   </Table>
   <Function Name="dbo.CommentSearch" Method="CommentSearch" IsComposable="true">

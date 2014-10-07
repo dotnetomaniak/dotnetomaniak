@@ -237,6 +237,12 @@
                         <input id="txtEmail" name="Email" type="text" class="textBox"/>
                     </div>
                     <div class="add-article-row">
+                        <label for="IsBanner" class="label" class="textBox">
+                            Banner:</label>
+                        <input id="IsBanner" name="isBanner" type="checkbox"/>
+                        <input name="isBanner" type="hidden"/>
+                    </div>
+                    <div class="add-article-row">
                         <span id="RecommendationMessage" class="message"></span>
                     </div>
                     <div class="add-article-row">

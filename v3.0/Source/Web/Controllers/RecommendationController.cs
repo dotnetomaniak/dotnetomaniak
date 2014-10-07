@@ -65,6 +65,7 @@ namespace Kigg.Web
                                             position = recommendation.Position,
                                             email = recommendation.Email,
                                             notificationIsSent = recommendation.NotificationIsSent,
+                                            isBanner = recommendation.IsBanner
                                         }
                                     );
                     }
@@ -82,7 +83,7 @@ namespace Kigg.Web
 
         [AcceptVerbs(HttpVerbs.Post), ValidateInput(false), Compress]
         public ActionResult EditAd(string id, string recommendationLink, string recommendationTitle, string imageLink,
-            string imageTitle, DateTime startTime, DateTime endTime, string email, int position = 999, bool notificationIsSent = false)
+            string imageTitle, DateTime startTime, DateTime endTime, string email, int position = 999, bool notificationIsSent = false, string isBanner = "")
         {
             JsonViewData viewData = Validate<JsonViewData>(
                 new Validation(() => CurrentUser.CanModerate() == false, "Nie masz praw do wykonowania tej operacji."),
@@ -94,7 +95,8 @@ namespace Kigg.Web
                 new Validation(() => string.IsNullOrEmpty(email), "Adres e-mail nie może być pusty."),
                 new Validation(() => !email.NullSafe().IsEmail(), "Niepoprawny adres e-mail.")
                 );
-                        
+
+            var bannerType = string.IsNullOrWhiteSpace(isBanner) == false;
             if (viewData == null)
             {
                 try
@@ -104,7 +106,7 @@ namespace Kigg.Web
                         if (id == null || id.IsEmpty())
                         {
                             IRecommendation recommendation = _factory.CreateRecommendation(recommendationLink.Trim(),
-                                recommendationTitle.Trim(), imageLink.Trim(), imageTitle.Trim(), startTime, endTime, email, position, notificationIsSent);
+                                recommendationTitle.Trim(), imageLink.Trim(), imageTitle.Trim(), startTime, endTime, email, position, notificationIsSent, bannerType);
                             _recommendationRepository.Add(recommendation);
 
                             unitOfWork.Commit();
@@ -124,7 +126,7 @@ namespace Kigg.Web
                             else
                             {
                                 _recommendationRepository.EditAd(recommendation, recommendationLink.NullSafe(), recommendationTitle.NullSafe(), imageLink.NullSafe(), imageTitle.NullSafe(), startTime,
-                                    endTime, email, position, notificationIsSent);
+                                    endTime, email, position, notificationIsSent, bannerType);
 
                                 unitOfWork.Commit();
 
@@ -150,7 +152,7 @@ namespace Kigg.Web
 
         public ViewResult Ads()
         {
-            IQueryable<IRecommendation> recommendations = _recommendationRepository.GetAllVisible();
+            IQueryable<IRecommendation> recommendations = _recommendationRepository.GetAllVisible().Where(x=>x.IsBanner == false);
             var viewModel = CreateViewData<RecommendationsViewData>();
             viewModel.Recommendations = recommendations.Select(x=>CreateRecommendationViewData(x));
             int defaultAds = 3 - recommendations.Count();
@@ -174,6 +176,7 @@ namespace Kigg.Web
                 EndTime = x.EndTime,                
                 Email = x.Email,
                 NotificationIsSent = x.NotificationIsSent,
+                IsBanner = x.IsBanner,
                 Id = x.Id.Shrink()
             };
         }

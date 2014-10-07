@@ -55,6 +55,12 @@ namespace Kigg.Core.DomainObjects
             set;
         }
 
+        bool IsBanner
+        {
+            get;
+            set;
+        }
+
         bool NotificationIsSent
         {
             get;
