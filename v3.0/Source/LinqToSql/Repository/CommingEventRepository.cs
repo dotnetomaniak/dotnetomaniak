@@ -1,14 +1,11 @@
-﻿using Kigg.Infrastructure.LinqToSql.DomainObjects;
-using Kigg.LinqToSql.Repository;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
-using Kigg.Repository;
-using Kigg.Core.Repository;
 using Kigg.Core.DomainObjects;
+using Kigg.Infrastructure;
+using Kigg.LinqToSql.DomainObjects;
+using Kigg.Repository;
 
-namespace Kigg.Infrastructure.LinqToSql.Repository
+namespace Kigg.LinqToSql.Repository
 {
     public class CommingEventRepository : BaseRepository<ICommingEvent, CommingEvent>, ICommingEventRepository
     {
@@ -54,9 +51,10 @@ namespace Kigg.Infrastructure.LinqToSql.Repository
             return Database.CommingEventDataSource.SingleOrDefault(r => r.EventName == commingEventName.Trim());
         }
 
-        public IQueryable<IRecommendation> GetAll()
+        public IQueryable<ICommingEvent> GetAll()
         {
             return Database.CommingEventDataSource.OrderBy(r => r.Position);
+
         }
     }
 }

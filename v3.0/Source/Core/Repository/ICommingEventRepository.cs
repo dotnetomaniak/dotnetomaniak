@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Kigg.Core.Repository
+namespace Kigg.Repository
 {
     public interface ICommingEventRepository : IRepository<ICommingEvent>
     {        
@@ -13,6 +13,6 @@ namespace Kigg.Core.Repository
 
         ICommingEvent FindByCommingEventName(string commingEventName);
 
-        IQueryable<IRecommendation> GetAll();
+        IQueryable<ICommingEvent> GetAll();
     }
 }

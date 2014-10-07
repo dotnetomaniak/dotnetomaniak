@@ -89,7 +89,7 @@
             get;
         }
 
-        IQueryable<CommingEvents> CommingEventDataSource
+        IQueryable<CommingEvent> CommingEventDataSource
         {
             get;
         }
