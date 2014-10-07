@@ -164,6 +164,14 @@ namespace Kigg.Web
             return View("RecommendationsBox", viewModel);
         }
 
+        public ViewResult Banner()
+        {
+            IQueryable<IRecommendation> recommendations = _recommendationRepository.GetAllVisible().Where(x => x.IsBanner);
+            var viewModel = CreateViewData<RecommendationsViewData>();
+            viewModel.Recommendations = recommendations.Select(x => CreateRecommendationViewData(x));
+            return View("BannerBox", viewModel);
+        }
+
         private static RecommendationViewData CreateRecommendationViewData(IRecommendation x)
         {
             return new RecommendationViewData()
