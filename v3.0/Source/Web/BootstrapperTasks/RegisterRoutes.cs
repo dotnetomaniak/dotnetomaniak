@@ -74,6 +74,7 @@ namespace Kigg.Web
             _routes.MapRoute("GetAd", "GatAd", new { controller = "Recommendation", action = "GetAd" });
             _routes.MapRoute("EditAd", "EditAd", new { controller = "Recommendation", action = "EditAd" });
             _routes.MapRoute("AdList", "AdList", new { controller = "Recommendation", action = "AdList" });
+            _routes.MapRoute("EventList", "EventList", new { controller = "CommingEvent", action = "EventList" });
             _routes.MapRoute("ForgotPassword", "ForgotPassword", new { controller = "Membership", action = "ForgotPassword" });
             _routes.MapRoute("ChangePassword", "ChangePassword", new { controller = "Membership", action = "ChangePassword" });
             _routes.MapRoute("Activate", "Activate/{id}", new { controller = "Membership", action = "Activate", id = string.Empty });

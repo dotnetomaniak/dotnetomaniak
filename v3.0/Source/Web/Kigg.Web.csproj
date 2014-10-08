@@ -297,6 +297,7 @@
     <Compile Include="ViewData\BaseViewData.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewData\CommingEventsViewData.cs" />
     <Compile Include="ViewData\CommingEventViewData.cs" />
     <Compile Include="ViewData\ControlPanelViewData.cs">
       <SubType>Code</SubType>
