@@ -16,7 +16,7 @@ namespace Kigg.Web.ViewData
         public DateTime EventDate { get; set; }
         public DateTime EndTime { get; set; }
 
-        public string HowLongAdShows()
+        public string HowLongEventShows()
         {
             string tableRowClass = "Visible";
             DateTime now = SystemTime.Now();
