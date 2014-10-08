@@ -55,7 +55,7 @@ namespace Kigg.Web
             {
                 ThrowNotFound("Nie ma takiej strony");
             }
-            return View("CommingEventsListBox", viewModel);
+            return View("CommingEventListBox", viewModel);
         }
     }
 }
