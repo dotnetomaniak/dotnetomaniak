@@ -54,7 +54,15 @@ namespace Kigg.LinqToSql.Repository
         public IQueryable<ICommingEvent> GetAll()
         {
             return Database.CommingEventDataSource.OrderBy(r => r.Position);
+        }
 
+        public IQueryable<ICommingEvent> GetAllVisible()
+        {
+            var now = SystemTime.Now();
+
+            return Database.CommingEventDataSource                
+                .Where(r => r.StartTime < now && r.EndTime >= now)
+                .OrderBy(r => r.Position);
         }
     }
 }
