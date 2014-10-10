@@ -15,6 +15,8 @@ namespace Kigg.Web.ViewData
         public int Position { get; set; }
         public DateTime EventDate { get; set; }
         public DateTime EndTime { get; set; }
+        public int EventYear { get; set; }
+        public string EventMonth { get; set; }
 
         public string HowLongEventShows()
         {

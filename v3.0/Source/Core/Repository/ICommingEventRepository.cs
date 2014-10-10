@@ -14,5 +14,7 @@ namespace Kigg.Repository
         ICommingEvent FindByCommingEventName(string commingEventName);
 
         IQueryable<ICommingEvent> GetAll();
+
+        IQueryable<ICommingEvent> GetAllVisible();
     }
 }
