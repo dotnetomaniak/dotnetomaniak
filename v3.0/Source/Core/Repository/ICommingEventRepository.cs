@@ -8,13 +8,7 @@ using System.Text;
 namespace Kigg.Repository
 {
     public interface ICommingEventRepository : IRepository<ICommingEvent>
-    {        
-        ICommingEvent FindById(Guid id);
-
-        ICommingEvent FindByCommingEventName(string commingEventName);
-
-        IQueryable<ICommingEvent> GetAll();
-
-        IQueryable<ICommingEvent> GetAllVisible();
+    {
+        IQueryable<ICommingEvent> GetAll();        
     }
 }

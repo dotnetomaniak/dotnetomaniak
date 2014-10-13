@@ -29,43 +29,21 @@ namespace Kigg.Web
             return new CommingEventViewData()
             {
                 EventLink = x.EventLink,
-                EventName = x.EventName,                
-                ImageTitle = x.ImageTitle,
-                ImageLink = x.ImageLink,
-                Position = x.Position,
+                EventName = x.EventName,
                 EventDate = x.EventDate,
-                EndTime = x.EndTime,               
-                Id = x.Id.Shrink(),                
+                Id = x.Id.Shrink(),
             };
         }
 
         public ViewResult EventsBox()
         {
-            int defaultsEventsNr = 3;
-
-            IQueryable<ICommingEvent> commingEvents = _commingEventRepository.GetAllVisible().OrderBy(x => x.Position).Take(defaultsEventsNr);
+            IQueryable<ICommingEvent> commingEvents = _commingEventRepository.GetAll().OrderBy(x => x.EventDate).Take(Settings.DefaultsNrOfEventsToDisplay);
             var viewModel = CreateViewData<CommingEventsViewData>();
             var data = commingEvents.ToList();
             
             viewModel.CommingEvents = commingEvents.Select(x => CreateCommingEventsViewData(x));            
             
             return View("CommingEventsBox", viewModel);
-        }
-
-        [AutoRefresh, Compress]
-        public ActionResult EventList()
-        {
-            var viewModel = CreateViewData<CommingEventsViewData>();
-            if (IsCurrentUserAuthenticated && CurrentUser.CanModerate())
-            {
-                IQueryable<ICommingEvent> commingEvents = _commingEventRepository.GetAll();
-                viewModel.CommingEvents = commingEvents.Select(x => CreateCommingEventsViewData(x));
-            }
-            else
-            {
-                ThrowNotFound("Nie ma takiej strony");
-            }
-            return View("CommingEventListBox", viewModel);
         }
     }
 }
