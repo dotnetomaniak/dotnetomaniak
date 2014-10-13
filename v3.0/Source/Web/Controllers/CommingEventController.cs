@@ -35,23 +35,19 @@ namespace Kigg.Web
                 Position = x.Position,
                 EventDate = x.EventDate,
                 EndTime = x.EndTime,               
-                Id = x.Id.Shrink(),
-                EventYear=x.EventDate.Year,
-                EventMonth=x.EventDate.Month.ToString("MMMM")
+                Id = x.Id.Shrink(),                
             };
         }
 
         public ViewResult EventsBox()
         {
-            IQueryable<ICommingEvent> commingEvents = _commingEventRepository.GetAllVisible();
-            var viewModel = CreateViewData<CommingEventsViewData>();
-            viewModel.CommingEvents = commingEvents.Select(x => CreateCommingEventsViewData(x));
-            //int defaultsEventsNr = 3 - commingEvents.Count(); // użyć domyślnej ilości eventów i wrzucić do web configa !!!
+            int defaultsEventsNr = 3;
 
-            viewModel.CommingEvents = viewModel.CommingEvents.Union(commingEvents.Select(x => CreateCommingEventsViewData(x)));
-            viewModel.EventsYears = commingEvents.Select(x => x.EventDate.Year).Distinct();
-            var helper = commingEvents.Select(x => x.EventDate.ToString("MMMM")).Distinct().ToList();
-            viewModel.EventsMonths = helper.AsQueryable();
+            IQueryable<ICommingEvent> commingEvents = _commingEventRepository.GetAllVisible().OrderBy(x => x.Position).Take(defaultsEventsNr);
+            var viewModel = CreateViewData<CommingEventsViewData>();
+            var data = commingEvents.ToList();
+            
+            viewModel.CommingEvents = commingEvents.Select(x => CreateCommingEventsViewData(x));            
             
             return View("CommingEventsBox", viewModel);
         }
