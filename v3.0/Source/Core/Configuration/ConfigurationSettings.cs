@@ -177,5 +177,11 @@ namespace Kigg
             get;
             set;
         }
+
+        public int DefaultsNrOfEventsToDisplay
+        {
+            get;
+            set;
+        }
     }
 }
