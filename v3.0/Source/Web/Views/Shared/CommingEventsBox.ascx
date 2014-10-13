@@ -7,25 +7,22 @@
         <h2>Nadchodz¹ce wydarzenia</h2>
     </div>
 </div>
-<% foreach(var year in Model.EventsYears.ToList().OrderBy(x => x))
+<div class="commingEventsList">
+    <% foreach (var commingEventsInMonth in Model.CommingEvents.ToList().OrderBy(x => x.EventDate).GroupBy(x => x.EventDate.Month))
+       { %>    
+    <div class="commingEventsMonth">
+            <h2><%= commingEventsInMonth.FirstOrDefault().EventDate.ToString("MMMM") %></h2>
+        </div>
+<% foreach(var commingEvent in commingEventsInMonth)
    { %>
-        <h2><%= year %></h2>
-    <% foreach(var month in Model.EventsMonths.ToList())
-        { %>
-            <h2><%= month %></h2>
-    <% foreach (var commingEventViewData in Model.CommingEvents.ToList().OrderBy(x => x.EventDate))
-       { %>          
-<% if(commingEventViewData.EventYear == year) 
-   {%>        
-<% if(commingEventViewData.EventMonth == month) 
-   {%>
-                <div class="recommend-left-column">
-                    <a href="<%= commingEventViewData.EventLink %>" title="<%= commingEventViewData.EventName %>" target="_blank">
-                        <img src="<%= Url.Image(commingEventViewData.ImageLink) %>" alt="<%= commingEventViewData.ImageTitle %>" />
-                    </a>
+                <div class="commingEventColumn">                    
+                        <div class="commingEventDay"><%= commingEvent.EventDate.ToString("dd") %></div>
+                        <div class="commingEventBody">                            
+                            <a class="commingEventTitle" href="<%= commingEvent.EventLink %>" title="<%= commingEvent.EventName %>" target="_blank">
+                                <%= commingEvent.EventName.WrapAt(25) %>
+                            </a>
+                        </div>                    
                 </div>
-<% }
-   }
-   }
-   }    
+<% }   
    } %>
+</div>
