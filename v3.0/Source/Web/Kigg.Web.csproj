@@ -506,7 +506,6 @@
     <Content Include="Views\Badges\List.ascx" />
     <Content Include="Views\Membership\Achievements.ascx" />
     <Content Include="Views\Quiz\QuizView.aspx" />
-    <Content Include="Views\CommingEvent\CommingEventListBox.aspx" />
     <Content Include="Views\Shared\CommingEventsBox.ascx" />
     <Content Include="Views\Shared\FbLog.aspx" />
     <Content Include="Views\Shared\FeedBox.ascx" />
