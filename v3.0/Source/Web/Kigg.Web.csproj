@@ -201,6 +201,7 @@
     <Compile Include="ActionResult\FeedResult.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\CommingEventController.cs" />
     <Compile Include="Controllers\FacebookController.cs" />
     <Compile Include="Controllers\QuizController.cs" />
     <Compile Include="Controllers\RecommendationController.cs" />
@@ -296,6 +297,8 @@
     <Compile Include="ViewData\BaseViewData.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewData\CommingEventsViewData.cs" />
+    <Compile Include="ViewData\CommingEventViewData.cs" />
     <Compile Include="ViewData\ControlPanelViewData.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -503,6 +506,7 @@
     <Content Include="Views\Badges\List.ascx" />
     <Content Include="Views\Membership\Achievements.ascx" />
     <Content Include="Views\Quiz\QuizView.aspx" />
+    <Content Include="Views\Shared\CommingEventsBox.ascx" />
     <Content Include="Views\Shared\FbLog.aspx" />
     <Content Include="Views\Shared\FeedBox.ascx" />
     <Content Include="Views\Shared\GooglePlusBox.ascx" />

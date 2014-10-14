@@ -120,6 +120,7 @@
       <DependentUpon>Database.dbml</DependentUpon>
     </Compile>
     <Compile Include="DomainObjects\CommentSubscribtion.cs" />
+    <Compile Include="DomainObjects\CommingEvent.cs" />
     <Compile Include="DomainObjects\DomainObjectFactory.cs" />
     <Compile Include="DomainObjects\KnownSource.cs" />
     <Compile Include="DomainObjects\MarkAsSpam.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\CommentRepository.cs" />
     <Compile Include="Repository\CommentSubscribtionRepository.cs" />
+    <Compile Include="Repository\CommingEventRepository.cs" />
     <Compile Include="Repository\ConnectionString.cs" />
     <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\Database.cs">

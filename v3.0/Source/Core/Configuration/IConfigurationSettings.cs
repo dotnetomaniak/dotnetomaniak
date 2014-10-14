@@ -145,5 +145,7 @@
         }
 
         string FacebookAppId { get; }
+
+        int DefaultsNrOfEventsToDisplay { get; }
     }
 }

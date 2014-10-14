@@ -76,6 +76,9 @@ namespace Kigg.LinqToSql.Repository
     partial void InsertRecommendation(Kigg.LinqToSql.DomainObjects.Recommendation instance);
     partial void UpdateRecommendation(Kigg.LinqToSql.DomainObjects.Recommendation instance);
     partial void DeleteRecommendation(Kigg.LinqToSql.DomainObjects.Recommendation instance);
+    partial void InsertCommingEvent(Kigg.LinqToSql.DomainObjects.CommingEvent instance);
+    partial void UpdateCommingEvent(Kigg.LinqToSql.DomainObjects.CommingEvent instance);
+    partial void DeleteCommingEvent(Kigg.LinqToSql.DomainObjects.CommingEvent instance);
     #endregion
 		
 		public Database() : 
@@ -233,6 +236,14 @@ namespace Kigg.LinqToSql.Repository
 			get
 			{
 				return this.GetTable<Kigg.LinqToSql.DomainObjects.Recommendation>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Kigg.LinqToSql.DomainObjects.CommingEvent> CommingEvents
+		{
+			get
+			{
+				return this.GetTable<Kigg.LinqToSql.DomainObjects.CommingEvent>();
 			}
 		}
 		
@@ -4728,6 +4739,157 @@ namespace Kigg.LinqToSql.DomainObjects
 					this._NotificationIsSent = value;
 					this.SendPropertyChanged("NotificationIsSent");
 					this.OnNotificationIsSentChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void Initialize()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Runtime.Serialization.OnDeserializingAttribute()]
+		[global::System.ComponentModel.EditorBrowsableAttribute(EditorBrowsableState.Never)]
+		public void OnDeserializing(StreamingContext context)
+		{
+			this.Initialize();
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CommingEvent")]
+	[global::System.Runtime.Serialization.DataContractAttribute()]
+	public partial class CommingEvent : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _Id;
+		
+		private string _EventLink;
+		
+		private string _EventName;
+		
+		private System.DateTime _EventDate;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    partial void OnEventLinkChanging(string value);
+    partial void OnEventLinkChanged();
+    partial void OnEventNameChanging(string value);
+    partial void OnEventNameChanged();
+    partial void OnEventDateChanging(System.DateTime value);
+    partial void OnEventDateChanged();
+    #endregion
+		
+		public CommingEvent()
+		{
+			this.Initialize();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventLink", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+		public string EventLink
+		{
+			get
+			{
+				return this._EventLink;
+			}
+			set
+			{
+				if ((this._EventLink != value))
+				{
+					this.OnEventLinkChanging(value);
+					this.SendPropertyChanging();
+					this._EventLink = value;
+					this.SendPropertyChanged("EventLink");
+					this.OnEventLinkChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=3)]
+		public string EventName
+		{
+			get
+			{
+				return this._EventName;
+			}
+			set
+			{
+				if ((this._EventName != value))
+				{
+					this.OnEventNameChanging(value);
+					this.SendPropertyChanging();
+					this._EventName = value;
+					this.SendPropertyChanged("EventName");
+					this.OnEventNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventDate", DbType="DateTime NOT NULL")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
+		public System.DateTime EventDate
+		{
+			get
+			{
+				return this._EventDate;
+			}
+			set
+			{
+				if ((this._EventDate != value))
+				{
+					this.OnEventDateChanging(value);
+					this.SendPropertyChanging();
+					this._EventDate = value;
+					this.SendPropertyChanged("EventDate");
+					this.OnEventDateChanged();
 				}
 			}
 		}

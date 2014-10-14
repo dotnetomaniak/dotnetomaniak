@@ -329,6 +329,7 @@
                     }
                 %>                                
                 <% Html.RenderAction("Ads", "Recommendation"); %>
+                <% Html.RenderAction("EventsBox", "CommingEvent"); %>
 
                 <% try { Html.RenderPartial("FeedBox"); }
                    catch {}%>
