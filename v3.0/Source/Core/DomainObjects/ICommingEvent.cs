@@ -30,5 +30,11 @@ namespace Kigg.Core.DomainObjects
             get;
             set;
         }
+
+        string EventPlace
+        {
+            get;
+            set;
+        }
     }
 }

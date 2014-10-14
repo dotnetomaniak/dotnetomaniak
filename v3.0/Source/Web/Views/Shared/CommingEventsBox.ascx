@@ -16,12 +16,13 @@
 <% foreach(var commingEvent in commingEventsInMonth)
    { %>
                 <div class="commingEventColumn">                    
-                        <div class="commingEventDay"><%= commingEvent.EventDate.ToString("dd") %>.</div>
-                        <div class="commingEventBody">                            
-                            <a class="commingEventTitle" href="<%= commingEvent.EventLink %>" title="<%= commingEvent.EventName %>" target="_blank">
-                                <%= commingEvent.EventName.WrapAt(25) %>
-                            </a>
-                        </div>                    
+                    <div class="commingEventDay"><%= commingEvent.EventDate.ToString("dd") %>.</div>
+                    <div class="commingEventBody">                            
+                        <a class="commingEventTitle" href="<%= commingEvent.EventLink %>" title="<%= commingEvent.EventName %>" target="_blank">
+                            <%= commingEvent.EventName.WrapAt(25) %>
+                        </a>
+                        <div class="commingEventPlace"><%= commingEvent.EventPlace %></div>
+                    </div>                    
                 </div>
 <% }   
    } %>

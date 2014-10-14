@@ -4791,6 +4791,8 @@ namespace Kigg.LinqToSql.DomainObjects
 		
 		private System.DateTime _EventDate;
 		
+		private string _EventPlace;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -4803,6 +4805,8 @@ namespace Kigg.LinqToSql.DomainObjects
     partial void OnEventNameChanged();
     partial void OnEventDateChanging(System.DateTime value);
     partial void OnEventDateChanged();
+    partial void OnEventPlaceChanging(string value);
+    partial void OnEventPlaceChanged();
     #endregion
 		
 		public CommingEvent()
@@ -4890,6 +4894,27 @@ namespace Kigg.LinqToSql.DomainObjects
 					this._EventDate = value;
 					this.SendPropertyChanged("EventDate");
 					this.OnEventDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventPlace", DbType="VarChar(50)", CanBeNull=false)]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=5)]
+		public string EventPlace
+		{
+			get
+			{
+				return this._EventPlace;
+			}
+			set
+			{
+				if ((this._EventPlace != value))
+				{
+					this.OnEventPlaceChanging(value);
+					this.SendPropertyChanging();
+					this._EventPlace = value;
+					this.SendPropertyChanged("EventPlace");
+					this.OnEventPlaceChanged();
 				}
 			}
 		}

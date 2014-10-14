@@ -8,11 +8,12 @@ namespace Kigg.Infrastructure.LinqToSql.DomainObjects
 {
     public partial class CommingEvent : ICommingEvent
     {
-        public void Add(string eventLink, string eventName, DateTime eventDate)
+        public void Add(string eventLink, string eventName, DateTime eventDate, string eventPlace)
         {
             Check.Argument.IsNotEmpty(eventLink, "EventLink");
             Check.Argument.IsNotEmpty(eventName, "EventName");
             Check.Argument.IsNotEmpty(eventDate, "EventDate");
+            Check.Argument.IsNotEmpty(eventPlace, "EventPlace");
         }
     }
 }
