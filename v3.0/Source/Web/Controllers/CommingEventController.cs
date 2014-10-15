@@ -46,5 +46,16 @@ namespace Kigg.Web
             
             return View("CommingEventsBox", viewModel);
         }
+
+        public ViewResult AllCommingEvent()
+        {
+            IQueryable<ICommingEvent> commingEvents = _commingEventRepository.GetAll().OrderBy(x => x.EventDate);
+            var viewModel = CreateViewData<CommingEventsViewData>();
+            var data = commingEvents.ToList();
+
+            viewModel.CommingEvents = commingEvents.Select(x => CreateCommingEventsViewData(x));            
+
+            return View(viewModel);
+        }
     }
 }

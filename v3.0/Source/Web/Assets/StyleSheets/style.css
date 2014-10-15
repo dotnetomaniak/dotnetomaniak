@@ -458,6 +458,14 @@ background: url("/Assets/images/icon-zwin.png") no-repeat scroll right top trans
     text-align: left;
     width: 280px;
 }
+.commingEventList {
+    height: 40px;
+    overflow: hidden;
+    padding-bottom: 10px;
+    padding-top: 5px;
+    text-align: left;
+    width: 600px;
+}
 .commingEventPlace {
     padding-left:50px;
     font-size:12px;
