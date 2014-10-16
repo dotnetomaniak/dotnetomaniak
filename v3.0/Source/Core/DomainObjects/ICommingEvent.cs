@@ -36,5 +36,11 @@ namespace Kigg.Core.DomainObjects
             get;
             set;
         }
+
+        string EventLead
+        {
+            get;
+            set;
+        }
     }
 }

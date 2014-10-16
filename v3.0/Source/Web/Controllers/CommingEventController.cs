@@ -33,6 +33,7 @@ namespace Kigg.Web
                 EventDate = x.EventDate,
                 Id = x.Id.Shrink(),
                 EventPlace = x.EventPlace,
+                EventLead = x.EventLead,
             };
         }
 
