@@ -12,5 +12,6 @@ namespace Kigg.Web.ViewData
         public string Id { get; set; }        
         public DateTime EventDate { get; set; }
         public string EventPlace { get; set; }
+        public string EventLead { get; set; }
     }
 }
