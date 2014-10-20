@@ -4,23 +4,23 @@ namespace Kigg.Web.ViewData
 {
     public class AdvertiseViewData
     {
-        public string id { get; set; }
-        public string recommendationLink { get; set; }
-        public string recommendationTitle { get; set; }
-        public string imageLink { get; set; }
-        public string imageTitle { get; set; }
-        public DateTime startTime { get; set; }
-        public DateTime endTime { get; set; }
-        public string email { get; set; }
-        public int position { get; set; }
-        public bool notificationIsSent { get; set; }
-        public string isBanner { get; set; }
+        public string Id { get; set; }
+        public string RecommendationLink { get; set; }
+        public string RecommendationTitle { get; set; }
+        public string ImageLink { get; set; }
+        public string ImageTitle { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public string Email { get; set; }
+        public int Position { get; set; }
+        public bool NotificationIsSent { get; set; }
+        public string IsBanner { get; set; }
 
         public AdvertiseViewData()
         {
-            isBanner = "";
-            notificationIsSent = false;
-            position = 999;
+            IsBanner = "";
+            NotificationIsSent = false;
+            Position = 999;
         }
     }
 }
