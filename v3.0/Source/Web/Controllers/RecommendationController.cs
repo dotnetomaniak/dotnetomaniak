@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using Kigg.Core.DomainObjects;
@@ -8,7 +10,6 @@ using Kigg.Infrastructure;
 using Kigg.Repository;
 using Kigg.Web.ViewData;
 using UnitOfWork = Kigg.Infrastructure.UnitOfWork;
-using System.Collections.Generic;
 
 namespace Kigg.Web
 {
@@ -65,6 +66,7 @@ namespace Kigg.Web
                                             position = recommendation.Position,
                                             email = recommendation.Email,
                                             notificationIsSent = recommendation.NotificationIsSent,
+                                            isBanner = recommendation.IsBanner
                                         }
                                     );
                     }
@@ -81,30 +83,51 @@ namespace Kigg.Web
         }
 
         [AcceptVerbs(HttpVerbs.Post), ValidateInput(false), Compress]
-        public ActionResult EditAd(string id, string recommendationLink, string recommendationTitle, string imageLink,
-            string imageTitle, DateTime startTime, DateTime endTime, string email, int position = 999, bool notificationIsSent = false)
+        public ActionResult EditAd(AdvertiseViewData model)
         {
             JsonViewData viewData = Validate<JsonViewData>(
                 new Validation(() => CurrentUser.CanModerate() == false, "Nie masz praw do wykonowania tej operacji."),
-                new Validation(() => string.IsNullOrEmpty(recommendationLink.NullSafe()), "Link rekomendacji nie może być pusty."),
-                new Validation(() => string.IsNullOrEmpty(recommendationTitle.NullSafe()), "Tytuł rekomendacji nie może być pusty."),
-                new Validation(() => string.IsNullOrEmpty(imageLink.NullSafe()), "Link obrazka nie może być pusty."),
-                new Validation(() => string.IsNullOrEmpty(imageTitle.NullSafe()), "Tytuł obrazka nie może być pusty."),
-                new Validation(() => startTime >= endTime, "Data zakończenia reklamy musi być większa od daty początkowej"),
-                new Validation(() => string.IsNullOrEmpty(email), "Adres e-mail nie może być pusty."),
-                new Validation(() => !email.NullSafe().IsEmail(), "Niepoprawny adres e-mail.")
+                new Validation(() => string.IsNullOrEmpty(model.RecommendationLink.NullSafe()), "Link rekomendacji nie może być pusty."),
+                new Validation(() => string.IsNullOrEmpty(model.RecommendationTitle.NullSafe()), "Tytuł rekomendacji nie może być pusty."),
+                new Validation(() => string.IsNullOrEmpty(model.ImageLink.NullSafe()), "Link obrazka nie może być pusty."),
+                new Validation(() => string.IsNullOrEmpty(model.ImageTitle.NullSafe()), "Tytuł obrazka nie może być pusty."),
+                new Validation(() => model.StartTime >= model.EndTime, "Data zakończenia reklamy musi być większa od daty początkowej"),
+                new Validation(() => string.IsNullOrEmpty(model.Email), "Adres e-mail nie może być pusty."),
+                new Validation(() => !model.Email.NullSafe().IsEmail(), "Niepoprawny adres e-mail.")
                 );
-                        
+
+            var bannerType = string.IsNullOrWhiteSpace(model.IsBanner) == false;
             if (viewData == null)
             {
                 try
                 {
+                    if (bannerType)
+                    {
+                        var request = WebRequest.Create(Server.MapPath(string.Format("/Assets/Images/{0}", model.ImageLink)));
+                        var response = request.GetResponse();
+                        var image = Image.FromStream(response.GetResponseStream());
+
+                        if (image.Width != 960)
+                        {
+                            viewData = new JsonViewData {errorMessage = string.Format("Oczekiwana szerokość banera to 960px, twoja to: {0}", image.Width)};
+                            return Json(viewData);
+                        }
+                    }
                     using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
                     {
-                        if (id == null || id.IsEmpty())
+                        if (model.Id == null || model.Id.IsEmpty())
                         {
-                            IRecommendation recommendation = _factory.CreateRecommendation(recommendationLink.Trim(),
-                                recommendationTitle.Trim(), imageLink.Trim(), imageTitle.Trim(), startTime, endTime, email, position, notificationIsSent);
+                            IRecommendation recommendation = _factory.CreateRecommendation(
+                                model.RecommendationLink.Trim(),
+                                model.RecommendationTitle.Trim(),
+                                model.ImageLink.Trim(),
+                                model.ImageTitle.Trim(),
+                                model.StartTime,
+                                model.EndTime,
+                                model.Email,
+                                model.Position,
+                                model.NotificationIsSent,
+                                bannerType);
                             _recommendationRepository.Add(recommendation);
 
                             unitOfWork.Commit();
@@ -115,7 +138,7 @@ namespace Kigg.Web
                         }
                         else
                         {
-                            IRecommendation recommendation = _recommendationRepository.FindById(id.ToGuid());
+                            IRecommendation recommendation = _recommendationRepository.FindById(model.Id.ToGuid());
 
                             if (recommendation == null)
                             {
@@ -123,8 +146,18 @@ namespace Kigg.Web
                             }
                             else
                             {
-                                _recommendationRepository.EditAd(recommendation, recommendationLink.NullSafe(), recommendationTitle.NullSafe(), imageLink.NullSafe(), imageTitle.NullSafe(), startTime,
-                                    endTime, email, position, notificationIsSent);
+                                _recommendationRepository.EditAd(
+                                    recommendation,
+                                    model.RecommendationLink.NullSafe(),
+                                    model.RecommendationTitle.NullSafe(),
+                                    model.ImageLink.NullSafe(),
+                                    model.ImageTitle.NullSafe(),
+                                    model.StartTime,
+                                    model.EndTime,
+                                    model.Email,
+                                    model.Position,
+                                    model.NotificationIsSent,
+                                    bannerType);
 
                                 unitOfWork.Commit();
 
@@ -136,6 +169,10 @@ namespace Kigg.Web
                 catch (ArgumentException argument)
                 {
                     viewData = new JsonViewData { errorMessage = argument.Message };
+                }
+                catch (WebException e)
+                {
+                    viewData = new JsonViewData { errorMessage = "Podany link do zdjęcia jest nieprawidłowy" };
                 }
                 catch (Exception e)
                 {
@@ -150,7 +187,7 @@ namespace Kigg.Web
 
         public ViewResult Ads()
         {
-            IQueryable<IRecommendation> recommendations = _recommendationRepository.GetAllVisible();
+            IQueryable<IRecommendation> recommendations = _recommendationRepository.GetAllVisible().Where(x=>x.IsBanner == false);
             var viewModel = CreateViewData<RecommendationsViewData>();
             viewModel.Recommendations = recommendations.Select(x=>CreateRecommendationViewData(x));
             int defaultAds = 3 - recommendations.Count();
@@ -160,6 +197,14 @@ namespace Kigg.Web
                 viewModel.Recommendations = viewModel.Recommendations.Union(recommendations.Select(x => CreateRecommendationViewData(x)));
             }
             return View("RecommendationsBox", viewModel);
+        }
+
+        public ViewResult Banner()
+        {
+            IQueryable<IRecommendation> recommendations = _recommendationRepository.GetAllVisible().Where(x => x.IsBanner);
+            var viewModel = CreateViewData<RecommendationsViewData>();
+            viewModel.Recommendations = recommendations.Select(x => CreateRecommendationViewData(x));
+            return View("BannerBox", viewModel);
         }
 
         private static RecommendationViewData CreateRecommendationViewData(IRecommendation x)
@@ -174,6 +219,7 @@ namespace Kigg.Web
                 EndTime = x.EndTime,                
                 Email = x.Email,
                 NotificationIsSent = x.NotificationIsSent,
+                IsBanner = x.IsBanner,
                 Id = x.Id.Shrink()
             };
         }

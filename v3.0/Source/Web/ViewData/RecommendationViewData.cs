@@ -12,6 +12,7 @@ namespace Kigg.Web.ViewData
         public int Position { get; set; }
         public DateTime EndTime { get; set; }
         public string Email { get; set; }
+        public bool IsBanner { get; set; }
         public bool NotificationIsSent { get; set; }
 
         public string HowLongAdShows()
