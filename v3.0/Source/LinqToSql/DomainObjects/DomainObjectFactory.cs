@@ -178,7 +178,7 @@ namespace Kigg.LinqToSql.DomainObjects
         }
 
     public IRecommendation CreateRecommendation(string recommendationLink, string recommendationTitle, string imageLink,
-            string imageTitle, DateTime startTime, DateTime endTime, string email, int position, bool notificationIsSent)
+            string imageTitle, DateTime startTime, DateTime endTime, string email, int position, bool notificationIsSent, bool isBanner)
         {
             Check.Argument.IsNotEmpty(recommendationLink, "RecommendationLink");
             Check.Argument.IsNotEmpty(recommendationTitle, "RecommendationTitle");
@@ -204,6 +204,7 @@ namespace Kigg.LinqToSql.DomainObjects
                 Position = position, 
                 Email = email,
                 NotificationIsSent = notificationIsSent,
+                IsBanner = isBanner
             };
 
             return recommendation;

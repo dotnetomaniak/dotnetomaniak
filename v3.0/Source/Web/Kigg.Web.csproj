@@ -168,7 +168,8 @@
     <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=3.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    </Reference>
     <Reference Include="System.Web.Routing">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -289,6 +290,7 @@
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewData\AchievementsViewData.cs" />
+    <Compile Include="ViewData\AdvertiseViewData.cs" />
     <Compile Include="ViewData\BadgesViewData.cs" />
     <Compile Include="ViewData\BaseStoryViewData.cs">
       <SubType>Code</SubType>
@@ -508,6 +510,7 @@
     <Content Include="Views\Quiz\QuizView.aspx" />
     <Content Include="Views\CommingEvent\AllCommingEvent.aspx" />
     <Content Include="Views\Shared\CommingEventsBox.ascx" />
+	<Content Include="Views\Shared\BannerBox.ascx" />
     <Content Include="Views\Shared\FbLog.aspx" />
     <Content Include="Views\Shared\FeedBox.ascx" />
     <Content Include="Views\Shared\GooglePlusBox.ascx" />

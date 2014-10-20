@@ -240,6 +240,8 @@
                         $('#txtEndTime').val(result.endTime);
                         $('#txtPosition').val(result.position);
                         $('#txtEmail').val(result.email);
+                        $('#IsBanner').prop('checked', result.isBanner);
+                        $('#IsBanner').val(result.isBanner);
                     }
                 }
             }

@@ -10,6 +10,7 @@
                  <th>Obrazek</th>
                  <th>Tytuł</th>
                  <th>Link</th>
+                 <th>Typ</th>
                  <th>Pozycja</th>
              </tr>
                  <% foreach (var recommendationViewData in Model.Recommendations)
@@ -18,11 +19,13 @@
                                     <td><a><img src="<%= Url.Image(recommendationViewData.ImageName) %>" height="50"/></a></td>
                                     <td><%= recommendationViewData.UrlTitle %></td>
                                     <td><a href="<%= recommendationViewData.UrlLink %>"/><%= recommendationViewData.UrlLink.WrapAt(40) %></a></td>
+                                    <td><%= recommendationViewData.IsBanner ? "Banner" : "Normal"%></td>
                                     <td><%= recommendationViewData.Position %></td>                                
                                 </tr>
                                 <tr class="<%=recommendationViewData.HowLongAdShows() %>">
                                     <td>Akcje:</td>
                                     <td><a href="javascript:void(0);" data-edit-id="<%= recommendationViewData.Id %>">Edytuj</a></td>
+                                    <td></td>
                                     <td></td>
                                     <td><a href="javascript:void(0);" data-id="<%= recommendationViewData.Id %>">Usuń</a></td>
                                 </tr>

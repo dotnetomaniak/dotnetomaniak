@@ -317,6 +317,7 @@
             <%--<% Html.RenderPartial("SearchBox", ViewData.Model); %>--%>
         </div>
         <div id="content">
+            <% Html.RenderAction("Banner", "Recommendation"); %>
             <div id="main">
                 <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">
                 </asp:ContentPlaceHolder>          
