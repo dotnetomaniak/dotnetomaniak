@@ -57,10 +57,10 @@
         </li>
         <li class="faq"><a class="q" href="javascript:void(0)">
             <h4>
-                Co to jest ".Netomaniak"?</h4>
+                Co to jest "dotnetomaniak"?</h4>
         </a>
             <div class="ans">
-                <em>.Netomaniak</em> odnosci się do przydatności artykułu. Pokazuje, jak społeczność
+                <em>dotnetomaniak</em> odnosci się do przydatności artykułu. Pokazuje, jak społeczność
                 dotnetomaniak.pl ocenia artykuł poprzez kliknięcie <em>Promuj</em>.</div>
         </li>
         <li class="faq"><a class="q" href="javascript:void(0)">
@@ -185,11 +185,10 @@
         </li>
         <li class="faq"><a class="q" href="javascript:void(0)">
             <h4>
-                Co to Top .Netomaniacy & Top dnia?</h4>
+                Czym jest sekcja Najaktywniejsi?</h4>
         </a>
             <div class="ans">
-                <em>Top dnia</em> to lista użytkowników którzy zarobili najwięcej punktów w ciągu
-                ostatnich 24 godzin, a <em>Top .Netomaniacy</em> to użytkownicy posiadający najwięcej
+                <em>Najaktywniejsi</em> to użytkownicy posiadający najwięcej
                 punktów w klasyfikacji ogólnej.</div>
         </li>
         <li class="faq"><a class="q" href="javascript:void(0)">
