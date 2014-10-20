@@ -39,7 +39,7 @@ namespace Kigg.Web
 
         public ViewResult EventsBox()
         {
-            IQueryable<ICommingEvent> commingEvents = _commingEventRepository.GetAll().OrderBy(x => x.EventDate).Take(Settings.DefaultsNrOfEventsToDisplay);
+            IQueryable<ICommingEvent> commingEvents = _commingEventRepository.GetAllComming().OrderBy(x => x.EventDate).Take(Settings.DefaultsNrOfEventsToDisplay);
             var viewModel = CreateViewData<CommingEventsViewData>();
             var data = commingEvents.ToList();
             
@@ -50,7 +50,7 @@ namespace Kigg.Web
 
         public ViewResult AllCommingEvent()
         {
-            IQueryable<ICommingEvent> commingEvents = _commingEventRepository.GetAll().OrderBy(x => x.EventDate);
+            IQueryable<ICommingEvent> commingEvents = _commingEventRepository.GetAllComming().OrderBy(x => x.EventDate);
             var viewModel = CreateViewData<CommingEventsViewData>();
             var data = commingEvents.ToList();
 

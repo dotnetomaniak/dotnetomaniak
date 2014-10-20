@@ -9,6 +9,7 @@ namespace Kigg.Repository
 {
     public interface ICommingEventRepository : IRepository<ICommingEvent>
     {
-        IQueryable<ICommingEvent> GetAll();        
+        IQueryable<ICommingEvent> GetAll();
+        IQueryable<ICommingEvent> GetAllComming();
     }
 }

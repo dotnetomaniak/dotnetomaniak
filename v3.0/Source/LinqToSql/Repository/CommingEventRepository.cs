@@ -23,5 +23,10 @@ namespace Kigg.LinqToSql.Repository
         {
             return Database.CommingEventDataSource.OrderBy(r => r.EventDate);
         }
+
+        public IQueryable<ICommingEvent> GetAllComming()
+        {
+            return Database.CommingEventDataSource.Where(x => x.EventDate.Date >= DateTime.Now.Date).OrderBy(x => x.EventDate);
+        }
     }
 }
