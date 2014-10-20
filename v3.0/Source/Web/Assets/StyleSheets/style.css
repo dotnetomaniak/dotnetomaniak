@@ -402,7 +402,7 @@ background: url("/Assets/images/icon-zwin.png") no-repeat scroll right top trans
      #footer ul {}
 .even{ background:url("/Assets/images/toplist-border_31.jpg") repeat-x bottom #f6f6f6;}
 .recommend-left-column{
-        height: 130px;
+    height: 130px;
     overflow: hidden;
     padding-bottom: 35px;
     padding-top: 0px;
@@ -437,10 +437,11 @@ background: url("/Assets/images/icon-zwin.png") no-repeat scroll right top trans
     text-align:center;
     vertical-align:central;
     margin:5px;
-    margin-left:20px;
+    margin-top:10px;
+    margin-left:10px;
 }
 .commingEventBody {   
-    padding-top:5px;  
+    padding-top:8px;  
     font-size:18px;
     font-weight:500;            
     align-content:center;
@@ -449,7 +450,7 @@ background: url("/Assets/images/icon-zwin.png") no-repeat scroll right top trans
     width:600px;
 }
 .commingEventTitle {
-    padding-left:15px;
+    padding-left:15px;    
     line-height:30px;    
 }
 .commingEventColumn {
