@@ -405,7 +405,7 @@ background: url("/Assets/images/icon-zwin.png") no-repeat scroll right top trans
     height: 130px;
     overflow: hidden;
     padding-bottom: 35px;
-    padding-top: 0px;
+    padding-top: 20px;
     text-align: center;
     width: 280px;
 }
