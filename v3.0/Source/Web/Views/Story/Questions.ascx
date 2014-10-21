@@ -3,7 +3,7 @@
 <%@ Import Namespace="System.Xml" %>
 <%@ Import Namespace="System.Linq" %>
 
-<h2>Powi¹zane pytania z devPytania:</h2>
+<h2 style="padding-bottom:10px;">Powi¹zane pytania z devPytania:</h2>
 <ul>
     <% if (Model == null || (Model != null && Model.Count() == 0))
        { %>
@@ -13,7 +13,7 @@
        {
            foreach (var entry in Model.Take(7))
            { %>
-        <li>
+        <li style="padding-top:10px;">
             <a href="<%= Html.Encode(entry.SelectSingleNode("link").InnerText) %>">
                 <%= Html.Encode(entry.SelectSingleNode("title").InnerText)%>
             </a>
