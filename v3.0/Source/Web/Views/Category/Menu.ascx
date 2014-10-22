@@ -33,6 +33,11 @@
         </ul>
     </div>
 </div>
+<div class="">
+    <ul class="primary-nav">
+       <li><a href="http://dotnetomaniak.cupsel.pl">Sklep z gadżetami</a></li>
+    </ul>
+</div>
 <div class="about-container">
     <ul class="primary-nav">
         <li id="about"><a href="#" <%= IsInSupportPages(Request.Url.AbsolutePath) ? "class='active'" : string.Empty %>><span>O dotNETomaniak</span></a></li>
