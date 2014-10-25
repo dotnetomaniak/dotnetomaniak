@@ -109,15 +109,10 @@
         scriptManager.RegisterOnReady("Story.set_demoteUrl('{0}');".FormatWith(Url.RouteUrl("Demote")));
         scriptManager.RegisterOnReady("Story.set_markAsSpamUrl('{0}');".FormatWith(Url.RouteUrl("MarkAsSpam")));
 
-        //scriptManager.RegisterOnReady("Search.init();");
-        //scriptManager.RegisterOnReady("Tag.init();");
         scriptManager.RegisterOnReady("Membership.init();");
         scriptManager.RegisterOnReady("Membership.set_getStoryUrl ('{0}');".FormatWith(Url.RouteUrl("GetStory")));
         scriptManager.RegisterOnReady("SocialMedia.init();");
-        scriptManager.RegisterOnReady("devMedia.init();");
         scriptManager.RegisterOnDispose("Membership.dispose();");
-        //scriptManager.RegisterOnDispose("Tag.dispose();");
-        //scriptManager.RegisterOnDispose("Search.dispose();");
         
         if (Model.IsCurrentUserAuthenticated)
         {
@@ -179,8 +174,7 @@
     <meta id="metaKeywords" runat="server" name="keywords" content="" />
     <meta id="metaDescription" runat="server" name="description" content="" />
     <meta name="Rating" content="General" />
-    <meta name="robots" content="index, follow" />    
-    <link href='http://dotnetomaniak.pl/Assets/StyleSheets/devmedia.css' rel='stylesheet' type='text/css'/>    
+    <meta name="robots" content="index, follow" />  
     <link href="<%= Url.Asset("css").Replace("&", "&amp;") %>" rel="stylesheet" type="text/css" />
     <link href="<%= Url.Image("fav.ico")%>" rel="shortcut icon" type="image/x-icon" />
     <link href="<%= Url.Image("fav.png")%>" rel="icon" type="image/png" />
@@ -191,7 +185,6 @@
     <script type='text/javascript'>
         google.load('feeds', '1');
     </script>
-    <script src='http://dotnetomaniak.pl/Assets/JavaScripts/devmediaBody.js' type='text/javascript'></script>
     <script src="<%= Url.Asset("js1").Replace("&", "&amp;") %>" type="text/javascript"></script>
     <script src="/Assets/JavaScripts/whcookies.js" type="text/javascript"></script>
     <asp:ContentPlaceHolder ID="HeadPlaceHolder" runat="server">
