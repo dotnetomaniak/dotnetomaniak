@@ -362,7 +362,7 @@
             var tags = storyToFindSimilarTo.Tags.Select(x => x.Name).ToList();
             tags = tags.Where(x => x != "C#").Where(x => x != ".Net").ToList();
 
-            return Database.StoryDataSource
+            var similarsByTags = Database.StoryDataSource
                            .OrderByDescending(x => x.CreatedAt)
                            .SelectMany(x => x.StoryTags)
                            .Where(x => tags.Contains(x.Tag.Name))
@@ -372,8 +372,23 @@
                            .Select(x => x.Element)
                            .Where(x => x != storyToFindSimilarTo)
                            .Cast<IStory>()
-                           .Take(11)
-                           .ToList();                      
+                           .Take(11).ToList();
+
+            if (similarsByTags.Count == 0)
+            {
+                var category = storyToFindSimilarTo.BelongsTo.Id;
+                var similarsByCategory = Database.StoryDataSource
+                    .OrderByDescending(x => x.CreatedAt)
+                    .Where(x => x.CategoryId == category)
+                    .Cast<IStory>()
+                    .Take(11).ToList();
+
+                return similarsByCategory;
+            }
+            else
+            {
+                return similarsByTags;
+            }
         }
 
         public virtual int CountByPublished()
