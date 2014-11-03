@@ -402,11 +402,10 @@ background: url("/Assets/images/icon-zwin.png") no-repeat scroll right top trans
      #footer ul {}
 .even{ background:url("/Assets/images/toplist-border_31.jpg") repeat-x bottom #f6f6f6;}
 .recommend-left-column{
-    height: 130px;
     overflow: hidden;
-    padding-bottom: 35px;
-    padding-top: 20px;
-    text-align: center;
+    padding-bottom: 25px;
+    padding-top: 10px;
+    text-align: center;    
     width: 280px;
 }
 .commingEventsList {
