@@ -188,13 +188,14 @@ p.show-more-articles{
     overflow: hidden;
     padding-bottom: 30px;
     padding-left: 23px;
+    height: auto !important;
   } 
 
   .pageTitle h2{
     font-size:22px;
     font-weight:bold;
     color:#535353;
-    padding-bottom:11p;
+    padding-bottom:11px;
     float:left;
   }
   .pageHeader{
