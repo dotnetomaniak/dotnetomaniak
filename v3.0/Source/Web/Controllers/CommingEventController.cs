@@ -37,7 +37,7 @@ namespace Kigg.Web
             };
         }
 
-        public ViewResult EventsBox()
+        public ViewResult CommingEventsBox()
         {
             IQueryable<ICommingEvent> commingEvents = _commingEventRepository.GetAllComming().OrderBy(x => x.EventDate).Take(Settings.DefaultsNrOfEventsToDisplay);
             var viewModel = CreateViewData<CommingEventsViewData>();
@@ -45,7 +45,7 @@ namespace Kigg.Web
             
             viewModel.CommingEvents = commingEvents.Select(x => CreateCommingEventsViewData(x));            
             
-            return View("CommingEventsBox", viewModel);
+            return View(viewModel);
         }
 
         public ViewResult AllCommingEvent()
@@ -56,6 +56,21 @@ namespace Kigg.Web
 
             viewModel.CommingEvents = commingEvents.Select(x => CreateCommingEventsViewData(x));            
 
+            return View(viewModel);
+        }
+
+        public ActionResult CommingEventsEditBox()
+        {
+            var viewModel = CreateViewData<CommingEventsViewData>();
+            if (IsCurrentUserAuthenticated && CurrentUser.IsAdministrator())
+            {
+                IQueryable<ICommingEvent> commingEvents = _commingEventRepository.GetAll();
+                viewModel.CommingEvents = commingEvents.Select(x => CreateCommingEventsViewData(x));
+            }
+            else
+            {
+                ThrowNotFound("Nie ma takiej strony");
+            }
             return View(viewModel);
         }
     }
