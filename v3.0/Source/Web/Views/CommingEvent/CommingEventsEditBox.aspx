@@ -16,15 +16,27 @@
              </tr>
                  <% foreach (var commingEventViewData in Model.CommingEvents)
                         { %>
-                                <tr>                                    
-                                    <td><%= commingEventViewData.SiteTitle %></td>
-                                    <td><a href="<%= commingEventViewData.EventLink %>"/><%= commingEventViewData.EventLink.WrapAt(40) %></a></td>                                    
-                                    <td><%= commingEventViewData.EventDate %></td>
+                                <tr>
+                                    <td><%= commingEventViewData.EventName %></td>
+                                    <td><a href="<%= commingEventViewData.EventLink %>"/><%= commingEventViewData.EventLink.WrapAt(40) %></a></td>
+                                    <td><%= commingEventViewData.EventDate.ToShortDateString() %></td>
                                     <td><%= commingEventViewData.EventPlace %></td>
                                     <td><%= commingEventViewData.EventLead %></td>
-                                </tr>                                
+                                </tr>
+                                <tr>
+                                    <td>Akcje:</td>
+                                    <td><a href="javascript:void(0);" data-edit-id="<%= commingEventViewData.Id %>">Edytuj</a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0);" data-id="<%= commingEventViewData.Id %>">Usuń</a></td>
+                                </tr>
                      <% } %>
-          </table>        
-        <a id="lnkAddRecomendation" href="javascript:void(0)">Dodaj wydarzenie</a>
+          </table>
+        <div class="input-color" >
+            <div class="color-box" style="background-color: #FFE4E1; text-align: center;">Przeterminowany</div>            
+            <div class="color-box" style="background-color: #FFFAF0; text-align: center;">W przyszłości</div>
+            <div class="color-box" style="background-color: #c2e078; text-align: center;">Aktualne wyświetlane</div>
+        </div>
+        <a id="lnkAddEvent" href="javascript:void(0)">Dodaj wydarzenie</a>
     </div>
 </asp:Content>
