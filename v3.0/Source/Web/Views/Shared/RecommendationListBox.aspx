@@ -16,7 +16,7 @@
                  <% foreach (var recommendationViewData in Model.Recommendations)
                         { %>
                                 <tr class="<%=recommendationViewData.HowLongAdShows() %>">
-                                    <td><a><img src="<%= Url.Image(recommendationViewData.ImageName) %>" height="50"/></a></td>
+                                    <td style="max-width:120px;"><a><img src="<%= Url.Image(recommendationViewData.ImageName) %>" width="100px" /></a></td>
                                     <td><%= recommendationViewData.UrlTitle %></td>
                                     <td><a href="<%= recommendationViewData.UrlLink %>"/><%= recommendationViewData.UrlLink.WrapAt(40) %></a></td>
                                     <td><%= recommendationViewData.IsBanner ? "Banner" : "Normal"%></td>
