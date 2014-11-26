@@ -252,5 +252,48 @@
                 </form>
             </div>
         </div>
+        <div id="EventSection">
+            <div class="box">
+                <h5>
+                    Edycja wydarzenia</h5>
+                <form id="frmEvent" action="<%= Url.Action("EditEvent", "CommingEvent") %>" method="post">
+                <fieldset>
+                    <input type="hidden" id="hidEventId" name="id"/>
+                    <div class="add-article-row">
+                        <label for="txtEventLink" class="label">
+                            Link do strony wydarzenia:</label>
+                        <input id="txtEventLink" name="EventLink" type="text" class="textBox" />
+                        <span class="error"></span>
+                    </div>
+                    <div class="add-article-row">
+                        <label for="txtEventTitle" class="label">
+                            Nazwa wydarzenia:</label>
+                        <input id="txtEventTitle" name="EventTitle" type="text" class="textBox" />
+                        <span class="error"></span>
+                    </div>
+                    <div class="add-article-row">
+                        <label for="txtEventTime" class="label">
+                            Data wydarzenia:</label>
+                        <input id="txtEventTime" name="EventTime" type="text" class="textBox"/>
+                    </div>
+                    <div class="add-article-row">
+                        <label for="txtEventPlace" class="label">
+                            Miejsce wydarzenia:</label>
+                        <input id="txtEventPlace" name="EventPlace" type="text" class="textBox" />
+                        <span class="error"></span>
+                    </div>
+                    <div class="add-article-row">
+                        <label for="txtEventLead" class="label">
+                            Opis wydarzenia:</label>
+                        <input id="txtEventLead" name="EventLead" type="text" class="textBox" />
+                        <span class="error"></span>
+                    </div>                    
+                    <div class="add-article-row">
+                        <input id="btnSubmitEvent" type="submit" class="button" value="Sign up" />
+                    </div>
+                </fieldset>
+                </form>
+            </div>
+        </div>
     </div>
 </div>

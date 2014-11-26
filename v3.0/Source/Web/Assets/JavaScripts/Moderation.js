@@ -73,6 +73,12 @@
                 Moderation.showRecommendation();
             }
         );
+        $('#lnkAddEvent').click(
+            function () {
+                $('#hidEventId').val("");
+                Moderation.showEvent();
+            }
+        );
         $('a[data-id]').click(
             function() {
                 Moderation.deleteAd($(this).data('id'));
@@ -476,6 +482,13 @@
         $('input[name="StartTime"]').datepicker({ dateFormat: 'yy-mm-dd' }).val();
         $('.contentContainer > div').hide();
         $('#RecommendationSection').show();
+        Membership._show('#membershipBox');
+        $U.focus('txtRecommendationLink');
+    },
+    showEvent: function () {        
+        $('input[name="EventTime"]').datepicker({ dateFormat: 'yy-mm-dd' }).val();
+        $('.contentContainer > div').hide();
+        $('#EventSection').show();
         Membership._show('#membershipBox');
         $U.focus('txtRecommendationLink');
     },
