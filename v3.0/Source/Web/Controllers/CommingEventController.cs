@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using Kigg.Core.DomainObjects;
 using Kigg.Web.ViewData;
+using Kigg.Infrastructure;
+using UnitOfWork = Kigg.Infrastructure.UnitOfWork;
 
 namespace Kigg.Web
 {
@@ -72,6 +74,40 @@ namespace Kigg.Web
                 ThrowNotFound("Nie ma takiej strony");
             }
             return View(viewModel);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post), ValidateInput(false), Compress]
+        public ActionResult EditEvent(EventViewData model)
+        {
+            JsonViewData viewData = Validate<JsonViewData>(
+                new Validation(() => CurrentUser.CanModerate() == false, "Nie masz praw do wykonowania tej operacji."),
+                new Validation(() => string.IsNullOrEmpty(model.EventLink.NullSafe()), "Link wydarzenia nie może być pusty."),
+                new Validation(() => string.IsNullOrEmpty(model.EventName.NullSafe()), "Nazwa wydarzenia nie może być pusta.")
+                );
+
+            if (viewData == null)
+            {
+                try
+                {
+                    using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
+                    {
+                        if (model.Id == null)
+                        {
+                            
+                        }
+                    }
+                }
+                catch (ArgumentException argument)
+                {
+                    viewData = new JsonViewData { errorMessage = argument.Message };
+                }                
+                catch (Exception e)
+                {
+                    Log.Exception(e);
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("") };
+                }
+            }
+            return Json(viewData);
         }
     }
 }

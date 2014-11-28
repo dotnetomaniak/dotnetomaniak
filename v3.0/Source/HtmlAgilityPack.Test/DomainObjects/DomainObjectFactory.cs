@@ -209,6 +209,24 @@ namespace Kigg.LinqToSql.DomainObjects
             return recommendation;
         }
 
+    public ICommingEvent CreateCommingEvent(string eventLink, string eventName, DateTime eventTime, string eventPlace, string eventLead)
+    {
+        Check.Argument.IsNotEmpty(eventLink, "EventLink");
+        Check.Argument.IsNotEmpty(eventName, "EventName");
+
+        var commingEvent = new CommingEvent
+        {
+            Id = Guid.NewGuid(),
+            EventLink = eventLink,
+            EventName = eventName,
+            EventDate = eventTime,
+            EventPlace = eventPlace,
+            EventLead = eventLead,
+        };
+
+        return commingEvent;
+    }
+
         private static void PerformCheck(IStory forStory, DateTime at, IUser byUser, string fromIpAddress)
         {
             Check.Argument.IsNotNull(forStory, "forStory");
