@@ -175,6 +175,62 @@
         function onUnhighlight(element, errorClass) {
             $(element).next('span.error').hide();
         }
+
+        $('#frmEvent').validate(
+                                            {
+                                                rules: {
+                                                    EventLink: {
+                                                        required: true,
+                                                    },
+                                                    EventName: {
+                                                        required: true,
+                                                    },
+                                                    EventDate: {
+                                                        required: true,
+                                                    }
+                                                },
+                                                messages: {
+                                                    EventLink: {
+                                                        required: 'Link wydarzenia nie może być pusty.',
+                                                    },
+                                                    EventName: {
+                                                        required: 'Nazwa wydarzenia nie może być pusta.',
+                                                    },
+                                                    EventDate: {
+                                                        required: 'Data wydarzenia jest wymagana.',
+                                                    }
+                                                },
+                                                submitHandler: function (form) {
+                                                    var options = {
+                                                        dataType: 'json',
+                                                        beforeSubmit: function () {
+                                                            $('#EventMessage').hide().text('Tworzenie...').css('color', '');
+
+                                                            $U.disableInputs('#EventSection', true);
+                                                            $U.showProgress('Tworzenie...');
+                                                        },
+                                                        success: function (result) {
+                                                            $U.disableInputs('#EventSection', false);
+                                                            $U.hideProgress();
+                                                            Membership._hide(true);
+
+                                                            if (result.isSuccessful) {
+                                                                window.location.reload();
+                                                            }
+                                                            else {
+                                                                $('#EventMessage').text(result.errorMessage).css({ color: '#ff0000', display: 'block' });
+                                                            }
+                                                        }
+                                                    };
+
+                                                    $(form).ajaxSubmit(options);
+                                                    return false;
+                                                },
+                                                errorPlacement: onErrorPlacement,
+                                                highlight: onHighlight,
+                                                unhighlight: onUnhighlight
+                                            }
+                                        );
     },
     
     dispose: function() {
@@ -254,6 +310,47 @@
         );
     },
     
+    
+
+    editEvent: function (eventId) {
+        var data = 'id=' + encodeURIComponent(eventId);
+
+        $U.disableInputs('#frmEvent', true);
+
+        $.ajax(
+            {
+                url: Moderation._editEventUrl,
+                type: 'POST',
+                dataType: 'json',
+                data: data,
+                beforeSend: function () {
+                    $U.showProgress('Wczytywanie wzdaryenia...');
+                },
+                success: function (result) {
+                    $U.hideProgress();
+                    $U.disableInputs('#frmEvent', false);
+
+                    if (result.errorMessage) {
+                        $U.messageBox('Error', result.errorMessage, true);
+                    } else {
+                        $U.blockUI();
+
+                        $('span.error').hide();
+                        $('span.message').hide();
+                        Moderation.showRecommendation();
+
+                        $('#hidEventId').val(result.id);
+                        $('#txtEventLink').val(result.EventLink);
+                        $('#txtEventName').val(result.EventName);                        
+                        $('#txtEventDate').val(result.EventDate);
+                        $('#txtEventPlace').val(result.EventPlace);
+                        $('#txtEventLead').val(result.EventLead);                        
+                    }
+                }
+            }
+        );
+    },
+
     //function: formatJSONDate(jsonDate) {
     //var newDate = dateFormat(jsonDate, "mm/dd/yyyy");
     //return newDate;
@@ -490,7 +587,7 @@
         $('.contentContainer > div').hide();
         $('#EventSection').show();
         Membership._show('#membershipBox');
-        $U.focus('txtRecommendationLink');
+        $U.focus('txtEventLink');
     },
 };
     

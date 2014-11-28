@@ -303,6 +303,7 @@
     <Compile Include="ViewData\ControlPanelViewData.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewData\EventViewData.cs" />
     <Compile Include="ViewData\FbEmailViewData.cs">
       <SubType>Code</SubType>
     </Compile>
