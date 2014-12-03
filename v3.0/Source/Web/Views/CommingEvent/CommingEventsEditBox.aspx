@@ -25,10 +25,10 @@
                                 </tr>
                                 <tr>
                                     <td>Akcje:</td>
-                                    <td><a href="javascript:void(0);" data-edit-id="<%= commingEventViewData.Id %>">Edytuj</a></td>
+                                    <td><a href="javascript:void(0);" data-edit-event-id="<%= commingEventViewData.Id %>">Edytuj</a></td>
                                     <td></td>
                                     <td></td>
-                                    <td><a href="javascript:void(0);" data-id="<%= commingEventViewData.Id %>">Usuń</a></td>
+                                    <td><a href="javascript:void(0);" data-event-id="<%= commingEventViewData.Id %>">Usuń</a></td>
                                 </tr>
                      <% } %>
           </table>
