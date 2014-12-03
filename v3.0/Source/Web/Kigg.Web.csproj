@@ -303,6 +303,7 @@
     <Compile Include="ViewData\ControlPanelViewData.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewData\EventViewData.cs" />
     <Compile Include="ViewData\FbEmailViewData.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -506,11 +507,12 @@
     <Content Include="Views\Badges\All.aspx" />
     <Content Include="Views\Badges\List.ascx" />
     <Content Include="Views\CommingEvent\CommingEventList.ascx" />
+    <Content Include="Views\CommingEvent\CommingEventsEditBox.aspx" />
     <Content Include="Views\Membership\Achievements.ascx" />
     <Content Include="Views\Quiz\QuizView.aspx" />
     <Content Include="Views\CommingEvent\AllCommingEvent.aspx" />
     <Content Include="Views\Shared\CommingEventsBox.ascx" />
-	<Content Include="Views\Shared\BannerBox.ascx" />
+    <Content Include="Views\Shared\BannerBox.ascx" />
     <Content Include="Views\Shared\FbLog.aspx" />
     <Content Include="Views\Shared\FeedBox.ascx" />
     <Content Include="Views\Shared\GooglePlusBox.ascx" />

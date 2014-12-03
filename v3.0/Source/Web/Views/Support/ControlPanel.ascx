@@ -11,7 +11,7 @@
         <% {%>
         <ul>
             <li style="padding: 5px 0"><%= Html.ActionLink("Lista reklam", "AdList", "Recommendation")%></li>
-            <li style="padding: 5px 0"><%= Html.ActionLink("Lista nadchodzących wydarzeń", "EventList", "CommingEvent")%></li>
+            <li style="padding: 5px 0"><%= Html.ActionLink("Lista nadchodzących wydarzeń", "CommingEventsEditBox", "CommingEvent")%></li>
             <li style="padding: 5px 0">
                 <%= Html.ActionLink("Nowe ({0})".FormatWith(Model.NewCount), "New", "Story") %></li>
             <li style="padding: 5px 0">

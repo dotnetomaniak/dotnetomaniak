@@ -195,7 +195,7 @@
       <Column Name="EventName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="EventDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="EventPlace" Type="System.String" DbType="VarChar(50)" CanBeNull="false" />
-      <Column Name="EventLead" Type="System.String" DbType="VarChar(200)" CanBeNull="false" />
+      <Column Name="EventLead" Type="System.String" DbType="VarChar(500)" CanBeNull="false" />
     </Type>
   </Table>
   <Function Name="dbo.CommentSearch" Method="CommentSearch" IsComposable="true">

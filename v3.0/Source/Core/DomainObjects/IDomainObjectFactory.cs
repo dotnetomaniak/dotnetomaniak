@@ -27,5 +27,7 @@ namespace Kigg.DomainObjects
         ICommentSubscribtion CreateCommentSubscribtion(IStory forStory, IUser byUser);
 
         IRecommendation CreateRecommendation(string recommendationLink, string recommendationTitle, string imageLink, string imageTitle, DateTime startTime, DateTime endTime, string email, int position, bool notificationIsSent, bool isBanner);
+
+        ICommingEvent CreateCommingEvent(string eventLink, string eventName, DateTime eventTime, string eventPlace, string eventLead);
     }
 }

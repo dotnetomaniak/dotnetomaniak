@@ -127,7 +127,7 @@
                     scriptManager.RegisterOnReady("Moderation.set_markCommentAsOffendedUrl('{0}');".FormatWith(Url.RouteUrl("MarkCommentAsOffended")));
                     scriptManager.RegisterOnReady("Moderation.set_generateMiniatureStoryUrl('{0}');".FormatWith(Url.RouteUrl("GenerateMiniatureStory")));
                     scriptManager.RegisterOnReady("Moderation.set_editAdUrl('{0}');".FormatWith(Url.RouteUrl("GetAd")));
-
+                    scriptManager.RegisterOnReady("Moderation.set_editEventUrl('{0}');".FormatWith(Url.RouteUrl("GetEvent")));
 
                     scriptManager.RegisterOnDispose("Moderation.dispose();");
                 }
@@ -323,7 +323,7 @@
                     }
                 %>                                
                 <% Html.RenderAction("Ads", "Recommendation"); %>
-                <% Html.RenderAction("EventsBox", "CommingEvent"); %>
+                <% Html.RenderAction("CommingEventsBox", "CommingEvent"); %>
 
                 <% try { Html.RenderPartial("FeedBox"); }
                    catch {}%>
