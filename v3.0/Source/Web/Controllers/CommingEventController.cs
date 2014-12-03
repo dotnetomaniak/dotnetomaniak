@@ -68,7 +68,7 @@ namespace Kigg.Web
             if (IsCurrentUserAuthenticated && CurrentUser.IsAdministrator())
             {
                 IQueryable<ICommingEvent> commingEvents = _commingEventRepository.GetAll();
-                viewModel.CommingEvents = commingEvents.Select(x => CreateCommingEventsViewData(x));
+                viewModel.CommingEvents = commingEvents.OrderByDescending(x => x.EventDate).Select(x => CreateCommingEventsViewData(x));
             }
             else
             {

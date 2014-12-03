@@ -5,7 +5,9 @@
     <% %>
     <div>
         <%= Html.PageHeader("Lista wydarzeń:") %>
-        <% bool AdTimeEnd = false; %>
+        
+        <br />
+        <a id="lnkAddEvent" href="javascript:void(0)" style="">Dodaj wydarzenie</a>
          <table id="adsTable">             
              <tr>                 
                  <th>Tytuł</th>
@@ -36,7 +38,6 @@
             <div class="color-box" style="background-color: #FFE4E1; text-align: center;">Przeterminowany</div>            
             <div class="color-box" style="background-color: #FFFAF0; text-align: center;">W przyszłości</div>
             <div class="color-box" style="background-color: #c2e078; text-align: center;">Aktualne wyświetlane</div>
-        </div>
-        <a id="lnkAddEvent" href="javascript:void(0)">Dodaj wydarzenie</a>
+        </div>        
     </div>
 </asp:Content>
