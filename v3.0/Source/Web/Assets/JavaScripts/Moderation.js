@@ -3,6 +3,7 @@
     _markCommentAsOffendedUrl: '',
     _spamCommentUrl: '',
     _editAdUrl: '',
+    _editEventUrl: '',
     _deleteStoryUrl: '',
     _spamStoryUrl: '',
     _approveStoryUrl: '',
@@ -22,6 +23,10 @@
         Moderation._editAdUrl = value;
     },
     
+    set_editEventUrl: function (value) {
+        Moderation._editEventUrl = value;
+    },
+
     set_deleteStoryUrl: function(value) {
         Moderation._deleteStoryUrl = value;
     },
@@ -73,6 +78,7 @@
                 Moderation.showRecommendation();
             }
         );
+
         $('a[data-id]').click(
             function() {
                 Moderation.deleteAd($(this).data('id'));
@@ -169,6 +175,80 @@
         function onUnhighlight(element, errorClass) {
             $(element).next('span.error').hide();
         }
+        
+        $('a[data-event-id]').click(
+            function () {
+                Moderation.deleteEvent($(this).data('eventId'));
+            }
+        );
+
+        $('a[data-edit-event-id]').click(
+            function () {
+                Moderation.editEvent($(this).data('editEventId'));
+            });
+
+        $('#lnkAddEvent').click(
+            function () {
+                $('#hidEventId').val("");
+                Moderation.showEvent();
+            }
+        );        
+
+        $('#frmEvent').validate(
+                                            {
+                                                rules: {
+                                                    EventLink: {
+                                                        required: true,
+                                                    },
+                                                    EventName: {
+                                                        required: true,
+                                                    },
+                                                    EventDate: {
+                                                        required: true,
+                                                    }
+                                                },
+                                                messages: {
+                                                    EventLink: {
+                                                        required: 'Link wydarzenia nie może być pusty.',
+                                                    },
+                                                    EventName: {
+                                                        required: 'Nazwa wydarzenia nie może być pusta.',
+                                                    },
+                                                    EventDate: {
+                                                        required: 'Data wydarzenia jest wymagana.',
+                                                    }
+                                                },
+                                                submitHandler: function (form) {
+                                                    var options = {
+                                                        dataType: 'json',
+                                                        beforeSubmit: function () {
+                                                            $('#EventMessage').hide().text('Tworzenie...').css('color', '');
+
+                                                            $U.disableInputs('#EventSection', true);
+                                                            $U.showProgress('Tworzenie...');
+                                                        },
+                                                        success: function (result) {
+                                                            $U.disableInputs('#EventSection', false);
+                                                            $U.hideProgress();
+                                                            Membership._hide(true);
+
+                                                            if (result.isSuccessful) {
+                                                                window.location.reload();
+                                                            }
+                                                            else {
+                                                                $('#EventMessage').text(result.errorMessage).css({ color: '#ff0000', display: 'block' });
+                                                            }
+                                                        }
+                                                    };
+
+                                                    $(form).ajaxSubmit(options);
+                                                    return false;
+                                                },
+                                                errorPlacement: onErrorPlacement,
+                                                highlight: onHighlight,
+                                                unhighlight: onUnhighlight
+                                            }
+                                        );
     },
     
     dispose: function() {
@@ -202,7 +282,37 @@
             }
 
             $U.confirm('Usunięcie reklamy?', 'Czy jesteś pewny, że chcesz usunać daną reklamę?', submit);
-        },
+    },
+
+    deleteEvent: function (eventId) {
+
+        function submit() {
+            var data = 'id=' + encodeURIComponent(eventId);
+
+            $.ajax(
+                {
+                    url: '/DeleteEvent',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: data,
+                    beforeSend: function () {
+                        $U.showProgress('Usuwanie wydarzenia');
+                    },
+                    success: function (result) {
+                        $U.hideProgress();
+
+                        if (result.isSuccessful) {
+                            window.location.reload();
+                        } else {
+                            $U.messageBox('Error', result.errorMessage, true);
+                        }
+                    }
+                }
+            );
+        }
+
+        $U.confirm('Usunięcie wydarzenia?', 'Czy jesteś pewny, że chcesz usunać dane wydarzenie?', submit);
+    },
 
     editAd: function (adId) {
         var data = 'id=' + encodeURIComponent(adId);
@@ -248,10 +358,46 @@
         );
     },
     
-    //function: formatJSONDate(jsonDate) {
-    //var newDate = dateFormat(jsonDate, "mm/dd/yyyy");
-    //return newDate;
-    //},
+    
+
+    editEvent: function (eventId) {
+        var data = 'id=' + encodeURIComponent(eventId);
+
+        $U.disableInputs('#frmEvent', true);
+
+        $.ajax(
+            {
+                url: Moderation._editEventUrl,
+                type: 'POST',
+                dataType: 'json',
+                data: data,
+                beforeSend: function () {
+                    $U.showProgress('Wczytywanie wydarzenia...');
+                },
+                success: function (result) {
+                    $U.hideProgress();
+                    $U.disableInputs('#frmEvent', false);
+
+                    if (result.errorMessage) {
+                        $U.messageBox('Error', result.errorMessage, true);
+                    } else {
+                        $U.blockUI();
+
+                        $('span.error').hide();
+                        $('span.message').hide();
+                        Moderation.showEvent();
+
+                        $('#hidEventId').val(result.eventId);
+                        $('#txtEventLink').val(result.eventLink);
+                        $('#txtEventName').val(result.eventName);                        
+                        $('#txtEventDate').val(result.eventDate);
+                        $('#txtEventPlace').val(result.eventPlace);
+                        $('#txtEventLead').val(result.eventLead);                        
+                    }
+                }
+            }
+        );
+    },    
 
     approveStory: function(storyId) {
 
@@ -478,6 +624,13 @@
         $('#RecommendationSection').show();
         Membership._show('#membershipBox');
         $U.focus('txtRecommendationLink');
+    },
+    showEvent: function () {        
+        $('input[name="EventDate"]').datepicker({ dateFormat: 'yy-mm-dd' }).val();
+        $('.contentContainer > div').hide();
+        $('#EventSection').show();
+        Membership._show('#membershipBox');
+        $U.focus('txtEventLink');
     },
 };
     

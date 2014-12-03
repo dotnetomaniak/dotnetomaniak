@@ -4948,7 +4948,7 @@ namespace Kigg.LinqToSql.DomainObjects
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventLead", DbType="VarChar(200)", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventLead", DbType="VarChar(500)", CanBeNull=false)]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=6)]
 		public string EventLead
 		{

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Kigg.Infrastructure.LinqToSql.DomainObjects
+namespace Kigg.LinqToSql.DomainObjects
 {
     public partial class CommingEvent : ICommingEvent
     {
