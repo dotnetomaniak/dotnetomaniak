@@ -3,6 +3,7 @@
     _markCommentAsOffendedUrl: '',
     _spamCommentUrl: '',
     _editAdUrl: '',
+    _editEventUrl: '',
     _deleteStoryUrl: '',
     _spamStoryUrl: '',
     _approveStoryUrl: '',
@@ -22,6 +23,10 @@
         Moderation._editAdUrl = value;
     },
     
+    set_editEventUrl: function (value) {
+        Moderation._editEventUrl = value;
+    },
+
     set_deleteStoryUrl: function(value) {
         Moderation._deleteStoryUrl = value;
     },
@@ -73,12 +78,7 @@
                 Moderation.showRecommendation();
             }
         );
-        $('#lnkAddEvent').click(
-            function () {
-                $('#hidEventId').val("");
-                Moderation.showEvent();
-            }
-        );
+
         $('a[data-id]').click(
             function() {
                 Moderation.deleteAd($(this).data('id'));
@@ -175,6 +175,24 @@
         function onUnhighlight(element, errorClass) {
             $(element).next('span.error').hide();
         }
+        
+        $('a[data-event-id]').click(
+            function () {
+                Moderation.deleteEvent($(this).data('eventId'));
+            }
+        );
+
+        $('a[data-edit-event-id]').click(
+            function () {
+                Moderation.editEvent($(this).data('editEventId'));
+            });
+
+        $('#lnkAddEvent').click(
+            function () {
+                $('#hidEventId').val("");
+                Moderation.showEvent();
+            }
+        );        
 
         $('#frmEvent').validate(
                                             {
@@ -264,7 +282,37 @@
             }
 
             $U.confirm('Usunięcie reklamy?', 'Czy jesteś pewny, że chcesz usunać daną reklamę?', submit);
-        },
+    },
+
+    deleteEvent: function (eventId) {
+
+        function submit() {
+            var data = 'id=' + encodeURIComponent(eventId);
+
+            $.ajax(
+                {
+                    url: '/DeleteEvent',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: data,
+                    beforeSend: function () {
+                        $U.showProgress('Usuwanie wydarzenia');
+                    },
+                    success: function (result) {
+                        $U.hideProgress();
+
+                        if (result.isSuccessful) {
+                            window.location.reload();
+                        } else {
+                            $U.messageBox('Error', result.errorMessage, true);
+                        }
+                    }
+                }
+            );
+        }
+
+        $U.confirm('Usunięcie wydarzenia?', 'Czy jesteś pewny, że chcesz usunać dane wydarzenie?', submit);
+    },
 
     editAd: function (adId) {
         var data = 'id=' + encodeURIComponent(adId);
@@ -324,7 +372,7 @@
                 dataType: 'json',
                 data: data,
                 beforeSend: function () {
-                    $U.showProgress('Wczytywanie wzdaryenia...');
+                    $U.showProgress('Wczytywanie wydarzenia...');
                 },
                 success: function (result) {
                     $U.hideProgress();
@@ -337,24 +385,19 @@
 
                         $('span.error').hide();
                         $('span.message').hide();
-                        Moderation.showRecommendation();
+                        Moderation.showEvent();
 
-                        $('#hidEventId').val(result.id);
-                        $('#txtEventLink').val(result.EventLink);
-                        $('#txtEventName').val(result.EventName);                        
-                        $('#txtEventDate').val(result.EventDate);
-                        $('#txtEventPlace').val(result.EventPlace);
-                        $('#txtEventLead').val(result.EventLead);                        
+                        $('#hidEventId').val(result.eventId);
+                        $('#txtEventLink').val(result.eventLink);
+                        $('#txtEventName').val(result.eventName);                        
+                        $('#txtEventDate').val(result.eventDate);
+                        $('#txtEventPlace').val(result.eventPlace);
+                        $('#txtEventLead').val(result.eventLead);                        
                     }
                 }
             }
         );
-    },
-
-    //function: formatJSONDate(jsonDate) {
-    //var newDate = dateFormat(jsonDate, "mm/dd/yyyy");
-    //return newDate;
-    //},
+    },    
 
     approveStory: function(storyId) {
 
@@ -583,7 +626,7 @@
         $U.focus('txtRecommendationLink');
     },
     showEvent: function () {        
-        $('input[name="EventTime"]').datepicker({ dateFormat: 'yy-mm-dd' }).val();
+        $('input[name="EventDate"]').datepicker({ dateFormat: 'yy-mm-dd' }).val();
         $('.contentContainer > div').hide();
         $('#EventSection').show();
         Membership._show('#membershipBox');

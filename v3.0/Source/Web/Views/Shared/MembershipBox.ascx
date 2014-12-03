@@ -266,15 +266,15 @@
                         <span class="error"></span>
                     </div>
                     <div class="add-article-row">
-                        <label for="txtEventTitle" class="label">
+                        <label for="txtEventName" class="label">
                             Nazwa wydarzenia:</label>
-                        <input id="txtEventTitle" name="EventTitle" type="text" class="textBox" />
+                        <input id="txtEventName" name="EventName" type="text" class="textBox" />
                         <span class="error"></span>
                     </div>
                     <div class="add-article-row">
-                        <label for="txtEventTime" class="label">
+                        <label for="txtEventDate" class="label">
                             Data wydarzenia:</label>
-                        <input id="txtEventTime" name="EventTime" type="text" class="textBox"/>
+                        <input id="txtEventDate" name="EventDate" type="text" class="textBox"/>
                     </div>
                     <div class="add-article-row">
                         <label for="txtEventPlace" class="label">
