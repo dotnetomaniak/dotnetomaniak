@@ -199,6 +199,11 @@
   {
       background: url("/Assets/Images/dodaj.png") no-repeat scroll 0px 0px transparent;
   }
+
+  #btnSubmitEvent
+  {
+      background: url("/Assets/Images/dodaj.png") no-repeat scroll 0px 0px transparent;
+  }
   
   #loginSection
   {

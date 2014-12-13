@@ -215,6 +215,8 @@ namespace Kigg.LinqToSql.DomainObjects
         Check.Argument.IsNotEmpty(eventLink, "EventLink");
         Check.Argument.IsNotEmpty(eventName, "EventName");
 
+        DateTime now = SystemTime.Now();
+
         var commingEvent = new CommingEvent
         {
             Id = Guid.NewGuid(),
@@ -223,6 +225,7 @@ namespace Kigg.LinqToSql.DomainObjects
             EventDate = eventTime,
             EventPlace = eventPlace,
             EventLead = eventLead,
+            CreatedAt = now
         };
 
         return commingEvent;
