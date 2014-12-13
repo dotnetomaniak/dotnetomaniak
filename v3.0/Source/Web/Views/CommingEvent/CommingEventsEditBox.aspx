@@ -10,27 +10,24 @@
         <a id="lnkAddEvent" href="javascript:void(0)" style="">Dodaj wydarzenie</a>
          <table id="adsTable">             
              <tr>                 
-                 <th>Tytuł</th>
-                 <th>Link</th>
+                 <th>Nazwa i Link</th>
                  <th>Data</th>
                  <th>Miejsce</th>
                  <th>Opis</th>
              </tr>
                  <% foreach (var commingEventViewData in Model.CommingEvents)
                         { %>
-                                <tr>
-                                    <td><%= commingEventViewData.EventName %></td>
-                                    <td><a href="<%= commingEventViewData.EventLink %>"/><%= commingEventViewData.EventLink.WrapAt(40) %></a></td>
+                                <tr>                                    
+                                    <td><a href="<%= commingEventViewData.EventLink %>"/><%= commingEventViewData.EventName %></a></td>
                                     <td><%= commingEventViewData.EventDate.ToShortDateString() %></td>
                                     <td><%= commingEventViewData.EventPlace %></td>
                                     <td><%= commingEventViewData.EventLead %></td>
                                 </tr>
                                 <tr>
                                     <td>Akcje:</td>
-                                    <td><a href="javascript:void(0);" data-edit-event-id="<%= commingEventViewData.Id %>">Edytuj</a></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td><a href="javascript:void(0);" data-edit-event-id="<%= commingEventViewData.Id %>">Edytuj</a></td>                                                                        
                                     <td><a href="javascript:void(0);" data-event-id="<%= commingEventViewData.Id %>">Usuń</a></td>
+                                    <td></td>
                                 </tr>
                      <% } %>
           </table>
