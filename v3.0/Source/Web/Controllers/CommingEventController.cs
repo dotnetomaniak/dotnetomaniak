@@ -220,7 +220,7 @@ namespace Kigg.Web
                         return Json(
                                         new
                                         {
-                                            id = commingEvent.Id.Shrink(),
+                                            eventId = commingEvent.Id.Shrink(),
                                             eventLink = commingEvent.EventLink,
                                             eventName = commingEvent.EventName,
                                             eventDate = commingEvent.EventDate.ToString("yyyy-MM-dd"),

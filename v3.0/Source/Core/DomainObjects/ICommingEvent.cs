@@ -6,13 +6,8 @@ using System.Text;
 
 namespace Kigg.Core.DomainObjects
 {
-    public partial interface ICommingEvent
+    public partial interface ICommingEvent : IEntity
     {
-        Guid Id
-        {
-            get;
-        }
-
         string EventLink
         {
             get;
@@ -26,6 +21,12 @@ namespace Kigg.Core.DomainObjects
         }
 
         DateTime EventDate
+        {
+            get;
+            set;
+        }
+
+        DateTime CreatedAt
         {
             get;
             set;
