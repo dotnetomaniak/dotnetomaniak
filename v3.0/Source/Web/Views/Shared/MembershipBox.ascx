@@ -279,13 +279,14 @@
                     <div class="add-article-row">
                         <label for="txtEventPlace" class="label">
                             Miejsce wydarzenia:</label>
-                        <input id="txtEventPlace" name="EventPlace" type="text" class="textBox" />
+                        <input id="txtEventPlace" name="EventPlace" type="text" class="textBox"/>
                         <span class="error"></span>
                     </div>
                     <div class="add-article-row">
                         <label for="txtEventLead" class="label">
                             Opis wydarzenia:</label>
-                        <input id="txtEventLead" name="EventLead" type="text" class="textBox" />
+                        <textarea id="txtEventLead" name="EventLead" cols="40" rows="5" maxlength="500" class="largeTextArea" style="width: 334px !important;"
+                            form="frmEvent" >Brak opisu</textarea>                        
                         <span class="error"></span>
                     </div>                    
                     <div class="add-article-row">
