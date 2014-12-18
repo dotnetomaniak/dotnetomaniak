@@ -85,6 +85,7 @@ namespace Kigg.Web
                 new Validation(() => string.IsNullOrEmpty(model.EventLink.NullSafe()), "Link wydarzenia nie może być pusty."),
                 new Validation(() => string.IsNullOrEmpty(model.EventName.NullSafe()), "Nazwa wydarzenia nie może być pusta.")
                 );
+            if (model.EventLead == null) model.EventLead = "Brak opisu";
 
             if (viewData == null)
             {

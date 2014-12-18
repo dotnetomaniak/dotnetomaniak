@@ -17,7 +17,7 @@
              </tr>
                  <% foreach (var commingEventViewData in Model.CommingEvents)
                         { %>
-                                <tr>                                    
+                                <tr <% if(commingEventViewData.IsEventTerminated()  ) %>>
                                     <td><a href="<%= commingEventViewData.EventLink %>"/><%= commingEventViewData.EventName %></a></td>
                                     <td><%= commingEventViewData.EventDate.ToShortDateString() %></td>
                                     <td><%= commingEventViewData.EventPlace %></td>
@@ -30,11 +30,6 @@
                                     <td></td>
                                 </tr>
                      <% } %>
-          </table>
-        <div class="input-color" >
-            <div class="color-box" style="background-color: #FFE4E1; text-align: center;">Przeterminowany</div>            
-            <div class="color-box" style="background-color: #FFFAF0; text-align: center;">W przyszłości</div>
-            <div class="color-box" style="background-color: #c2e078; text-align: center;">Aktualne wyświetlane</div>
-        </div>        
+          </table>        
     </div>
 </asp:Content>

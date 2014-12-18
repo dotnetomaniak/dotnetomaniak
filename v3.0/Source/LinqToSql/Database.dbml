@@ -197,6 +197,8 @@
       <Column Name="EventPlace" Type="System.String" DbType="VarChar(50)" CanBeNull="false" />
       <Column Name="EventLead" Type="System.String" DbType="VarChar(500)" CanBeNull="false" />
       <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="Varchar(50)" CanBeNull="true" />
+      <Column Name="IsApproved" Type="System.Boolean" DbType="bit" CanBeNull="false" />
     </Type>
   </Table>
   <Function Name="dbo.CommentSearch" Method="CommentSearch" IsComposable="true">
