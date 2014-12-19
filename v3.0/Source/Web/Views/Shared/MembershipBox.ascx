@@ -258,13 +258,7 @@
                     Edycja wydarzenia</h5>
                 <form id="frmEvent" action="<%= Url.Action("EditEvent", "CommingEvent") %>" method="post">
                 <fieldset>
-                    <input type="hidden" id="hidEventId" name="id"/>
-                    <div class="add-article-row">
-                        <label for="txtUserEmail" class="label">
-                            Email zgłaszającego:</label>
-                        <input id="txtUserEmail" name="EventInformerEmail" type="text" class="textBox" />
-                        <span class="error"></span>
-                    </div>
+                    <input type="hidden" id="hidEventId" name="id"/>                    
                     <div class="add-article-row">
                         <label for="txtEventLink" class="label">
                             Link do wydarzenia:</label>
@@ -294,7 +288,13 @@
                         <textarea id="txtEventLead" name="EventLead" cols="40" rows="5" maxlength="500" class="largeTextArea" style="width: 334px !important;"
                             form="frmEvent" >Brak opisu</textarea>                        
                         <span class="error"></span>
-                    </div>                    
+                    </div>
+                    <div class="add-article-row">
+                        <label for="txtUserEmail" class="label">
+                            Email zgłaszającego:</label>
+                        <input id="txtUserEmail" name="EventUserEmail" type="text" class="textBox" />
+                        <span class="error"></span>
+                    </div>
                     <div class="add-article-row">
                         <input id="btnSubmitEvent" type="submit" class="button" value="Sign up" />
                     </div>

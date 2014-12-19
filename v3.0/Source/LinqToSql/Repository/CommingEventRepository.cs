@@ -54,10 +54,11 @@ namespace Kigg.LinqToSql.Repository
         }
 
 
-        public void EditEvent(ICommingEvent commingEvent, string eventLink, string eventName, DateTime eventDate, string eventPlace, string eventLead)
+        public void EditEvent(ICommingEvent commingEvent, string eventUserEmail, string eventLink, string eventName, DateTime eventDate, string eventPlace, string eventLead)
         {
             Check.Argument.IsNotNull(commingEvent, "CommingEvent");
 
+            if (!string.IsNullOrEmpty(eventUserEmail)) commingEvent.Email = eventUserEmail;
             if (!string.IsNullOrEmpty(eventLink)) commingEvent.EventLink = eventLink;
             if (!string.IsNullOrEmpty(eventName)) commingEvent.EventName = eventName;
 

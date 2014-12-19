@@ -210,7 +210,7 @@ namespace Kigg.LinqToSql.DomainObjects
             return recommendation;
         }
 
-    public ICommingEvent CreateCommingEvent(string eventLink, string eventName, DateTime eventTime, string eventPlace, string eventLead)
+    public ICommingEvent CreateCommingEvent(string eventUserEmail, string eventLink, string eventName, DateTime eventTime, string eventPlace, string eventLead, bool isApproved)
     {
         Check.Argument.IsNotEmpty(eventLink, "EventLink");
         Check.Argument.IsNotEmpty(eventName, "EventName");
@@ -225,7 +225,8 @@ namespace Kigg.LinqToSql.DomainObjects
             EventDate = eventTime,
             EventPlace = eventPlace,
             EventLead = eventLead,
-            CreatedAt = now
+            CreatedAt = now,
+            IsApproved = isApproved
         };
 
         return commingEvent;
