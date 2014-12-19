@@ -66,6 +66,9 @@
         $('#frmEvent').validate(
                                             {
                                                 rules: {
+                                                    EventUserEmail:{
+                                                        required: true,
+                                                    },
                                                     EventLink: {
                                                         required: true,
                                                     },
@@ -77,6 +80,9 @@
                                                     }
                                                 },
                                                 messages: {
+                                                    EventLink: {
+                                                        required: 'Email użytkkownia nie może być pusty.',
+                                                    },
                                                     EventLink: {
                                                         required: 'Link wydarzenia nie może być pusty.',
                                                     },
@@ -180,6 +186,7 @@
                         $('span.message').hide();
                         CommingEvent.showEvent();
 
+                        $('#txtUserEmail').val(result.eventUserEmail);
                         $('#hidEventId').val(result.eventId);
                         $('#txtEventLink').val(result.eventLink);
                         $('#txtEventName').val(result.eventName);

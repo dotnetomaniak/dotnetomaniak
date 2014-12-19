@@ -43,5 +43,17 @@ namespace Kigg.Core.DomainObjects
             get;
             set;
         }
+
+        string Email
+        {
+            get;
+            set;
+        }
+
+        bool IsApproved
+        {
+            get;
+            set;
+        }
     }
 }

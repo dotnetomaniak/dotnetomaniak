@@ -80,12 +80,12 @@ namespace Kigg.Web
         [AcceptVerbs(HttpVerbs.Post), ValidateInput(false), Compress]
         public ActionResult EditEvent(EventViewData model)
         {
+            if (model.EventLead == null) model.EventLead = "Brak opisu";
+
             JsonViewData viewData = Validate<JsonViewData>(
-                new Validation(() => CurrentUser.CanModerate() == false, "Nie masz praw do wykonowania tej operacji."),
                 new Validation(() => string.IsNullOrEmpty(model.EventLink.NullSafe()), "Link wydarzenia nie może być pusty."),
                 new Validation(() => string.IsNullOrEmpty(model.EventName.NullSafe()), "Nazwa wydarzenia nie może być pusta.")
                 );
-            if (model.EventLead == null) model.EventLead = "Brak opisu";
 
             if (viewData == null)
             {
@@ -93,15 +93,17 @@ namespace Kigg.Web
                 {
                     using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
                     {
-                        if (model.Id == null || model.Id.IsEmpty())
+                        if (CurrentUser.CanModerate() != true)
                         {
                             ICommingEvent commingEvent = _factory.CreateCommingEvent(
-                                model.EventLink,
-                                model.EventName,
-                                model.EventDate,
-                                model.EventPlace,
-                                model.EventLead
-                                );
+                                    model.EventUserEmail,
+                                    model.EventLink,
+                                    model.EventName,
+                                    model.EventDate,
+                                    model.EventPlace,
+                                    model.EventLead,
+                                    false
+                                    );
                             _commingEventRepository.Add(commingEvent);
 
                             unitOfWork.Commit();
@@ -112,27 +114,51 @@ namespace Kigg.Web
                         }
                         else
                         {
-                            ICommingEvent commingEvent = _commingEventRepository.FindById(model.Id.ToGuid());
-
-                            if (commingEvent == null)
+                            if (model.Id == null || model.Id.IsEmpty())
                             {
-                                viewData = new JsonViewData { errorMessage = "Podane wydarzenie nie istnieje." };
-                            }
-                            else
-                            {
-                                _commingEventRepository.EditEvent(
-                                    commingEvent,
-                                    model.EventLink.NullSafe(),
-                                    model.EventName.NullSafe(),
+                                ICommingEvent commingEvent = _factory.CreateCommingEvent(
+                                    model.EventUserEmail,
+                                    model.EventLink,
+                                    model.EventName,
                                     model.EventDate,
                                     model.EventPlace,
-                                    model.EventLead);
+                                    model.EventLead,
+                                    true
+                                    );
+                                _commingEventRepository.Add(commingEvent);
 
                                 unitOfWork.Commit();
 
+                                Log.Info("Event registered: {0}", commingEvent.EventName);
+
                                 viewData = new JsonViewData { isSuccessful = true };
                             }
-                        }                        
+                            else
+                            {
+                                ICommingEvent commingEvent = _commingEventRepository.FindById(model.Id.ToGuid());
+
+                                if (commingEvent == null)
+                                {
+                                    viewData = new JsonViewData { errorMessage = "Podane wydarzenie nie istnieje." };
+                                }
+                                else
+                                {
+                                    _commingEventRepository.EditEvent(
+                                        commingEvent,
+                                        model.EventUserEmail.NullSafe(),
+                                        model.EventLink.NullSafe(),
+                                        model.EventName.NullSafe(),
+                                        model.EventDate,
+                                        model.EventPlace,
+                                        model.EventLead
+                                        );
+
+                                    unitOfWork.Commit();
+
+                                    viewData = new JsonViewData { isSuccessful = true };
+                                }
+                            }
+                        }
                     }
                 }
                 catch (ArgumentException argument)

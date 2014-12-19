@@ -12,6 +12,6 @@ namespace Kigg.Repository
         IQueryable<ICommingEvent> GetAll();
         IQueryable<ICommingEvent> GetAllComming();
         ICommingEvent FindById(Guid id);
-        void EditEvent(ICommingEvent commingEvent, string eventLink, string eventName, DateTime eventDate, string eventPlace, string eventLead);
+        void EditEvent(ICommingEvent commingEvent, string eventUserEmail, string eventLink, string eventName, DateTime eventDate, string eventPlace, string eventLead);
     }
 }
