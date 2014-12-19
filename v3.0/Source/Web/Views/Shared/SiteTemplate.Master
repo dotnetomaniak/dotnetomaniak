@@ -113,6 +113,9 @@
         scriptManager.RegisterOnReady("Membership.set_getStoryUrl ('{0}');".FormatWith(Url.RouteUrl("GetStory")));
         scriptManager.RegisterOnReady("SocialMedia.init();");
         scriptManager.RegisterOnDispose("Membership.dispose();");
+
+        scriptManager.RegisterSource(Url.Asset("commingevent"));
+        scriptManager.RegisterOnReady("CommingEvent.init();");               
         
         if (Model.IsCurrentUserAuthenticated)
         {
@@ -127,7 +130,7 @@
                     scriptManager.RegisterOnReady("Moderation.set_markCommentAsOffendedUrl('{0}');".FormatWith(Url.RouteUrl("MarkCommentAsOffended")));
                     scriptManager.RegisterOnReady("Moderation.set_generateMiniatureStoryUrl('{0}');".FormatWith(Url.RouteUrl("GenerateMiniatureStory")));
                     scriptManager.RegisterOnReady("Moderation.set_editAdUrl('{0}');".FormatWith(Url.RouteUrl("GetAd")));
-                    scriptManager.RegisterOnReady("Moderation.set_editEventUrl('{0}');".FormatWith(Url.RouteUrl("GetEvent")));
+                    scriptManager.RegisterOnReady("CommingEvent.set_editEventUrl('{0}');".FormatWith(Url.RouteUrl("GetEvent")));
 
                     scriptManager.RegisterOnDispose("Moderation.dispose();");
                 }

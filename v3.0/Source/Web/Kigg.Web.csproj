@@ -479,6 +479,7 @@
     <Content Include="Assets\Images\zaloguj.jpg" />
     <Content Include="Assets\Images\zaloz-konto_07.jpg" />
     <Content Include="Assets\Images\zaloz-konto_15.jpg" />
+    <Content Include="Assets\JavaScripts\CommingEvent.js" />
     <Content Include="Assets\JavaScripts\devmedia.js" />
     <Content Include="Assets\JavaScripts\devmediaBody.js" />
     <Content Include="Assets\JavaScripts\Facebook.js" />

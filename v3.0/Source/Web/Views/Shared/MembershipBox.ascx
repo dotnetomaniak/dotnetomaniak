@@ -260,8 +260,14 @@
                 <fieldset>
                     <input type="hidden" id="hidEventId" name="id"/>
                     <div class="add-article-row">
+                        <label for="txtUserEmail" class="label">
+                            Email zgłaszającego:</label>
+                        <input id="txtUserEmail" name="EventInformerEmail" type="text" class="textBox" />
+                        <span class="error"></span>
+                    </div>
+                    <div class="add-article-row">
                         <label for="txtEventLink" class="label">
-                            Link do strony wydarzenia:</label>
+                            Link do wydarzenia:</label>
                         <input id="txtEventLink" name="EventLink" type="text" class="textBox" />
                         <span class="error"></span>
                     </div>
