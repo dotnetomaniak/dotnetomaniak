@@ -3,7 +3,6 @@
     _markCommentAsOffendedUrl: '',
     _spamCommentUrl: '',
     _editAdUrl: '',
-    _editEventUrl: '',
     _deleteStoryUrl: '',
     _spamStoryUrl: '',
     _approveStoryUrl: '',
@@ -11,31 +10,27 @@
     _generateMiniatureStoryUrl: '',
     _centerMeTimer: null,
 
-    set_markCommentAsOffendedUrl: function(value) {
+    set_markCommentAsOffendedUrl: function (value) {
         Moderation._markCommentAsOffendedUrl = value;
     },
 
-    set_spamCommentUrl: function(value) {
+    set_spamCommentUrl: function (value) {
         Moderation._spamCommentUrl = value;
     },
 
-    set_editAdUrl: function(value) {
+    set_editAdUrl: function (value) {
         Moderation._editAdUrl = value;
     },
-    
-    set_editEventUrl: function (value) {
-        Moderation._editEventUrl = value;
-    },
 
-    set_deleteStoryUrl: function(value) {
+    set_deleteStoryUrl: function (value) {
         Moderation._deleteStoryUrl = value;
     },
 
-    set_spamStoryUrl: function(value) {
+    set_spamStoryUrl: function (value) {
         Moderation._spamStoryUrl = value;
     },
 
-    set_approveStoryUrl: function(value) {
+    set_approveStoryUrl: function (value) {
         Moderation._approveStoryUrl = value;
     },
 
@@ -43,35 +38,36 @@
     //    Moderation._getStoryUrl = value;
     //},
 
-    set_generateMiniatureStoryUrl: function(value) {
+    set_generateMiniatureStoryUrl: function (value) {
         Moderation._generateMiniatureStoryUrl = value;
     },
 
-    init: function() {
+    init: function () {
 
         /* Polish initialisation for the jQuery UI date picker plugin. */
         /* Written by Jacek Wysocki (jacek.wysocki@gmail.com). */
-        jQuery(function($){
+        jQuery(function ($) {
             $.datepicker.regional['pl'] = {
                 closeText: 'Zamknij',
                 prevText: '&#x3c;',
                 nextText: '&#x3e;',
                 currentText: 'Dziś',
-                monthNames: ['Styczeń','Luty','Marzec','Kwiecień','Maj','Czerwiec',
-                'Lipiec','Sierpień','Wrzesień','Październik','Listopad','Grudzień'],
-                monthNamesShort: ['Sty','Lu','Mar','Kw','Maj','Cze',
-                'Lip','Sie','Wrz','Pa','Lis','Gru'],
-                dayNames: ['Niedziela','Poniedzialek','Wtorek','Środa','Czwartek','Piątek','Sobota'],
-                dayNamesShort: ['Nie','Pn','Wt','Śr','Czw','Pt','So'],
-                dayNamesMin: ['N','Pn','Wt','Śr','Cz','Pt','So'],
+                monthNames: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec',
+                'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'],
+                monthNamesShort: ['Sty', 'Lu', 'Mar', 'Kw', 'Maj', 'Cze',
+                'Lip', 'Sie', 'Wrz', 'Pa', 'Lis', 'Gru'],
+                dayNames: ['Niedziela', 'Poniedzialek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'],
+                dayNamesShort: ['Nie', 'Pn', 'Wt', 'Śr', 'Czw', 'Pt', 'So'],
+                dayNamesMin: ['N', 'Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'So'],
                 weekHeader: 'Tydz',
                 dateFormat: 'yy-mm-dd',
                 firstDay: 1,
                 isRTL: false,
                 showMonthAfterYear: false,
-                yearSuffix: ''};
-        $.datepicker.setDefaults($.datepicker.regional['pl']);
-    });
+                yearSuffix: ''
+            };
+            $.datepicker.setDefaults($.datepicker.regional['pl']);
+        });
         $('#lnkAddRecomendation').click(
             function () {
                 $('#hidAdId').val("");
@@ -80,13 +76,13 @@
         );
 
         $('a[data-id]').click(
-            function() {
+            function () {
                 Moderation.deleteAd($(this).data('id'));
             }
         );
 
         $('a[data-edit-id]').click(
-            function() {
+            function () {
                 Moderation.editAd($(this).data('edit-id'));
             });
 
@@ -175,128 +171,24 @@
         function onUnhighlight(element, errorClass) {
             $(element).next('span.error').hide();
         }
-        
-        $('a[data-event-id]').click(
-            function () {
-                Moderation.deleteEvent($(this).data('eventId'));
-            }
-        );
-
-        $('a[data-edit-event-id]').click(
-            function () {
-                Moderation.editEvent($(this).data('editEventId'));
-            });
-
-        $('#lnkAddEvent').click(
-            function () {
-                $('#hidEventId').val("");
-                Moderation.showEvent();
-            }
-        );        
-
-        $('#frmEvent').validate(
-                                            {
-                                                rules: {
-                                                    EventLink: {
-                                                        required: true,
-                                                    },
-                                                    EventName: {
-                                                        required: true,
-                                                    },
-                                                    EventDate: {
-                                                        required: true,
-                                                    }
-                                                },
-                                                messages: {
-                                                    EventLink: {
-                                                        required: 'Link wydarzenia nie może być pusty.',
-                                                    },
-                                                    EventName: {
-                                                        required: 'Nazwa wydarzenia nie może być pusta.',
-                                                    },
-                                                    EventDate: {
-                                                        required: 'Data wydarzenia jest wymagana.',
-                                                    }
-                                                },
-                                                submitHandler: function (form) {
-                                                    var options = {
-                                                        dataType: 'json',
-                                                        beforeSubmit: function () {
-                                                            $('#EventMessage').hide().text('Tworzenie...').css('color', '');
-
-                                                            $U.disableInputs('#EventSection', true);
-                                                            $U.showProgress('Tworzenie...');
-                                                        },
-                                                        success: function (result) {
-                                                            $U.disableInputs('#EventSection', false);
-                                                            $U.hideProgress();
-                                                            Membership._hide(true);
-
-                                                            if (result.isSuccessful) {
-                                                                window.location.reload();
-                                                            }
-                                                            else {
-                                                                $('#EventMessage').text(result.errorMessage).css({ color: '#ff0000', display: 'block' });
-                                                            }
-                                                        }
-                                                    };
-
-                                                    $(form).ajaxSubmit(options);
-                                                    return false;
-                                                },
-                                                errorPlacement: onErrorPlacement,
-                                                highlight: onHighlight,
-                                                unhighlight: onUnhighlight
-                                            }
-                                        );
-    },
-    
-    dispose: function() {
-    },
-    
-    deleteAd: function(adId) {
-
-            function submit() {
-                var data = 'id=' + encodeURIComponent(adId);
-
-                $.ajax(
-                    {
-                        url: '/DeleteAd',
-                        type: 'POST',
-                        dataType: 'json',
-                        data: data,
-                        beforeSend: function() {
-                            $U.showProgress('Usuwanie reklamy');
-                        },
-                        success: function(result) {
-                            $U.hideProgress();
-
-                            if (result.isSuccessful) {
-                                window.location.reload();
-                            } else {
-                                $U.messageBox('Error', result.errorMessage, true);
-                            }
-                        }
-                    }
-                );
-            }
-
-            $U.confirm('Usunięcie reklamy?', 'Czy jesteś pewny, że chcesz usunać daną reklamę?', submit);
     },
 
-    deleteEvent: function (eventId) {
+    dispose: function () {
+    },
+
+    deleteAd: function (adId) {
 
         function submit() {
-            var data = 'id=' + encodeURIComponent(eventId);
+            var data = 'id=' + encodeURIComponent(adId);
 
             $.ajax(
                 {
-                    url: '/DeleteEvent',
+                    url: '/DeleteAd',
                     type: 'POST',
                     dataType: 'json',
                     data: data,
                     beforeSend: function () {
-                        $U.showProgress('Usuwanie wydarzenia');
+                        $U.showProgress('Usuwanie reklamy');
                     },
                     success: function (result) {
                         $U.hideProgress();
@@ -311,7 +203,7 @@
             );
         }
 
-        $U.confirm('Usunięcie wydarzenia?', 'Czy jesteś pewny, że chcesz usunać dane wydarzenie?', submit);
+        $U.confirm('Usunięcie reklamy?', 'Czy jesteś pewny, że chcesz usunać daną reklamę?', submit);
     },
 
     editAd: function (adId) {
@@ -339,8 +231,8 @@
 
                         $('span.error').hide();
                         $('span.message').hide();
-                        Moderation.showRecommendation();                        
-                        
+                        Moderation.showRecommendation();
+
                         $('#hidAdId').val(result.id);
                         $('#txtRecommendationLink').val(result.recommendationLink);
                         $('#txtRecommendationTitle').val(result.recommendationTitle);
@@ -357,49 +249,8 @@
             }
         );
     },
-    
-    
 
-    editEvent: function (eventId) {
-        var data = 'id=' + encodeURIComponent(eventId);
-
-        $U.disableInputs('#frmEvent', true);
-
-        $.ajax(
-            {
-                url: Moderation._editEventUrl,
-                type: 'POST',
-                dataType: 'json',
-                data: data,
-                beforeSend: function () {
-                    $U.showProgress('Wczytywanie wydarzenia...');
-                },
-                success: function (result) {
-                    $U.hideProgress();
-                    $U.disableInputs('#frmEvent', false);
-
-                    if (result.errorMessage) {
-                        $U.messageBox('Error', result.errorMessage, true);
-                    } else {
-                        $U.blockUI();
-
-                        $('span.error').hide();
-                        $('span.message').hide();
-                        Moderation.showEvent();
-
-                        $('#hidEventId').val(result.eventId);
-                        $('#txtEventLink').val(result.eventLink);
-                        $('#txtEventName').val(result.eventName);                        
-                        $('#txtEventDate').val(result.eventDate);
-                        $('#txtEventPlace').val(result.eventPlace);
-                        $('#txtEventLead').val(result.eventLead);                        
-                    }
-                }
-            }
-        );
-    },    
-
-    approveStory: function(storyId) {
+    approveStory: function (storyId) {
 
         function submit() {
             var data = 'id=' + encodeURIComponent(storyId);
@@ -410,14 +261,14 @@
                     type: 'POST',
                     dataType: 'json',
                     data: data,
-                    beforeSend: function() {
+                    beforeSend: function () {
                         $U.showProgress('Zatwierdzanie wpisu...');
                     },
-                    success: function(result) {
+                    success: function (result) {
                         $U.hideProgress();
 
                         if (result.isSuccessful) {
-                            $('#t-' + storyId).fadeOut('normal', function() { $(this).remove(); });
+                            $('#t-' + storyId).fadeOut('normal', function () { $(this).remove(); });
                         } else {
                             $U.messageBox('Error', result.errorMessage, true);
                         }
@@ -429,7 +280,7 @@
         $U.confirm('Zatwierdź artykuł?', 'Czy jesteś pewny, że chcesz zatwierdzić dany artykuł?', submit);
     },
 
-    deleteStory: function(storyId) {
+    deleteStory: function (storyId) {
 
         function submit() {
             var data = 'id=' + encodeURIComponent(storyId);
@@ -440,14 +291,14 @@
                     type: 'POST',
                     dataType: 'json',
                     data: data,
-                    beforeSend: function() {
+                    beforeSend: function () {
                         $U.showProgress('Usuwanie artykułu...');
                     },
-                    success: function(result) {
+                    success: function (result) {
                         $U.hideProgress();
 
                         if (result.isSuccessful) {
-                            $('#t-' + storyId).fadeOut('normal', function() { $(this).remove(); });
+                            $('#t-' + storyId).fadeOut('normal', function () { $(this).remove(); });
                         } else {
                             $U.messageBox('Error', result.errorMessage, true);
                         }
@@ -459,7 +310,7 @@
         $U.confirm('Usunięcie artykułu?', 'Czy jesteś pewny, że chcesz usunać dany artykuł?', submit);
     },
 
-    confirmSpamStory: function(storyId) {
+    confirmSpamStory: function (storyId) {
 
         function submit() {
             var data = 'id=' + encodeURIComponent(storyId);
@@ -470,14 +321,14 @@
                     type: 'POST',
                     dataType: 'json',
                     data: data,
-                    beforeSend: function() {
+                    beforeSend: function () {
                         $U.showProgress('Zatwierdzanie spamowego artykułu...');
                     },
-                    success: function(result) {
+                    success: function (result) {
                         $U.hideProgress();
 
                         if (result.isSuccessful) {
-                            $('#t-' + storyId).fadeOut('normal', function() { $(this).remove(); });
+                            $('#t-' + storyId).fadeOut('normal', function () { $(this).remove(); });
                         } else {
                             $U.messageBox('Error', result.errorMessage, true);
                         }
@@ -489,7 +340,7 @@
         $U.confirm('Oznacz jako spam?', 'Czy na pewno chcesz oznaczyć artykuł jako spam?', submit);
     },
 
-    generateMiniatureStory: function(storyId) {
+    generateMiniatureStory: function (storyId) {
 
         function submit() {
             var data = 'id=' + encodeURIComponent(storyId);
@@ -500,10 +351,10 @@
                     type: 'POST',
                     dataType: 'json',
                     data: data,
-                    beforeSend: function() {
+                    beforeSend: function () {
                         $U.showProgress('Generowanie miniatury');
                     },
-                    success: function(result) {
+                    success: function (result) {
                         $U.hideProgress();
 
                         if (result.isSuccessful) {
@@ -519,7 +370,7 @@
         $U.confirm('Generowanie miniaturki', 'Czy jesteś pewny, że chcesz pobrać miniaturkę?', submit);
     },
 
-    confirmSpamComment: function(storyId, commentId) {
+    confirmSpamComment: function (storyId, commentId) {
 
         function submit() {
             var data = {
@@ -533,14 +384,14 @@
                     type: 'POST',
                     dataType: 'json',
                     data: data,
-                    beforeSend: function() {
+                    beforeSend: function () {
                         $U.showProgress('Zatwierdzanie spamowego komentarza...');
                     },
-                    success: function(result) {
+                    success: function (result) {
                         $U.hideProgress();
 
                         if (result.isSuccessful) {
-                            $('#li-' + commentId).fadeOut('normal', function() { $(this).remove(); });
+                            $('#li-' + commentId).fadeOut('normal', function () { $(this).remove(); });
                         } else {
                             $U.messageBox('Error', result.errorMessage, true);
                         }
@@ -552,7 +403,7 @@
         $U.confirm('Zatwierdzić spamowy komentarz?', 'Jesteś pewien, że chcesz zatwierdzić komentarz jako spamowy?', submit);
     },
 
-    markCommentAsOffended: function(storyId, commentId) {
+    markCommentAsOffended: function (storyId, commentId) {
 
         function submit() {
             var data = {
@@ -566,10 +417,10 @@
                     type: 'POST',
                     dataType: 'json',
                     data: data,
-                    beforeSend: function() {
+                    beforeSend: function () {
                         $U.showProgress('Zaznaczanie jako obraźliwy...');
                     },
-                    success: function(result) {
+                    success: function (result) {
                         $U.hideProgress();
 
                         if (result.isSuccessful) {
@@ -585,32 +436,32 @@
         $U.confirm('Obraźliwy?', 'Jesteś pewien, że chcesz zaznaczyć komenatrz jako obraźliwy?', submit);
     },
 
-    _hide: function() {
+    _hide: function () {
         $U.disableInputs('#storyEditorBox', false);
         $U.hideProgress();
         Moderation._clearCenterMeTimer();
 
         $('#storyEditorBox').fadeOut('normal',
-            function() {
+            function () {
                 $U.unblockUI();
             }
         );
     },
 
-    _centerMe: function() {
+    _centerMe: function () {
         var e = $('#storyEditorBox');
 
         $U.center(e);
         Moderation._clearCenterMeTimer();
         Moderation._centerMeTimer = setInterval(
-            function() {
+            function () {
                 Moderation._centerMe();
             },
             2000
         );
     },
 
-    _clearCenterMeTimer: function() {
+    _clearCenterMeTimer: function () {
         if (Moderation._centerMeTimer != null) {
             clearInterval(Moderation._centerMeTimer);
             Moderation._centerMeTimer = null;
@@ -618,19 +469,11 @@
     },
 
     showRecommendation: function () {
-        $('input[name="EndTime"]').datepicker({ dateFormat: 'yy-mm-dd'}).val();
+        $('input[name="EndTime"]').datepicker({ dateFormat: 'yy-mm-dd' }).val();
         $('input[name="StartTime"]').datepicker({ dateFormat: 'yy-mm-dd' }).val();
         $('.contentContainer > div').hide();
         $('#RecommendationSection').show();
         Membership._show('#membershipBox');
         $U.focus('txtRecommendationLink');
     },
-    showEvent: function () {        
-        $('input[name="EventDate"]').datepicker({ dateFormat: 'yy-mm-dd' }).val();
-        $('.contentContainer > div').hide();
-        $('#EventSection').show();
-        Membership._show('#membershipBox');
-        $U.focus('txtEventLink');
-    },
 };
-    
