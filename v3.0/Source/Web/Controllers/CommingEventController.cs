@@ -37,6 +37,8 @@ namespace Kigg.Web
                 Id = x.Id.Shrink(),
                 EventPlace = x.EventPlace,
                 EventLead = x.EventLead,
+                Email = x.Email,
+                IsApproved = x.IsApproved,
             };
         }
 
@@ -103,8 +105,8 @@ namespace Kigg.Web
                                     model.EventName,
                                     model.EventDate,
                                     model.EventPlace,
-                                    model.EventLead,
-                                    false
+                                    model.EventLead,                                    
+                                    eventApproveStatus
                                     );
                             _commingEventRepository.Add(commingEvent);
 
@@ -124,8 +126,8 @@ namespace Kigg.Web
                                     model.EventName,
                                     model.EventDate,
                                     model.EventPlace,
-                                    model.EventLead,
-                                    true
+                                    model.EventLead,                                    
+                                    eventApproveStatus
                                     );
                                 _commingEventRepository.Add(commingEvent);
 
@@ -152,7 +154,8 @@ namespace Kigg.Web
                                         model.EventName.NullSafe(),
                                         model.EventDate,
                                         model.EventPlace,
-                                        model.EventLead
+                                        model.EventLead,                                        
+                                        eventApproveStatus
                                         );
 
                                     unitOfWork.Commit();
@@ -255,6 +258,7 @@ namespace Kigg.Web
                                             eventDate = commingEvent.EventDate.ToString("yyyy-MM-dd"),
                                             eventPlace = commingEvent.EventPlace,
                                             eventLead = commingEvent.EventLead,
+                                            eventUserEmail = commingEvent.Email,
                                             isApproved = commingEvent.IsApproved
                                         }
                                     );
