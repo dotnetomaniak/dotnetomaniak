@@ -87,6 +87,8 @@ namespace Kigg.Web
                 new Validation(() => string.IsNullOrEmpty(model.EventName.NullSafe()), "Nazwa wydarzenia nie może być pusta.")
                 );
 
+            var eventApproveStatus = string.IsNullOrWhiteSpace(model.IsApproved) == false;
+
             if (viewData == null)
             {
                 try
@@ -252,7 +254,8 @@ namespace Kigg.Web
                                             eventName = commingEvent.EventName,
                                             eventDate = commingEvent.EventDate.ToString("yyyy-MM-dd"),
                                             eventPlace = commingEvent.EventPlace,
-                                            eventLead = commingEvent.EventLead
+                                            eventLead = commingEvent.EventLead,
+                                            isApproved = commingEvent.IsApproved
                                         }
                                     );
                     }

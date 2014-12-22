@@ -8,7 +8,7 @@
     </div>
     <div class="commingEventsInvitationToInformAbout">
         Jeżeli macie informację o ciekawym wydarzeniu związanym ze światem .Netu, prosimy o podanie informacji poprzez
-        <a id="lnkAddEvent" href="javascript:void(0)" onclick="Moderation.showEvent()" style="">formularz</a>. Daj nam znać, a umieścimy informację na naszej stronie. W wiadomości prześlij
+        <a id="lnkAddEventUser" href="javascript:void(0)" onclick="Moderation.showEvent()" style="">formularz</a>. Daj nam znać, a umieścimy informację na naszej stronie. W wiadomości prześlij
         link do strony wydarzenia, oraz interesujące wg. Ciebie informacje. Inni dotNETomaniacy czekają na każde interesujące wydarzenie;)
     </div>
 </asp:Content>
