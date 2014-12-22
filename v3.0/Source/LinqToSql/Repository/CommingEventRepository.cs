@@ -54,7 +54,8 @@ namespace Kigg.LinqToSql.Repository
         }
 
 
-        public void EditEvent(ICommingEvent commingEvent, string eventUserEmail, string eventLink, string eventName, DateTime eventDate, string eventPlace, string eventLead)
+        public void EditEvent(ICommingEvent commingEvent, string eventUserEmail, string eventLink, string eventName, DateTime eventDate, string eventPlace,
+            string eventLead, bool isApproved)
         {
             Check.Argument.IsNotNull(commingEvent, "CommingEvent");
 
@@ -65,6 +66,8 @@ namespace Kigg.LinqToSql.Repository
             commingEvent.EventDate = eventDate;
             commingEvent.EventPlace = eventPlace;
             commingEvent.EventLead = eventLead;
+            commingEvent.Email = eventUserEmail;
+            commingEvent.IsApproved = isApproved;
         }
     }
 }

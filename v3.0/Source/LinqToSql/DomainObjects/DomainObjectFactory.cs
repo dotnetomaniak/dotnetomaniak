@@ -226,6 +226,7 @@ namespace Kigg.LinqToSql.DomainObjects
             EventPlace = eventPlace,
             EventLead = eventLead,
             CreatedAt = now,
+            Email = eventUserEmail,
             IsApproved = isApproved
         };
 
