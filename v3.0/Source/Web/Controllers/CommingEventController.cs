@@ -86,7 +86,8 @@ namespace Kigg.Web
 
             JsonViewData viewData = Validate<JsonViewData>(
                 new Validation(() => string.IsNullOrEmpty(model.EventLink.NullSafe()), "Link wydarzenia nie może być pusty."),
-                new Validation(() => string.IsNullOrEmpty(model.EventName.NullSafe()), "Nazwa wydarzenia nie może być pusta.")
+                new Validation(() => string.IsNullOrEmpty(model.EventName.NullSafe()), "Nazwa wydarzenia nie może być pusta."),
+                new Validation(() => !model.EventUserEmail.NullSafe().IsEmail(),  "Niepoprawny adres e-mail.")
                 );
 
             var eventApproveStatus = string.IsNullOrWhiteSpace(model.IsApproved) == false;
@@ -187,7 +188,7 @@ namespace Kigg.Web
             JsonViewData viewData = Validate<JsonViewData>(
                                                             new Validation(() => !CurrentUser.CanModerate(), "Nie masz praw do wołania tej metody."),
                                                             new Validation(() => string.IsNullOrEmpty(id), "Identyfikator reklamy nie może być pusty."),
-                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator reklamy."),
+                                                            new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator wydarzenia."),
                                                             new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteś zalogowany.")
                                                           );
 

@@ -303,6 +303,9 @@
                         <input name="IsApproved" type="hidden"/>                        
                     </div>
                     <div class="add-article-row">
+                        <span id="EventMessage" class="message"></span>
+                    </div>
+                    <div class="add-article-row">
                         <input id="btnSubmitEvent" type="submit" class="button" value="Sign up" />
                     </div>
                 </fieldset>
