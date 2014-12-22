@@ -56,17 +56,24 @@
                 CommingEvent.editEvent($(this).data('editEventId'));
             });
 
-        $('#lnkAddEvent').click(
+        $('#lnkAddEventUser').click(
             function () {
                 $('#hidEventId').val("");
-                CommingEvent.showEvent();
+                CommingEvent.showEvent(isAdmin=false);
+            }
+        );
+
+        $('#lnkAddEventAdmin').click(
+            function () {
+                $('#hidEventId').val("");
+                CommingEvent.showEvent(isAdmin = true);
             }
         );
 
         $('#frmEvent').validate(
                                             {
                                                 rules: {
-                                                    EventUserEmail:{
+                                                    EventUserEmail: {
                                                         required: true,
                                                     },
                                                     EventLink: {
@@ -184,7 +191,7 @@
 
                         $('span.error').hide();
                         $('span.message').hide();
-                        CommingEvent.showEvent();
+                        CommingEvent.showEvent(isAdmin=true);
 
                         $('#txtUserEmail').val(result.eventUserEmail);
                         $('#hidEventId').val(result.eventId);
@@ -193,13 +200,19 @@
                         $('#txtEventDate').val(result.eventDate);
                         $('#txtEventPlace').val(result.eventPlace);
                         $('#txtEventLead').val(result.eventLead);
+                        if (result.isApproved) {
+                            document.getElementById('isApprovedCheckBox').checked = true;
+                        }
                     }
                 }
             }
         );
     },
 
-    showEvent: function () {
+    showEvent: function (isAdmin) {
+        if (isAdmin != true) {
+            $('#isApprovedCheckbox').css('visibility', 'hidden');
+        }
         $('input[name="EventDate"]').datepicker({ dateFormat: 'yy-mm-dd' }).val();
         $('.contentContainer > div').hide();
         $('#EventSection').show();

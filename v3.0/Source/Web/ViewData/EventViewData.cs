@@ -14,5 +14,6 @@ namespace Kigg.Web.ViewData
         public string EventPlace { get; set; }
         public string EventLead { get; set; }
         public string EventUserEmail { get; set; }
+        public string IsApproved { get; set; }
     }
 }

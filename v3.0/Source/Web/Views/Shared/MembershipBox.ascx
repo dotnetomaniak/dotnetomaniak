@@ -291,9 +291,16 @@
                     </div>
                     <div class="add-article-row">
                         <label for="txtUserEmail" class="label">
-                            Email zgłaszającego:</label>
-                        <input id="txtUserEmail" name="EventUserEmail" type="text" class="textBox" />
+                            Email zgłaszającego:
+                        </label>
+                        <input id="txtUserEmail" name="EventUserEmail" type="text" class="textBox" value="true" />
                         <span class="error"></span>
+                    </div>
+                    <div id="isApprovedCheckbox" class="add-article-row" >
+                        <label for="IsApproved" class="label" class="textBox">
+                            Jest zatwierdzony:</label>
+                        <input id="isApprovedCheckBox" name="IsApproved" type="checkbox"/>
+                        <input name="IsApproved" type="hidden"/>                        
                     </div>
                     <div class="add-article-row">
                         <input id="btnSubmitEvent" type="submit" class="button" value="Sign up" />

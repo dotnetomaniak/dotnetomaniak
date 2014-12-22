@@ -7,7 +7,7 @@
         <%= Html.PageHeader("Lista wydarzeń:") %>
         
         <br />
-        <a id="lnkAddEvent" href="javascript:void(0)" style="">Dodaj wydarzenie</a>
+        <a id="lnkAddEventAdmin" href="javascript:void(0)" style="">Dodaj wydarzenie</a>
          <table id="adsTable">             
              <tr>                 
                  <th>Nazwa i Link</th>
