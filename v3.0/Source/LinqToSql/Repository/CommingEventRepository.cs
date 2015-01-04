@@ -42,9 +42,9 @@ namespace Kigg.LinqToSql.Repository
             return Database.CommingEventDataSource.OrderBy(r => r.EventDate);
         }
 
-        public IQueryable<ICommingEvent> GetAllComming()
+        public IQueryable<ICommingEvent> GetAllApproved()
         {
-            return Database.CommingEventDataSource.Where(x => x.EventDate.Date >= DateTime.Now.Date).OrderBy(x => x.EventDate);
+            return Database.CommingEventDataSource.Where(x => x.EventDate.Date >= DateTime.Now.Date && x.IsApproved).OrderBy(x => x.EventDate);
         }
 
         public ICommingEvent FindById(Guid id)
