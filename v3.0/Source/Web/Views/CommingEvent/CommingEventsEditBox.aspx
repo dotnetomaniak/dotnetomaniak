@@ -16,20 +16,23 @@
                  <th>Opis</th>
              </tr>
                  <% foreach (var commingEventViewData in Model.CommingEvents)
-                        { %>
-                                <tr <% if(commingEventViewData.IsEventTerminated()  ) %>>
+                        { %>                            
+                                <tr <% if (commingEventViewData.IsApproved != true){ %> style="background: lightgray" <% } %>>
                                     <td><a href="<%= commingEventViewData.EventLink %>"/><%= commingEventViewData.EventName %></a></td>
                                     <td><%= commingEventViewData.EventDate.ToShortDateString() %></td>
                                     <td><%= commingEventViewData.EventPlace %></td>
                                     <td><%= commingEventViewData.EventLead %></td>
                                 </tr>
-                                <tr>
+                                <tr <% if (commingEventViewData.IsApproved != true){ %> style="background: lightgray" <% } %>>
                                     <td>Akcje:</td>
                                     <td><a href="javascript:void(0);" data-edit-event-id="<%= commingEventViewData.Id %>">Edytuj</a></td>                                                                        
                                     <td><a href="javascript:void(0);" data-event-id="<%= commingEventViewData.Id %>">Usuń</a></td>
                                     <td></td>
                                 </tr>
-                     <% } %>
-          </table>        
+                     <% } %>                     
+          </table>
+        <div class="input-color" >
+                         <div class="color-box" style="background-color: lightgray; text-align: center;">Niezatwierdzone wydarzenie</div>
+                     </div>
     </div>
 </asp:Content>

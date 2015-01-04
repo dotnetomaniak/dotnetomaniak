@@ -44,7 +44,7 @@ namespace Kigg.Web
 
         public ViewResult CommingEventsBox()
         {
-            IQueryable<ICommingEvent> commingEvents = _commingEventRepository.GetAllComming().OrderBy(x => x.EventDate).Take(Settings.DefaultsNrOfEventsToDisplay);
+            IQueryable<ICommingEvent> commingEvents = _commingEventRepository.GetAllApproved().OrderBy(x => x.EventDate).Take(Settings.DefaultsNrOfEventsToDisplay);
             var viewModel = CreateViewData<CommingEventsViewData>();
             var data = commingEvents.ToList();
             
@@ -55,7 +55,7 @@ namespace Kigg.Web
 
         public ViewResult AllCommingEvent()
         {
-            IQueryable<ICommingEvent> commingEvents = _commingEventRepository.GetAllComming().OrderBy(x => x.EventDate);
+            IQueryable<ICommingEvent> commingEvents = _commingEventRepository.GetAllApproved().OrderBy(x => x.EventDate);
             var viewModel = CreateViewData<CommingEventsViewData>();
             var data = commingEvents.ToList();
 
@@ -98,9 +98,9 @@ namespace Kigg.Web
                 {
                     using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
                     {
-                        if (CurrentUser.CanModerate() != true)
+                        if (CurrentUser == null || CurrentUser.CanModerate() != true)
                         {
-                            ICommingEvent commingEvent = _factory.CreateCommingEvent(
+                            var commingEvent = _factory.CreateCommingEvent(
                                     model.EventUserEmail,
                                     model.EventLink,
                                     model.EventName,
@@ -121,7 +121,7 @@ namespace Kigg.Web
                         {
                             if (model.Id == null || model.Id.IsEmpty())
                             {
-                                ICommingEvent commingEvent = _factory.CreateCommingEvent(
+                                var commingEvent = _factory.CreateCommingEvent(
                                     model.EventUserEmail,
                                     model.EventLink,
                                     model.EventName,
