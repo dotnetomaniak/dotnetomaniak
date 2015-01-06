@@ -35,10 +35,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadPlaceHolder" runat="server" />
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContentPlaceHolder" runat="server">
     <%= Html.PageHeader("Dodaj nowy artykuł")%>
-    <p>
-        Wypełnij formularz, aby dodać artykuł</p>
+    
     <form id="frmStorySubmit" action="<%= Url.Action("Submit", "Story") %>" method="post">
     <fieldset>
+        <p>Wypełnij formularz, aby dodać artykuł</p>
         <div class="add-article-row">
             <label for="txtStoryUrl" class="label">
                 Url:</label>
