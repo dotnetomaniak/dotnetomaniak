@@ -1,12 +1,11 @@
 ﻿using Kigg.Repository;
 using Kigg.DomainObjects;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using Kigg.Core.DomainObjects;
+using Kigg.Service;
 using Kigg.Web.ViewData;
 using Kigg.Infrastructure;
 using UnitOfWork = Kigg.Infrastructure.UnitOfWork;
@@ -17,14 +16,17 @@ namespace Kigg.Web
     {
         private readonly IDomainObjectFactory _factory;
         private readonly ICommingEventRepository _commingEventRepository;
+        private readonly IEventAggregator _aggregator;
 
-        public CommingEventController(IDomainObjectFactory factory, ICommingEventRepository commingEventRepository)
+        public CommingEventController(IDomainObjectFactory factory, ICommingEventRepository commingEventRepository, IEventAggregator aggregator)
         {
             Check.Argument.IsNotNull(factory, "factory");
-            Check.Argument.IsNotNull(commingEventRepository, "commingEventRepository");            
+            Check.Argument.IsNotNull(commingEventRepository, "commingEventRepository");  
+            Check.Argument.IsNotNull(aggregator, "aggregator");
             
             _factory = factory;
             _commingEventRepository = commingEventRepository;
+            _aggregator = aggregator;
         }
 
         private static CommingEventViewData CreateCommingEventsViewData(ICommingEvent x)
@@ -110,8 +112,9 @@ namespace Kigg.Web
                                     eventApproveStatus
                                     );
                             _commingEventRepository.Add(commingEvent);
-
+                            
                             unitOfWork.Commit();
+                            _aggregator.GetEvent<UpcommingEventEvent>().Publish(new UpcommingEventEventArgs(model.EventName, model.EventLink));
 
                             Log.Info("Event registered: {0}", commingEvent.EventName);
 
@@ -131,9 +134,9 @@ namespace Kigg.Web
                                     eventApproveStatus
                                     );
                                 _commingEventRepository.Add(commingEvent);
-
+                                
                                 unitOfWork.Commit();
-
+                                _aggregator.GetEvent<UpcommingEventEvent>().Publish(new UpcommingEventEventArgs(model.EventName, model.EventLink));
                                 Log.Info("Event registered: {0}", commingEvent.EventName);
 
                                 viewData = new JsonViewData { isSuccessful = true };

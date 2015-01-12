@@ -212,6 +212,7 @@
     <Compile Include="Service\SystemEvents\StorySubmitEvent.cs" />
     <Compile Include="Service\SystemEvents\StoryUnmarkAsSpamEvent.cs" />
     <Compile Include="Service\SystemEvents\StoryViewEvent.cs" />
+    <Compile Include="Service\SystemEvents\UpcommingEventEvent.cs" />
     <Compile Include="Service\SystemEvents\UserActivateEvent.cs" />
     <Compile Include="Service\UserScoreTable.cs" />
     <Compile Include="Infrastructure\Http\StoryContent.cs" />
