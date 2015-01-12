@@ -6,6 +6,7 @@ namespace Kigg.Infrastructure
     {
         private SubscriptionToken _storySubmitToken;
         private SubscriptionToken _storyApproveToken;
+        private SubscriptionToken _upcommingEventToken;
         private readonly IHttpForm _httpForm;
         private readonly string _uniqueUrl;
 
@@ -24,6 +25,7 @@ namespace Kigg.Infrastructure
             {
                 _storySubmitToken = Subscribe<StorySubmitEvent, StorySubmitEventArgs>(StorySubmitted);
                 _storyApproveToken = Subscribe<StoryApproveEvent, StoryApproveEventArgs>(StoryApproved);
+                _upcommingEventToken = Subscribe<UpcommingEventEvent, UpcommingEventEventArgs>(EventAdded);
             }
         }
 
@@ -33,22 +35,31 @@ namespace Kigg.Infrastructure
             {
                 Unsubscribe<StorySubmitEvent>(_storySubmitToken);
                 Unsubscribe<StoryApproveEvent>(_storyApproveToken);
+                Unsubscribe<UpcommingEventEvent>(_upcommingEventToken);
             }
+        }
+
+        internal void EventAdded(UpcommingEventEventArgs eventArgs)
+        {
+            string content = "Dodano wydarzenie - <{0}|{1}>".FormatWith(eventArgs.EventName, eventArgs.EventLink);
+            SendSlackNotification(content);
         }
 
         internal void StorySubmitted(StorySubmitEventArgs eventArgs)
         {
-            SendSlackNotification(eventArgs.Story.Title, eventArgs.DetailUrl);
+            string content = "Dodano artykuł - <{0}|{1}>".FormatWith(eventArgs.Story.Title, eventArgs.DetailUrl);
+            SendSlackNotification(content);
         }
 
         internal void StoryApproved(StoryApproveEventArgs eventArgs)
         {
-            SendSlackNotification(eventArgs.Story.Title, eventArgs.DetailUrl);
+            string content = "Dodano artykuł - <{0}|{1}>".FormatWith(eventArgs.Story.Title, eventArgs.DetailUrl);
+            SendSlackNotification(content);
         }
 
-        private void SendSlackNotification(string title, string url)
+        private void SendSlackNotification(string content)
         {
-            string content = "Dodano artykuł - <{0}|{1}>".FormatWith(url, title);
+            
             _httpForm.Post(new HttpFormPostRawRequest
                 {
                     Url = _uniqueUrl,
