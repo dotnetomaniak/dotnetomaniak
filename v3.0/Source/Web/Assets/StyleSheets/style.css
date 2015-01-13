@@ -26,6 +26,11 @@ a, a:visited {text-decoration: none; color: #1775b3;}
 a:hover {text-decoration: underline;}
 .tabs-contents .pageMessage {margin-top: 10px; display: block;}
 
+.pageMessage {
+    display: inline-block;
+    width: 100%;
+}
+
 .clearfix {clear: both;}
 
 #container {
