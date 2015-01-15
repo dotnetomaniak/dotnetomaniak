@@ -41,19 +41,19 @@ namespace Kigg.Infrastructure
 
         internal void EventAdded(UpcommingEventEventArgs eventArgs)
         {
-            string content = "Dodano wydarzenie - <{0}|{1}>".FormatWith(eventArgs.EventName, eventArgs.EventLink);
+            string content = "Dodano wydarzenie - <{1}|{0}>".FormatWith(eventArgs.EventName, eventArgs.EventLink);
             SendSlackNotification(content);
         }
 
         internal void StorySubmitted(StorySubmitEventArgs eventArgs)
         {
-            string content = "Dodano artykuł - <{0}|{1}>".FormatWith(eventArgs.Story.Title, eventArgs.DetailUrl);
+            string content = "Dodano artykuł - <{1}|{0}>".FormatWith(eventArgs.Story.Title, eventArgs.DetailUrl);
             SendSlackNotification(content);
         }
 
         internal void StoryApproved(StoryApproveEventArgs eventArgs)
         {
-            string content = "Dodano artykuł - <{0}|{1}>".FormatWith(eventArgs.Story.Title, eventArgs.DetailUrl);
+            string content = "Dodano artykuł - <{1}|{0}>".FormatWith(eventArgs.Story.Title, eventArgs.DetailUrl);
             SendSlackNotification(content);
         }
 
