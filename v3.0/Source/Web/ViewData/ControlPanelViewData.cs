@@ -31,5 +31,11 @@ namespace Kigg.Web
             get;
             set;
         }
+
+        public int UnapprovedEventsCount
+        {
+            get; 
+            set;
+        }
     }
 }

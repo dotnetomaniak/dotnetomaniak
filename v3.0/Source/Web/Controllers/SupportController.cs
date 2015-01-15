@@ -12,15 +12,18 @@ namespace Kigg.Web
     public class SupportController : BaseController
     {
         private readonly IEmailSender _emailSender;
+        private readonly ICommingEventRepository _upcommingEventsReposiotory;
         private readonly IStoryRepository _storyRepository;
 
-        public SupportController(IStoryRepository storyRepository, IEmailSender emailSender)
+        public SupportController(IStoryRepository storyRepository, IEmailSender emailSender, ICommingEventRepository upcommingEventsReposiotory)
         {
             Check.Argument.IsNotNull(storyRepository, "storyRepository");
             Check.Argument.IsNotNull(emailSender, "emailSender");
+            Check.Argument.IsNotNull(upcommingEventsReposiotory, "upcommingEventsRepository");
 
             _storyRepository = storyRepository;
             _emailSender = emailSender;
+            _upcommingEventsReposiotory = upcommingEventsReposiotory;
         }
 
         [Compress]
@@ -125,6 +128,7 @@ namespace Kigg.Web
                 DateTime maximumDate = currentTime.AddHours(-Settings.MinimumAgeOfStoryInHoursToPublish);
 
                 viewData.PublishableCount = _storyRepository.CountByPublishable(minimumDate, maximumDate);
+                viewData.UnapprovedEventsCount = _upcommingEventsReposiotory.CountByUnapproved();
             }
 
             return View(viewData);

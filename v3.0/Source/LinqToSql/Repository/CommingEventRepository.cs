@@ -69,5 +69,10 @@ namespace Kigg.LinqToSql.Repository
             commingEvent.Email = eventUserEmail;
             commingEvent.IsApproved = isApproved;
         }
+
+        public int CountByUnapproved()
+        {
+            return Database.CommingEventDataSource.Count(x => x.IsApproved == false);
+        }
     }
 }
