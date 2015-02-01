@@ -285,8 +285,7 @@
                     <div class="add-article-row">
                         <label for="txtEventLead" class="label">
                             Opis wydarzenia:</label>
-                        <textarea id="txtEventLead" name="EventLead" cols="40" rows="5" maxlength="500" class="largeTextArea" style="width: 334px !important;"
-                            form="frmEvent" >Brak opisu</textarea>                        
+                        <textarea id="txtEventLead" name="EventLead" cols="40" rows="5" maxlength="500" class="largeTextArea" style="width: 334px !important;">Brak opisu</textarea>                        
                         <span class="error"></span>
                     </div>
                     <div class="add-article-row">
@@ -296,12 +295,16 @@
                         <input id="txtUserEmail" name="EventUserEmail" type="text" class="textBox" value="true" />
                         <span class="error"></span>
                     </div>
+                    <% if (Model.IsCurrentUserAuthenticated && Model.CurrentUser != null &&
+                           Model.CurrentUser.IsAdministrator())
+                       { %>
                     <div id="isApprovedCheckbox" class="add-article-row" >
                         <label for="IsApproved" class="label" class="textBox">
                             Jest zatwierdzony:</label>
-                        <input id="isApprovedCheckBox" name="IsApproved" type="checkbox"/>
-                        <input name="IsApproved" type="hidden"/>                        
+                        <%--<input id="isApprovedCheckBox" name="IsApproved" type="checkbox"/>  --%>     
+                        <%= Html.CheckBox("IsApproved") %>               
                     </div>
+                    <% } %>
                     <div class="add-article-row">
                         <span id="EventMessage" class="message"></span>
                     </div>

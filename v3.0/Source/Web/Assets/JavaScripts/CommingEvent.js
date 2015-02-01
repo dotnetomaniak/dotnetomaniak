@@ -59,78 +59,84 @@
         $('#lnkAddEventUser').click(
             function () {
                 $('#hidEventId').val("");
-                CommingEvent.showEvent(isAdmin=false);
+                CommingEvent.showEvent();
             }
         );
 
         $('#lnkAddEventAdmin').click(
             function () {
                 $('#hidEventId').val("");
-                CommingEvent.showEvent(isAdmin = true);
+                CommingEvent.showEvent();
             }
         );
 
         $('#frmEvent').validate(
-                                            {
-                                                rules: {
-                                                    EventUserEmail: {
-                                                        required: true,
-                                                    },
-                                                    EventLink: {
-                                                        required: true,
-                                                    },
-                                                    EventName: {
-                                                        required: true,
-                                                    },
-                                                    EventDate: {
-                                                        required: true,
-                                                    }
-                                                },
-                                                messages: {
-                                                    EventLink: {
-                                                        required: 'Email użytkkownia nie może być pusty.',
-                                                    },
-                                                    EventLink: {
-                                                        required: 'Link wydarzenia nie może być pusty.',
-                                                    },
-                                                    EventName: {
-                                                        required: 'Nazwa wydarzenia nie może być pusta.',
-                                                    },
-                                                    EventDate: {
-                                                        required: 'Data wydarzenia jest wymagana.',
-                                                    }
-                                                },
-                                                submitHandler: function (form) {
-                                                    var options = {
-                                                        dataType: 'json',
-                                                        beforeSubmit: function () {
-                                                            $('#EventMessage').hide().text('Tworzenie...').css('color', '');
+            {
+                rules: {
+                    EventUserEmail: {
+                        required: true,
+                    },
+                    EventLink: {
+                        required: true,
+                    },
+                    EventName: {
+                        required: true,
+                    },
+                    EventDate: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    EventUserEmail: {
+                        required: 'Email użytkownika nie może być pusty.',
+                    },
+                    EventLink: {
+                        required: 'Link wydarzenia nie może być pusty.',
+                    },
+                    EventName: {
+                        required: 'Nazwa wydarzenia nie może być pusta.',
+                    },
+                    EventDate: {
+                        required: 'Data wydarzenia jest wymagana.',
+                    }
+                },
+                submitHandler: function (form) {
+                    var options = {
+                        dataType: 'json',
+                        beforeSubmit: function () {
 
-                                                            $U.disableInputs('#EventSection', true);
-                                                            $U.showProgress('Tworzenie...');
-                                                        },
-                                                        success: function (result) {
-                                                            $U.disableInputs('#EventSection', false);
-                                                            $U.hideProgress();
-                                                            Membership._hide(true);
+                            var action = $(form).attr('action');
+                            var id = $(form).find('#hidEventId').val();
+                            action = (id !== '' ? action.replace('Add', 'Edit') : action.replace('Edit', 'Add'));
+                            $(form).attr('action', action);
+                            
+                            $('#EventMessage').hide().text('Tworzenie...').css('color', '');
 
-                                                            if (result.isSuccessful) {
-                                                                window.location.reload();
-                                                            }
-                                                            else {
-                                                                $('#EventMessage').text(result.errorMessage).css({ color: '#ff0000', display: 'block' });
-                                                            }
-                                                        }
-                                                    };
+                            $U.disableInputs('#EventSection', true);
+                            $U.showProgress('Tworzenie...');
+                        },
+                        success: function (result) {
+                            $U.disableInputs('#EventSection', false);
+                            $U.hideProgress();
+                            Membership._hide(true);
 
-                                                    $(form).ajaxSubmit(options);
-                                                    return false;
-                                                },
-                                                errorPlacement: onErrorPlacement,
-                                                highlight: onHighlight,
-                                                unhighlight: onUnhighlight
-                                            }
-                                        );
+                            if (result.isSuccessful) {
+                                window.location.reload();
+                            }
+                            else {
+                                $('#EventMessage').text(result.errorMessage).css({ color: '#ff0000', display: 'block' });
+                            }
+                        }
+                    };
+
+                    $(form).ajaxSubmit(options);
+                    return false;
+                },
+                errorPlacement: onErrorPlacement,
+                highlight: onHighlight,
+                unhighlight: onUnhighlight
+            }
+        );
     },
 
     dispose: function () {
@@ -191,7 +197,7 @@
 
                         $('span.error').hide();
                         $('span.message').hide();
-                        CommingEvent.showEvent(isAdmin=true);
+                        CommingEvent.showEvent();
 
                         $('#txtUserEmail').val(result.eventUserEmail);
                         $('#hidEventId').val(result.eventId);
@@ -200,8 +206,9 @@
                         $('#txtEventDate').val(result.eventDate);
                         $('#txtEventPlace').val(result.eventPlace);
                         $('#txtEventLead').val(result.eventLead);
+                        
                         if (result.isApproved) {
-                            document.getElementById('isApprovedCheckBox').checked = true;
+                            $('#IsApproved').attr('checked', true);
                         }
                     }
                 }
@@ -209,10 +216,7 @@
         );
     },
 
-    showEvent: function (isAdmin) {
-        if (isAdmin != true) {
-            $('#isApprovedCheckbox').css('visibility', 'hidden');
-        }
+    showEvent: function () {
         $('input[name="EventDate"]').datepicker({ dateFormat: 'yy-mm-dd' }).val();
         $('.contentContainer > div').hide();
         $('#EventSection').show();

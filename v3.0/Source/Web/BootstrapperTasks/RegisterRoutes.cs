@@ -77,6 +77,7 @@ namespace Kigg.Web
             _routes.MapRoute("EventsBox", "EventsBox", new { controller = "CommingEvent", action = "EventsBox" });
             _routes.MapRoute("AllCommingEvent", "AllCommingEvent", new { controller = "CommingEvent", action = "AllCommingEvent" });
             _routes.MapRoute("GetEvent", "GetEvent", new { controller = "CommingEvent", action = "GetEvent" });
+            _routes.MapRoute("AddEvent", "AddEvent", new { controller = "CommingEvent", action = "AddEvent"});
             _routes.MapRoute("EditEvent", "EditEvent", new { controller = "CommingEvent", action = "EditEvent" });
             _routes.MapRoute("DeleteEvent", "DeleteEvent", new { controller = "CommingEvent", action = "DeleteEvent" });
             _routes.MapRoute("CommingEventsEditBox", "CommingEventsEditBox", new { controller = "CommingEvent", action = "CommingEventsEditBox" });
