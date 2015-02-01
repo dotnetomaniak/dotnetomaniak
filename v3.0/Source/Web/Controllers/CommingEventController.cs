@@ -31,7 +31,7 @@ namespace Kigg.Web
 
         private static CommingEventViewData CreateCommingEventsViewData(ICommingEvent x)
         {
-            return new CommingEventViewData()
+            return new CommingEventViewData
             {
                 EventLink = x.EventLink,
                 EventName = x.EventName,
@@ -40,7 +40,7 @@ namespace Kigg.Web
                 EventPlace = x.EventPlace,
                 EventLead = x.EventLead,
                 Email = x.Email,
-                IsApproved = x.IsApproved,
+                IsApproved = x.IsApproved.GetValueOrDefault(),
             };
         }
 
