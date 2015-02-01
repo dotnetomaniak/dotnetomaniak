@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using Kigg.Core.DomainObjects;
-using Kigg.Infrastructure;
 using Kigg.LinqToSql.DomainObjects;
 using Kigg.Repository;
 
@@ -44,7 +43,9 @@ namespace Kigg.LinqToSql.Repository
 
         public IQueryable<ICommingEvent> GetAllApproved()
         {
-            return Database.CommingEventDataSource.Where(x => x.EventDate.Date >= DateTime.Now.Date && x.IsApproved).OrderBy(x => x.EventDate);
+            return Database.CommingEventDataSource
+                .Where(x => x.EventDate.Date >= DateTime.Now.Date && x.IsApproved.GetValueOrDefault())
+                .OrderBy(x => x.EventDate);
         }
 
         public ICommingEvent FindById(Guid id)

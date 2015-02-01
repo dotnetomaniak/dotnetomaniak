@@ -18,6 +18,7 @@ namespace Kigg.Web.Test
         private readonly Mock<IEmailSender> _emailSender;
         private readonly Mock<IUserRepository> _userRepository;
         private readonly Mock<IStoryRepository> _storyRepository;
+        private readonly Mock<ICommingEventRepository> _upcommingEventRepository; 
 
         private readonly HttpContextMock _httpContext;
         private readonly SupportController _controller;
@@ -27,8 +28,9 @@ namespace Kigg.Web.Test
             _emailSender = new Mock<IEmailSender>();
             _storyRepository = new Mock<IStoryRepository>();
             _userRepository = new Mock<IUserRepository>();
+            _upcommingEventRepository = new Mock<ICommingEventRepository>();
 
-            _controller = new SupportController(_storyRepository.Object, _emailSender.Object)
+            _controller = new SupportController(_storyRepository.Object, _emailSender.Object, _upcommingEventRepository.Object)
                               {
                                   Settings = settings.Object,
                                   UserRepository = _userRepository.Object,

@@ -1,8 +1,5 @@
 ﻿using Kigg.DomainObjects;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Kigg.Core.DomainObjects
 {
@@ -26,12 +23,6 @@ namespace Kigg.Core.DomainObjects
             set;
         }
 
-        DateTime CreatedAt
-        {
-            get;
-            set;
-        }
-
         string EventPlace
         {
             get;
@@ -50,7 +41,7 @@ namespace Kigg.Core.DomainObjects
             set;
         }
 
-        bool IsApproved
+        bool? IsApproved
         {
             get;
             set;
