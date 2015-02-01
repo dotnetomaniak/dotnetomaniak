@@ -1,10 +1,10 @@
-<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Kigg.Web.ViewData.CommingEventsViewData>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Kigg.Web.ViewData.CommingEventsViewData>" %>
 <%@ OutputCache Duration="86400" VaryByParam="None" %>
 <!-- doba -->
 
 <div class="pageHeader">
     <div class="pageTitle">
-        <h2>Nadchodz�ce wydarzenia</h2>
+        <h2>Nadchodzące wydarzenia</h2>
     </div>
 </div>
 <div class="commingEventsList">

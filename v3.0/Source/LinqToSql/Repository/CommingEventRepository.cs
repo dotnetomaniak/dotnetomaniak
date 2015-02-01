@@ -44,7 +44,7 @@ namespace Kigg.LinqToSql.Repository
         public IQueryable<ICommingEvent> GetAllApproved()
         {
             return Database.CommingEventDataSource
-                .Where(x => x.EventDate.Date >= DateTime.Now.Date && x.IsApproved.GetValueOrDefault())
+                .Where(x => x.IsApproved.GetValueOrDefault())
                 .OrderBy(x => x.EventDate);
         }
 

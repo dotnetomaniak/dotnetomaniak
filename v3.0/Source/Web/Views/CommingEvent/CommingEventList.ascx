@@ -3,8 +3,8 @@
 
 <% bool isOdd = true; %>
 <div class="commingEventsList">
-    <% foreach (var commingEventsInMonth in Model.CommingEvents.ToList().OrderBy(x => x.EventDate).GroupBy(x => x.EventDate.Month))
-       { %>    
+    <% foreach (var commingEventsInMonth in Model.CommingEvents.OrderBy(x => x.EventDate).GroupBy(x => x.EventDate.Month))
+       {  %>    
     <div class="commingEventsMonth" style="border-bottom:dotted; border-bottom-color:lightgray; border-bottom-width:thin;">
             <h2><%= commingEventsInMonth.FirstOrDefault().EventDate.ToString("MMMM") %></h2>
         </div>

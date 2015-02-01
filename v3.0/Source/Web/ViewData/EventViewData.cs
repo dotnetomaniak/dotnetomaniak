@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Kigg.Web.ViewData
 {
@@ -14,6 +11,6 @@ namespace Kigg.Web.ViewData
         public string EventPlace { get; set; }
         public string EventLead { get; set; }
         public string EventUserEmail { get; set; }
-        public string IsApproved { get; set; }
+        public bool IsApproved { get; set; }
     }
 }

@@ -21,9 +21,9 @@ namespace Kigg.Web
         public CommingEventController(IDomainObjectFactory factory, ICommingEventRepository commingEventRepository, IEventAggregator aggregator)
         {
             Check.Argument.IsNotNull(factory, "factory");
-            Check.Argument.IsNotNull(commingEventRepository, "commingEventRepository");  
+            Check.Argument.IsNotNull(commingEventRepository, "commingEventRepository");
             Check.Argument.IsNotNull(aggregator, "aggregator");
-            
+
             _factory = factory;
             _commingEventRepository = commingEventRepository;
             _aggregator = aggregator;
@@ -46,22 +46,25 @@ namespace Kigg.Web
 
         public ViewResult CommingEventsBox()
         {
-            IQueryable<ICommingEvent> commingEvents = _commingEventRepository.GetAllApproved().OrderBy(x => x.EventDate).Take(Settings.DefaultsNrOfEventsToDisplay);
+            IQueryable<ICommingEvent> commingEvents = _commingEventRepository
+                .GetAllApproved().Where(x=>x.EventDate.Date > DateTime.Now.Date)
+                .OrderBy(x => x.EventDate)
+                .Take(Settings.DefaultsNrOfEventsToDisplay);
+
             var viewModel = CreateViewData<CommingEventsViewData>();
-            var data = commingEvents.ToList();
-            
-            viewModel.CommingEvents = commingEvents.Select(x => CreateCommingEventsViewData(x));            
-            
+
+            viewModel.CommingEvents = commingEvents.ToList().Select(CreateCommingEventsViewData).AsQueryable();
+
             return View(viewModel);
         }
 
         public ViewResult AllCommingEvent()
         {
-            IQueryable<ICommingEvent> commingEvents = _commingEventRepository.GetAllApproved().OrderBy(x => x.EventDate);
+            IQueryable<ICommingEvent> commingEvents = _commingEventRepository.GetAllApproved()
+                .Where(x => x.EventDate.Date > DateTime.Now.Date).OrderBy(x => x.EventDate);
             var viewModel = CreateViewData<CommingEventsViewData>();
-            var data = commingEvents.ToList();
 
-            viewModel.CommingEvents = commingEvents.Select(x => CreateCommingEventsViewData(x));            
+            viewModel.CommingEvents = commingEvents.ToList().Select(CreateCommingEventsViewData).AsQueryable();
 
             return View(viewModel);
         }
@@ -72,13 +75,64 @@ namespace Kigg.Web
             if (IsCurrentUserAuthenticated && CurrentUser.IsAdministrator())
             {
                 IQueryable<ICommingEvent> commingEvents = _commingEventRepository.GetAll();
-                viewModel.CommingEvents = commingEvents.OrderByDescending(x => x.EventDate).Select(x => CreateCommingEventsViewData(x));
+                viewModel.CommingEvents = commingEvents.OrderByDescending(x => x.EventDate)
+                                                       .Select(x => CreateCommingEventsViewData(x));
             }
             else
             {
                 ThrowNotFound("Nie ma takiej strony");
             }
             return View(viewModel);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post), Compress]
+        public ActionResult AddEvent(EventViewData model)
+        {
+            JsonViewData viewData = Validate<JsonViewData>(
+                new Validation(() => string.IsNullOrWhiteSpace(model.EventLink.NullSafe()), "Link do wydarzenia nie może być pusty."),
+                new Validation(() => string.IsNullOrWhiteSpace(model.EventName.NullSafe()), "Tytuł wydarzenia nie może być pusty."),
+                new Validation(() => model.EventUserEmail.NullSafe().IsEmail() == false, "Nieprawidłowy adres e-mail."),
+                new Validation(() => model.Id.ToGuid() != Guid.Empty, "Id wydarzenia nie może być podane")
+                );
+            if (viewData == null)
+            {
+                try
+                {
+
+                    var eventApproveStatus = CurrentUser != null && CurrentUser.IsAdministrator() &&
+                                             model.IsApproved;
+
+                    using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
+                    {
+                        var commingEvent = _factory.CreateCommingEvent(
+                                    model.EventUserEmail,
+                                    model.EventLink,
+                                    model.EventName,
+                                    model.EventDate,
+                                    model.EventPlace,
+                                    model.EventLead,
+                                    eventApproveStatus
+                                    );
+                        _commingEventRepository.Add(commingEvent);
+
+                        unitOfWork.Commit();
+                        _aggregator.GetEvent<UpcommingEventEvent>()
+                                   .Publish(new UpcommingEventEventArgs(model.EventName, model.EventLink));
+                        Log.Info("Event registered: {0}", commingEvent.EventName);
+
+                        viewData = new JsonViewData { isSuccessful = true };
+                    }
+                }
+                catch (Exception e)
+                {
+                    Log.Exception(e);
+                    viewData = new JsonViewData
+                        {
+                            errorMessage = FormatStrings.UnknownError.FormatWith("dodawania wydarzenia")
+                        };
+                }
+            }
+            return Json(viewData);
         }
 
         [AcceptVerbs(HttpVerbs.Post), ValidateInput(false), Compress]
@@ -88,11 +142,11 @@ namespace Kigg.Web
 
             JsonViewData viewData = Validate<JsonViewData>(
                 new Validation(() => string.IsNullOrEmpty(model.EventLink.NullSafe()), "Link wydarzenia nie może być pusty."),
-                new Validation(() => string.IsNullOrEmpty(model.EventName.NullSafe()), "Nazwa wydarzenia nie może być pusta."),
-                new Validation(() => !model.EventUserEmail.NullSafe().IsEmail(),  "Niepoprawny adres e-mail.")
+                new Validation(() => string.IsNullOrEmpty(model.EventName.NullSafe()), "Tytuł wydarzenia nie może być pusty."),
+                new Validation(() => !model.EventUserEmail.NullSafe().IsEmail(), "Niepoprawny adres e-mail."),
+                new Validation(()=> CurrentUser.IsAdministrator() == false, "Nie możesz edutować tego wydarzenia."),
+                new Validation(()=>model.Id.NullSafe().ToGuid().IsEmpty(), "Nieprawidłowy identyfikator wydarzenia.")
                 );
-
-            var eventApproveStatus = string.IsNullOrWhiteSpace(model.IsApproved) == false;
 
             if (viewData == null)
             {
@@ -100,84 +154,36 @@ namespace Kigg.Web
                 {
                     using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
                     {
-                        if (CurrentUser == null || CurrentUser.CanModerate() != true)
+                        ICommingEvent commingEvent = _commingEventRepository.FindById(model.Id.ToGuid());
+                        var eventApproveStatus = CurrentUser.IsAdministrator() &&
+                                     model.IsApproved;
+                        if (commingEvent == null)
                         {
-                            var commingEvent = _factory.CreateCommingEvent(
-                                    model.EventUserEmail,
-                                    model.EventLink,
-                                    model.EventName,
-                                    model.EventDate,
-                                    model.EventPlace,
-                                    model.EventLead,                                    
-                                    eventApproveStatus
-                                    );
-                            _commingEventRepository.Add(commingEvent);
-                            
-                            unitOfWork.Commit();
-                            _aggregator.GetEvent<UpcommingEventEvent>().Publish(new UpcommingEventEventArgs(model.EventName, model.EventLink));
-
-                            Log.Info("Event registered: {0}", commingEvent.EventName);
-
-                            viewData = new JsonViewData { isSuccessful = true };
+                            viewData = new JsonViewData { errorMessage = "Podane wydarzenie nie istnieje." };
                         }
                         else
                         {
-                            if (model.Id == null || model.Id.IsEmpty())
-                            {
-                                var commingEvent = _factory.CreateCommingEvent(
-                                    model.EventUserEmail,
-                                    model.EventLink,
-                                    model.EventName,
-                                    model.EventDate,
-                                    model.EventPlace,
-                                    model.EventLead,                                    
-                                    eventApproveStatus
-                                    );
-                                _commingEventRepository.Add(commingEvent);
-                                
-                                unitOfWork.Commit();
-                                _aggregator.GetEvent<UpcommingEventEvent>().Publish(new UpcommingEventEventArgs(model.EventName, model.EventLink));
-                                Log.Info("Event registered: {0}", commingEvent.EventName);
+                            _commingEventRepository.EditEvent(
+                                commingEvent,
+                                model.EventUserEmail.NullSafe(),
+                                model.EventLink.NullSafe(),
+                                model.EventName.NullSafe(),
+                                model.EventDate,
+                                model.EventPlace,
+                                model.EventLead,
+                                eventApproveStatus
+                                );
 
-                                viewData = new JsonViewData { isSuccessful = true };
-                            }
-                            else
-                            {
-                                ICommingEvent commingEvent = _commingEventRepository.FindById(model.Id.ToGuid());
+                            unitOfWork.Commit();
 
-                                if (commingEvent == null)
-                                {
-                                    viewData = new JsonViewData { errorMessage = "Podane wydarzenie nie istnieje." };
-                                }
-                                else
-                                {
-                                    _commingEventRepository.EditEvent(
-                                        commingEvent,
-                                        model.EventUserEmail.NullSafe(),
-                                        model.EventLink.NullSafe(),
-                                        model.EventName.NullSafe(),
-                                        model.EventDate,
-                                        model.EventPlace,
-                                        model.EventLead,                                        
-                                        eventApproveStatus
-                                        );
-
-                                    unitOfWork.Commit();
-
-                                    viewData = new JsonViewData { isSuccessful = true };
-                                }
-                            }
+                            viewData = new JsonViewData { isSuccessful = true };
                         }
                     }
                 }
-                catch (ArgumentException argument)
-                {
-                    viewData = new JsonViewData { errorMessage = argument.Message };
-                }                
                 catch (Exception e)
                 {
                     Log.Exception(e);
-                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("") };
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("edycji wydarzenia.") };
                 }
             }
             return Json(viewData);
