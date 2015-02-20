@@ -47,7 +47,7 @@ namespace Kigg.Web
         public ViewResult CommingEventsBox()
         {
             IQueryable<ICommingEvent> commingEvents = _commingEventRepository
-                .GetAllApproved().Where(x=>x.EventDate.Date > DateTime.Now.Date)
+                .GetAllApproved().Where(x=>x.EventDate.Date >= DateTime.Now.Date)
                 .OrderBy(x => x.EventDate)
                 .Take(Settings.DefaultsNrOfEventsToDisplay);
 
