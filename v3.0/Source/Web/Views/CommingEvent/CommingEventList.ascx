@@ -10,9 +10,8 @@
         </div>
 <% foreach(var commingEvent in commingEventsInMonth)
    { %>
-    <% string className = (isOdd) ? "odd" : "even"; %>
-    <div <% if(!isOdd) { %> style="height:110px; padding-top:0px; border-color:transparent; background:center; background-color:#F6F6F6;" <% 
-    }else{ %> style="height:110px; padding-top:0px; border-color:transparent; background:center;" <% } %> >
+    <% string styles = "min-height:110px; padding-top:0px; border-color:transparent; background:center; margin-bottom: 15px;"; %>
+    <div style='<%= styles %><% if(!isOdd) { %> "background-color:#F6F6F6;" <% }%>' >
         
         <div class="commingEventDay"><%= commingEvent.EventDate.ToString("dd") %>.</div>
         <div class="commingEventBody">                            
