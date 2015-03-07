@@ -197,10 +197,11 @@
 
                         $('span.error').hide();
                         $('span.message').hide();
+
+                        $('#hidEventId').val(result.eventId);
                         CommingEvent.showEvent();
 
                         $('#txtUserEmail').val(result.eventUserEmail);
-                        $('#hidEventId').val(result.eventId);
                         $('#txtEventLink').val(result.eventLink);
                         $('#txtEventName').val(result.eventName);
                         $('#txtEventDate').val(result.eventDate);
@@ -219,6 +220,11 @@
     showEvent: function () {
         $('input[name="EventDate"]').datepicker({ dateFormat: 'yy-mm-dd' }).val();
         $('.contentContainer > div').hide();
+        if ($('#hidEventId').val() !== '') {
+            $('#EventSection h5').text('Edycja wydarzenia');
+        } else {
+            $('#EventSection h5').text('Dodaj nowe wydarzenie');
+        }
         $('#EventSection').show();
         Membership._show('#membershipBox');
         $U.focus('txtEventLink');
