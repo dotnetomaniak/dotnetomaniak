@@ -144,7 +144,7 @@ namespace Kigg.Web
                 new Validation(() => string.IsNullOrEmpty(model.EventLink.NullSafe()), "Link wydarzenia nie może być pusty."),
                 new Validation(() => string.IsNullOrEmpty(model.EventName.NullSafe()), "Tytuł wydarzenia nie może być pusty."),
                 new Validation(() => !model.EventUserEmail.NullSafe().IsEmail(), "Niepoprawny adres e-mail."),
-                new Validation(()=> CurrentUser.IsAdministrator() == false, "Nie możesz edutować tego wydarzenia."),
+                new Validation(()=> CurrentUser.IsAdministrator() == false, "Nie możesz edytować tego wydarzenia."),
                 new Validation(()=>model.Id.NullSafe().ToGuid().IsEmpty(), "Nieprawidłowy identyfikator wydarzenia.")
                 );
 

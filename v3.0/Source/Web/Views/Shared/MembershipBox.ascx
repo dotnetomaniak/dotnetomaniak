@@ -256,7 +256,7 @@
             <div class="box">
                 <h5>
                     Edycja wydarzenia</h5>
-                <form id="frmEvent" action="<%= Url.Action("EditEvent", "CommingEvent") %>" method="post">
+                <form id="frmEvent" action="<%= Url.Action("AddEvent", "CommingEvent") %>" method="post">
                 <fieldset>
                     <input type="hidden" id="hidEventId" name="id"/>                    
                     <div class="add-article-row">
