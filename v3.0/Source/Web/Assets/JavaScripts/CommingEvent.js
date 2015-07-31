@@ -104,11 +104,6 @@
                     var options = {
                         dataType: 'json',
                         beforeSubmit: function () {
-
-                            var action = $(form).attr('action');
-                            var id = $(form).find('#hidEventId').val();
-                            action = (id !== '' ? action.replace('Add', 'Edit') : action.replace('Edit', 'Add'));
-                            $(form).attr('action', action);
                             
                             $('#EventMessage').hide().text('Tworzenie...').css('color', '');
 
@@ -220,7 +215,14 @@
     showEvent: function () {
         $('input[name="EventDate"]').datepicker({ dateFormat: 'yy-mm-dd' }).val();
         $('.contentContainer > div').hide();
-        if ($('#hidEventId').val() !== '') {
+
+        var action = $('#frmEvent').attr('action');
+
+        var id = $('#frmEvent').find('#hidEventId').val();
+        action = (id !== '' ? action.replace('Add', 'Edit') : action.replace('Edit', 'Add'));
+        $('#frmEvent').attr('action', action);
+
+        if (id !== '') {
             $('#EventSection h5').text('Edycja wydarzenia');
         } else {
             $('#EventSection h5').text('Dodaj nowe wydarzenie');
