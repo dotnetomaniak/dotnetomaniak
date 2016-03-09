@@ -132,7 +132,7 @@
                     Załóż konto</h5>
                 <p>
                     Podaj nazwę użytkownika i adres e-mail, aby założyć konto. Dzięki niemu będziesz
-                    na bierząco informowany o zmianach w serwisie.</p>
+                    na bieżąco informowany o zmianach w serwisie.</p>
                 <form id="frmSignup" action="<%= Url.Action("Signup", "Membership") %>" method="post">
                 <fieldset>
                     <div class="add-article-row">
