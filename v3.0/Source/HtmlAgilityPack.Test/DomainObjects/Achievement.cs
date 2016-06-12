@@ -3,7 +3,7 @@ using Kigg.DomainObjects;
 
 namespace Kigg.LinqToSql.DomainObjects
 {
-    partial class Achievement : IAchievement
+    public partial class Achievement : IAchievement
     {
         public Types AchievementType
         {
