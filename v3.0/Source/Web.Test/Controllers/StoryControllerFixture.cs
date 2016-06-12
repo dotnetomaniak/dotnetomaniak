@@ -134,6 +134,20 @@ namespace Kigg.Web.Test
         }
 
         [Fact]
+        public void SecondPage_Category_Should_Render_List_View()
+        {
+            var result = Category(2);
+            var viewData = (StoryListViewData)(result).ViewData.Model;
+
+            Assert.Equal("List", result.ViewName);
+            Assert.Equal(0, viewData.TotalStoryCount);
+            Assert.Empty(viewData.Stories);
+            Assert.Equal("{0} - Najnowsze artykuły o .NET w dziale {1} - Strona 2".FormatWith(settings.Object.SiteTitle, CategoryName), viewData.Title);
+            Assert.Equal(CategoryName, viewData.Subtitle);
+            Assert.Equal("Brak opublikowanych artykułów w \"{0}\".".FormatWith(CategoryName), viewData.NoStoryExistMessage);
+        }
+
+        [Fact]
         public void Category_Should_Use_CategoryRepository()
         {
             Category();
@@ -1582,7 +1596,7 @@ namespace Kigg.Web.Test
             return (PagedResult<StorySummary>)((JsonResult)_controller.GetPublished(10, 70)).Data;
         }
 
-        private ViewResult Category()
+        private ViewResult Category(int page = 1)
         {
             var category = new Mock<ICategory>();
 
@@ -1593,7 +1607,7 @@ namespace Kigg.Web.Test
             _categoryRepository.Setup(r => r.FindByUniqueName(It.IsAny<string>())).Returns(category.Object).Verifiable();
             _storyRepository.Setup(r => r.FindPublishedByCategory(It.IsAny<Guid>(), It.IsAny<int>(), It.IsAny<int>())).Returns(new PagedResult<IStory>()).Verifiable();
 
-            return (ViewResult) _controller.Category(CategoryName, 1);
+            return (ViewResult) _controller.Category(CategoryName, page);
         }
 
         private ViewResult Upcoming()
