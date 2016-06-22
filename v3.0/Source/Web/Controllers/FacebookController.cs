@@ -91,7 +91,7 @@ namespace Kigg.Web.Controllers
                 user.LastActivityAt = SystemTime.Now();
                 unitOfWork.Commit();
 
-                FormsAuthentication.SetAuthCookie(user.UserName, false);
+                FormsAuthentication.SetAuthCookie(user.UserName, true);
                 viewData = new JsonViewData { isSuccessful = true };
 
                 Log.Info("Użytkownik zalogowany: {0}", user.UserName);
