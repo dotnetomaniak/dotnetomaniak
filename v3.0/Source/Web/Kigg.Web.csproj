@@ -541,7 +541,6 @@
     <Content Include="Assets\JavaScripts\CommingEvent.js" />
     <Content Include="Assets\JavaScripts\devmedia.js" />
     <Content Include="Assets\JavaScripts\devmediaBody.js" />
-    <Content Include="Assets\JavaScripts\Facebook.js" />
     <Content Include="Assets\JavaScripts\jquery-1.7.1.min.js" />
     <Content Include="Assets\JavaScripts\jquery-ui-1.8.17.custom.min.js" />
     <Content Include="Assets\JavaScripts\jquery.validate.js" />
