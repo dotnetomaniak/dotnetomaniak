@@ -33,7 +33,7 @@ namespace Kigg.Infrastructure
 
             string size = inSize == ThumbnailSize.Small ? "width=111&height=111" : "height=250";//width=250&
 
-            return "{0}?url={1}&instance_id={2}&{3}&key={4}".FormatWith(_baseUrl,_encoder.EncodeUrl(url), _instanceId, size, _key);
+            return "{0}?url={1}&instance_id={2}&{3}&key={4}".FormatWith(_baseUrl, url, _instanceId, size, _key);
         }
 
         public void Capture(string url)

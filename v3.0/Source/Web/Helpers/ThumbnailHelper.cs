@@ -5,6 +5,11 @@ using System.IO;
 using System.Net;
 using System.Web;
 using Kigg.Infrastructure;
+using System.Diagnostics;
+using Browshot;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace Kigg.Web
 {
@@ -22,18 +27,18 @@ namespace Kigg.Web
 
         public static string GetThumbnailVirtualPathForStoryOrCreateNew(string storyUrl, string shrinkedStoryId, ThumbnailSize size, bool createMediumThumbnail = false, bool fullPath = false, bool doNotCheckForExistingMiniature = false)
         {
-            if (!ThumbnailExists(shrinkedStoryId, ThumbnailSize.Small) || doNotCheckForExistingMiniature)
-            {
-                var uri = IoC.Resolve<IThumbnail>().For(storyUrl, ThumbnailSize.Small);
-                var thumbnail = CreateThumbnailFromUri(uri);
-                SaveThumbnail(thumbnail, shrinkedStoryId, ThumbnailSize.Small);
-            }
-
             if (createMediumThumbnail && (!ThumbnailExists(shrinkedStoryId, ThumbnailSize.Medium) || doNotCheckForExistingMiniature))
             {
                 var uri = IoC.Resolve<IThumbnail>().For(storyUrl, ThumbnailSize.Medium);
                 var thumbnail = CreateThumbnailFromUri(uri);
                 SaveThumbnail(thumbnail, shrinkedStoryId, ThumbnailSize.Medium);
+            }
+
+            if (!ThumbnailExists(shrinkedStoryId, ThumbnailSize.Small) || doNotCheckForExistingMiniature)
+            {
+                var uri = IoC.Resolve<IThumbnail>().For(storyUrl, ThumbnailSize.Small);
+                var thumbnail = CreateThumbnailFromUri(uri);
+                SaveThumbnail(thumbnail, shrinkedStoryId, ThumbnailSize.Small);
             }
 
             return GetThumbnailVirtualPathForStory(shrinkedStoryId, size, fullPath);
@@ -68,18 +73,95 @@ namespace Kigg.Web
             Image img = null;
             try
             {
-                var request = (HttpWebRequest)WebRequest.Create(uri);
-                request.Method = "GET";
-
-                using (var response = (HttpWebResponse)request.GetResponse())
+                var queryString = uri.Substring(uri.IndexOf('?')).Split('#')[0];
+                var uriParams = HttpUtility.ParseQueryString(queryString);
+                var key = uriParams["key"];
+                var url = uriParams["url"];
+                var hashtable = new Hashtable() {
+                     { "instance_id", uriParams["instance_id"] },
+                     { "height", uriParams["height"] },
+                     {"shots", 1 },
+                     {"delay", 5 },
+                     {"shot_interval", 5 }
+                };
+                if (uriParams["width"] != null)
                 {
-                    if (response.StatusCode == HttpStatusCode.OK)
+                    hashtable.Add("width", uriParams["width"]);
+                }
+                var browshot = new BrowshotClient(key);
+                Dictionary<string, object> results = new Dictionary<string, object>();
+                int tried = 0;
+                while (true)
+                {
+                    Debug.WriteLine("Screenshot for " + url + " - attempt: " + tried);
+                    results = browshot.ScreenshotCreate(url, hashtable);
+                    tried++;
+                    if (results.ContainsKey("id"))
+                        Debug.WriteLine("ID: " + results["id"]);
+                    if (results.ContainsKey("status"))
+                        Debug.WriteLine("Status: " + results["status"]);
+                    if (results.ContainsKey("error") && results["error"].ToString().Length > 0)
                     {
-                        img = Image.FromStream(response.GetResponseStream());
+                        Debug.WriteLine("Status: " + results["error"]);
+                        if (tried > 3)
+                        {
+                            Debug.WriteLine("Too many retry, give up");
+                            break;
+                        }
+                        if (results.ContainsKey("id") == false)
+                            break;
+
+                        // try again
+                        continue;
+                    }
+
+                    // finished or in_process
+                    if (results["status"].ToString().StartsWith("finished") == false)
+                    {
+                        int wait = (int)hashtable["delay"] + (int)hashtable["shots"] * (int)hashtable["shot_interval"] + 10;
+                        Console.WriteLine(String.Format("Waiting {0} seconds...", wait));
+                        Thread.Sleep(wait * 1000);
+                    }
+                    break;
+                }
+
+                while (results["status"].ToString().StartsWith("finished") == false && results["status"].ToString().StartsWith("error") == false)
+                {
+                    results = browshot.ScreenshotInfo(int.Parse(results["id"].ToString()));
+
+                    int wait = (int)hashtable["delay"] + (int)hashtable["shots"] * (int)hashtable["shot_interval"] + 10;
+                    Debug.WriteLine(String.Format("Waiting {0} seconds...", wait));
+                    Thread.Sleep(wait * 1000);
+
+                    if (results["status"].ToString().StartsWith("error"))
+                    {
+                        Debug.WriteLine("Screenshot failed");
+                        if (results.ContainsKey("error") && results["error"].ToString().Length > 0)
+                            Debug.WriteLine("Status: " + results["error"]);
+                        break;
+                    }
+                }
+
+                Debug.WriteLine("Screenshot ID: " + results["id"].ToString());
+
+                // finished
+                hashtable.Add("shot", 1);
+                for (int i = 1; i <= (int)hashtable["shots"]; i++)
+                {
+                    hashtable["shot"] = i;
+                    img = browshot.Thumbnail(int.Parse(results["id"].ToString()), hashtable);
+                    if (img == null)
+                    {
+                        Debug.WriteLine("Could not retrieve image for shot " + hashtable["shot"]);
+                        continue;
+                    }
+                    else
+                    {
+                        break;
                     }
                 }
             }
-            catch (Exception ex) { /*404 throws exception :/ */  }
+            catch (Exception ex) { }
             if (img == null)
             {
                 var blankThumbnailPath = Path.Combine(HttpContext.Current.Server.MapPath(ThumbnailStoragePath), BlankThumbnailImageName);
