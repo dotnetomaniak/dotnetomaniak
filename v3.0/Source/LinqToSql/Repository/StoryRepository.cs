@@ -464,5 +464,6 @@
 
             return Database.StoryDataSource.Count(s => (s.ApprovedAt != null) && (s.User.UserName == userName));
         }
+
     }
 }

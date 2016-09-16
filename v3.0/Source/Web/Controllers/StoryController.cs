@@ -163,6 +163,30 @@
             return View("List", viewData);
         }
 
+        [Compress, AppInsightsCounter(nameof(WeeklyDigest))]
+        public ActionResult WeeklyDigest(int week, int year, int? page)
+        {
+            StoryListViewData viewData = CreateStoryListViewData<StoryListViewData>(page);
+            viewData.Title = "{0} - Podsumowanie tygodnia #{1}, {2}".FormatWith(Settings.SiteTitle, week, year);
+            viewData.MetaDescription = "Podsumowanie tygodnia";
+            viewData.Subtitle = "Podsumowanie";
+
+            var calendar = new System.Globalization.GregorianCalendar();
+            var currentWeek = calendar.GetWeekOfYear(DateTime.Now, System.Globalization.CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+            if (week < 0 || (week >= currentWeek && year == DateTime.Now.Year))
+            {
+                viewData.NoStoryExistMessage = "Nieprawidłowy nr tygodnia w roku";
+            }
+            else
+            {
+                var list = _storyService.FindWeekly(week, year);
+                PagedResult<IStory> pagedResult = new PagedResult<IStory>(list, list.Count);
+                viewData.Stories = pagedResult.Result;
+                viewData.TotalStoryCount = pagedResult.Total;
+            }
+            return View("List", viewData);
+        }
+
         [OutputCache(CacheProfile = "JsonStoryCache"), Compress]
         public ActionResult GetUpcoming(int? start, int? max)
         {

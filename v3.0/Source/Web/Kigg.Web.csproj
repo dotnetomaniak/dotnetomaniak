@@ -257,6 +257,7 @@
     <Compile Include="Controllers\FacebookController.cs" />
     <Compile Include="Controllers\QuizController.cs" />
     <Compile Include="Controllers\RecommendationController.cs" />
+    <Compile Include="Filters\AppInsightsCounterAttribute.cs" />
     <Compile Include="Handlers\Image\DefaultColors.cs" />
     <Compile Include="Handlers\Image\GraphicsExtension.cs" />
     <Compile Include="Handlers\Share\WykopRedirector.cs" />
@@ -601,24 +602,6 @@
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Scripts\jquery-1.4.4.js" />
-    <Content Include="Views\Scripts\jquery-1.4.4-vsdoc.js" />
-    <Content Include="Views\Scripts\jquery-1.4.4.min.js" />
-    <Content Include="Views\Scripts\jquery-ui.js" />
-    <Content Include="Views\Scripts\jquery-ui.min.js" />
-    <Content Include="Views\Scripts\jquery.validate.js" />
-    <Content Include="Views\Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Views\Scripts\jquery.validate.min.js" />
-    <Content Include="Views\Scripts\MicrosoftAjax.js" />
-    <Content Include="Views\Scripts\MicrosoftAjax.debug.js" />
-    <Content Include="Views\Scripts\MicrosoftMvcAjax.js" />
-    <Content Include="Views\Scripts\MicrosoftMvcAjax.debug.js" />
-    <Content Include="Views\Scripts\MicrosoftMvcValidation.js" />
-    <Content Include="Views\Scripts\MicrosoftMvcValidation.debug.js" />
-    <Content Include="Views\Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Views\Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Views\Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Views\Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
