@@ -193,6 +193,5 @@
         {
             return _innerRepository.FindSimilar(story);
         }
-
     }
 }

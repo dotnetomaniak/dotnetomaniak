@@ -4,6 +4,7 @@ namespace Kigg.Service
     using System.Collections.Specialized;
 
     using DomainObjects;
+    using System.Collections.Generic;
 
     public interface IStoryService
     {
@@ -34,5 +35,7 @@ namespace Kigg.Service
         void Spam(IComment theComment, string storyUrl, IUser byUser);
 
         void MarkAsOffended(IComment theComment, string storyUrl, IUser byUser);
+
+        IList<IStory> FindWeekly(int week, int year);
     }
 }

@@ -412,6 +412,32 @@
             }
         }
 
+        public virtual IList<IStory> FindWeekly(int week, int year)
+        {
+            List<PublishedStory> publishableStories = new List<PublishedStory>();
+            DateTime minimumDate = DateTimeExtension.FirstDateOfWeek(year, week);
+            DateTime maximumDate = DateTimeExtension.LastDateOfWeek(year, week);
+
+            int publishableCount = _storyRepository.CountByPublishable(minimumDate, maximumDate);
+            if (publishableCount > 0)
+            {
+                ICollection<IStory> stories = _storyRepository.FindPublishable(minimumDate, maximumDate, 0, publishableCount).Result;
+
+                foreach (IStory story in stories)
+                {
+                    PublishedStory publishedStory = new PublishedStory(story);
+
+                    foreach (IStoryWeightCalculator strategy in _storyWeightCalculators)
+                    {
+                        publishedStory.Weights.Add(strategy.Name, strategy.Calculate(maximumDate, story));
+                    }
+
+                    publishableStories.Add(publishedStory);
+                }
+            }
+            return publishableStories.OrderBy(x => x.TotalScore).Select(x => x.Story).ToList();
+        }
+
         public virtual void Publish()
         {
             using(IUnitOfWork unitOfWork = UnitOfWork.Begin())

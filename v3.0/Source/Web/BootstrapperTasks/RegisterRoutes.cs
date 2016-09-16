@@ -116,6 +116,7 @@ namespace Kigg.Web
             _routes.MapRoute("Publish", "Publish", new { controller = "Story", action = "Publish" });
 
             _routes.MapRoute("Upcoming", "Upcoming/{page}", new { controller = "Story", action = "Upcoming", page = 1 });
+            _routes.MapRoute("WeeklyDigest", "weekly/{year}/{week}/{page}", new { controller = "Story", action = "WeeklyDigest", page = 1 });
             _routes.MapRoute("New", "New/{page}", new { controller = "Story", action = "New", page = 1 });
             _routes.MapRoute("Unapproved", "Unapproved/{page}", new { controller = "Story", action = "Unapproved", page = 1 });
             _routes.MapRoute("Publishable", "Publishable/{page}", new { controller = "Story", action = "Publishable", page = 1 });
