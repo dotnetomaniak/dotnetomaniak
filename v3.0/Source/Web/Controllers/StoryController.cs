@@ -10,6 +10,7 @@
     using Repository;
     using Service;
     using System.Xml;
+    using System.Net;
 
     public class StoryController : BaseController
     {
@@ -386,24 +387,7 @@
 
         public ActionResult Questions(string tags)
         {
-            IEnumerable<XmlNode> entries = null;
-            try
-            {                
-                foreach (var tag in tags.Split(new[] { ',' }))
-                {
-                    var address = "http://devpytania.pl/szukaj?type=rss&q=[{0}]".FormatWith(tag);
-                    var rssReader = new XmlTextReader(address);
-                    var rssDoc = new XmlDocument();
-
-                    rssDoc.Load(rssReader);
-                    entries = rssDoc.SelectNodes("//item").Cast<XmlNode>();
-                    if (entries != null && entries.Count() > 0)
-                        break;
-                }
-            }
-            catch { }
-
-            return View(entries);
+            return new HttpStatusCodeResult((int)HttpStatusCode.Gone);
         }
 
         public ActionResult Similars(Guid id)
