@@ -173,14 +173,19 @@
             viewData.Subtitle = "Podsumowanie";
 
             var calendar = new System.Globalization.GregorianCalendar();
-            var currentWeek = calendar.GetWeekOfYear(DateTime.Now, System.Globalization.CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
-            if (week < 0 || (week >= currentWeek && year == DateTime.Now.Year))
+
+            var now = SystemTime.Now();
+            var currentWeek = calendar.GetWeekOfYear(now, System.Globalization.CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+
+            if (week < 0 || (week > currentWeek && year == now.Year))
             {
                 viewData.NoStoryExistMessage = "Nieprawidłowy nr tygodnia w roku";
             }
             else
             {
-                var list = _storyService.FindWeekly(week, year);
+                DateTime minimumDate = Kigg.DateTimeExtension.FirstDateOfWeek(year, week);
+                DateTime maximumDate = Kigg.DateTimeExtension.LastDateOfWeek(year, week);
+                var list = _storyService.FindWeekly(minimumDate, maximumDate);
                 PagedResult<IStory> pagedResult = new PagedResult<IStory>(list, list.Count);
                 viewData.Stories = pagedResult.Result;
                 viewData.TotalStoryCount = pagedResult.Total;

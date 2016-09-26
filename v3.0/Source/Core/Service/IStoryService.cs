@@ -36,6 +36,6 @@ namespace Kigg.Service
 
         void MarkAsOffended(IComment theComment, string storyUrl, IUser byUser);
 
-        IList<IStory> FindWeekly(int week, int year);
+        IList<IStory> FindWeekly(DateTime minimumDate, DateTime maximumDate);
     }
 }

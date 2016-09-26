@@ -1556,6 +1556,34 @@ namespace Kigg.Web.Test
             _storyRepository.Verify();
         }
 
+        [Fact]
+        public void Weekly_Should_Render_List()
+        {
+            _storyService.Setup(x => x.FindWeekly(It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(new List<IStory>());
+            var result = Weekly(38, 2016);
+
+            Assert.Equal("List", result.ViewName);
+        }
+
+        [Fact]
+        public void Weekly_WithWeekInTheFuture_ShouldReturnError()
+        {
+            SystemTime.Now = () => new DateTime(2016, 9, 26);
+            var result = Weekly(50, 2016);
+
+            var viewData = (StoryListViewData)result.ViewData.Model;
+
+            Assert.Equal("Nieprawidłowy nr tygodnia w roku", viewData.NoStoryExistMessage);
+        }
+
+        [Fact]
+        public void Weekly_OnMondayMidnight_DoesNotThrowException()
+        {
+            _storyService.Setup(x => x.FindWeekly(It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(new List<IStory>());
+            SystemTime.Now = () => new DateTime(2016,9,26, 0,0,0);
+            Assert.DoesNotThrow(() => Weekly(38, 2016));
+        }
+
         private ViewResult Published()
         {
             _storyRepository.Setup(r => r.FindPublished(It.IsAny<int>(), It.IsAny<int>())).Returns(new PagedResult<IStory>()).Verifiable();
@@ -1878,6 +1906,14 @@ namespace Kigg.Web.Test
             _storyRepository.Setup(r => r.FindCommentedByUser(It.IsAny<Guid>(), It.IsAny<int>(), It.IsAny<int>())).Returns(new PagedResult<IStory>()).Verifiable();
 
             return (ViewResult)_controller.CommentedBy(UserName, 1);
+        }
+
+        private ViewResult Weekly(int week, int year)
+        {
+            var user = new Mock<IUser>();
+            user.SetupGet(u => u.UserName).Returns(UserName);
+
+            return (ViewResult)_controller.WeeklyDigest(week, year, 1);
         }
 
         private void SetupCaptcha()
