@@ -412,11 +412,12 @@
             }
         }
 
-        public virtual IList<IStory> FindWeekly(int week, int year)
+        public virtual IList<IStory> FindWeekly(DateTime minimumDate, DateTime maximumDate)
         {
+            Check.Argument.IsNotInFuture(minimumDate, "minimumDate");
+            Check.Argument.IsNotInFuture(maximumDate, "maximumDate");
+
             List<PublishedStory> publishableStories = new List<PublishedStory>();
-            DateTime minimumDate = DateTimeExtension.FirstDateOfWeek(year, week);
-            DateTime maximumDate = DateTimeExtension.LastDateOfWeek(year, week);
 
             int publishableCount = _storyRepository.CountByPublishable(minimumDate, maximumDate);
             if (publishableCount > 0)
