@@ -25,10 +25,13 @@ namespace Kigg.Web
 
 
 
-        public static string GetThumbnailVirtualPathForStoryOrCreateNew(string storyUrl, string shrinkedStoryId, ThumbnailSize size, bool createMediumThumbnail = false, bool fullPath = false, bool doNotCheckForExistingMiniature = false)
+        public static string GetThumbnailVirtualPathForStoryOrCreateNew(string storyUrl, string shrinkedStoryId, ThumbnailSize size, bool createMediumThumbnail = false, bool fullPath = false, bool doNotCheckForExistingMiniature = false, bool async = false)
         {
+
             if (createMediumThumbnail && (!ThumbnailExists(shrinkedStoryId, ThumbnailSize.Medium) || doNotCheckForExistingMiniature))
             {
+                if (!async)
+                    return "";
                 var uri = IoC.Resolve<IThumbnail>().For(storyUrl, ThumbnailSize.Medium);
                 var thumbnail = CreateThumbnailFromUri(uri);
                 SaveThumbnail(thumbnail, shrinkedStoryId, ThumbnailSize.Medium);
@@ -36,6 +39,8 @@ namespace Kigg.Web
 
             if (!ThumbnailExists(shrinkedStoryId, ThumbnailSize.Small) || doNotCheckForExistingMiniature)
             {
+                if (!async)
+                    return "";
                 var uri = IoC.Resolve<IThumbnail>().For(storyUrl, ThumbnailSize.Small);
                 var thumbnail = CreateThumbnailFromUri(uri);
                 SaveThumbnail(thumbnail, shrinkedStoryId, ThumbnailSize.Small);

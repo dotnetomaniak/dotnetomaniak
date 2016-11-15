@@ -51,6 +51,9 @@ namespace Kigg.Web
             _routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.([iI][cC][oO]|[gG][iI][fF])(/.*)?" });
 
             _routes.MapRoute("ThumbnailPath", "Story/ThumbnailPath", new { controller = "Story", action = "GetThumbnailPath" });
+            _routes.MapRoute("GetSmallThumbnailPath", "Story/GetSmallThumbnailPath", new { controller = "Story", action = "GetSmallThumbnailPath" });
+            _routes.MapRoute("GetMediumThumbnailFullPath", "Story/GetMediumThumbnailFullPath", new { controller = "Story", action = "GetMediumThumbnailFullPath" });
+
 
             _routes.MapRoute("FeedUpcoming", "Feed/{format}/Upcoming/{start}/{max}", new { controller = "Feed", action = "Upcoming", format = "Rss", start = 1, max = _settings.FeedStoryPerPage });
             _routes.MapRoute("FeedSearch", "Feed/{format}/Search/{q}/{start}/{max}", new { controller = "Feed", action = "Search", format = "Rss", q = string.Empty, start = 1, max = _settings.FeedStoryPerPage });

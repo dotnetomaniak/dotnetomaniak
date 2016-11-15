@@ -1177,5 +1177,26 @@
         {
             return _socialServiceRedirectors.Select(s => s.GetType().Name.Replace("Redirector", string.Empty).ToLowerInvariant()).ToArray();
         }
+        
+        public string GetSmallThumbnailPath(Guid storyId)
+        {
+            IStory story = _storyRepository.FindById(storyId);
+
+            if (story != null)
+            return ThumbnailHelper.GetThumbnailVirtualPathForStoryOrCreateNew(story.Url, story.Id.Shrink(),ThumbnailSize.Small, async:true);
+
+            return "";
+        }
+
+        public string GetMediumThumbnailFullPath(Guid storyId)
+        {
+            IStory story = _storyRepository.FindById(storyId);
+
+            if (story != null)
+                return ThumbnailHelper.GetThumbnailVirtualPathForStoryOrCreateNew(story.Url, story.Id.Shrink(), ThumbnailSize.Medium,true, true, async: true);
+
+            return "";
+        }
+
     }
 }

@@ -29,14 +29,72 @@
                 tagHtml.Append(", ");
             }
 
-            tagHtml.Append(Html.ActionLink(tag.Name, "Tags", "Story", new { name = tag.UniqueName }, new { rel = "tag directory" }));
+            tagHtml.Append(Html.ActionLink(tag.Name, "Tags", "Story", new {name = tag.UniqueName}, new {rel = "tag directory"}));
 
             i += 1;
         }
 
         return tagHtml.ToString();
     }
+
 </script>
+
+<script type="text/javascript" >
+    function requestThumbnail() {
+        $.ajax({
+            type: "POST",
+            url: "Story/GetSmallThumbnailPath",
+            data: '{storyId: "<%=Model.Story.Id%>"}',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            error: function (xmlHttpRequest, textStatus, errorThrown) {
+                if (xmlHttpRequest.status === 200)
+                    document.getElementById("thumb_img_id").src = xmlHttpRequest.responseText;
+                else
+                    console.log(errorThrown);
+            },
+            success: function (result) {
+                if(!result.d.localeCompare(""))
+                    document.getElementById("thumb_img_id").src = result.d;
+            }
+        });
+    }
+
+    $(function () {
+        var img = $('meta[property="og:image"]').attr('content');
+        if (!img.localeCompare("")) {
+            $.ajax({
+                type: "POST",
+                url: "Story/GetMediumThumbnailFullPath",
+                data: '{storyId: "<%=Model.Story.Id%>" }',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                error: function(xmlHttpRequest, textStatus, errorThrown) {
+                    if (xmlHttpRequest.status === 200) {
+                        document.getElementById("thumb_link_id").href = xmlHttpRequest.responseText;
+                        $('meta[property="og:image"]').attr('content', xmlHttpRequest.responseText);
+                    } else
+                        console.log(errorThrown);
+                },
+                success: function(result) {
+                    if (!result.d.localeCompare("")) {
+                        document.getElementById("thumb_link_id").href = result.d;
+                        $('meta[property="og:image"]').attr('content', result.d);
+                    }
+                }
+            });
+        }
+    });
+
+
+    window.onload = () => {
+        var img = document.getElementById("thumb_img_id");
+        if (!img.currentSrc.localeCompare("")) {
+            requestThumbnail();
+        }
+    };
+</script>
+
 <% const string hDateFormat = "yyyy-MM-ddThh:mm:ssZ"; %>
 <% const string LongDateFormat = "F"; %>
 <% IStory story = Model.Story; %>
@@ -146,7 +204,7 @@
             <a href="<%= Html.AttributeEncode(detailUrl) %>" target="_blank" rel="external" <%= onClick %>>
                 <% if (detailsMode) %>
                 <% { %>
-                    <img itemprop="image" alt="<%= Html.AttributeEncode(story.Title) %>" src="<%= Html.AttributeEncode(story.GetMediumThumbnailPath()) %>"
+                    <img id="thumb_img_id" itemprop="image" alt="<%= Html.AttributeEncode(story.Title) %>" src="<%= Html.AttributeEncode(story.GetSmallThumbnailPath()) %>"
                          class="smoothImage" onload="javascript:SmoothImage.show(this)" />
                 <% } %>
                             

@@ -15,12 +15,13 @@
 </script>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadPlaceHolder" runat="server" >
+
     <% if (Model.Story.IsAuthorshipOn())
        {%>
         <link rel="author" href="http://www.blogger.com/profile/<%:Model.Story.AuthorsProfile()%>" />
     <%
        }%>
-       <link rel="image_src" href="<%= Html.AttributeEncode(Model.Story.GetMediumThumbnailPath(true)) %>" />
+       <link id="thumb_link_id" rel="image_src" href="<%= Html.AttributeEncode(Model.Story.GetMediumThumbnailPath(true)) %>" />
        <meta property="og:title" content="<%= Model.Story.Title.Replace(@"""","'")%>" />
        <meta property="og:description" content="<%= Html.AttributeEncode(Model.Story.TextDescription) %>" />
        <meta property="og:url" content="<%= Url.RouteUrl("Detail", new { name = Model.Story.UniqueName }, "http") %>" />
