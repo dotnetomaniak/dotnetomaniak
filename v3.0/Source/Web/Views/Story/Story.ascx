@@ -47,6 +47,7 @@
             data: '{storyId: "<%=Model.Story.Id%>"}',
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
+            timeout: 100000,
             error: function (xmlHttpRequest, textStatus, errorThrown) {
                 if (xmlHttpRequest.status === 200)
                     document.getElementById("thumb_img_id").src = xmlHttpRequest.responseText;
@@ -69,6 +70,7 @@
                 data: '{storyId: "<%=Model.Story.Id%>" }',
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
+                timeout: 100000,
                 error: function(xmlHttpRequest, textStatus, errorThrown) {
                     if (xmlHttpRequest.status === 200) {
                         document.getElementById("thumb_link_id").href = xmlHttpRequest.responseText;
