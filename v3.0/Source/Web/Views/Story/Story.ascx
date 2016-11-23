@@ -63,7 +63,7 @@
 
     $(function () {
         var img = $('meta[property="og:image"]').attr('content');
-        if (!img.localeCompare("")) {
+        if (typeof img != "undefined" && !img.localeCompare("")) {
             $.ajax({
                 type: "POST",
                 url: "Story/GetMediumThumbnailFullPath",
