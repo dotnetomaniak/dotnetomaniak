@@ -272,8 +272,9 @@ namespace Kigg.Infrastructure
                         }
                     }
                 }
-                catch (WebException)
+                catch (WebException ex)
                 {
+                    Log.Warning("ReadResponse: {0}, try: {1}", ex.ToString(), tryCount);
                     tryCount += 1;
                     Thread.Sleep(200);
                 }
