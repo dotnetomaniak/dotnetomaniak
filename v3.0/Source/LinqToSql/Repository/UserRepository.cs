@@ -1,4 +1,4 @@
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
 namespace Kigg.LinqToSql.Repository
 {
@@ -29,7 +29,7 @@ namespace Kigg.LinqToSql.Repository
             // Can't allow duplicate user name
             if (FindByUserName(user.UserName) != null)
             {
-                throw new ArgumentException("\"{0}\" already exits. Specifiy a diffrent user name.".FormatWith(user.UserName));
+                throw new ArgumentException("\"{0}\" już istnieje. Wprowadź inną nazwę użytkownika.".FormatWith(user.UserName));
             }
 
             // Ensure that same email doesn't exist for non openid user
