@@ -337,8 +337,6 @@
                 <% Html.RenderAction("Ads", "Recommendation"); %>
                 <% Html.RenderAction("CommingEventsBox", "CommingEvent"); %>
 
-                <% try { Html.RenderPartial("FeedBox"); }
-                   catch {}%>
                 <% Html.RenderAction("TopTabs","Membership"); %>
                 <% Html.RenderAction("Tabs","Tag"); %>
                 <% Html.RenderPartial("GooglePlusBox"); %>	  
