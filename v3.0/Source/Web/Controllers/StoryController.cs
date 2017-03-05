@@ -1019,7 +1019,7 @@
                     }
                     else
                     {
-                        string path = ThumbnailHelper.GetThumbnailVirtualPathForStoryOrCreateNew(story.Url, story.Id.Shrink(), ThumbnailSize.Medium, createMediumThumbnail: true, doNotCheckForExistingMiniature: true);
+                        string path = ThumbnailHelper.GetThumbnailVirtualPathForStoryOrCreateNew(story.Url, story.Id.Shrink(), ThumbnailSize.Medium, createMediumThumbnail: true, doNotCheckForExistingMiniature: true, async: true);
 
                         viewData = new JsonCreateViewData { isSuccessful = true, url = path };
                     }

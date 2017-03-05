@@ -462,7 +462,7 @@
     },
 
     _clearCenterMeTimer: function () {
-        if (Moderation._centerMeTimer != null) {
+        if (Moderation._centerMeTimer !== null) {
             clearInterval(Moderation._centerMeTimer);
             Moderation._centerMeTimer = null;
         }
