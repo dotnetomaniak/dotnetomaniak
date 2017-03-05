@@ -5,9 +5,9 @@ using System.Net;
 using System.Web;
 using System.Collections;
 using System.IO;
-using System.Diagnostics;
 using System.Drawing;
 using System.Web.Script.Serialization;
+using Kigg.Infrastructure;
 
 
 /*! \mainpage browshot-csharp is a free and open-source library for the Browshot API.
@@ -28,104 +28,43 @@ namespace Browshot
     /// </summary>
     public class BrowshotClient
     {
-        private Version version = new Version(1, 10, 1);
-
+        private readonly Version version = new Version(1, 10, 1);
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="key">API Key</param>
         public BrowshotClient(string key)
-            : this(key, false)
+            : this(key, "https://api.browshot.com/api/v1/")
         { }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="key">API Key</param>
-        /// <param name="debug">Debug flag</param>
-        public BrowshotClient(string key, bool debug)
-            : this(key, debug, "https://api.browshot.com/api/v1/")
-        { }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="key">API Key</param>
-        /// <param name="debug">Debug flag (not used curently)</param>
         /// <param name="baseUrl">Change URL to conect to he Browshot API</param>
-        public BrowshotClient(string key, bool debug, string baseUrl)
+        public BrowshotClient(string key, string baseUrl)
         {
-            this.Key = key;
-            this.Debug = debug;
-            this.BaseUrl = baseUrl;
+            Key = key;
+            BaseUrl = baseUrl ?? @"https://api.browshot.com/api/v1/";
         }
 
 
-        private string key = String.Empty;
         /// <summary>
         /// API key
         /// </summary>
-        public string Key
-        {
-            get
-            {
-                return this.key;
-            }
+        public string Key { get; set; }
 
-            set
-            {
-                this.key = value;
-            }
-        }
-
-        private string baseUrl = @"https://api.browshot.com/api/v1/";
         /// <summary>
         /// Base url of the Browshot API.
         /// </summary>
-        public string BaseUrl
-        {
-            get
-            {
-                return this.baseUrl;
-            }
-
-            set
-            {
-                this.baseUrl = value;
-            }
-        }
-
-
-
-        private bool debug = false;
-        /// <summary>
-        /// Debug flag (not used currently)
-        /// </summary>
-        public bool Debug
-        {
-            get
-            {
-                return this.debug;
-            }
-
-            set
-            {
-                this.debug = value;
-            }
-        }
+        public string BaseUrl { get; set; }
 
 
         /// <summary>
         /// API version managed by this library.
         /// </summary>
-        public Version APIVersion
-        {
-            get
-            {
-                return new Version(this.version.Major, this.version.Minor);
-            }
-        }
+        public Version APIVersion => new Version(this.version.Major, this.version.Minor);
 
         /// <summary>
         /// Request a screenshot. See http://browshot.com/api/documentation#screenshot_create for the response format
@@ -135,14 +74,11 @@ namespace Browshot
         /// <returns>JSON output</returns>
         public Dictionary<string, object> ScreenshotCreate(string url, Hashtable arguments)
         {
-            if (arguments == null)
-                arguments = new Hashtable();
-            else
-                arguments = new Hashtable(arguments);
+            arguments = arguments == null ? new Hashtable() : new Hashtable(arguments);
 
             if (arguments.ContainsKey("url"))
                 throw new Exception("URL cannot be added to the list of arguments");
-            if (url == null || url == String.Empty)
+            if (string.IsNullOrEmpty(url))
                 throw new Exception("URL is invalid");
 
             arguments.Add("url", url);
@@ -235,8 +171,7 @@ namespace Browshot
 
 
             Uri url = MakeUrl("screenshot/thumbnail", arguments);
-            if (this.Debug)
-                Trace.WriteLine(url);
+            Log.Info(url.ToString());
             HttpWebRequest request = WebRequest.CreateHttp(url);
             Image image = null;
 
@@ -429,7 +364,7 @@ namespace Browshot
             arguments.Add("url", url);
 
             Uri uri = MakeUrl("simple", arguments);
-            HttpWebRequest request = HttpWebRequest.CreateHttp(uri);
+            HttpWebRequest request = WebRequest.CreateHttp(uri);
             request.AllowAutoRedirect = true;
             request.MaximumAutomaticRedirections = 15;
 
@@ -461,32 +396,31 @@ namespace Browshot
 
         private void DebugInfo(string message)
         {
-            if (this.Debug)
-                Console.WriteLine(message);
+            Log.Info(message);
         }
 
         private Object Reply(string action, Hashtable arguments)
         {
             Uri url = MakeUrl(action, arguments);
 
-            HttpWebRequest request = HttpWebRequest.CreateHttp(url);
+            HttpWebRequest request = WebRequest.CreateHttp(url);
             request.AllowAutoRedirect = true;
-            request.UserAgent = "Browshot-sharp " + this.version;
+            request.UserAgent = "Browshot-sharp " + version;
 
-            HttpWebResponse response = null;
+            HttpWebResponse response;
 
             try
             {
                 response = (HttpWebResponse)request.GetResponse();
             }
-            catch (System.Net.WebException e)
+            catch (WebException e)
             {
                 //this.DebugInfo(e.ToString());
                 response = (HttpWebResponse)e.Response;
                 if (response != null)
-                    this.DebugInfo("Request error: " + response.StatusCode);
+                    DebugInfo("Request error: " + response.StatusCode);
                 else
-                    this.DebugInfo(e.ToString());
+                    DebugInfo(e.ToString());
             }
 
             /*if (response.StatusCode == HttpStatusCode.OK)
@@ -495,14 +429,14 @@ namespace Browshot
 
             using (Stream responseStream = response.GetResponseStream())
             {
-                Encoding encode = System.Text.Encoding.GetEncoding("utf-8");
+                Encoding encode = Encoding.GetEncoding("utf-8");
 
                 StreamReader readStream = new StreamReader(responseStream, encode);
-                Char[] read = new Char[256];
+                char[] read = new char[256];
                 int count = readStream.Read(read, 0, 256);
                 while (count > 0)
                 {
-                    String str = new String(read, 0, count);
+                    string str = new string(read, 0, count);
                     result += str;
                     count = readStream.Read(read, 0, 256);
                 }
@@ -511,23 +445,13 @@ namespace Browshot
                 response.Close();
                 readStream.Close();
             }
-            //Trace.WriteLine(result);
-            if (this.Debug)
-                Trace.WriteLine(result);
+            Log.Info(result);
 
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             return serializer.DeserializeObject(result);
             /*}
             else
                 return null;*/
-        }
-
-        public Object GenericError(string message)
-        {
-            string json = String.Format("{{\"error\" : 1, \"message\": \"{0}\" }}", message); // Need to JSOn encode
-
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            return serializer.DeserializeObject(json);
         }
 
         public Uri MakeUrl(string action, Hashtable arguments)
