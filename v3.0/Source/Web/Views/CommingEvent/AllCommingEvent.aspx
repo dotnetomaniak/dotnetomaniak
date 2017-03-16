@@ -2,7 +2,7 @@
 
 <asp:Content runat="server" ID="Main" ContentPlaceHolderID="MainContentPlaceHolder">
     <div>
-        <%= Html.PageHeader("Nadchące wydarzenia") %>
+        <%= Html.PageHeader("Nadchodzące wydarzenia") %>
         <% Html.RenderPartial("CommingEventList", Model); %>
     </div>
     <div class="commingEventsInvitationToInformAbout">
