@@ -61,7 +61,7 @@ namespace Kigg.Web
         public ViewResult AllCommingEvent()
         {
             IQueryable<ICommingEvent> commingEvents = _commingEventRepository.GetAllApproved()
-                .Where(x => x.EventDate.Date >= DateTime.Now.Date).OrderBy(x => x.EventDate);
+                .Where(x => x.EventDate.Date >= DateTime.Now.Date).OrderBy(x => x.EventDate).ThenBy(x => x.EventName);
             var viewModel = CreateViewData<CommingEventsViewData>();
 
             viewModel.CommingEvents = commingEvents.ToList().Select(CreateCommingEventsViewData).AsQueryable();
