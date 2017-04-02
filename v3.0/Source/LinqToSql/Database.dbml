@@ -7,6 +7,7 @@
       <Column Name="Name" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="Description" Type="System.String" CanBeNull="false" />
+      <Column Name="IsActive" Type="System.Boolean" CanBeNull="false" />
       <Association Name="Category_Story" Member="Stories" ThisKey="Id" OtherKey="CategoryId" Type="Story" />
     </Type>
   </Table>
