@@ -13,5 +13,7 @@
         }
 
         string Description { get; }
+
+        bool IsActive { get; }
     }
 }

@@ -85,6 +85,13 @@
                     {
                         return new StoryCreateResult { ErrorMessage = "\"{0}\" nie istnieje.".FormatWith(category) };
                     }
+                    if (storyCategory.IsActive == false)
+                    {
+                        return new StoryCreateResult
+                        {
+                            ErrorMessage = "\"{0}\" jest tylko do odczytu.".FormatWith(category)
+                        };
+                    }
 
                     StoryContent content = _contentService.Get(url);
 
