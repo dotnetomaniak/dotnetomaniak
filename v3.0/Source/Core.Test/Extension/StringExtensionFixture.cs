@@ -118,6 +118,7 @@ namespace Kigg.Core.Test
         [InlineData("ab   cd", "ab-cd")]
         [InlineData("<>,+$", "")]
         [InlineData("", "")]
+        [InlineData("—","")]
         public void ToLegalUrl_Should_Return_String_Which_Does_Not_Contain_Any_Illegal_Url_Character(string target, string result)
         {
             Assert.Equal(result, target.ToLegalUrl());
