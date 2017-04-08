@@ -39,7 +39,7 @@ using System.Collections.Generic;
         private static readonly char[] IllegalUrlCharacters = new[] 
         { ';', '/', '\\', '?', ':', '@', '&', '=', '+', '$', ',', '<', '>', '#', '%', 
           '.', '!', '*', '\'', '"', '(', ')', '[', ']', '{', '}', '|', '^', '`', '~', 
-          '–', '‘', '’', '“', '”', '»', '«', '„', '…' };
+          '–', '‘', '’', '“', '”', '»', '«', '„', '…', '—' };
 
         [DebuggerStepThrough]
         public static bool IsWebUrl(this string target)
