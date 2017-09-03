@@ -148,7 +148,7 @@
 
         if (!Request.IsLocal)
         {
-            scriptManager.RegisterSource("http://www.google-analytics.com/ga.js");
+            scriptManager.RegisterSource("https://www.google-analytics.com/ga.js");
             scriptManager.RegisterOnReady("Analytics.init();");
         }
     }
@@ -185,9 +185,6 @@
         rel="search" type="application/opensearchdescription+xml" />
     <link href="https://plus.google.com/110925305542873177884" rel="publisher" />
     <script src="https://www.google.com/jsapi?key=ABQIAAAAdWi2-jJ3tpgf0HNqkwp6TBRfozVu3uzgMdQm0owx2puRbZ1h7hQwKYIn0t3A1mHpnYzWO-ppxXkndQ" type="text/javascript"></script>
-    <script type='text/javascript'>
-        google.load('feeds', '1');
-    </script>
     <script src="<%= Url.Asset("js1").Replace("&", "&amp;") %>" type="text/javascript"></script>
     <script src="/Assets/JavaScripts/whcookies.js" type="text/javascript"></script>
     <asp:ContentPlaceHolder ID="HeadPlaceHolder" runat="server">
@@ -341,7 +338,7 @@
                 <% Html.RenderAction("Tabs","Tag"); %>
                 <% Html.RenderPartial("GooglePlusBox"); %>	  
                 </div>	 
-            <script src="http://connect.facebook.net/pl_PL/all.js#xfbml=1" type="text/javascript"></script><fb:like-box href="http://www.facebook.com/dotnetomaniakpl" width="919" show_faces="true" stream="false" header="true"></fb:like-box>
+            <script src="//connect.facebook.net/pl_PL/all.js#xfbml=1" type="text/javascript"></script><fb:like-box href="http://www.facebook.com/dotnetomaniakpl" width="919" show_faces="true" stream="false" header="true"></fb:like-box>
         </div> 
         <div id="footer">
             <p>
