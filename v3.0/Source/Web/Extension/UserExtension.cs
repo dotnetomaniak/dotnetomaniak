@@ -15,7 +15,7 @@ namespace Kigg.Web
 
         private static string GenerateGravatarUrl(string email, int size)
         {
-            const string GravatarUrlFormat = "http://www.gravatar.com/avatar/{0}?r=G&s={1}&d=identicon";
+            const string GravatarUrlFormat = "https://www.gravatar.com/avatar/{0}?r=G&s={1}&d=identicon";
 
             StringBuilder result = new StringBuilder();
 
