@@ -125,6 +125,13 @@
     <value>dotnetomaniak</value>
     <comment>Badge</comment>
   </data>
+  <data name="DSP16FinalistBadge" xml:space="preserve">
+    <value>DSP'16</value>
+    <comment>Badge</comment>
+  </data>
+  <data name="DSP17FinalistBadge" xml:space="preserve">
+    <value>DSP'17</value>
+  </data>
   <data name="EarlyBirdBadge" xml:space="preserve">
     <value>Poranny ptaszek</value>
     <comment>Badge</comment>
