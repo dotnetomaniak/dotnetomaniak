@@ -37,7 +37,7 @@ namespace Kigg.LinqToSql.Repository
             {
                 if (FindByEmail(user.Email) != null)
                 {
-                    throw new ArgumentException("\"{0}\" already exits. Specifiy a diffrent email address.".FormatWith(user.Email));
+                    throw new ArgumentException("\"{0}\" już istnieje. Wprowadź inny adres email.".FormatWith(user.Email));
                 }
             }
 
