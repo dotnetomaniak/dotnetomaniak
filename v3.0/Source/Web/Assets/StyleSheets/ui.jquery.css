@@ -171,6 +171,7 @@ ul.ui-autocomplete
     color:#222222;
     border:4px solid #dddddd;
     position:relative;
+    z-index: 1002;
 }
 
 .ui-resizable-handle
