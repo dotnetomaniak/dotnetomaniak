@@ -131,6 +131,7 @@
   </data>
   <data name="DSP17FinalistBadge" xml:space="preserve">
     <value>DSP'17</value>
+    <comment>Badge</comment>
   </data>
   <data name="EarlyBirdBadge" xml:space="preserve">
     <value>Poranny ptaszek</value>
@@ -194,6 +195,14 @@
   </data>
   <data name="_1kPointsBadge" xml:space="preserve">
     <value>Tysięcznik</value>
+    <comment>Badge</comment>
+  </data>
+  <data name="BugHunter" xml:space="preserve">
+    <value>Łowca robaków</value>
+    <comment>Badge</comment>
+  </data>
+  <data name="Seeker" xml:space="preserve">
+    <value>Poszukiwacz</value>
     <comment>Badge</comment>
   </data>
 </root>

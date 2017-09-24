@@ -11,5 +11,6 @@ namespace Kigg.Repository
 
         void Award(Guid badgeId, IQueryable<IUser> nominatedUsers);
         int AwardedHowManyTimes(IAchievement achievement);
+        bool HasFlag(Guid flagUuid, IUser currentUser);
     }
 }

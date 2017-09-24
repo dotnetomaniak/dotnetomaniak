@@ -3,6 +3,7 @@ namespace Kigg.Web
     using System.Web.Mvc;
     using Repository;
     using System.Linq;
+    using System;
 
     public class BadgesController : BaseController
     {
@@ -29,6 +30,25 @@ namespace Kigg.Web
                     });
 
             return View(badgesViewData);
+        }
+
+        public ActionResult Seeker()
+        {
+            Response.Headers.Add("X-Secret", "VWtyeXRhIGZsYWdhLiBPZHdpZWTFuiBhZHJlczogL2ZsYWctODIzODMyNEEtRjQyNS00MEM5LUFGNjQtOTY5RjVBODM5M0MzIGFieSBqxIUgemRvYnnEhyE=");
+            var badgesViewData = CreateViewData<BadgesViewData>();
+            return View(badgesViewData);
+        }
+
+        [Authorize]
+        public ActionResult SeekerFlag()
+        {
+            var flagUuid = Guid.Parse("8238324A-F425-40C9-AF64-969F5A8393C3");
+            var hasFlagAlready = _achievementRepository.HasFlag(flagUuid, this.CurrentUser);
+            if (hasFlagAlready == false)
+            {
+                _achievementRepository.Award(flagUuid, new[] { this.CurrentUser }.AsQueryable());
+            }
+            return Redirect("/");
         }
     }
 }
