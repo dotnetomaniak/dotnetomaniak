@@ -44,5 +44,13 @@ namespace Kigg.LinqToSql.Repository
         {
             return Database.UserAchievementsDataSource.Where(x => x.AchievementId == achievement.Id).Count();
         }
+
+        public bool HasFlag(Guid flagUuid, IUser user)
+        {
+            Check.Argument.IsNotNull(user, nameof(user));
+            Check.Argument.IsNotEmpty(flagUuid, nameof(flagUuid));
+
+            return Database.UserAchievementsDataSource.Any(x => x.UserId == user.Id && x.AchievementId == flagUuid);
+        }
     }
 }

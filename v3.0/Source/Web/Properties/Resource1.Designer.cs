@@ -79,6 +79,15 @@ namespace Kigg.Web.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Łowca robaków.
+        /// </summary>
+        internal static string BugHunter {
+            get {
+                return ResourceManager.GetString("BugHunter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Komentator.
         /// </summary>
         internal static string CommenterBadge {
@@ -210,6 +219,15 @@ namespace Kigg.Web.Properties {
         internal static string PopularStoryBadge {
             get {
                 return ResourceManager.GetString("PopularStoryBadge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Poszukiwacz.
+        /// </summary>
+        internal static string Seeker {
+            get {
+                return ResourceManager.GetString("Seeker", resourceCulture);
             }
         }
         

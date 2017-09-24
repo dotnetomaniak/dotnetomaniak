@@ -66,7 +66,10 @@ namespace Kigg.Web
             _routes.MapRoute("About", "About", new { controller = "Support", action = "About" });
             _routes.MapRoute("PromoteSite", "PromoteSite", new {controller = "Support", action = "PromoteSite"});
             _routes.MapRoute("Badges", "Odznaki", new {controller = "Badges", action = "All"});
-            
+            _routes.MapRoute("SeekerFlag", "poszukiwacz", new { controller = "Badges", action = "Seeker" });
+            _routes.MapRoute("AwardSeekerFlag", "flag-8238324A-F425-40C9-AF64-969F5A8393C3", new { controller = "Badges", action = "SeekerFlag" });
+
+
             _routes.MapRoute("Facebook", "Facebook/{action}", new { controller = "Facebook", action = "LogByFbData" });
 
             _routes.MapRoute("Login", "Login", new { controller = "Membership", action = "Login" });
