@@ -29,5 +29,5 @@
 </div>
 <div style="text-align:left; margin-bottom:15px; margin-bottom:20px; margin-bottom:10px;">
     <a id="lnkAddEventUser" href="javascript:void(0)" onclick="Moderation.showEvent()" style="">Dodaj nowe</a>
-    <%= Html.ActionLink("Zobacz wszystkie", "AllCommingEvent", "CommingEvent", new { style = "float: right" })%> 
+    <%= Html.ActionLink("Zobacz wszystkie", "AllCommingEvent", "CommingEvent", null, new { style = "float: right" })%> 
 </div>
