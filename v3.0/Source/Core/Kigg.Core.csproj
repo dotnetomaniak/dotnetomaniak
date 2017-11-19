@@ -124,6 +124,7 @@
     <Compile Include="Extension\DomainObjectsExplicitExtension\UserExtension.cs" />
     <Compile Include="Extension\EnumerableExtension.cs" />
     <Compile Include="DomainObjects\Extension\TagContainerExtension.cs" />
+    <Compile Include="Extension\SslProtocolExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helper\Constants.cs" />
     <Compile Include="Helper\DisposableResource.cs" />
