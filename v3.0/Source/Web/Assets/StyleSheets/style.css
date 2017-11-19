@@ -496,6 +496,8 @@ background: url("/Assets/images/icon-zwin.png") no-repeat scroll right top trans
     padding-right:10px;
     padding-top:10px;
     text-align:justify;
+    clear:both;
+    padding-bottom: 20px;
 }
 .commingEventLead {
     font-size:12px;
