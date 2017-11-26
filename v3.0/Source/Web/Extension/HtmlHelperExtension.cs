@@ -152,8 +152,10 @@ namespace Kigg.Web
 
                                                                         foreach (KeyValuePair<string, object> pair in values)
                                                                         {
+                                                                            Guid t;
                                                                             if ((string.Compare(pair.Key, "controller", StringComparison.OrdinalIgnoreCase) != 0) &&
-                                                                                (string.Compare(pair.Key, "action", StringComparison.OrdinalIgnoreCase) != 0))
+                                                                                (string.Compare(pair.Key, "action", StringComparison.OrdinalIgnoreCase) != 0) &&
+                                                                                Guid.TryParse(pair.Key, out t) == false)
                                                                             {
                                                                                 newValues[pair.Key] = pair.Value;
                                                                             }
