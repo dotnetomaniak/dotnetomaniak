@@ -21,8 +21,8 @@ namespace Kigg.LinqToSql.Repository
         public virtual int CountByStory(Guid storyId)
         {
             Check.Argument.IsNotEmpty(storyId, "storyId");
-
-            return Database.StoryViewDataSource.Count(v => v.StoryId == storyId);
+            return -1;
+            //return Database.StoryViewDataSource.Count(v => v.StoryId == storyId);
         }
 
         public virtual ICollection<IStoryView> FindAfter(Guid storyId, DateTime timestamp)
