@@ -62,6 +62,7 @@ namespace Kigg.Web
             _routes.MapRoute("FeedDefault", "Feed", new { controller = "Feed", action = "Published", format = "Rss", start = 1, max = _settings.FeedStoryPerPage });
 
             _routes.MapRoute("Faq", "Faq", new { controller = "Support", action = "Faq" });
+            _routes.MapRoute("Policy", "Policy", new { controller = "Support", action = "Policy" });
             _routes.MapRoute("Contact", "Contact", new { controller = "Support", action = "Contact" });
             _routes.MapRoute("About", "About", new { controller = "Support", action = "About" });
             _routes.MapRoute("PromoteSite", "PromoteSite", new {controller = "Support", action = "PromoteSite"});

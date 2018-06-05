@@ -33,6 +33,12 @@ namespace Kigg.Web
         }
 
         [Compress]
+        public ActionResult Policy()
+        {
+            return PreparedView();
+        }
+
+        [Compress]
         public ActionResult PromoteSite()
         {
             var viewData = CreateViewData<PromoteSiteViewData>();
