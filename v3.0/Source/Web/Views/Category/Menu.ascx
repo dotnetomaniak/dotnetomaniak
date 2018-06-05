@@ -43,6 +43,7 @@
             <li><a href="<%= Url.RouteUrl("PromoteSite")%>">Promocja</a> </li>
             <li><%= Html.ActionLink("FAQ", "Faq", "Support")%></li>
             <li><a href="<%= Url.RouteUrl("About") %>">O dotNETomaniak</a></li>
+            <li><a href="<%= Url.Action("Policy","Support") %>">Polityka prywatności</a></li>
             <li class="last"><a href="<%= Url.RouteUrl("Contact") %>">Kontakt</a></li>
         </ul>
     </div>

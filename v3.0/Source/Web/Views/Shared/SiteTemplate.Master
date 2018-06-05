@@ -189,7 +189,30 @@
     <script src="/Assets/JavaScripts/whcookies.js" type="text/javascript"></script>
     <asp:ContentPlaceHolder ID="HeadPlaceHolder" runat="server">
     </asp:ContentPlaceHolder>
-
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+    <script>
+        window.addEventListener("load", function(){
+            window.cookieconsent.initialise({
+                "palette": {
+                    "popup": {
+                        "background": "#eb6c44",
+                        "text": "#ffffff"
+                    },
+                    "button": {
+                        "background": "#f5d948"
+                    }
+                },
+                "theme": "classic",
+                "position": "top",
+                "content": {
+                    "message": "Na tej stronie używamy ciasteczek. Żeby było Ci łatwiej.",
+                    "dismiss": "Rozumiem!",
+                    "link": "Dowiedz się więcej",
+                    "href": "<%=Url.Action("Policy", "Support")%>"
+                }
+            })});
+    </script>
     <script type="text/javascript">        
         window.fbAsyncInit = function () {            
             FB.Event.subscribe('auth.authResponseChange', function (response) {
@@ -285,7 +308,7 @@
        
         window.appInsights=appInsights;
         appInsights.trackPageView();
-</script>
+    </script>
 </head>
 <body>
 
