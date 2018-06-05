@@ -21,8 +21,8 @@ namespace Kigg.LinqToSql.Repository
         public virtual int CountByStory(Guid storyId)
         {
             Check.Argument.IsNotEmpty(storyId, "storyId");
-
-            return Database.VoteDataSource.Count(v => v.StoryId == storyId);
+            return -1;
+            //return Database.VoteDataSource.Count(v => v.StoryId == storyId);
         }
 
         public virtual IVote FindById(Guid storyId, Guid userId)
