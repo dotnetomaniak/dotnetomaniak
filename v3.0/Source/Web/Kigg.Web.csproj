@@ -567,6 +567,7 @@
     <Content Include="Assets\StyleSheets\modal.css" />
     <Content Include="Assets\StyleSheets\style.css" />
     <Content Include="Assets\StyleSheets\ui.jquery.css" />
+    <Content Include="Data\Thumbnails\blank_thumbnail.png" />
     <Content Include="ErrorPages\Offline.aspx" />
     <Content Include="Logs\exception.txt" />
     <Content Include="MailTemplates\NewPassword.txt" />

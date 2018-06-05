@@ -31,7 +31,7 @@ namespace Kigg.Web
             if (createMediumThumbnail && (!ThumbnailExists(shrinkedStoryId, ThumbnailSize.Medium) || doNotCheckForExistingMiniature))
             {
                 if (!async)
-                    return "";
+                    return ThumbnailStoragePath+BlankThumbnailImageName;
                 var uri = IoC.Resolve<IThumbnail>().For(storyUrl, ThumbnailSize.Medium);
                 var thumbnail = CreateThumbnailFromUri(uri);
                 SaveThumbnail(thumbnail, shrinkedStoryId, ThumbnailSize.Medium);
@@ -40,7 +40,7 @@ namespace Kigg.Web
             if (!ThumbnailExists(shrinkedStoryId, ThumbnailSize.Small) || doNotCheckForExistingMiniature)
             {
                 if (!async)
-                    return "";
+                    return ThumbnailStoragePath+BlankThumbnailImageName;
                 var uri = IoC.Resolve<IThumbnail>().For(storyUrl, ThumbnailSize.Small);
                 var thumbnail = CreateThumbnailFromUri(uri);
                 SaveThumbnail(thumbnail, shrinkedStoryId, ThumbnailSize.Small);
