@@ -68,8 +68,16 @@ namespace Kigg.Web
         {
             if (thumbnail != null)
             {
-                string fullPath = GenerateThumbnailFullPath(shrinkedStoryId, size);
-                thumbnail.Save(fullPath, ImageFormat.Png);
+                try
+                {
+                    string fullPath = GenerateThumbnailFullPath(shrinkedStoryId, size);
+                    thumbnail.Save(fullPath, ImageFormat.Png);
+                }
+                catch (Exception ex)
+                {
+                    Log.Exception(ex);
+                    throw;
+                }
             }
         }
 
