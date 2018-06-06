@@ -110,7 +110,7 @@
 
             if (category == null)
             {
-                ThrowNotFound("Kategoria nie istnieje.");
+                ThrowNotFound($"Kategoria {name} nie istnieje.");
             }
 
             StoryListViewData viewData = CreateStoryListViewData<StoryListViewData>(page);
@@ -305,7 +305,7 @@
 
             if (tag == null)
             {
-                ThrowNotFound("Tag nie istnieje.");
+                ThrowNotFound($"Tag {name} nie istnieje.");
             }
 
             StoryListViewData viewData = CreateStoryListViewData<StoryListViewData>(page);
@@ -371,7 +371,7 @@
 
             if (story == null)
             {
-                ThrowNotFound("Artykuł nie istnieje.");
+                ThrowNotFound($"Artykuł {name} nie istnieje");
             }
 
             StoryDetailViewData viewData = CreateStoryViewData<StoryDetailViewData>();
