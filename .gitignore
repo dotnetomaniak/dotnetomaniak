@@ -67,3 +67,4 @@ packages/
 #Test files
 *.testsettings
 /v3.0/Source/.vs
+/v3.0/Source/Web/Properties/PublishProfiles/dotnetomaniak - Web Deploy.pubxml
