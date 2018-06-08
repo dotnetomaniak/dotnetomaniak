@@ -273,7 +273,9 @@ namespace Kigg.Core.Test
         [Fact]
         public void Create_Should_Return_Error_Message_When_Url_Does_Not_Return_Any_Content()
         {
-            _categoryRepository.Setup(r => r.FindByUniqueName(It.IsAny<string>())).Returns(new Mock<ICategory>().Object);
+            var mock = new Mock<ICategory>();
+            mock.Setup(x => x.IsActive).Returns(true);
+            _categoryRepository.Setup(r => r.FindByUniqueName(It.IsAny<string>())).Returns(mock.Object);
             _contentService.Setup(cs => cs.Get(It.IsAny<string>())).Returns(StoryContent.Empty);
 
             var result = Create();
@@ -822,8 +824,10 @@ namespace Kigg.Core.Test
 
         private StoryCreateResult Create(Mock<IStory> story, Mock<IUser> user)
         {
+            var categoryMock = new Mock<ICategory>();
+            categoryMock.Setup(x => x.IsActive).Returns(true);
             _storyRepository.Setup(r => r.FindByUrl(It.IsAny<string>())).Returns((IStory)null);
-            _categoryRepository.Setup(r => r.FindByUniqueName(It.IsAny<string>())).Returns(new Mock<ICategory>().Object);
+            _categoryRepository.Setup(r => r.FindByUniqueName(It.IsAny<string>())).Returns(categoryMock.Object);
             _contentService.Setup(s => s.Get(It.IsAny<string>())).Returns(new StoryContent("A dummy story", "Dummy description", "http://trackbackurl.com"));
             _factory.Setup(f => f.CreateStory(It.IsAny<ICategory>(), It.IsAny<IUser>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(story.Object);
 
