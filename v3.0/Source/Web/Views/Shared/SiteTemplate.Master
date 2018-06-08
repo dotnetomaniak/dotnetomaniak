@@ -379,7 +379,6 @@
     <% Html.RenderPartial("MembershipBox", Model); %>
     <kigg:jQueryScriptManager ID="scripts" runat="server">
     </kigg:jQueryScriptManager>
-    <%= MiniProfiler.RenderIncludes() %>    
     
 </body>
 </html>
