@@ -24,8 +24,9 @@
         private readonly IHtmlSanitizer _htmlSanitizer;
         private readonly IThumbnail _thumbnail;
         private readonly IStoryWeightCalculator[] _storyWeightCalculators;
+        private readonly IVoteRepository _voteRepository;
 
-        public StoryService(IConfigurationSettings settings, IDomainObjectFactory factory, ICategoryRepository categoryRepository, ITagRepository tagRepository, IStoryRepository storyRepository, IMarkAsSpamRepository markAsSpamRepository, IEventAggregator eventAggregator, ISpamProtection spamProtection, ISpamPostprocessor spamPostprocessor, IContentService contentService, IHtmlSanitizer htmlSanitizer, IThumbnail thumbnail, IStoryWeightCalculator[] storyWeightCalculators)
+        public StoryService(IConfigurationSettings settings, IDomainObjectFactory factory, ICategoryRepository categoryRepository, ITagRepository tagRepository, IStoryRepository storyRepository, IMarkAsSpamRepository markAsSpamRepository, IEventAggregator eventAggregator, ISpamProtection spamProtection, ISpamPostprocessor spamPostprocessor, IContentService contentService, IHtmlSanitizer htmlSanitizer, IThumbnail thumbnail, IStoryWeightCalculator[] storyWeightCalculators, IVoteRepository voteRepository)
         {
             Check.Argument.IsNotNull(settings, "settings");
             Check.Argument.IsNotNull(factory, "factory");
@@ -40,6 +41,7 @@
             Check.Argument.IsNotNull(htmlSanitizer, "htmlSanitizer");
             Check.Argument.IsNotNull(thumbnail, "thumbnail");
             Check.Argument.IsNotEmpty(storyWeightCalculators, "storyWeightCalculators");
+            Check.Argument.IsNotNull(voteRepository, "voteRepository");
 
             _settings = settings;
             _factory = factory;
@@ -54,6 +56,7 @@
             _htmlSanitizer = htmlSanitizer;
             _thumbnail = thumbnail;
             _storyWeightCalculators = storyWeightCalculators;
+            _voteRepository = voteRepository;
         }
 
         public virtual StoryCreateResult Create(IUser byUser, string url, string title, string category, string description, string tags, string userIPAddress, string userAgent, string urlReferer, NameValueCollection serverVariables, Func<IStory, string> buildDetailUrl)
@@ -256,8 +259,8 @@
                 if (theStory.Promote(SystemTime.Now(), byUser, fromIPAddress))
                 {
                     _eventAggregator.GetEvent<StoryPromoteEvent>().Publish(new StoryPromoteEventArgs(theStory, byUser));
-
                     unitOfWork.Commit();
+                    _voteRepository.InvalidateCacheForStory(theStory.Id);
                 }
             }
         }
@@ -274,6 +277,7 @@
                     _eventAggregator.GetEvent<StoryDemoteEvent>().Publish(new StoryDemoteEventArgs(theStory, byUser));
 
                     unitOfWork.Commit();
+                    _voteRepository.InvalidateCacheForStory(theStory.Id);
                 }
             }
         }

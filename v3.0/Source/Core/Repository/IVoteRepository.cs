@@ -10,5 +10,7 @@ namespace Kigg.Repository
         IVote FindById(Guid storyId, Guid userId);
 
         ICollection<IVote> FindAfter(Guid storyId, DateTime timestamp);
+
+        void InvalidateCacheForStory(Guid storyId);
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Kigg.DomainObjects;
 using Kigg.Infrastructure;
+using Kigg.Repository;
 using Moq;
 using Xunit;
 
@@ -42,7 +43,9 @@ namespace Kigg.Core.Test
 
             _eventAggregator = new Mock<IEventAggregator>();
 
-            _userScoreService = new UserScoreService(settings.Object, userScoreTable.Object, _eventAggregator.Object);
+            var voteRepository = new Mock<IVoteRepository>();
+            _userScoreService = new UserScoreService(settings.Object, userScoreTable.Object, _eventAggregator.Object,
+                voteRepository.Object);
         }
 
         public override void Dispose()

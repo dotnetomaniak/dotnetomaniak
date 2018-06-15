@@ -1,3 +1,6 @@
+using System.Runtime.Caching;
+using Kigg.Infrastructure;
+
 namespace Kigg.LinqToSql.Repository
 {
     using System;
@@ -10,18 +13,41 @@ namespace Kigg.LinqToSql.Repository
     
     public class VoteRepository : BaseRepository<IVote, StoryVote>, IVoteRepository
     {
-        public VoteRepository(IDatabase database) : base(database)
+        //private static readonly MemoryCache Cache = new MemoryCache("VoteRepository");
+        private ICache Cache;
+        public VoteRepository(IDatabase database, ICache cache) : base(database)
         {
+            Cache = cache;
         }
 
-        public VoteRepository(IDatabaseFactory factory) : base(factory)
+        public VoteRepository(IDatabaseFactory factory, ICache cache) : base(factory)
         {
+            Cache = cache;
         }
 
+        public void InvalidateCacheForStory(Guid storyId)
+        {
+            var cachedVotes = Cache.Get<Dictionary<Guid, int>>("storyVoteCount");
+            if (cachedVotes != null)
+            {
+                var count = Database.VoteDataSource.Count(v => v.StoryId == storyId);
+                cachedVotes[storyId] = count;
+            }
+        }
         public virtual int CountByStory(Guid storyId)
         {
             Check.Argument.IsNotEmpty(storyId, "storyId");
-            return -1;
+            var cachedVotes = Cache.Get<Dictionary<Guid, int>>("storyVoteCount");
+            if (cachedVotes == null)
+            {
+                cachedVotes = Database.VoteDataSource.GroupBy(x => x.StoryId)
+                    .Select(x => new {StoryId = x.Key, Count = x.Count()})
+                    .ToDictionary(x => x.StoryId, x => x.Count);
+                Cache.Set("storyVoteCount", cachedVotes, DateTime.Now.AddMinutes(3));
+            }
+
+            return cachedVotes.ContainsKey(storyId) ? cachedVotes[storyId] : 0;
+
             //return Database.VoteDataSource.Count(v => v.StoryId == storyId);
         }
 

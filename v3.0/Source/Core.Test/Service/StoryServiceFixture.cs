@@ -80,7 +80,16 @@ namespace Kigg.Core.Test
             _freshnessStrategy = new Mock<IStoryWeightCalculator>();
             _freshnessStrategy.SetupGet(s => s.Name).Returns("Freshness");
 
-            _storyService = new StoryService(settings.Object, _factory.Object, _categoryRepository.Object, _tagRepository.Object, _storyRepository.Object, _markAsSpamRepository.Object, _eventAggregator.Object, _spamProtection.Object, _spamPostProcessor.Object, _contentService.Object, _htmlSanitizer.Object, thumbnail.Object, new []{ _voteStrategy.Object, _commentStrategy.Object, _viewStrategy.Object, _userScoreStrategy.Object, _knownSourceStrategy.Object, _freshnessStrategy.Object });
+            var mockVoteRepository = new Mock<IVoteRepository>();
+            _storyService = new StoryService(settings.Object, _factory.Object, _categoryRepository.Object,
+                _tagRepository.Object, _storyRepository.Object, _markAsSpamRepository.Object, _eventAggregator.Object,
+                _spamProtection.Object, _spamPostProcessor.Object, _contentService.Object, _htmlSanitizer.Object,
+                thumbnail.Object,
+                new[]
+                {
+                    _voteStrategy.Object, _commentStrategy.Object, _viewStrategy.Object, _userScoreStrategy.Object,
+                    _knownSourceStrategy.Object, _freshnessStrategy.Object
+                }, mockVoteRepository.Object);
         }
 
         [Fact]

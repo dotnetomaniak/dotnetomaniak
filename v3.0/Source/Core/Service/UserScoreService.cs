@@ -1,3 +1,5 @@
+using Kigg.Repository;
+
 namespace Kigg.Service
 {
     using System;
@@ -9,6 +11,7 @@ namespace Kigg.Service
     {
         private readonly IConfigurationSettings _settings;
         private readonly IUserScoreTable _userScoreTable;
+        private readonly IVoteRepository _voteRepository;
 
         private SubscriptionToken _userActivatedToken;
         private SubscriptionToken _storySubmitToken;
@@ -26,13 +29,14 @@ namespace Kigg.Service
         private SubscriptionToken _storyPublishToken;
         private SubscriptionToken _storyIncorrectlyMarkedAsSpamToken;
 
-        public UserScoreService(IConfigurationSettings settings, IUserScoreTable userScoreTable, IEventAggregator eventAggregator) : base(eventAggregator)
+        public UserScoreService(IConfigurationSettings settings, IUserScoreTable userScoreTable, IEventAggregator eventAggregator, IVoteRepository voteRepository) : base(eventAggregator)
         {
             Check.Argument.IsNotNull(settings, "settings");
             Check.Argument.IsNotNull(userScoreTable, "userScoreTable");
 
             _settings = settings;
             _userScoreTable = userScoreTable;
+            _voteRepository = voteRepository;
         }
 
         protected override void OnStart()
@@ -122,6 +126,7 @@ namespace Kigg.Service
                 }
 
                 eventArgs.User.IncreaseScoreBy(score, reason);
+                _voteRepository.InvalidateCacheForStory(eventArgs.Story.Id);
             }
         }
 
@@ -146,6 +151,7 @@ namespace Kigg.Service
                 }
 
                 eventArgs.User.DecreaseScoreBy(score, reason);
+                _voteRepository.InvalidateCacheForStory(eventArgs.Story.Id);
             }
         }
 
