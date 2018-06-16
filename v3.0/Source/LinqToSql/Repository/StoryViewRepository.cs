@@ -32,14 +32,21 @@ namespace Kigg.LinqToSql.Repository
             var views = Cache.Get<Dictionary<Guid, int>>("storyViewCount");
             if (views == null)
             {
-                Stopwatch stopwatch = Stopwatch.StartNew();
-                views = Database.StoryViewDataSource.GroupBy(x => x.StoryId)
-                    .Select(x => new {StoryId = x.Key, Count = x.Count()})
-                    .ToDictionary(x => x.StoryId, x => x.Count);
-                
-                Cache.Set("storyViewCount", views, DateTime.Now.AddMinutes(15));
-                stopwatch.Stop();
-                Log.Info("Created cache storyViewCount in " + stopwatch.ElapsedMilliseconds);
+                lock (_lockObj)
+                {
+                    views = Cache.Get<Dictionary<Guid, int>>("storyViewCount");
+                    if (views == null)
+                    {
+                        Stopwatch stopwatch = Stopwatch.StartNew();
+                        views = Database.StoryViewDataSource.GroupBy(x => x.StoryId)
+                            .Select(x => new {StoryId = x.Key, Count = x.Count()})
+                            .ToDictionary(x => x.StoryId, x => x.Count);
+
+                        Cache.Set("storyViewCount", views, DateTime.Now.AddMinutes(15));
+                        stopwatch.Stop();
+                        Log.Info("Created cache storyViewCount in " + stopwatch.ElapsedMilliseconds);
+                    }
+                }
             }
 
             return views.ContainsKey(storyId) ? views[storyId] : 0;
