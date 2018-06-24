@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/SiteTemplate.Master" Inherits="System.Web.Mvc.ViewPage<StoryContentViewData>" %>
+<%@ Import Namespace="hbehr.recaptcha" %>
 
 <script runat="server">
 
@@ -84,8 +85,9 @@
         <div class="add-article-row">
             <label>
                 Wpisz tekst znajdujący się na obrazku:</label>
-            <kigg:reCAPTCHA ID="captcha" runat="server">
-            </kigg:reCAPTCHA>
+            <div style="float: left;">
+            <%= ReCaptcha.GetCaptcha() %>
+            </div>
         </div>
         <%}%>
         <div class="add-article-row" id="storyMessage"></div>

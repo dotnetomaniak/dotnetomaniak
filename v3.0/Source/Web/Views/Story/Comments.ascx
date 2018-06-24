@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<StoryDetailViewData>" %>
+<%@ Import Namespace="hbehr.recaptcha" %>
 <script runat="server">
     protected override void OnInit(EventArgs e)
     {
@@ -107,7 +108,8 @@
             </div>
             <%if(ViewData.Model.CaptchaEnabled)%>
             <%{%>
-                <kigg:reCAPTCHA id="captcha" runat="server"></kigg:reCAPTCHA>
+                <!--kigg:reCAPTCHA id="captcha" runat="server"></!--kigg:reCAPTCHA-->
+                <%= ReCaptcha.GetCaptcha() %>
             <%}%>
             <div class="add-article-row">
                 <span id="commentMessage" class="message"></span>
