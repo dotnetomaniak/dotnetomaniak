@@ -1,5 +1,7 @@
 ﻿namespace Kigg.Web
 {
+    using hbehr.recaptcha;
+
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -9,7 +11,6 @@
     using Infrastructure;
     using Repository;
     using Service;
-    using System.Xml;
     using System.Net;
 
     public class StoryController : BaseController
@@ -501,17 +502,18 @@
             string captchaResponse = null;
             bool captchaEnabled = !CurrentUser.ShouldHideCaptcha();
 
+            var validCaptcha = true;
             if (captchaEnabled)
             {
-                captchaChallenge = HttpContext.Request.Form[CaptchaValidator.ChallengeInputName];
-                captchaResponse = HttpContext.Request.Form[CaptchaValidator.ResponseInputName];
+                //captchaChallenge = HttpContext.Request.Form[CaptchaValidator.ChallengeInputName];
+                //captchaResponse = HttpContext.Request.Form[CaptchaValidator.ResponseInputName];
+                string userResponse = HttpContext.Request.Params["g-recaptcha-response"];
+                validCaptcha = ReCaptcha.ValidateCaptcha(userResponse);
             }
 
             JsonViewData viewData = Validate<JsonViewData>(
-                                                            new Validation(() => captchaEnabled && string.IsNullOrEmpty(captchaChallenge), "Pole Captcha nie może być puste."),
-                                                            new Validation(() => captchaEnabled && string.IsNullOrEmpty(captchaResponse), "Pole Captcha nie może być puste."),
-                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteś zalogowany."),
-                                                            new Validation(() => captchaEnabled && !CaptchaValidator.Validate(CurrentUserIPAddress, captchaChallenge, captchaResponse), "Nieudana weryfikacja Captcha.")
+                                                            new Validation(() => captchaEnabled && !validCaptcha, "Pole Captcha jest nieprawidłowe"),
+                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteś zalogowany.")
                                                           );
 
             if (viewData == null)
