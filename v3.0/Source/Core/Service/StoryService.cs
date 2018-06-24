@@ -426,7 +426,7 @@
         public virtual IList<IStory> FindWeekly(DateTime minimumDate, DateTime maximumDate)
         {
             Check.Argument.IsNotInFuture(minimumDate, "minimumDate");
-            Check.Argument.IsNotInFuture(maximumDate, "maximumDate");
+            //Check.Argument.IsNotInFuture(maximumDate, "maximumDate");
 
             List<PublishedStory> publishableStories = new List<PublishedStory>();
 
