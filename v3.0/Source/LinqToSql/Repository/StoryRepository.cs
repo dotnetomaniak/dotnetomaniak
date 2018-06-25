@@ -1,4 +1,6 @@
-﻿namespace Kigg.LinqToSql.Repository
+﻿using Kigg.Infrastructure;
+
+namespace Kigg.LinqToSql.Repository
 {
     using System;
     using System.Collections.Generic;
@@ -10,6 +12,10 @@
 
     public class StoryRepository : BaseRepository<IStory, Story>, IStoryRepository
     {
+        public class CountCache
+        {
+            public int Count { get; set; }
+        }
         private readonly IConfigurationSettings _settings;
 
         public StoryRepository(IDatabase database, IConfigurationSettings settings)
@@ -397,58 +403,97 @@
                            .Count(s => (s.ApprovedAt != null) && (s.PublishedAt != null));
         }
 
+        private int GetOrAdd(string key, Func<int> value, int cacheTimeInMinutes = 5)
+        {
+            if (Cache.TryGet(key, out CountCache result))
+            {
+                return result.Count;
+            }
+
+            var count = value();
+            Cache.Set(key, new CountCache {Count = count}, DateTime.Now.AddMinutes(cacheTimeInMinutes));
+            return count;
+        }
+
         public virtual int CountByUpcoming()
         {
-            var now = SystemTime.Now();
-            return Database.StoryDataSource.Count(s => (s.ApprovedAt != null) && (s.PublishedAt == null) && (s.CreatedAt.AddHours(_settings.MaximumAgeOfStoryInHoursToPublish) > now));
+            return GetOrAdd("StoryRepository.CountByUpcoming", () =>
+            {
+                var now = SystemTime.Now();
+                return Database.StoryDataSource.Count(s =>
+                    (s.ApprovedAt != null) && (s.PublishedAt == null) &&
+                    (s.CreatedAt.AddHours(_settings.MaximumAgeOfStoryInHoursToPublish) > now));
+            });
         }
 
         public virtual int CountByCategory(Guid categoryId)
         {
             Check.Argument.IsNotEmpty(categoryId, "categoryId");
 
-            return Database.StoryDataSource
-                           .Count(s => (s.ApprovedAt != null) && (s.PublishedAt != null) && (s.CategoryId == categoryId));
+            return GetOrAdd("StoryRepository.CountByCategory." + categoryId.ToString("N"), () =>
+            {
+                return Database.StoryDataSource
+                    .Count(s => (s.ApprovedAt != null) && (s.PublishedAt != null) && (s.CategoryId == categoryId));
+            });
         }
 
         public virtual int CountByCategory(string categoryName)
         {
             Check.Argument.IsNotEmpty(categoryName, "categoryName");
 
-            return Database.StoryDataSource
-                           .Count(s => (s.ApprovedAt != null) && (s.PublishedAt != null) && (s.Category.Name == categoryName));
+            return GetOrAdd("StoryRepository.CountByCategory." + categoryName, () =>
+            {
+                return Database.StoryDataSource
+                    .Count(s => (s.ApprovedAt != null) && (s.PublishedAt != null) && (s.Category.Name == categoryName));
+            });
         }
 
         public virtual int CountByTag(Guid tagId)
         {
             Check.Argument.IsNotEmpty(tagId, "tagId");
-
-            return Database.StoryDataSource.Count(s => (s.ApprovedAt != null) && s.StoryTags.Any(st => st.TagId == tagId));
+            return GetOrAdd("StoryRepository.CountByTag." + tagId.ToString("N"), () =>
+            {
+                return Database.StoryDataSource.Count(s =>
+                    (s.ApprovedAt != null) && s.StoryTags.Any(st => st.TagId == tagId));
+            });
         }
 
         public virtual int CountByTag(string tagName)
         {
             Check.Argument.IsNotEmpty(tagName, "tagName");
-
-            return Database.StoryDataSource.Count(s => (s.ApprovedAt != null) && s.StoryTags.Any(st => st.Tag.Name == tagName));
+            return GetOrAdd("StoryRepository.CountByTag." + tagName, () =>
+            {
+                return Database.StoryDataSource.Count(s =>
+                    (s.ApprovedAt != null) && s.StoryTags.Any(st => st.Tag.Name == tagName));
+            });
         }
 
         public virtual int CountByNew()
         {
-            return Database.StoryDataSource.Count(s => ((s.ApprovedAt != null) && (s.LastProcessedAt == null)));
+            return GetOrAdd("StoryRepository.CountByNew", () =>
+            {
+                return Database.StoryDataSource.Count(s => ((s.ApprovedAt != null) && (s.LastProcessedAt == null)));
+            });
         }
 
         public virtual int CountByUnapproved()
         {
-            return Database.StoryDataSource.Count(s => s.ApprovedAt == null);
+            return GetOrAdd("StoryRepository.CountByUnapproved",
+                () => { return Database.StoryDataSource.Count(s => s.ApprovedAt == null); });
         }
 
         public virtual int CountByPublishable(DateTime minimumDate, DateTime maximumDate)
         {
             Check.Argument.IsNotInFuture(minimumDate, "minimumDate");
             Check.Argument.IsNotInFuture(maximumDate, "maximumDate");
-
-            return Database.StoryDataSource.Count(s => (((s.ApprovedAt >= minimumDate) && (s.ApprovedAt <= maximumDate)) && ((s.LastProcessedAt == null) || (s.LastProcessedAt <= s.LastActivityAt))));
+            return GetOrAdd(
+                "StoryRepository.CountByPublishable." + minimumDate.ToString("s") + "-" + maximumDate.ToString("s"),
+                () =>
+                {
+                    return Database.StoryDataSource.Count(s =>
+                        (((s.ApprovedAt >= minimumDate) && (s.ApprovedAt <= maximumDate)) &&
+                         ((s.LastProcessedAt == null) || (s.LastProcessedAt <= s.LastActivityAt))));
+                });
         }
 
         public virtual int CountPostedByUser(Guid userId)
