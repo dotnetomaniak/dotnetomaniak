@@ -130,14 +130,19 @@ namespace Kigg.Web
                 viewData.UnapprovedCount = _storyRepository.CountByUnapproved();
 
                 DateTime currentTime = SystemTime.Now();
-                DateTime minimumDate = currentTime.AddHours(-Settings.MaximumAgeOfStoryInHoursToPublish);
-                DateTime maximumDate = currentTime.AddHours(-Settings.MinimumAgeOfStoryInHoursToPublish);
+                DateTime minimumDate = RoundDown(currentTime.AddHours(-Settings.MaximumAgeOfStoryInHoursToPublish), TimeSpan.FromMinutes(15));
+                DateTime maximumDate = RoundDown(currentTime.AddHours(-Settings.MinimumAgeOfStoryInHoursToPublish), TimeSpan.FromMinutes(15));
 
                 viewData.PublishableCount = _storyRepository.CountByPublishable(minimumDate, maximumDate);
                 viewData.UnapprovedEventsCount = _upcommingEventsReposiotory.CountByUnapproved();
             }
 
             return View(viewData);
+        }
+        public static DateTime RoundDown(DateTime dt, TimeSpan d)
+        {
+            var delta = dt.Ticks % d.Ticks;
+            return new DateTime(dt.Ticks - delta, dt.Kind);
         }
 
         private ActionResult PreparedView()
