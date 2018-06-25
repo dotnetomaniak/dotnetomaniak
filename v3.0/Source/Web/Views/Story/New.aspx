@@ -83,8 +83,7 @@
         <%if (Model.CaptchaEnabled)%>
         <%{%>
         <div class="add-article-row">
-            <label>
-                Wpisz tekst znajdujący się na obrazku:</label>
+            <label>Captcha:</label>
             <div style="float: left;">
             <%= ReCaptcha.GetCaptcha() %>
             </div>
