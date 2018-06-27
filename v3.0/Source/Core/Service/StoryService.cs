@@ -450,7 +450,7 @@
                     publishableStories.Add(publishedStory);
                 }
             }
-            return publishableStories.OrderBy(x => x.TotalScore).Select(x => x.Story).ToList();
+            return publishableStories.OrderByDescending(x => x.TotalScore).Select(x => x.Story).ToList();
         }
 
         public virtual void Publish()
