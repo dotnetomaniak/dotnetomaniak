@@ -181,7 +181,7 @@
     <link href="<%= Url.Asset("css").Replace("&", "&amp;") %>" rel="stylesheet" type="text/css" />
     <link href="<%= Url.Image("fav.ico")%>" rel="shortcut icon" type="image/x-icon" />
     <link href="<%= Url.Image("fav.png")%>" rel="icon" type="image/png" />
-    <link href="<%= Url.Content("~/opensearch.axd")%>" title="<%= Model.SiteTitle %>"
+    <link href="<%= Url.Content("~/opensearch.axd")%>?v1" title="<%= Model.SiteTitle %>"
         rel="search" type="application/opensearchdescription+xml" />
     <link href="https://plus.google.com/110925305542873177884" rel="publisher" />
     <script src="https://www.google.com/jsapi?key=ABQIAAAAdWi2-jJ3tpgf0HNqkwp6TBRfozVu3uzgMdQm0owx2puRbZ1h7hQwKYIn0t3A1mHpnYzWO-ppxXkndQ" type="text/javascript"></script>
@@ -379,6 +379,5 @@
     <% Html.RenderPartial("MembershipBox", Model); %>
     <kigg:jQueryScriptManager ID="scripts" runat="server">
     </kigg:jQueryScriptManager>
-    
 </body>
 </html>
