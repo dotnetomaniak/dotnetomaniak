@@ -467,11 +467,14 @@
     <Content Include="Assets\Images\180x220_1_v4.gif" />
     <Content Include="Assets\Images\ajaxSmall.gif" />
     <Content Include="Assets\Images\alert.jpg" />
+    <Content Include="Assets\Images\approve.png" />
     <Content Include="Assets\Images\arrow-login.gif" />
     <Content Include="Assets\Images\arrow.png" />
     <Content Include="Assets\Images\atom.png" />
+    <Content Include="Assets\Images\badge2.png" />
     <Content Include="Assets\Images\body-bg.gif" />
     <Content Include="Assets\Images\button-blue.png" />
+    <Content Include="Assets\Images\button_securitum.png" />
     <Content Include="Assets\Images\categories_03.jpg" />
     <Content Include="Assets\Images\close-big.jpg" />
     <Content Include="Assets\Images\content.gif" />
@@ -489,6 +492,7 @@
     <Content Include="Assets\Images\devmedia\ic_16x16_mnmlzm.png" />
     <Content Include="Assets\Images\devmedia\ic_16x16_sysPytania.png" />
     <Content Include="Assets\Images\devmedia\ic_16x16_zenblogi.png" />
+    <Content Include="Assets\Images\dm_wp7_mini.png" />
     <Content Include="Assets\Images\dodaj-artykul.jpg" />
     <Content Include="Assets\Images\dodaj-grey.jpg" />
     <Content Include="Assets\Images\dodaj.png" />
@@ -509,6 +513,7 @@
     <Content Include="Assets\Images\edit.png" />
     <Content Include="Assets\Images\error.png" />
     <Content Include="Assets\Images\error_mainpage.png" />
+    <Content Include="Assets\Images\et.png" />
     <Content Include="Assets\Images\facebook.png" />
     <Content Include="Assets\Images\fav-big.png" />
     <Content Include="Assets\Images\fav.ico" />
@@ -531,6 +536,8 @@
     <Content Include="Assets\Images\menu-over.jpg" />
     <Content Include="Assets\Images\menu-right-last.png" />
     <Content Include="Assets\Images\menu-right.jpg" />
+    <Content Include="Assets\Images\miniature.png" />
+    <Content Include="Assets\Images\mm_banner_small.png" />
     <Content Include="Assets\Images\openid.jpg" />
     <Content Include="Assets\Images\OpenID\aol.ico" />
     <Content Include="Assets\Images\OpenID\blogger.ico" />
