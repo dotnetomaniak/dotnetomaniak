@@ -540,11 +540,14 @@
     <Content Include="Assets\Images\mm_banner_small.png" />
     <Content Include="Assets\Images\openid.jpg" />
     <Content Include="Assets\Images\OpenID\aol.ico" />
+    <Content Include="Assets\Images\OpenID\arrow_white_back.png" />
+    <Content Include="Assets\Images\OpenID\arrow_white_forward.png" />
     <Content Include="Assets\Images\OpenID\blogger.ico" />
     <Content Include="Assets\Images\OpenID\bloglines.ico" />
     <Content Include="Assets\Images\OpenID\claimid.ico" />
     <Content Include="Assets\Images\OpenID\lj.ico" />
     <Content Include="Assets\Images\OpenID\myopenid.ico" />
+    <Content Include="Assets\Images\OpenID\openid.ico" />
     <Content Include="Assets\Images\OpenID\technorati.ico" />
     <Content Include="Assets\Images\OpenID\verisign.ico" />
     <Content Include="Assets\Images\OpenID\vidoop.ico" />
