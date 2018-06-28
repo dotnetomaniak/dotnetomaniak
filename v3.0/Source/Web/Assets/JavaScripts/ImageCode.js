@@ -310,7 +310,7 @@
 
         $('#txtImageCode').val(url);
 
-        imageUrl += '&noCache=true';
+        //imageUrl += '&noCache=true';
 
         $('#imgPreview').attr('src', imageUrl);
     },
