@@ -538,6 +538,8 @@
     <Content Include="Assets\Images\menu-right.jpg" />
     <Content Include="Assets\Images\miniature.png" />
     <Content Include="Assets\Images\mm_banner_small.png" />
+    <Content Include="Assets\Images\netdevelopersdays.2018.jpg" />
+    <Content Include="Assets\Images\netdevelopersdays.banner.2018.jpg" />
     <Content Include="Assets\Images\openid.jpg" />
     <Content Include="Assets\Images\OpenID\aol.ico" />
     <Content Include="Assets\Images\OpenID\arrow_white_back.png" />
