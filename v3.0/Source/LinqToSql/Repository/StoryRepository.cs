@@ -200,7 +200,7 @@ namespace Kigg.LinqToSql.Repository
             int total = CountByPublishable(minimumDate, maximumDate);
 
             var stories = Database.StoryDataSource
-                                  .Where(s => (((s.ApprovedAt >= minimumDate) && (s.ApprovedAt <= maximumDate)) && ((s.LastProcessedAt == null) || (s.LastProcessedAt <= s.LastActivityAt))))
+                                  .Where(s => (((s.ApprovedAt >= minimumDate) && (s.ApprovedAt <= maximumDate)) && s.PublishedAt == null ))
                                   .OrderByDescending(s => s.CreatedAt)
                                   .Skip(start).Take(max);
 
@@ -397,6 +397,13 @@ namespace Kigg.LinqToSql.Repository
             }
         }
 
+        public ICollection<IStory> FindCreatedBetween(DateTime begin, DateTime end)
+        {
+            return Database.StoryDataSource
+                .Where(s => s.CreatedAt >= begin && s.CreatedAt <= end)
+                .Cast<IStory>().ToList();
+        }
+
         public virtual int CountByPublished()
         {
             return Database.StoryDataSource
@@ -490,9 +497,7 @@ namespace Kigg.LinqToSql.Repository
                 "StoryRepository.CountByPublishable." + minimumDate.ToString("s") + "-" + maximumDate.ToString("s"),
                 () =>
                 {
-                    return Database.StoryDataSource.Count(s =>
-                        (((s.ApprovedAt >= minimumDate) && (s.ApprovedAt <= maximumDate)) &&
-                         ((s.LastProcessedAt == null) || (s.LastProcessedAt <= s.LastActivityAt))));
+                    return Database.StoryDataSource.Count(s => (((s.ApprovedAt >= minimumDate) && (s.ApprovedAt <= maximumDate)) && s.PublishedAt == null ));
                 });
         }
 
@@ -509,6 +514,5 @@ namespace Kigg.LinqToSql.Repository
 
             return Database.StoryDataSource.Count(s => (s.ApprovedAt != null) && (s.User.UserName == userName));
         }
-
     }
 }

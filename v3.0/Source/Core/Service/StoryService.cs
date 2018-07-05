@@ -426,30 +426,26 @@
         public virtual IList<IStory> FindWeekly(DateTime minimumDate, DateTime maximumDate)
         {
             Check.Argument.IsNotInFuture(minimumDate, "minimumDate");
-            
-            if(maximumDate>DateTime.Now)
-                maximumDate = DateTime.Now;
-            Check.Argument.IsNotInFuture(maximumDate, "maximumDate");
+
+            if (maximumDate >= DateTime.UtcNow)
+                maximumDate = DateTime.UtcNow.AddMinutes(-1);
+
 
             List<PublishedStory> publishableStories = new List<PublishedStory>();
 
-            int publishableCount = _storyRepository.CountByPublishable(minimumDate, maximumDate);
-            if (publishableCount > 0)
+            ICollection<IStory> stories =
+                _storyRepository.FindCreatedBetween(minimumDate, maximumDate);
+
+            foreach (IStory story in stories)
             {
-                ICollection<IStory> stories = _storyRepository.FindPublishable(minimumDate, maximumDate, 0, publishableCount).Result;
+                PublishedStory publishedStory = new PublishedStory(story);
 
-                foreach (IStory story in stories)
-                {
-                    PublishedStory publishedStory = new PublishedStory(story);
+                publishedStory.Weights.Add("View", publishedStory.Story.ViewCount);
+                publishedStory.Weights.Add("Vote", publishedStory.Story.VoteCount * 100);
 
-                    foreach (IStoryWeightCalculator strategy in _storyWeightCalculators)
-                    {
-                        publishedStory.Weights.Add(strategy.Name, strategy.Calculate(maximumDate, story));
-                    }
-
-                    publishableStories.Add(publishedStory);
-                }
+                publishableStories.Add(publishedStory);
             }
+
             return publishableStories.OrderByDescending(x => x.TotalScore).Select(x => x.Story).ToList();
         }
 

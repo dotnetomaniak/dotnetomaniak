@@ -187,9 +187,9 @@
                 DateTime minimumDate = Kigg.DateTimeExtension.FirstDateOfWeek(year, week);
                 DateTime maximumDate = Kigg.DateTimeExtension.LastDateOfWeek(year, week);
                 var list = _storyService.FindWeekly(minimumDate, maximumDate);
-                PagedResult<IStory> pagedResult = new PagedResult<IStory>(list, list.Count);
-                viewData.Stories = pagedResult.Result;
-                viewData.TotalStoryCount = pagedResult.Total;
+                //PagedResult<IStory> pagedResult = new PagedResult<IStory>(list, list.Count);
+                viewData.Stories = list;//pagedResult.Result;
+                //viewData.TotalStoryCount = pagedResult.Total;
             }
             return View("List", viewData);
         }
