@@ -42,7 +42,7 @@ namespace Kigg.Repository
 
         ICollection<IStory> FindSimilar(IStory story);
 
-        //PagedResult<IStory> FindWeekly(int week, int year, int start, int max);
+        ICollection<IStory> FindCreatedBetween(DateTime begin, DateTime end);
 
         int CountByPublished();
 

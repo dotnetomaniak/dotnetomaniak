@@ -1,4 +1,6 @@
-﻿namespace Kigg.Repository
+﻿using System.Collections.Generic;
+
+namespace Kigg.Repository
 {
     using System;
     using System.Diagnostics;
@@ -138,6 +140,11 @@
         public virtual PagedResult<IStory> FindCommentedByUser(Guid userId, int start, int max)
         {
             return _innerRepository.FindCommentedByUser(userId, start, max);
+        }
+
+        public ICollection<IStory> FindCreatedBetween(DateTime begin, DateTime end)
+        {
+            return _innerRepository.FindCreatedBetween(begin, end);
         }
 
         [DebuggerStepThrough]
