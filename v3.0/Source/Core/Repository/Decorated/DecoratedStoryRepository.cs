@@ -146,6 +146,11 @@ namespace Kigg.Repository
         {
             return _innerRepository.FindCreatedBetween(begin, end);
         }
+        
+        public ICollection<IStory> FindPublishedBetween(DateTime begin, DateTime end)
+        {
+            return _innerRepository.FindPublishedBetween(begin, end);
+        }
 
         [DebuggerStepThrough]
         public virtual int CountByPublished()

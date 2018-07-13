@@ -43,6 +43,7 @@ namespace Kigg.Repository
         ICollection<IStory> FindSimilar(IStory story);
 
         ICollection<IStory> FindCreatedBetween(DateTime begin, DateTime end);
+        ICollection<IStory> FindPublishedBetween(DateTime begin, DateTime end);
 
         int CountByPublished();
 

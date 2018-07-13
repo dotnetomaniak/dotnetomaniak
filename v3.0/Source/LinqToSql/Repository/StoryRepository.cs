@@ -404,6 +404,13 @@ namespace Kigg.LinqToSql.Repository
                 .Cast<IStory>().ToList();
         }
 
+        public ICollection<IStory> FindPublishedBetween(DateTime begin, DateTime end)
+        {
+            return Database.StoryDataSource
+                .Where(s => s.PublishedAt != null && s.PublishedAt >= begin && s.PublishedAt <= end)
+                .Cast<IStory>().ToList();
+        }
+
         public virtual int CountByPublished()
         {
             return Database.StoryDataSource
