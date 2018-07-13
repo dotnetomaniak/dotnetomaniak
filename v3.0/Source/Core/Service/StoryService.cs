@@ -431,10 +431,11 @@
                 maximumDate = DateTime.UtcNow.AddMinutes(-1);
 
 
-            List<PublishedStory> publishableStories = new List<PublishedStory>();
+            var publishableStories = new List<PublishedStory>();
 
-            ICollection<IStory> stories =
-                _storyRepository.FindCreatedBetween(minimumDate, maximumDate);
+            var stories = minimumDate >= new DateTime(2018, 07, 06)
+                ? _storyRepository.FindPublishedBetween(minimumDate, maximumDate)
+                : _storyRepository.FindCreatedBetween(minimumDate, maximumDate);
 
             foreach (IStory story in stories)
             {
