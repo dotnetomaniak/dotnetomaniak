@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using Kigg.LinqToSql.Repository;
 using StackExchange.Profiling;
 using StackExchange.Profiling.Mvc;
@@ -41,6 +42,7 @@ namespace Kigg.Web
 
         protected void Application_Start()
         {
+            InitializeDatabase();
             OnStart();
             MiniProfiler.Configure(new MiniProfilerOptions
                     {
@@ -98,6 +100,16 @@ namespace Kigg.Web
             // If we're using EntityFramework 6, here's where it'd go.
             // This is in the MiniProfiler.EF6 NuGet package.
             // MiniProfilerEF6.Initialize();
+        }
+
+        private void InitializeDatabase()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["dotnetomaniak"].ConnectionString;
+            Database database = new Database(connectionString);
+            if (!database.DatabaseExists())
+            {
+                database.CreateDatabase();
+            }
         }
 
         protected void Application_End()
