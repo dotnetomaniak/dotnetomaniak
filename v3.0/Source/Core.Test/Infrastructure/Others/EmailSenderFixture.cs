@@ -16,7 +16,8 @@ namespace Kigg.Core.Test
         public EmailSenderFixture()
         {
             _file = new Mock<IFile>();
-            _emailSender = new EmailSender("MailTemplates", true, settings.Object, _file.Object);
+            var config = new Mock<IConfigurationManager>();
+            _emailSender = new EmailSender("MailTemplates", true, settings.Object, _file.Object, config.Object);
         }
 
         public override void Dispose()
