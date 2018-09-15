@@ -18,17 +18,21 @@
         private readonly bool _enableSsl;
         private readonly IConfigurationSettings _settings;
         private readonly IFile _file;
+        private readonly IConfigurationManager _configurationManager;
 
-        public EmailSender(string templateDirectory, bool enableSsl, IConfigurationSettings settings, IFile file)
+        public EmailSender(string templateDirectory, bool enableSsl, IConfigurationSettings settings, IFile file,
+            IConfigurationManager configurationManager)
         {
             Check.Argument.IsNotEmpty(templateDirectory, "templateDirectory");
             Check.Argument.IsNotNull(settings, "settings");
             Check.Argument.IsNotNull(file, "file");
+            Check.Argument.IsNotNull(configurationManager, "configurationManager");
 
             _templateDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, templateDirectory);
             _enableSsl = enableSsl;
             _settings = settings;
             _file = file;
+            _configurationManager = configurationManager;
         }
 
         public void SendRegistrationInfo(string email, string userName, string password, string activateUrl)
@@ -297,10 +301,15 @@
         {
             try
             {
-                SmtpClient smtp = new SmtpClient
-                                      {
-                                          EnableSsl = _enableSsl
-                                      };
+                var smtp = new SmtpClient
+                {
+                    Host = _configurationManager.AppSettings["mailServer"],
+                    Port = int.Parse(_configurationManager.AppSettings["mailPort"]),
+                    Credentials = new System.Net.NetworkCredential(
+                        _configurationManager.AppSettings["mailUser"],
+                        _configurationManager.AppSettings["mailPass"]),
+                    EnableSsl = _enableSsl
+                };
 
                 smtp.Send(mail);
             }
