@@ -570,6 +570,19 @@ namespace Kigg.Web.Test
             Assert.True(result.isSuccessful);
             Assert.True(result.url.Length > 0);
         }
+        [Fact]
+        public void Submit_Should_Add_New_Story_Without_Captcha_When_CurrentScore_Is_High()
+        {
+            SetupCaptcha(false, "");
+            var user = new Mock<IUser>();
+            user.SetupGet(u => u.CurrentScore).Returns(10000);
+            SetCurrentUser(user, Roles.User);
+            _storyService.Setup(s => s.Create(It.IsAny<IUser>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<NameValueCollection>(), It.IsAny<Func<IStory, string>>())).Returns(new StoryCreateResult { DetailUrl = "/Dummy-Story" }).Verifiable();
+            var result = (JsonCreateViewData) ((JsonResult) _controller.Submit("http://astory.com", "Dummy story", "Dummy", "Dummy Story Description", "Dummy, Test")).Data;
+            Assert.True(result.isSuccessful);
+            Assert.True(result.url.Length > 0);
+
+        }
 
         [Fact]
         public void Submit_Should_Use_StoryService()
