@@ -22,6 +22,8 @@
         private readonly IContentService _contentService;
         private readonly ISocialServiceRedirector[] _socialServiceRedirectors;
 
+        public Func<string, bool> CaptchaValidatorFunc = s => ReCaptcha.ValidateCaptcha(s);
+
         public StoryController(ICategoryRepository categoryRepository, ITagRepository tagRepository, IStoryRepository storyRepository, IStoryService storyService, IContentService contentService, ISocialServiceRedirector[] socialServiceRedirectors)
         {
             Check.Argument.IsNotNull(categoryRepository, "categoryRepository");
@@ -503,18 +505,21 @@
             bool captchaEnabled = !CurrentUser.ShouldHideCaptcha();
 
             var validCaptcha = true;
+            string userResponse = null;
             if (captchaEnabled)
             {
                 //captchaChallenge = HttpContext.Request.Form[CaptchaValidator.ChallengeInputName];
                 //captchaResponse = HttpContext.Request.Form[CaptchaValidator.ResponseInputName];
-                string userResponse = HttpContext.Request.Params["g-recaptcha-response"];
-                validCaptcha = ReCaptcha.ValidateCaptcha(userResponse);
+                userResponse = HttpContext.Request.Params["g-recaptcha-response"];
+                validCaptcha = CaptchaValidatorFunc(userResponse);
             }
 
             JsonViewData viewData = Validate<JsonViewData>(
-                                                            new Validation(() => captchaEnabled && !validCaptcha, "Pole Captcha jest nieprawidłowe"),
-                                                            new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteś zalogowany.")
-                                                          );
+                new Validation(() => captchaEnabled && string.IsNullOrEmpty(userResponse),
+                    "Pole Captcha nie może być puste."),
+                new Validation(() => captchaEnabled && !validCaptcha, "Pole Captcha jest nieprawidłowe"),
+                new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteś zalogowany.")
+            );
 
             if (viewData == null)
             {

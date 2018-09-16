@@ -122,9 +122,7 @@ namespace Kigg.Web.Test
         public void Post_Should_Return_Error_When_Captcha_Does_Not_Match()
         {
             SetCurrentUser(new Mock<IUser>(), Roles.User);
-            SetupCaptcha();
-
-            _reCAPTCHA.Setup(c => c.Validate(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(false);
+            SetupCaptcha(false);
 
             var result = (JsonViewData)((JsonResult)_controller.Post(Guid.NewGuid().Shrink(), "This is a dummy comment", true)).Data;
 
@@ -146,7 +144,7 @@ namespace Kigg.Web.Test
         [Fact]
         public void Post_Should_Return_Error_When_Captcha_Response_Is_Blank()
         {
-            _httpContext.HttpRequest.SetupGet(r => r.Form).Returns(new NameValueCollection { { _reCAPTCHA.Object.ChallengeInputName, "foo" } });
+            SetupCaptcha(false, null);
 
             var result = (JsonViewData)((JsonResult)_controller.Post(Guid.NewGuid().Shrink(), "This is a dummy comment", true)).Data;
 
@@ -157,7 +155,7 @@ namespace Kigg.Web.Test
         [Fact]
         public void Post_Should_Return_Error_When_Captcha_Challenge_Is_Blank()
         {
-            _httpContext.HttpRequest.SetupGet(r => r.Form).Returns(new NameValueCollection());
+            SetupCaptcha(false, "");
 
             var result = (JsonViewData)((JsonResult)_controller.Post(Guid.NewGuid().Shrink(), "This is a dummy comment", true)).Data;
 
@@ -168,6 +166,7 @@ namespace Kigg.Web.Test
         [Fact]
         public void Post_Should_Return_Error_When_Content_Is_Blank()
         {
+            SetupCaptcha();
             var result = (JsonViewData)((JsonResult)_controller.Post(Guid.NewGuid().Shrink(), string.Empty, true)).Data;
 
             Assert.False(result.isSuccessful);
@@ -177,6 +176,8 @@ namespace Kigg.Web.Test
         [Fact]
         public void Post_Should_Return_Error_When_StoryId_Is_Invalid()
         {
+            SetupCaptcha();
+
             var result = (JsonViewData)((JsonResult)_controller.Post("foobar", "This is a dummy comment", true)).Data;
 
             Assert.False(result.isSuccessful);
@@ -186,6 +187,8 @@ namespace Kigg.Web.Test
         [Fact]
         public void Post_Should_Return_Error_When_StoryId_Is_Blank()
         {
+            SetupCaptcha();
+
             var result = (JsonViewData)((JsonResult)_controller.Post(string.Empty, "This is a dummy comment", true)).Data;
 
             Assert.False(result.isSuccessful);
@@ -458,17 +461,13 @@ namespace Kigg.Web.Test
             Assert.Equal("Identyfikator artykułu nie może być pusty.", result.errorMessage);
         }
 
-        private void SetupCaptcha()
+        private void SetupCaptcha(bool captchaResult = true, string captchaResponse = "bar")
         {
+            var nameValue = new NameValueCollection();
+            nameValue.Add("g-recaptcha-response", captchaResponse);
+            _httpContext.HttpRequest.SetupGet(r => r.Params).Returns(nameValue);
             _httpContext.HttpRequest.SetupGet(r => r.UserHostAddress).Returns("192.168.0.1");
-            _httpContext.HttpRequest.SetupGet(r => r.Form).Returns(new NameValueCollection
-                                                                        {
-                                                                            {_reCAPTCHA.Object.ChallengeInputName, "foo" },
-                                                                            {_reCAPTCHA.Object.ResponseInputName, "bar" } 
-                                                                        }
-                                                                    );
-
-            _reCAPTCHA.Setup(c => c.Validate(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(true).Verifiable();
+            _controller.CaptchaValidatorFunc = s => captchaResult;
         }
 
         private JsonViewData Post()

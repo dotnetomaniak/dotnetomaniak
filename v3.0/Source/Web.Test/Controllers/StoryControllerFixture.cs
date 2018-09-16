@@ -31,8 +31,6 @@ namespace Kigg.Web.Test
         private readonly Mock<IStoryService> _storyService;
         private readonly Mock<IContentService> _contentService;
 
-        private readonly Mock<reCAPTCHAValidator> _reCAPTCHA;
-
         private readonly HttpContextMock _httpContext;
         private readonly StoryController _controller;
 
@@ -49,13 +47,11 @@ namespace Kigg.Web.Test
 
             _contentService = new Mock<IContentService>();
 
-            _reCAPTCHA = new Mock<reCAPTCHAValidator>("http://api-verify.recaptcha.net/verify", "http://api.recaptcha.net", "https://api-secure.recaptcha.net", "bar", "bar", "hello", "world", new Mock<IHttpForm>().Object);
-
             _controller = new StoryController(_categoryRepository.Object, _tagRepository.Object, _storyRepository.Object, _storyService.Object, _contentService.Object, new ISocialServiceRedirector[] { new FaceBookRedirector(), new DeliciousRedirector() })
                               {
                                   UserRepository = _userRepository.Object,
                                   Settings = settings.Object,
-                                  CaptchaValidator = _reCAPTCHA.Object,
+                                  CaptchaValidator = null,
                                   StoryRepository = _storyRepository.Object
                               };
             _storyRepository.Setup(x => x.CountByUpcoming()).Returns(0);
@@ -576,14 +572,6 @@ namespace Kigg.Web.Test
         }
 
         [Fact]
-        public void Submit_Should_Use_reCaptcha()
-        {
-            Submit();
-
-            _reCAPTCHA.Verify();
-        }
-
-        [Fact]
         public void Submit_Should_Use_StoryService()
         {
             Submit();
@@ -611,12 +599,13 @@ namespace Kigg.Web.Test
             SetCurrentUser(new Mock<IUser>(), Roles.User);
             SetupCaptcha();
 
-            _reCAPTCHA.Setup(c => c.Validate(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(false);
+            //_reCAPTCHA.Setup(c => c.Validate(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(false);
+            _controller.CaptchaValidatorFunc = s => false;
 
             var result = (JsonViewData)((JsonResult)_controller.Submit("http://astory.com", "Dummy story", "Dummy", "Dummy Story Description", "Dummy, Test")).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Nieudana weryfikacja Captcha.", result.errorMessage);
+            Assert.Equal("Pole Captcha jest nieprawidłowe", result.errorMessage);
         }
 
         [Fact]
@@ -633,8 +622,7 @@ namespace Kigg.Web.Test
         [Fact]
         public void Submit_Should_Return_Error_When_Captcha_Response_Is_Blank()
         {
-            _httpContext.HttpRequest.SetupGet(r => r.Form).Returns(new NameValueCollection { { _reCAPTCHA.Object.ChallengeInputName, "foo" } });
-
+            SetupCaptcha(false, "");
             var result = (JsonViewData)((JsonResult)_controller.Submit("http://astory.com", "Dummy story", "Dummy", "Dummy Story Description", "Dummy, Test")).Data;
 
             Assert.False(result.isSuccessful);
@@ -644,7 +632,7 @@ namespace Kigg.Web.Test
         [Fact]
         public void Post_Should_Return_Error_When_Captcha_Challenge_Is_Blank()
         {
-            _httpContext.HttpRequest.SetupGet(r => r.Form).Returns(new NameValueCollection());
+            SetupCaptcha(false, "");
 
             var result = (JsonViewData)((JsonResult)_controller.Submit("http://astory.com", "Dummy story", "Dummy", "Dummy Story Description", "Dummy, Test")).Data;
 
@@ -1916,17 +1904,13 @@ namespace Kigg.Web.Test
             return (ViewResult)_controller.WeeklyDigest(week, year, 1);
         }
 
-        private void SetupCaptcha()
+        private void SetupCaptcha(bool captchaResult = true, string captchaResponse = "bar")
         {
+            var nameValue = new NameValueCollection();
+            nameValue.Add("g-recaptcha-response", captchaResponse);
+            _httpContext.HttpRequest.SetupGet(r => r.Params).Returns(nameValue);
             _httpContext.HttpRequest.SetupGet(r => r.UserHostAddress).Returns("192.168.0.1");
-            _httpContext.HttpRequest.SetupGet(r => r.Form).Returns(new NameValueCollection
-                                                                        {
-                                                                            {_reCAPTCHA.Object.ChallengeInputName, "foo" },
-                                                                            {_reCAPTCHA.Object.ResponseInputName, "bar" } 
-                                                                        }
-                                                                    );
-
-            _reCAPTCHA.Setup(c => c.Validate(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(true);
+            _controller.CaptchaValidatorFunc = s => captchaResult;
         }
 
         private void SetCurrentUser(Mock<IUser> user, Roles role)
