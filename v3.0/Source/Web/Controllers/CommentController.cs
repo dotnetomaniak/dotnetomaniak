@@ -14,6 +14,7 @@
     {
         private readonly IStoryRepository _storyRepository;
         private readonly IStoryService _storyService;
+        public Func<string, bool> CaptchaValidatorFunc = s => ReCaptcha.ValidateCaptcha(s);
 
         public CommentController(IStoryRepository storyRepository, IStoryService storyService)
         {
@@ -41,19 +42,22 @@
             bool captchaEnabled = !CurrentUser.ShouldHideCaptcha();
 
             var validCaptcha = true;
+            string userResponse = null;
             if (captchaEnabled)
             {
                 //captchaChallenge = HttpContext.Request.Form[CaptchaValidator.ChallengeInputName];
                 //captchaResponse = HttpContext.Request.Form[CaptchaValidator.ResponseInputName];
-                string userResponse = HttpContext.Request.Params["g-recaptcha-response"];
-                validCaptcha = ReCaptcha.ValidateCaptcha(userResponse);
+                userResponse = HttpContext.Request.Params["g-recaptcha-response"];
+                validCaptcha = CaptchaValidatorFunc(userResponse);
             }
 
             JsonViewData viewData = Validate<JsonViewData>(
                                                             new Validation(() => string.IsNullOrEmpty(id), "Identyfikator artykułu nie może być pusty."),
                                                             new Validation(() => id.ToGuid().IsEmpty(), "Niepoprawny identyfikator artykułu."),
                                                             new Validation(() => string.IsNullOrEmpty(body.NullSafe()), "Komentarz nie może być pusty."),
-                                                            new Validation(() => captchaEnabled && !validCaptcha, "Pole Captcha jest nieprawidłowe"),
+                                                            new Validation(() => captchaEnabled && string.IsNullOrEmpty(userResponse),
+                                                                "Pole Captcha nie może być puste."),
+                                                            new Validation(() => captchaEnabled && !validCaptcha, "Weryfikacja Captcha nieudana."),
                                                             new Validation(() => !IsCurrentUserAuthenticated, "Nie jesteś zalogowany.")
                                                           );
 
