@@ -173,7 +173,7 @@
 
                         if ((user != null) && user.IsLockedOut)
                         {
-                            errorMessage = "Twoje konto jest obecnie zablokowane. Skontaktuj siê z nami w tej sprawie.";
+                            errorMessage = "Twoje konto jest obecnie zablokowane. Skontaktuj się z nami w tej sprawie.";
                         }
                         else
                         {
@@ -215,7 +215,7 @@
                     }
                     if (String.IsNullOrEmpty(errorMessage))
                     {
-                        errorMessage = "Nie uda³o siê zalogowaæ przez wybranego dostawcê OpenID.";
+                        errorMessage = "Nie udało się zalogować przez wybranego dostawcę OpenID.";
                     }
                 }
             }
@@ -645,7 +645,7 @@
 
                             Log.Info("Aktywacja konta dla użytkownika: {0}", user.UserName);
 
-                            GenerateMessageCookie("Twoje konto zostało aktywowane. Możesz siê teraz zalogować.", false);
+                            GenerateMessageCookie("Twoje konto zostało aktywowane. Możesz się teraz zalogować.", false);
                         }
                         else
                         {
@@ -830,7 +830,7 @@
                                  HttpOnly = false
                              };
 
-            cookie.Values.Add("msg", message);
+            cookie.Values.Add("msg", HttpUtility.UrlEncode(message));
             cookie.Values.Add("err", isError.ToString());
 
             HttpContext.Response.Cookies.Add(cookie);

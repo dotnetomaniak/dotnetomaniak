@@ -26,6 +26,8 @@
 
             if (!string.IsNullOrEmpty(message))
             {
+                message = HttpUtility.UrlDecode(message);
+
                 bool isError;
                 bool.TryParse(notification.Values["err"], out isError);
 
