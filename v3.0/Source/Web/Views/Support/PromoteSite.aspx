@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/SiteTemplate.Master"
+ï»¿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/SiteTemplate.Master"
     Inherits="System.Web.Mvc.ViewPage<PromoteSiteViewData>" %>
 
 <script runat="server">
@@ -13,11 +13,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadPlaceHolder" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContentPlaceHolder" runat="server">
-<%= Html.ArticleHeader("Materia³y promocyjne", new string[] { "Strona g³ówna", "Materia³y promocyjne"}) %>
-    <p>Jeœli chcia³byœ promowaæ dotnetomaniaka, na swojej stronie czy blogu, tutaj znajdziesz
-        niezbêdê do tego celu narzêdzia. Jeœli masz jakieœ pytania odnoœnie promocji lub
-        brakuje Ci tu czegoœ -
-        <%= Html.ActionLink("napisz nam wiadomoœæ", "Contact", "Support")%></p>
+<%= Html.ArticleHeader("MateriaÅ‚y promocyjne", new string[] { "Strona gÅ‚Ã³wna", "MateriaÅ‚y promocyjne"}) %>
+    <p>JeÅ›li chciaÅ‚byÅ› promowaÄ‡ dotnetomaniaka, na swojej stronie czy blogu, tutaj znajdziesz
+        niezbÄ™dÄ™ do tego celu narzÄ™dzia. JeÅ›li masz jakieÅ› pytania odnoÅ›nie promocji lub
+        brakuje Ci tu czegoÅ› -
+        <%= Html.ActionLink("napisz nam wiadomoÅ›Ä‡", "Contact", "Support")%></p>
     
             <%
                 foreach (var key in Model.Items.Keys)
@@ -55,15 +55,15 @@
         </div>
         <div class="promo">
         <p>
-            Jeœli masz swój blog, lub stronê mo¿esz umo¿liwiæ swoim czytelnikom wypromowanie
-            swojego artyku³u na dotnetomaniak.pl. Naj³atwiej bêdzie Ci skorzystaæ z <a href="http://www.feedburner.com/fb/a/publishers/feedflare">
-                FeedFlare</a>. Niezbêdny plik znajduje siê tu: <a href="http://static.dotnetomaniak.pl/feedflare-v2.0.0.2.xml">
-                    http://static.dotnetomaniak.pl/feedflare-v2.0.0.2.xml</a>. Jeœli nie mo¿esz
-            skorzystaæ z tego pliku skontaktuj siê z nami po wiêcej informacji.
+            JeÅ›li masz swÃ³j blog, lub stronÄ™ moÅ¼esz umoÅ¼liwiÄ‡ swoim czytelnikom wypromowanie
+            swojego artykuÅ‚u na dotnetomaniak.pl. NajÅ‚atwiej bÄ™dzie Ci skorzystaÄ‡ z <a href="http://www.feedburner.com/fb/a/publishers/feedflare">
+                FeedFlare</a>. NiezbÄ™dny plik znajduje siÄ™ tu: <a href="http://static.dotnetomaniak.pl/feedflare-v2.0.0.2.xml">
+                    http://static.dotnetomaniak.pl/feedflare-v2.0.0.2.xml</a>. JeÅ›li nie moÅ¼esz
+            skorzystaÄ‡ z tego pliku skontaktuj siÄ™ z nami po wiÄ™cej informacji.
         </p>      
         <p>
-            Jeœli masz ochotê mo¿esz równie¿ nas reklamowaæ w realnym œwiecie. <a href="http://dotnetomaniak.cupsell.pl">
-                OdwiedŸ nasz sklep</a> i wybierz coœ dla siebie. Dziêki temu bêdziesz mia³ fajny
-            gad¿et a nam pomo¿esz w rozwoju i utrzymaniu strony.</p>
+            JeÅ›li masz ochotÄ™ moÅ¼esz rÃ³wnieÅ¼ nas reklamowaÄ‡ w realnym Å›wiecie. <a href="http://dotnetomaniak.cupsell.pl">
+                OdwiedÅº nasz sklep</a> i wybierz coÅ› dla siebie. DziÄ™ki temu bÄ™dziesz miaÅ‚ fajny
+            gadÅ¼et a nam pomoÅ¼esz w rozwoju i utrzymaniu strony.</p>
     </div>
 </asp:Content>
