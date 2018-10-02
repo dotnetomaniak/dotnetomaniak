@@ -1,7 +1,6 @@
 ﻿
 
 using Kigg.Core.Infrastructure.Thumbnail;
-using System;
 
 namespace Kigg.Infrastructure
 {
@@ -13,14 +12,17 @@ namespace Kigg.Infrastructure
         private readonly IHttpForm _httpForm;
         private readonly IEncoder _encoder;
 
-        public BrowshotThumbnail(string key, string baseUrl, int instanceId, IHttpForm httpForm, IEncoder encoder)
+        public BrowshotThumbnail(
+            IConfigurationManager configuration, string baseUrl, int instanceId,
+            IHttpForm httpForm, IEncoder encoder)
         {
+            var key = configuration.AppSettings["browshotApiKey"];
             Check.Argument.IsNotEmpty(key, "key");
             Check.Argument.IsNotEmpty(baseUrl, "baseUrl");
             Check.Argument.IsNotNull(httpForm, "httpForm");
             Check.Argument.IsNotNull(encoder, "encoder");
 
-            _key = key; 
+            _key = key;
             _baseUrl = baseUrl;
             _instanceId = instanceId;
             _httpForm = httpForm;
