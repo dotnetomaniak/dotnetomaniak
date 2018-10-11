@@ -1117,6 +1117,7 @@
             viewData.CurrentPage = page ?? 1;
             viewData.StoryPerPage = Settings.HtmlStoryPerPage;
             viewData.FacebookUrl = "http://facebook.com/dotnetomaniakpl";
+            viewData.GooglePlusUrl = "https://plus.google.com/110925305542873177884?prsrc=3";
 
             return viewData;
         }

@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<StoryListUserViewData>" %>
 <%--<div style="float:left;width:100%;text-align:right">
-    <%= Html.SyndicationIcons(Model.RssUrl, Model.AtomUrl, Model.FacebookUrl) %>
+    <%= Html.SyndicationIcons(Model.RssUrl, Model.AtomUrl, Model.FacebookUrl, Model.GooglePlusUrl) %>
 </div>--%>
 <%if (!Model.Stories.IsNullOrEmpty()) %>
 <%{ %>
