@@ -242,7 +242,7 @@ namespace Kigg.Web
             entry.Add(new XElement(_ns + "link", detailUrl));
             entry.Add(new XElement(_ns + "voteCount", story.VoteCount));
             entry.Add(new XElement(_ns + "viewCount", story.ViewCount));
-            entry.Add(new XElement(_ns + "commentCount", story.CommentCount));
+            entry.Add(new XElement(_ns + "commentCount", 0));
             //GH:71 begin
             entry.Add(new XElement(_ns + "textContent", story.TextDescription));
             entry.Add(new XElement(_ns + "articleLink", story.Url));
