@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<StoryListViewData>" %>
-<%= Html.PageHeader(Model.Subtitle, Model.RssUrl, Model.AtomUrl, Model.FacebookUrl)%>
+<%= Html.PageHeader(Model.Subtitle, Model.RssUrl, Model.AtomUrl, Model.FacebookUrl, Model.GooglePlusUrl)%>
 <%if (!Model.Stories.IsNullOrEmpty()) %>
 <%{ %>
     <% bool isOdd = true; %>

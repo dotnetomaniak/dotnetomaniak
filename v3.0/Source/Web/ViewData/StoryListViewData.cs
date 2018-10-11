@@ -46,6 +46,8 @@ namespace Kigg.Web
             set;
         }
 
+        public string GooglePlusUrl { get; set; }
+        
         public string Subtitle
         {
             get;

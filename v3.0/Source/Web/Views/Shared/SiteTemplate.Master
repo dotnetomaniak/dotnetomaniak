@@ -361,6 +361,7 @@
 
                 <% Html.RenderAction("TopTabs","Membership"); %>
                 <% Html.RenderAction("Tabs","Tag"); %>
+                <% Html.RenderPartial("GooglePlusBox"); %>	  
                 </div>	 
             <script src="//connect.facebook.net/pl_PL/all.js#xfbml=1" type="text/javascript"></script><fb:like-box href="http://www.facebook.com/dotnetomaniakpl" width="919" show_faces="true" stream="false" header="true"></fb:like-box>
         </div> 
