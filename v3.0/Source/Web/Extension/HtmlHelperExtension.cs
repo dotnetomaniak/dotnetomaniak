@@ -12,10 +12,10 @@ namespace Kigg.Web
     {
         public static string PageHeader(this HtmlHelper helper, string title)
         {
-            return PageHeader(helper, title, null, null, null);
+            return PageHeader(helper, title, null, null, null, null);
         }
 
-        public static string PageHeader(this HtmlHelper helper, string title, string rssUrl, string atomUrl, string facebookUrl)
+        public static string PageHeader(this HtmlHelper helper, string title, string rssUrl, string atomUrl, string facebookUrl, string googlePlus)
         {
             StringBuilder headerHtml = new StringBuilder();
 
@@ -29,7 +29,7 @@ namespace Kigg.Web
             }
 
             headerHtml.Append("</div>");
-            headerHtml.Append(SyndicationIcons(helper, rssUrl, atomUrl, facebookUrl));
+            headerHtml.Append(SyndicationIcons(helper, rssUrl, atomUrl, facebookUrl, googlePlus));
 
             headerHtml.Append("</div>");
 
@@ -55,7 +55,7 @@ namespace Kigg.Web
             return articleHeaderHtml.ToString();
         }
 
-        public static string SyndicationIcons(this HtmlHelper helper, string rssUrl, string atomUrl, string facebookUrl)
+        public static string SyndicationIcons(this HtmlHelper helper, string rssUrl, string atomUrl, string facebookUrl, string googlePlus)
         {
             StringBuilder html = new StringBuilder();
 
@@ -94,6 +94,11 @@ namespace Kigg.Web
                 if (!string.IsNullOrEmpty(facebookUrl))
                 {
                     addIcon("facebook", facebookUrl);
+                }
+
+                if (!string.IsNullOrEmpty(googlePlus))
+                {
+                    addIcon("G+", googlePlus);
                 }
 
                 html.Append("</div>");
