@@ -30,7 +30,8 @@ namespace Kigg.Web.Test
         public void PageHeader_With_SyndicationIcons_Should_Return_Correct_Html()
         {
             var html = GetHtmlHelper()
-                .PageHeader("This is a dummy title", "/feed/rss/published", "/feed/atom/published", "Facebook");
+                .PageHeader("This is a dummy title", "/feed/rss/published", "/feed/atom/published", "Facebook",
+                            "Google+");
 
             Assert.Contains("<h2>{0}</h2>".FormatWith(Title), html);
         }
@@ -47,7 +48,7 @@ namespace Kigg.Web.Test
         public void SyndicationIcons_Should_Return_Both_Icons()
         {
             var html = GetHtmlHelper()
-                .SyndicationIcons("/Feed/Rss/Published", "/Feed/Atom/Published", "Facebook");
+                .SyndicationIcons("/Feed/Rss/Published", "/Feed/Atom/Published", "Facebook", "Google+");
 
             Assert.Contains("rss", html);
             Assert.Contains("atom", html);
