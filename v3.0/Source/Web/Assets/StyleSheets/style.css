@@ -914,15 +914,16 @@ padding-top:0px !important;
 
 background:url(/Assets/Images/radios-bg_07.jpg) no-repeat left top;
 }
-.add-article-row input[type="submit"]{
-  float:left;
-  border:0 none;
-  background:url(/Assets/Images/dodaj-artykul.jpg) no-repeat;
-  width:116px;
-  height:43px;
-     margin-left: 121px;
-       text-indent: -9999px;
-  cursor: pointer;
+.add-article-row input[type="submit"] {
+    display: block;
+    float: none;
+    border: 0 none;
+    background: url(/Assets/Images/dodaj-artykul.jpg) no-repeat;
+    width: 116px;
+    height: 43px;
+    margin: 0 auto;
+    text-indent: -9999px;
+    cursor: pointer;
 }
 .add-article-row textarea{  border:2px solid #e1e1e1;}
 
@@ -1414,8 +1415,12 @@ font-size: 15px;
 {
     margin: 8px 0;
 }
-#btnStorySubmit
-{
+
+#frmStorySubmit {
+    margin-bottom: 5px;
+}
+
+#btnStorySubmit {
     width: 175px;
 }
 
