@@ -290,10 +290,10 @@
         }
 
         [AcceptVerbs(HttpVerbs.Post), Compress]
-        public ActionResult Login(string userName, string password, bool? rememberMe)
+        public ActionResult Login(string userNameOrEmail, string password, bool? rememberMe)
         {
             JsonViewData viewData = Validate<JsonViewData>(
-                                                                new Validation(() => string.IsNullOrEmpty(userName.NullSafe()), "Nazwa użytkownika nie może być pusta."),
+                                                                new Validation(() => string.IsNullOrEmpty(userNameOrEmail.NullSafe()), "Nazwa użytkownika/e-mail nie może być pusty."),
                                                                 new Validation(() => string.IsNullOrEmpty(password.NullSafe()), "Hasło nie może być puste.")
                                                           );
 
@@ -303,7 +303,9 @@
                 {
                     using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
                     {
-                        IUser user = UserRepository.FindByUserName(userName.Trim());
+                        IUser user = userNameOrEmail.IsEmail() == false ? 
+                                     UserRepository.FindByUserName(userNameOrEmail.Trim()) :
+                                     UserRepository.FindByEmail(userNameOrEmail.Trim());
 
                         if (user != null)
                         {
@@ -320,7 +322,7 @@
                                     user.LastActivityAt = SystemTime.Now();
                                     unitOfWork.Commit();
 
-                                    FormsAuthentication.SetAuthCookie(userName, rememberMe ?? false);
+                                    FormsAuthentication.SetAuthCookie(user.UserName, rememberMe ?? false);
                                     viewData = new JsonViewData { isSuccessful = true };
 
                                     Log.Info("Użytkownik zalogowany: {0}", user.UserName);
