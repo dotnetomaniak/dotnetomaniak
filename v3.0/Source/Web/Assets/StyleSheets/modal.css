@@ -139,9 +139,8 @@
     display:block;
 }
 
-#openId
-{
-    padding-top: 0px;
+#openId, #userNameOrPassword {
+    padding-top: 0;
 }
 
   /************** ALERTS ***************/

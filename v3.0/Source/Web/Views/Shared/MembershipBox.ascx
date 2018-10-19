@@ -39,14 +39,14 @@
             <h6>
                 lub...</h6>
             <p>
-                Wprowadź nazwę użytkownika oraz hasło</p>
+                Wprowadź nazwę użytkownika/e-mail oraz hasło</p>
             <div class="box">
                 <form id="frmLogin" action="<%= Url.Action("Login", "Membership") %>" method="post">
                 <fieldset>
                     <div class="add-article-row">
-                        <label for="txtLoginUserName" class="label">
-                            Nazwa użytkownika:</label>
-                        <input id="txtLoginUserName" name="userName" type="text" class="textBox" />
+                        <label for="txtLoginUserName" class="label" id="userNameOrPassword">
+                            Nazwa użytkownika/e-mail:</label>
+                        <input id="txtLoginUserName" name="userNameOrEmail" type="text" class="textBox" />
                         <span class="error"></span>
                     </div>
                     <div class="add-article-row">
