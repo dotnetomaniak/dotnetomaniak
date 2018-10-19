@@ -276,6 +276,16 @@ namespace Kigg.Web.Test
         }
 
         [Fact]
+        public void LoginWithEmail_ShouldLogin_User()
+        {
+            var user = new Mock<IUser>();
+
+            var data = LoginWithEmail(user);
+
+            Assert.True(data.isSuccessful);
+        }
+
+        [Fact]
         public void Login_Should_Use_UserRepository()
         {
             var user = new Mock<IUser>();
@@ -397,7 +407,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Login(string.Empty, "xxxxxx", null)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Nazwa użytkownika nie może być pusta.", result.errorMessage);
+            Assert.Equal("Nazwa użytkownika/e-mail nie może być pusty.", result.errorMessage);
         }
 
         [Fact]
@@ -1407,6 +1417,19 @@ namespace Kigg.Web.Test
             log.Setup(l => l.Info(It.IsAny<string>())).Verifiable();
 
             return (JsonViewData) ((JsonResult) _controller.Login("dummyuser", "xxxxxx", true)).Data;
+        }
+
+        private JsonViewData LoginWithEmail(Mock<IUser> user)
+        {
+            user.SetupGet(u => u.Password).Returns("xxxxxx".Hash());
+            user.SetupGet(u => u.IsActive).Returns(true);
+
+            _userRepository.Setup(r => r.FindByEmail(It.IsAny<string>())).Returns(user.Object).Verifiable();
+            user.SetupSet(u => u.LastActivityAt = It.IsAny<DateTime>()).Verifiable();
+            _formsAuthentication.Setup(fa => fa.SetAuthCookie(It.IsAny<string>(), It.IsAny<bool>())).Verifiable();
+            log.Setup(l => l.Info(It.IsAny<string>())).Verifiable();
+
+            return (JsonViewData) ((JsonResult) _controller.Login("dummyemail@email.com", "xxxxxx", true)).Data;
         }
 
         private JsonViewData Logout(Mock<IUser> user)
