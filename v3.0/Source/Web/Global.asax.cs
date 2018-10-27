@@ -8,7 +8,7 @@ using StackExchange.Profiling.Storage;
 namespace Kigg.Web
 {
     using System.Web;
-
+    using System.Web.Mvc;
     using Infrastructure;
 
     public class GlobalApplication : HttpApplication
@@ -16,6 +16,7 @@ namespace Kigg.Web
         public static void OnStart()
         {
             Bootstrapper.Run();
+            MvcHandler.DisableMvcResponseHeader = true;
             Log.Info("Application Started");
         }
 
@@ -37,7 +38,12 @@ namespace Kigg.Web
 
         protected void Application_EndRequest()
         {
+            //Response.Headers.Remove("Server");
             MiniProfiler.Current?.Stop(); // Be sure to stop the profiler!
+        }
+        protected void Application_PreSendRequestHeaders(object sender, EventArgs e)
+        {
+            Response.Headers.Remove("Server");
         }
 
         protected void Application_Start()
