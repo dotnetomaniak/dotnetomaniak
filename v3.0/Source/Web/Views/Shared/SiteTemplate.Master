@@ -175,9 +175,10 @@
       xmlns:og="http://ogp.me/ns#">
 <head runat="server">
     <title></title>
+    <meta name="title" property="og:title" content="<%= ""+Page.Header.Title %>"  />
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta id="metaKeywords" runat="server" name="keywords" content="" />
-    <meta id="metaDescription" runat="server" name="description" content="" />
+    <meta id="metaDescription" runat="server" name="description" property="og:description" content="" />
     <meta name="Rating" content="General" />
     <meta name="robots" content="index, follow" />  
     <link href="<%= Url.Asset("css").Replace("&", "&amp;") %>" rel="stylesheet" type="text/css" />
