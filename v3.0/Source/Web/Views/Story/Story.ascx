@@ -195,7 +195,7 @@
                 <% } %>
             </div>
             <div class="more-row">
-                Źródło: <a href="http://<%= Html.AttributeEncode(story.Host()) %>" target="_blank">
+                Źródło: <a href="http://<%= Html.AttributeEncode(story.Host()) %>" target="_blank" rel="noopener">
                     <%= story.Host()%></a>
             </div>
             <div class="more-row nobg">
@@ -203,7 +203,7 @@
             </div>
         </div>
         <div class="entry-thumb">
-            <a href="<%= Html.AttributeEncode(detailUrl) %>" target="_blank" rel="external" <%= onClick %>>
+            <a href="<%= Html.AttributeEncode(detailUrl) %>" target="_blank" rel="external noopener" <%= onClick %>>
                 <% if (detailsMode) %>
                 <% { %>
                     <img id="thumb_img_id" itemprop="image" alt="<%= Html.AttributeEncode(story.Title) %>" src="<%= Html.AttributeEncode(story.GetSmallThumbnailPath()) %>"
