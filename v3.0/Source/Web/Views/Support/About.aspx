@@ -17,6 +17,7 @@
     <p>Jeśli technologia .NET nie jest Ci obojętna - przyłącz się do nas i zamieszczaj artykuły.</p>
     <p>Obecnie w rozwoju pomagają:</p>
     <ul>
+    <li><a href="https://stapp.space">Piotr Stapp</a></li>
 	<li><a href="http://pawlos.blogspot.com">Paweł Łukasik</a></li>
     <li>Paweł Kubacki</li>
     </ul>
@@ -27,6 +28,6 @@
 	<li>Michał Jałbrzykowski (grafika)</li>
 	<li>Łukasz Wawrzyniak</li>
     </ul>
-    <p>Chcesz nam pomóc? Napisz do <a href="<%= Url.RouteUrl("Contact") %>">nas</a>.
+    <p>Chcesz nam pomóc? Napisz do <a href="<%= Url.RouteUrl("Contact") %>">nas</a> lub pomóż nam rozwijać projekt na <a href="https://github.com/dotnetomaniak/dotnetomaniak" target="_blank" rel="external noopener noreferrer">GitHubie</a>.</p>
     </div>
 </asp:Content>
