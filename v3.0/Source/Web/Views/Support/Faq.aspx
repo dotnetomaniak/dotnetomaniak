@@ -222,12 +222,12 @@
                         Server</a> ICSModule.</li>
                 </ul>
                 Wymienione komponenty mają możliwość pełnej zmiany ustawień licznika <em>Promuj</em>
-                i dostepny kod źródłowy. Aby ściągnąć wejdź na stronę <a href="http://www.codeplex.com/Kigg/Release/ProjectReleases.aspx"
-                    target="_blank">release'ów Kigg</a> i postępuj zgodnie z instrukcjami.
+                i dostepny kod źródłowy do wglądu. Aby ściągnąć wejdź na naszego <a href="https://github.com/dotnetomaniak/dotnetomaniak" target="_blank" rel="external noopener noreferrer">GitHuba</a> lub na stronę <a href="https://archive.codeplex.com/?p=kigg"
+                    target="_blank" rel="external noopener noreferrer">archiwum release'ów Kigg na CodePlex</a>.
                 <br />
                 <pre style="background-color: #ddd; font-size: 10px; margin-top: 5px;">
-<code>&lt;div class=&quot;kigg&quot;&gt; &lt;a rev=&quot;vote-for&quot; href=&quot;http://dotnetomaniak.pl/Submit?url=URL&quot;&gt;
-&lt;img alt=&quot;Promuj&quot; src=&quot;http://dotnetomaniak.pl/image.axd?url=URL&quot;
+<code>&lt;div class=&quot;kigg&quot;&gt; &lt;a rev=&quot;vote-for&quot; href=&quot;https://dotnetomaniak.pl/Submit?url=URL&quot;&gt;
+&lt;img alt=&quot;Promuj&quot; src=&quot;https://dotnetomaniak.pl/image.axd?url=URL&quot;
 style=&quot;border:0px&quot;/&gt; &lt;/a&gt; &lt;div&gt;</code></pre>
             </div>
         </li>
