@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0475B953-3F43-4664-8CDA-43FE252CC53E}"
 	ProjectSection(SolutionItems) = preProject
@@ -33,6 +33,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Infrastructure.EnterpriseLibrary.Test", "EnterpriseLibrary.Test\Kigg.Infrastructure.EnterpriseLibrary.Test.csproj", "{96E668A5-16AF-4192-988D-7A4D70337969}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Web.Test", "Web.Test\Kigg.Web.Test.csproj", "{8D913567-3D14-4F7C-82B5-BB12FB52F68A}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Kigg.Database", "Kigg.Database\Kigg.Database.sqlproj", "{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -163,9 +165,27 @@ Global
 		{8D913567-3D14-4F7C-82B5-BB12FB52F68A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8D913567-3D14-4F7C-82B5-BB12FB52F68A}.SqlServer|Any CPU.ActiveCfg = SqlServer|Any CPU
 		{8D913567-3D14-4F7C-82B5-BB12FB52F68A}.SqlServer|Any CPU.Build.0 = SqlServer|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.MySql|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.MySql|Any CPU.Build.0 = Debug|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.MySql|Any CPU.Deploy.0 = Debug|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.PublishingRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.PublishingRelease|Any CPU.Build.0 = Release|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.PublishingRelease|Any CPU.Deploy.0 = Release|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.SqlServer|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.SqlServer|Any CPU.Build.0 = Debug|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.SqlServer|Any CPU.Deploy.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A857EBE8-FC13-482B-A7E2-BA055BF33A77}
 	EndGlobalSection
 	GlobalSection(NDepend) = preSolution
 		Project = ".\Kigg.ndproj"
