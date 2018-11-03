@@ -179,6 +179,13 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta id="metaKeywords" runat="server" name="keywords" content="" />
     <meta id="metaDescription" runat="server" name="description" property="og:description" content="" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@dotnetomaniak" />
+    <meta name="twitter:description" content="<%= "" + Model.MetaDescription %>" />
+    <meta name="twitter:title" content="<%= ""+Page.Header.Title %>"  />
+    <meta name="twitter:image" content="https://dotnetomaniak.pl/Assets/Images/logo-dotnetomaniak.png"  />
+    <meta property="og:image" content="https://dotnetomaniak.pl/Assets/Images/logo-dotnetomaniak.png"  />
+
     <meta name="Rating" content="General" />
     <meta name="robots" content="index, follow" />  
     <link href="<%= Url.Asset("css").Replace("&", "&amp;") %>" rel="stylesheet" type="text/css" />
