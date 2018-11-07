@@ -183,7 +183,7 @@
     <meta name="twitter:site" content="@dotnetomaniak" />
     <meta name="twitter:description" content="<%= "" + Model.MetaDescription %>" />
     <meta name="twitter:title" content="<%= ""+Page.Header.Title %>"  />
-    <meta name="twitter:image" content="https://dotnetomaniak.pl/Assets/Images/logo-dotnetomaniak.png"  />
+    <meta name="twitter:image" content="https://dotnetomaniak.pl/Assets/Images/dotnetomaniak_logo_twitter.jpg"  />
     <meta property="og:image" content="https://dotnetomaniak.pl/Assets/Images/logo-dotnetomaniak.png"  />
 
     <meta name="Rating" content="General" />
