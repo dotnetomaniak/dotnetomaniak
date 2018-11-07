@@ -496,6 +496,7 @@
     <Content Include="Assets\Images\dodaj-artykul.jpg" />
     <Content Include="Assets\Images\dodaj-grey.jpg" />
     <Content Include="Assets\Images\dodaj.png" />
+    <Content Include="Assets\Images\dotnetomaniak_linkedin.jpg" />
     <Content Include="Assets\Images\dotnetomaniak_logo - negatyw.jpg" />
     <Content Include="Assets\Images\dotnetomaniak_logo - negatyw.png" />
     <Content Include="Assets\Images\dotnetomaniak_logo - negatyw_small.png" />
@@ -503,6 +504,7 @@
     <Content Include="Assets\Images\dotnetomaniak_logo.png" />
     <Content Include="Assets\Images\dotnetomaniak_logo_small.jpg" />
     <Content Include="Assets\Images\dotnetomaniak_logo_small.png" />
+    <Content Include="Assets\Images\dotnetomaniak_logo_twitter.jpg" />
     <Content Include="Assets\Images\dotnetomaniak_wlepka - kontra.jpg" />
     <Content Include="Assets\Images\dotnetomaniak_wlepka - kontra.png" />
     <Content Include="Assets\Images\dotnetomaniak_wlepka - kontra_small.png" />
