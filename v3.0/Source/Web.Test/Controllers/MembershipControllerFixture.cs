@@ -374,7 +374,7 @@ namespace Kigg.Web.Test
             var result = (JsonViewData)((JsonResult)_controller.Login("dummyuser", "xxxxxx", true)).Data;
 
             Assert.False(result.isSuccessful);
-            Assert.Equal("Twoje konto nie zostało jeszcze aktywowane. Posłóż się linkiem aktywacyjnym z wiadomości rejestracyjnej aby aktywować konto.", result.errorMessage);
+            Assert.Equal("Twoje konto nie zostało jeszcze aktywowane. Na Twoją skrzynkę e-mail wysłano ponownie link aktywacyjny.", result.errorMessage);
         }
 
         [Fact]
