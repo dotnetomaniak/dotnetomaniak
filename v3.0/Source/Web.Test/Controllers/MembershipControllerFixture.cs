@@ -392,6 +392,18 @@ namespace Kigg.Web.Test
         }
 
         [Fact]
+        public void Login_Should_Not_Resend_Activation_Email_When_User_Is_Active()
+        {
+            var user = new Mock<IUser>();
+
+            var data = Login(user);
+
+            Assert.True(data.isSuccessful);
+
+            _emailSender.Verify(f => f.SendRegistrationInfo("","","",""), Times.Never());
+        }
+
+        [Fact]
         public void Login_Should_Return_Error_When_User_Is_LockedOut()
         {
             var user = new Mock<IUser>();
