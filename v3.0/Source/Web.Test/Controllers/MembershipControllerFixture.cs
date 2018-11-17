@@ -378,6 +378,20 @@ namespace Kigg.Web.Test
         }
 
         [Fact]
+        public void Login_Should_Resend_Activation_Email_When_User_Is_Not_Active()
+        {
+            var user = new Mock<IUser>();
+
+            _userRepository.Setup(r => r.FindByUserName(It.IsAny<string>())).Returns(user.Object);
+
+            var result = (JsonViewData)((JsonResult)_controller.Login("dummyuser", "xxxxxx", true)).Data;
+
+            Assert.False(result.isSuccessful);
+            Assert.Equal("Twoje konto nie zostało jeszcze aktywowane. Na Twoją skrzynkę e-mail wysłano ponownie link aktywacyjny.", result.errorMessage);
+            _emailSender.Verify();
+        }
+
+        [Fact]
         public void Login_Should_Return_Error_When_User_Is_LockedOut()
         {
             var user = new Mock<IUser>();
