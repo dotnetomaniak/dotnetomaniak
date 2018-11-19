@@ -309,9 +309,17 @@
 
                         if (user != null)
                         {
+
+                            if (!user.IsActive)
+                            {
+                                string url = string.Concat(Settings.RootUrl, Url.RouteUrl("Activate", new { id = user.Id}));
+
+                                _emailSender.SendRegistrationInfo(user.Email, user.UserName, password, url);
+                            }
+
                             viewData = Validate<JsonViewData>(
                                                                 new Validation(() => user.IsLockedOut, "Twoje konto jest aktualnie zablokowane. Skontaktuj się z pomocą aby rozwiązać ten problem."),
-                                                                new Validation(() => !user.IsActive, "Twoje konto nie zostało jeszcze aktywowane. Posłóż się linkiem aktywacyjnym z wiadomości rejestracyjnej aby aktywować konto."),
+                                                                new Validation(() => !user.IsActive, "Twoje konto nie zostało jeszcze aktywowane. Na Twoją skrzynkę e-mail wysłano ponownie link aktywacyjny."),
                                                                 new Validation(() => user.IsOpenIDAccount(), "Podany login jest poprawny tylko z OpenID.")
                                                              );
 
