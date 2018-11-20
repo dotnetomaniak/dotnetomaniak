@@ -228,19 +228,19 @@
             });
         }
 
-        (function (d) {
-            var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-            if (d.getElementById(id)) { return; }
-            js = d.createElement('script'); js.id = id; js.async = true;
-            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=<%= Model.FacebookAppId %>&version=v2.10";
-            ref.parentNode.insertBefore(js, ref);
-        }(document));
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=<%= Model.FacebookAppId %>&autoLogAppEvents=1';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
 
         function checkLoginState() {
             var data;
-            FB.api('/me', function (response) {
+            FB.api('/me', {fields: 'name,email'}, function (response) {
                 data = response;
-                var dataString = JSON.stringify(data)
+                var dataString = JSON.stringify(data);
                 $.ajax({
                     url: '/Facebook/LogByFbData',
                     type: 'POST',
@@ -363,7 +363,11 @@
                 <% Html.RenderAction("Tabs","Tag"); %>
                 <% Html.RenderPartial("GooglePlusBox"); %>	  
                 </div>	 
-            <script src="//connect.facebook.net/pl_PL/all.js#xfbml=1" type="text/javascript"></script><fb:like-box href="http://www.facebook.com/dotnetomaniakpl" width="919" show_faces="true" stream="false" header="true"></fb:like-box>
+            <div class="fb-page" data-href="https://www.facebook.com/dotnetomaniakpl/" data-width="919" 
+                 data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" 
+                 data-show-facepile="true">
+                <blockquote cite="https://www.facebook.com/dotnetomaniakpl/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/dotnetomaniakpl/">dotnetomaniak.pl</a></blockquote>
+            </div>
         </div> 
         <div id="footer">
             <p>
