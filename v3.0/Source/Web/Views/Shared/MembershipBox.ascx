@@ -80,7 +80,8 @@
             <div class="box">                
                 <div class="add-article-row">
                     <div class="add-row2">
-                        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" data-size="large">Zaloguj</fb:login-button>
+                        <div class="fb-login-button" data-onlogin="checkLoginState()" data-max-rows="1" 
+                             data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>
                     </div>
                     <br />
                 </div>
