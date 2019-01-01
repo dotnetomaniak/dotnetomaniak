@@ -312,7 +312,9 @@
 
                             if (!user.IsActive)
                             {
-                                string url = string.Concat(Settings.RootUrl, Url.RouteUrl("Activate", new { id = user.Id}));
+                                string userId = user.Id.Shrink();
+
+                                string url = string.Concat(Settings.RootUrl, Url.RouteUrl("Activate", new { id = userId }));
 
                                 _emailSender.SendRegistrationInfo(user.Email, user.UserName, password, url);
                             }
