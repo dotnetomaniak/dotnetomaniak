@@ -368,6 +368,7 @@ namespace Kigg.Web.Test
         public void Login_Should_Return_Error_When_User_Is_Not_Active()
         {
             var user = new Mock<IUser>();
+            user.Setup(x => x.Id).Returns(Guid.NewGuid());
 
             _userRepository.Setup(r => r.FindByUserName(It.IsAny<string>())).Returns(user.Object);
 
@@ -381,6 +382,7 @@ namespace Kigg.Web.Test
         public void Login_Should_Resend_Activation_Email_When_User_Is_Not_Active()
         {
             var user = new Mock<IUser>();
+            user.Setup(x => x.Id).Returns(Guid.NewGuid());
 
             _userRepository.Setup(r => r.FindByUserName(It.IsAny<string>())).Returns(user.Object);
 
@@ -408,6 +410,7 @@ namespace Kigg.Web.Test
         {
             var user = new Mock<IUser>();
 
+            user.Setup(x => x.Id).Returns(Guid.NewGuid());
             user.SetupGet(u => u.IsLockedOut).Returns(true);
 
             _userRepository.Setup(r => r.FindByUserName(It.IsAny<string>())).Returns(user.Object);
