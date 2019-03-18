@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Infrastructure.Enterpr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kigg.Web.Test", "Web.Test\Kigg.Web.Test.csproj", "{8D913567-3D14-4F7C-82B5-BB12FB52F68A}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Kigg.Database", "Kigg.Database\Kigg.Database.sqlproj", "{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -163,9 +165,27 @@ Global
 		{8D913567-3D14-4F7C-82B5-BB12FB52F68A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8D913567-3D14-4F7C-82B5-BB12FB52F68A}.SqlServer|Any CPU.ActiveCfg = SqlServer|Any CPU
 		{8D913567-3D14-4F7C-82B5-BB12FB52F68A}.SqlServer|Any CPU.Build.0 = SqlServer|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.MySql|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.MySql|Any CPU.Build.0 = Debug|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.MySql|Any CPU.Deploy.0 = Debug|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.PublishingRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.PublishingRelease|Any CPU.Build.0 = Release|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.PublishingRelease|Any CPU.Deploy.0 = Release|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.SqlServer|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.SqlServer|Any CPU.Build.0 = Debug|Any CPU
+		{9EF497EA-B4D5-4A6B-AE4C-2B228FCB1916}.SqlServer|Any CPU.Deploy.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A857EBE8-FC13-482B-A7E2-BA055BF33A77}
 	EndGlobalSection
 	GlobalSection(NDepend) = preSolution
 		Project = ".\Kigg.ndproj"
