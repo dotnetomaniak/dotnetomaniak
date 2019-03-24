@@ -16,7 +16,7 @@ namespace PostMaping
     {
         private static void Main(string[] args)
         {            
-            const string connectionString = @"Data Source=***REMOVED***,2401;Database=pawlos_dotnetomaniak;User Id=pawlos_dotnetomaniak;Password=***REMOVED***;MultipleActiveResultSets=true";
+            const string connectionString = @"Data Source=**REMOVED**,2401;Database=pawlos_dotnetomaniak;User Id=pawlos_dotnetomaniak;Password=**REMOVED**;MultipleActiveResultSets=true";
 
             using (var connection = new SqlConnection(connectionString))
             {
