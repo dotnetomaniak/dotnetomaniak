@@ -319,6 +319,17 @@
         window.appInsights=appInsights;
         appInsights.trackPageView();
     </script>
+
+    <link rel="manifest" href="/manifest.json" />
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"></script>
+    <script>
+      var OneSignal = window.OneSignal || [];
+      OneSignal.push(function() {
+        OneSignal.init({
+          appId: "c6cdd15b-64cd-4513-947a-ea62d4959bd7",
+        });
+      });
+    </script>
 </head>
 <body>
 

@@ -35,6 +35,11 @@ namespace Kigg.Web
             _routes.IgnoreRoute("{file}.xml");
             _routes.IgnoreRoute("Data/Thumbnails/{file}.png");
 
+            //Ignore OneSignal's files
+            _routes.IgnoreRoute("OneSignalSDKWorker.js");
+            _routes.IgnoreRoute("OneSignalSDKUpdaterWorker.js");
+            _routes.IgnoreRoute("manifest.json");
+
             // Ignore axd files such as assest, image, sitemap etc
             _routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
