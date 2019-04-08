@@ -17,16 +17,19 @@
     <p>Jeśli technologia .NET nie jest Ci obojętna - przyłącz się do nas i zamieszczaj artykuły.</p>
     <p>Obecnie w rozwoju pomagają:</p>
     <ul>
+    <li>
+        <a href="https://www.linkedin.com/in/mateusz-wiatrzyk-91637516b/">
+            Mateusz Wiatrzyk</a></li>
     <li><a href="https://stapp.space">Piotr Stapp</a></li>
 	<li><a href="http://pawlos.blogspot.com">Paweł Łukasik</a></li>
-    <li>Paweł Kubacki</li>
     </ul>
     <p style="margin: 25px 0 8px 0">Wspierali:</p>
     <ul>
 	<li><a href="http://geekswithblogs.net/jakubmal/Default.aspx">Jakub Malinowski</a></li>
 	<li><a href="#">Michał Laskowski</a></li>
 	<li>Michał Jałbrzykowski (grafika)</li>
-	<li>Łukasz Wawrzyniak</li>
+    <li>Łukasz Wawrzyniak</li>
+    <li>Paweł Kubacki</li>
     </ul>
     <p>Chcesz nam pomóc? Napisz do <a href="<%= Url.RouteUrl("Contact") %>">nas</a> lub pomóż nam rozwijać projekt na <a href="https://github.com/dotnetomaniak/dotnetomaniak" target="_blank" rel="external noopener noreferrer">GitHubie</a>.</p>
     </div>
