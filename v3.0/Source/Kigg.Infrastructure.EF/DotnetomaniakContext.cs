@@ -28,5 +28,10 @@ namespace Kigg.Infrastructure.EF
         public DbSet<UserAchievement> UserAchievements { get; set; }
         public DbSet<UserScore> UserScores { get; set; }
         public DbSet<UserTag> UserTags { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies();
+        }
     }
 }
