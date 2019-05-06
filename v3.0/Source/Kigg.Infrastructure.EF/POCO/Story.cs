@@ -12,7 +12,7 @@ namespace Kigg.Infrastructure.EF.POCO
 
         public string Title { get; set; }
 
-        public System.Data.Linq.Link<string> HtmlDescription { get; set; }
+        public virtual string HtmlDescription { get; set; }
 
         public string TextDescription { get; set; }
 

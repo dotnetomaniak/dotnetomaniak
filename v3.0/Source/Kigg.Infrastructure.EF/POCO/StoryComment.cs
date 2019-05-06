@@ -6,7 +6,7 @@
 
         public string HtmlBody { get; set; }
 
-        public System.Data.Linq.Link<string> TextBody { get; set; }
+        public virtual string TextBody { get; set; }
 
         public System.DateTime CreatedAt { get; set; }
 
