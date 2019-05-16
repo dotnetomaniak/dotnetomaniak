@@ -14,6 +14,7 @@
     <div id="aboutUs">
     <p>Jesteśmy pasjonatami, chcącymi rozwijać społeczność .NET w Polsce. Poprzez portale takie jak ten
     zbliżać wszystkich, którym technologia .NET nie jest obojętna a dzięki umieszczaniu i wymianie artykułów, rozwijać i poszerzać swoją wiedzę.</p>
+    <p>Dodatkowo prowadzimy własnego bloga pod adresem: <a href="https://blog.dotnetomaniak.pl/">https://blog.dotnetomaniak.pl/</a></p>
     <p>Jeśli technologia .NET nie jest Ci obojętna - przyłącz się do nas i zamieszczaj artykuły.</p>
     <p>Obecnie w rozwoju pomagają:</p>
     <ul>
