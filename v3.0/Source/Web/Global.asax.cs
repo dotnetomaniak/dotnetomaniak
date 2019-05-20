@@ -100,7 +100,7 @@ namespace Kigg.Web
                     .ExcludeMethod("Flush") // Ignore any method with the name of Flush
                     .AddViewPofiling() // Add MVC view profiling (you want this)
                 // If using EntityFrameworkCore, here's where it'd go.
-                // .AddEntityFramework()        // Extension method in the MiniProfiler.EntityFrameworkCore package
+                .AddEntityFramework()        // Extension method in the MiniProfiler.EntityFrameworkCore package
             );
 
             // If we're using EntityFramework 6, here's where it'd go.
