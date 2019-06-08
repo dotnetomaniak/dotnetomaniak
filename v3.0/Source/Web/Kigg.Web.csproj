@@ -474,6 +474,7 @@
     <Content Include="Assets\Images\badge2.png" />
     <Content Include="Assets\Images\body-bg.gif" />
     <Content Include="Assets\Images\button-blue.png" />
+    <Content Include="Assets\Images\button-blue_sm.png" />
     <Content Include="Assets\Images\button_securitum.png" />
     <Content Include="Assets\Images\categories_03.jpg" />
     <Content Include="Assets\Images\close-big.jpg" />

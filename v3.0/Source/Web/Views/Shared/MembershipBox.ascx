@@ -19,18 +19,20 @@
                     hasło zawsze jest poufne i nie musisz zapamiętywać kolejnego.
                 </p>
                 <form id="frmOpenIdLogin" action="<%= Url.Action("OpenId", "Membership") %>" method="post">
-                <fieldset>                    
-                    <div class="add-article-row">
+                <fieldset>         
+                    <div class="row">
+                    <div class="col-12 col-sm-3">
                         <label for="openid_identifier" class="label" id="openId">
                             Wprowadź URL swojego OpenID:</label>
+                    </div>
+                    <div class="col-12 col-sm-9">
                         <input id="openid_identifier" name="identifier" type="text" class="openIDTextBox" />
-                        <span class="error"></span>
+                        <span class="error"></span> <br />
+                        <input id="openid_RememberMe" name="rememberMe" type="checkbox" value="true" />
+                        <label for="openid_RememberMe">Zapamiętaj mnie na tym komputerze</label>
                     </div>
-                    <div class="add-row2">
-                        <input id="openid_RememberMe" name="rememberMe" type="checkbox" value="true" />Zapamiętaj
-                        mnie na tym komputerze
-                    </div>
-                    <div class="add-article-row">
+                   </div>
+                   <div class="add-article-row">
                         <input id="btnOpenId" type="submit" class="button" value="Login" />
                     </div>
                 </fieldset>
@@ -43,23 +45,33 @@
             <div class="box">
                 <form id="frmLogin" action="<%= Url.Action("Login", "Membership") %>" method="post">
                 <fieldset>
-                    <div class="add-article-row">
-                        <label for="txtLoginUserName" class="label" id="userNameOrPassword">
-                            Nazwa użytkownika/e-mail:</label>
-                        <input id="txtLoginUserName" name="userNameOrEmail" type="text" class="textBox" />
-                        <span class="error"></span>
+                    <div class="row">
+                        <div class="col-12 col-sm-4 add-article-row resp-label">
+                            <label for="txtLoginUserName" class="label col-12" id="userNameOrPassword">
+                            Nazwa <br /> użytkownika/e-mail:</label>
+                        </div>
+                        <div class="col-12 col-sm-8 add-article-row">
+                            <input id="txtLoginUserName" name="userNameOrEmail" type="text" class="textBox" />
+                            <span class="error"></span>
+                        </div>
                     </div>
-                    <div class="add-article-row">
-                        <label for="txtLoginPassword" class="label">
+                    <div class="row">
+                        <div class="col-12 col-sm-4 add-article-row resp-label">
+                            <label for="txtLoginPassword" class="label">
                             Hasło:</label>
-                        <input id="txtLoginPassword" name="password" type="password" class="textBox" />
-                        <span class="error"></span>
+                        </div>
+                        <div class="col-12 col-sm-8 add-article-row">
+                            <input id="txtLoginPassword" name="password" type="password" class="textBox" />
+                            <span class="error"></span>
+                        </div>
                     </div>
-                    <div class="add-row2">
-                        <label class="label">
-                        </label>
-                        <input id="chkLoginRememberMe" name="rememberMe" type="checkbox" value="true" />Zapamiętaj
-                        mnie na tym komputerze
+                    <div class="row">
+                        <div class="offset-sm-4 col-sm-8">
+                            <label class="label">
+                            </label>
+                            <input id="chkLoginRememberMe" name="rememberMe" type="checkbox" value="true" />
+                            <label for="chkLoginRememberMe">Zapamiętaj mnie na tym komputerze</label>
+                        </div>
                     </div>
                     <div class="add-article-row">
                         <span id="loginMessage" class="message"></span>
@@ -78,11 +90,9 @@
                 Zaloguj się przy użyciu Facebooka.
             </p>
             <div class="box">                
-                <div class="add-article-row">
-                    <div class="add-row2">
+                <div class="add-article-row text-center">
                         <div class="fb-login-button" data-onlogin="checkLoginState()" data-max-rows="1" 
                              data-size="large" data-width="300" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>
-                    </div>
                     <br />
                 </div>
             </div>         
@@ -170,7 +180,28 @@
                 <h5>Zapomniałeś hasła</h5>
                 <form id="frmForgotPassword" action="<%= Url.Action("ForgotPassword", "Membership") %>" method="post">
                 <fieldset>
-                    <div class="add-article-row">
+                   <div class="row">
+                        <div class="col-12 col-sm-3 add-article-row resp-label">
+                            <label for="txtForgotEmail" class="label">
+                            Email:</label>
+                        </div>
+                        <div class="col-12 col-sm-9 add-article-row">
+                            <input id="txtForgotEmail" name="email" type="text" class="textBox" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="offset-sm-3 col-sm-9">
+                            <span class="error"></span><span class="info">(działa tylko dla zarejestrowanych)</span>
+                        </div>
+                    </div>
+                    <div class="add-article-row row">
+                        <div class="col-12">
+                            <input id="btnForgotPassword" type="submit" class="button" value="Wyślij hasło" />
+                        </div>
+                    </div>
+
+
+<%--                    <div class="add-article-row text-right">
                         <label for="txtForgotEmail" class="label">
                             Email:</label>
                         <input id="txtForgotEmail" name="email" type="text" class="textBox" />
@@ -181,7 +212,7 @@
                     </div>
                     <div class="add-article-row">
                         <input id="btnForgotPassword" type="submit" class="button" value="Wyślij hasło" />
-                    </div>
+                    </div>--%>
                 </fieldset>
                 </form>
             </div>            

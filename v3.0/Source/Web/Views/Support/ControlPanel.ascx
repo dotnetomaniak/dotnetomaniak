@@ -2,8 +2,8 @@
 <div class="controlPanel" style="padding-bottom: 11px;">
     <div class="pageHeader">
         <div class="pageTitle">
-            <h3>
-                Panel sterowania</h3>
+            <h2>
+                Panel sterowania</h2>
         </div>
     </div>
     <div>

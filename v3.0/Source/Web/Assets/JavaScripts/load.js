@@ -1,17 +1,21 @@
 $(document).ready(function () {
-    jQuery('.ui-autocomplete li').live('mouseenter', function () {
-        jQuery(this).addClass('ui-autocomplete-over');
-    }).live('mouseleave',
-    function () {
-        jQuery(this).removeClass('ui-autocomplete-over');
+
+    $(".ui-autocomplete li").mouseover(function () {
+        $(this).addClass('ui-autocomplete-over');
+
+    });
+    $(".ui-autocomplete li").mouseout(function () {
+        $(this).removeClass('ui-autocomplete-over');
     });
 
-    $("a.rozwin").live("click", function () {
+    $(document).on("click", "a.rozwin", function () {
+        event.stopPropagation();
+        event.stopImmediatePropagation();
         $(this).html("zwiń");
         $(this).attr("class", "zwin");
-        var el = $(this).parents('div.summary').prev().children('div.description'), curHeight = el.height(), autoHeight = el.css('height', 'auto').height();
+        var el = $(this).parents('div.summary').prev().children('div.description'), curHeight = el.height(), autoHeight = el.css('height', 'auto').height() + 15;
+        if (window.innerWidth < 768) autoHeight += 115;
         el.height(curHeight).animate({ height: autoHeight }); //.css('height', 'auto');
-
 
         var image = $(this).parents('div.summary').prev().children('div.description').children('div.entry-thumb').children('a').children('img.smoothImage');
 
@@ -23,16 +27,18 @@ $(document).ready(function () {
                 image.fadeIn('slow');
             });
         }
-
     });
-    $("a.zwin").live("click", function () {
 
+
+    $(document).on("click", "a.zwin", function () {
+        event.stopPropagation();
+        event.stopImmediatePropagation();
         $(this).html("rozwiń");
         $(this).attr("class", "rozwin");
         $(this).parents('div.summary').prev().children('div.description').animate({ height: '30px' }); //.css('height','30px');
-
-
     });
+
+
     $(".categories-container").mouseover(function () {
         $("div.categories").show();
         $("li#categories a").addClass('cat-active');

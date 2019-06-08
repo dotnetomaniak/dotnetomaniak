@@ -5,7 +5,7 @@
     int i = 0;
     foreach (var userAchievement in Model.Achievements.Result.OrderByDescending(ua => ua.DateAchieved))
 { %>
-  <li class='badge <%: i % 2 == 0 ?"odd" :"even" %>'><strong><%: Html.Translated(userAchievement.Achievement.Name) %></strong> - <%: userAchievement.Achievement.Description %><span><%: userAchievement.DateAchieved.ToRelative() %> temu</span></li>
+  <li class='custom-badge <%: i % 2 == 0 ?"odd" :"even" %>'><strong><%: Html.Translated(userAchievement.Achievement.Name) %></strong> - <%: userAchievement.Achievement.Description %><span><%: userAchievement.DateAchieved.ToRelative() %> temu</span></li>
 <%
     i++;
 } %>
