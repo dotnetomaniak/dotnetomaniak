@@ -2,7 +2,7 @@
 
 namespace Kigg.Infrastructure.EF.POCO
 {
-    public class KnownSource
+    public class KnownSource: Entity
     {
         public KnownSourceGrade Grade { get; set; }
         public string Url { get; set; }

@@ -3,11 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Kigg.Infrastructure.EF.POCO
 {
-    public class Achievement
+    public class Achievement: Entity
     {
         public string Name { get; set; }
-
-        public System.Guid Id { get; set; }
 
         public string Description { get; set; }
 

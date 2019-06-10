@@ -1,9 +1,7 @@
 ﻿namespace Kigg.Infrastructure.EF.POCO
 {
-    public class UserScore
+    public class UserScore: Entity
     {
-        public long Id { get; set; }
-
         public System.Guid UserId { get; set; }
 
         public System.DateTime Timestamp { get; set; }

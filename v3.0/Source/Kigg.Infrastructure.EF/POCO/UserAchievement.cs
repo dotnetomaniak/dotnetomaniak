@@ -1,6 +1,6 @@
 ﻿namespace Kigg.Infrastructure.EF.POCO
 {
-    public class UserAchievement
+    public class UserAchievement: Entity
     {
         public System.DateTime DateAchieved { get; set; }
 

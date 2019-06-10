@@ -1,6 +1,6 @@
 ﻿namespace Kigg.Infrastructure.EF.POCO
 {
-    public class StoryTag
+    public class StoryTag: Entity
     {
         public System.Guid StoryId { get; set; }
         public Story Story { get; set; }

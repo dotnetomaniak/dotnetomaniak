@@ -1,9 +1,7 @@
 ﻿namespace Kigg.Infrastructure.EF.POCO
 {
-    public class StoryView
+    public class StoryView: Entity
     {
-        public long Id { get; set; }
-
         public System.Guid StoryId { get; set; }
         public Story Story { get; set; }
 

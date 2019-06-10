@@ -2,7 +2,7 @@
 
 namespace Kigg.Infrastructure.EF.POCO
 {
-    public class UserTag
+    public class UserTag: Entity
     {
         public Guid UserId { get; set; }
         public User User { get; set; }

@@ -1,14 +1,10 @@
 ﻿namespace Kigg.Infrastructure.EF.POCO
 {
-    public class StoryComment
+    public class StoryComment: Entity
     {
-        public System.Guid Id { get; set; }
-
         public string HtmlBody { get; set; }
 
         public virtual string TextBody { get; set; }
-
-        public System.DateTime CreatedAt { get; set; }
 
         public System.Guid StoryId { get; set; }
         public Story Story { get; set; }

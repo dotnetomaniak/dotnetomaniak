@@ -2,7 +2,7 @@
 
 namespace Kigg.Infrastructure.EF.POCO
 {
-    public class CommentSubscribtion
+    public class CommentSubscribtion: Entity
     {
         public Guid StoryId { get; set; }
         public Story Story { get; set; }

@@ -4,10 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Kigg.Infrastructure.EF.POCO
 {
-    public class Story
+    public class Story: Entity
     {
-        public Guid Id { get; set; }
-
         public string UniqueName { get; set; }
 
         public string Title { get; set; }
@@ -27,8 +25,6 @@ namespace Kigg.Infrastructure.EF.POCO
         public User User { get; set; }
 
         public string IPAddress { get; set; }
-
-        public DateTime CreatedAt { get; set; }
 
         public DateTime LastActivityAt { get; set; }
 

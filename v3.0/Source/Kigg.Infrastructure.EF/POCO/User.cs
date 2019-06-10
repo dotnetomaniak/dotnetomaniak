@@ -3,10 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Kigg.Infrastructure.EF.POCO
 {
-    public class User
+    public class User: Entity
     {
-        public System.Guid Id { get; set; }
-
         public string UserName { get; set; }
 
         public string Password { get; set; }
@@ -20,8 +18,6 @@ namespace Kigg.Infrastructure.EF.POCO
         public DomainObjects.Roles Role { get; set; }
 
         public System.DateTime LastActivityAt { get; set; }
-
-        public System.DateTime CreatedAt { get; set; }
 
         public string FbId { get; set; }
 

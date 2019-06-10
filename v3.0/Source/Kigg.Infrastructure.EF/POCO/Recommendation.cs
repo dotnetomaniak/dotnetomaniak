@@ -1,9 +1,7 @@
 ﻿namespace Kigg.Infrastructure.EF.POCO
 {
-    public class Recommendation
+    public class Recommendation: Entity
     {
-        public System.Guid Id { get; set; }
-
         public string RecommendationLink { get; set; }
 
         public string RecommendationTitle { get; set; }
@@ -11,8 +9,6 @@
         public string ImageLink { get; set; }
 
         public string ImageTitle { get; set; }
-
-        public System.DateTime CreatedAt { get; set; }
 
         public System.DateTime StartTime { get; set; }
 
