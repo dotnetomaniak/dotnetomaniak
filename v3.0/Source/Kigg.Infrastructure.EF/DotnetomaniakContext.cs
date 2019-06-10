@@ -1,5 +1,5 @@
 ﻿using System;
-using Kigg.Infrastructure.EF.POCO;
+using Kigg.Infrastructure.EF.DomainObjects;
 using Microsoft.EntityFrameworkCore;
 
 namespace Kigg.Infrastructure.EF

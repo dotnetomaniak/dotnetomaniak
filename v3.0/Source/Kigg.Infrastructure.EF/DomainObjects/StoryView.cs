@@ -1,4 +1,4 @@
-﻿namespace Kigg.Infrastructure.EF.POCO
+﻿namespace Kigg.Infrastructure.EF.DomainObjects
 {
     public class StoryView: Entity
     {

@@ -1,11 +1,7 @@
-﻿namespace Kigg.Infrastructure.EF.POCO
+﻿namespace Kigg.Infrastructure.EF.DomainObjects
 {
-    public class StoryComment: Entity
+    public class StoryMarkAsSpam: Entity
     {
-        public string HtmlBody { get; set; }
-
-        public virtual string TextBody { get; set; }
-
         public System.Guid StoryId { get; set; }
         public Story Story { get; set; }
 
@@ -14,6 +10,6 @@
 
         public string IPAddress { get; set; }
 
-        public bool IsOffended { get; set; }
+        public System.DateTime Timestamp { get; set; }
     }
 }

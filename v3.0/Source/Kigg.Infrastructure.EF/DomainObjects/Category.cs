@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using System.Collections.Generic;
 
-namespace Kigg.Infrastructure.EF.POCO
+namespace Kigg.Infrastructure.EF.DomainObjects
 {
     public class Category: Entity
     {

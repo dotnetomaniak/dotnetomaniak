@@ -1,7 +1,7 @@
 ﻿using System;
 using Kigg.DomainObjects;
 
-namespace Kigg.Infrastructure.EF.POCO
+namespace Kigg.Infrastructure.EF.DomainObjects
 {
     public class Entity: IEntity
     {

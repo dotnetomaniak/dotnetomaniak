@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
 
-namespace Kigg.Infrastructure.EF.POCO
+namespace Kigg.Infrastructure.EF.DomainObjects
 {
     public class User: Entity
     {
@@ -15,7 +14,7 @@ namespace Kigg.Infrastructure.EF.POCO
 
         public bool IsLockedOut { get; set; }
 
-        public DomainObjects.Roles Role { get; set; }
+        public Kigg.DomainObjects.Roles Role { get; set; }
 
         public System.DateTime LastActivityAt { get; set; }
 

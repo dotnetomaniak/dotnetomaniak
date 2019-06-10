@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
 
-namespace Kigg.Infrastructure.EF.POCO
+namespace Kigg.Infrastructure.EF.DomainObjects
 {
     public class Achievement: Entity
     {
