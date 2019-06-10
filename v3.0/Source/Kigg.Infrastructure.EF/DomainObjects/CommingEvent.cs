@@ -1,6 +1,8 @@
-﻿namespace Kigg.Infrastructure.EF.DomainObjects
+﻿using Kigg.Core.DomainObjects;
+
+namespace Kigg.Infrastructure.EF.DomainObjects
 {
-    public class CommingEvent: Entity
+    public class CommingEvent: Entity, ICommingEvent
     {
         public string EventLink { get; set; }
 

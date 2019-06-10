@@ -1,6 +1,8 @@
-﻿namespace Kigg.Infrastructure.EF.DomainObjects
+﻿using Kigg.Core.DomainObjects;
+
+namespace Kigg.Infrastructure.EF.DomainObjects
 {
-    public class Recommendation: Entity
+    public class Recommendation: Entity, IRecommendation
     {
         public string RecommendationLink { get; set; }
 

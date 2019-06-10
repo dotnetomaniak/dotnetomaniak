@@ -1,6 +1,9 @@
-﻿namespace Kigg.Infrastructure.EF.DomainObjects
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Kigg.DomainObjects;
+
+namespace Kigg.Infrastructure.EF.DomainObjects
 {
-    public class UserAchievement: Entity
+    public class UserAchievement: Entity, IUserAchievement
     {
         public System.DateTime DateAchieved { get; set; }
 
@@ -11,5 +14,8 @@
         public User User { get; set; }
 
         public bool Displayed { get; set; }
+
+        [NotMapped]
+        IAchievement IUserAchievement.Achievement => (IAchievement) this.Achievement;
     }
 }

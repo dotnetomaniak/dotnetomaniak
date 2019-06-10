@@ -1,6 +1,9 @@
-﻿namespace Kigg.Infrastructure.EF.DomainObjects
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Kigg.DomainObjects;
+
+namespace Kigg.Infrastructure.EF.DomainObjects
 {
-    public class StoryComment: Entity
+    public class StoryComment: Entity, IComment
     {
         public string HtmlBody { get; set; }
 
@@ -15,5 +18,16 @@
         public string IPAddress { get; set; }
 
         public bool IsOffended { get; set; }
+
+        [NotMapped]
+        public IStory ForStory => Story;
+
+        [NotMapped]
+        public IUser ByUser => User;
+
+        [NotMapped]
+        public string FromIPAddress => IPAddress;
+
+        public virtual void MarkAsOffended() => IsOffended = true;
     }
 }
