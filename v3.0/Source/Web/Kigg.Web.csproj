@@ -761,6 +761,10 @@
       <Project>{564931FC-9E33-4FA4-887D-7E78C2B63873}</Project>
       <Name>Kigg.Infrastructure.HtmlAgilityPack</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Kigg.Infrastructure.EF\Kigg.Infrastructure.EF.csproj">
+      <Project>{b513a75c-79e5-410f-8921-b20a44e7b9d8}</Project>
+      <Name>Kigg.Infrastructure.EF</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LinqToSql\Kigg.Infrastructure.LinqToSql.csproj">
       <Project>{49CDCCC2-2C02-4DF1-9234-246D974D2B2D}</Project>
       <Name>Kigg.Infrastructure.LinqToSql</Name>
