@@ -257,6 +257,10 @@ p.show-more-articles{
     #page a {
         font-size: 1.2em;
     }
+
+    .error {
+        max-width: 100% !important;
+    }
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
@@ -608,7 +612,6 @@ p.show-more-articles{
         font-weight: bold;
         color: #535353;
         padding-bottom: 20px;
-        float: left;
     }
 
     .commingEventsMonth {
@@ -643,8 +646,11 @@ p.show-more-articles{
         font-weight: 500;
         align-content: center;
         text-align: left;
-        padding-left: 20px;
-        width: 600px;
+        /*padding-left: 20px;*/
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        /*width: 600px;*/
     }
 
     .commingEventTitle {
@@ -653,12 +659,12 @@ p.show-more-articles{
     }
 
     .commingEventColumn {
-        height: 50px;
+        /*height: 50px;*/
         overflow: hidden;
         padding-bottom: 10px;
         padding-top: 5px;
         text-align: left;
-        width: 280px;
+        /*width: 280px;*/
     }
 
     .commingEventList {
@@ -671,11 +677,13 @@ p.show-more-articles{
     }
 
     .commingEventPlace {
-        padding-left: 60px;
+        padding-left: 15px;
         font-size: 12px;
         font-weight: normal;
         line-height: 16px;
         color: black;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .commingEventDetailsList {
@@ -700,9 +708,9 @@ p.show-more-articles{
 
     .commingEventLead {
         font-size: 12px;
-        width: 500px;
+        /*width: 500px;*/
         font-weight: 100;
-        padding-left: 80px;
+        padding-left: 75px;
         padding-top: 12px;
     }
 
@@ -1127,7 +1135,6 @@ p.show-more-articles{
         .add-article-row label {
             padding-top: 10px;
             width: 100%;
-            margin-right: 15px;
         }
 
         .add-article-row input[type="text"], .add-article-row input[type="password"] {
@@ -1139,27 +1146,20 @@ p.show-more-articles{
 
         #content .add-article-row input[type="text"], #content .add-article-row input[type="password"], #content .add-article-row .error, #content #txtContactMessage {
             max-width: 100%;
+            /*width: 431px;*/
+        }
+
+        #content .add-article-row .error {
             width: 431px;
         }
 
     .wysiwyg-code {
         background: url("/Assets/Images/toplist-border_31.jpg") repeat-x scroll center bottom #FAFAFA;
-        float: right;
         line-height: 16px;
         margin-right: 39px;
         margin-top: 10px;
         padding: 20px;
-        width: 400px;
-    }
-
-    .wysiwyg-code {
-        background: url("/Assets/Images/toplist-border_31.jpg") repeat-x scroll center top #FAFAFA;
-        float: right;
-        line-height: 16px;
-        margin-right: 39px;
-        margin-top: 10px;
-        padding: 20px;
-        width: 400px;
+        width: 431px;
     }
 
     a.hide-sample {
@@ -1173,12 +1173,11 @@ p.show-more-articles{
         float: left;
         font-family: Tahoma;
         font-size: 11px;
-        height: 19px;
+        height: 22px;
         margin-bottom: 10px;
-        margin-left: 122px;
         margin-top: 10px;
         padding-right: 26px;
-        padding-top: 3px;
+        padding-top: 5px;
     }
 
     a.hide-sample {
@@ -1186,12 +1185,11 @@ p.show-more-articles{
         float: left;
         font-family: Tahoma;
         font-size: 11px;
-        height: 19px;
+        height: 22px;
         margin-bottom: 10px;
-        margin-left: 122px;
         margin-top: 10px;
         padding-right: 26px;
-        padding-top: 3px;
+        padding-top: 5px;
     }
 
     .radios {
@@ -1543,7 +1541,8 @@ p.show-more-articles{
         display: none;
         color: #CE0000;
         font-weight: bold;
-        width: 400px;
+        /*max-width: 329px;*/
+        width: 100% !important;
         padding-top: 10px;
         padding-bottom: 10px;
         padding-left: 40px;

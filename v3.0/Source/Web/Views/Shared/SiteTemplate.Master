@@ -378,11 +378,11 @@
             <div id="content">
             <div class="row">
                 <% Html.RenderAction("Banner", "Recommendation"); %>
-                <div id="main" class="col-lg-9 col-sm-12">
+                <div id="main" class="col-lg-8 col-sm-12">
                 <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">
                 </asp:ContentPlaceHolder>          
                 </div> 
-                <div id="sub" class="col-lg-3 col-sm-12">
+                <div id="sub" class="col-lg-4 col-sm-12">
                 <%
                     if (Model.CanCurrentUserModerate)
                     {

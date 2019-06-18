@@ -146,24 +146,30 @@
                     na bieżąco informowany o zmianach w serwisie.</p>
                 <form id="frmSignup" action="<%= Url.Action("Signup", "Membership") %>" method="post">
                 <fieldset>
-                    <div class="add-article-row">
-                        <label for="txtSignupUserName" class="label">
+                    <div class="add-article-row row">
+                        <label for="txtSignupUserName" class="label col-3 text-right">
                             Nazwa użytkownika:</label>
-                        <input id="txtSignupUserName" name="userName" type="text" class="textBox" />
-                        <span class="error"></span>
+                        <div class="col-9">
+                            <input id="txtSignupUserName" name="userName" type="text" class="textBox" />
+                            <span class="error"></span>
+                        </div>
                     </div>
-                    <div class="add-article-row">
-                        <label for="txtSignupPassword" class="label">
+                    <div class="add-article-row row">
+                        <label for="txtSignupPassword" class="label col-3 text-right">
                             Hasło:</label>
-                        <input id="txtSignupPassword" name="password" type="password" class="textBox" />
-                        <span class="error"></span>
+                        <div class="col-9">
+                            <input id="txtSignupPassword" name="password" type="password" class="textBox" />
+                            <span class="error"></span>
+                        </div>
                     </div>
-                    <div class="add-article-row">
-                        <label for="txtSignupEmail" class="label">
+                    <div class="add-article-row row">
+                        <label for="txtSignupEmail" class="label col-3 text-right">
                             Email:</label>
-                        <input id="txtSignupEmail" name="email" type="text" class="textBox" />
-                        <span class="error"></span><span class="info">(Proszę wprowadź poprawny adres e-mail,
+                        <div class="col-9">
+                            <input id="txtSignupEmail" name="email" type="text" class="textBox" />
+                            <span class="error"></span><span class="info">(Proszę wprowadź poprawny adres e-mail,
                             będzie potrzebny do weryfikacji)</span>
+                        </div>
                     </div>
                     <div class="add-article-row">
                         <span id="signupMessage" class="message"></span>
@@ -291,41 +297,53 @@
                 <form id="frmEvent" action="<%= Url.Action("AddEvent", "CommingEvent") %>" method="post">
                 <fieldset>
                     <input type="hidden" id="hidEventId" name="id"/>                    
-                    <div class="add-article-row">
-                        <label for="txtEventLink" class="label">
+                    <div class="add-article-row row">
+                        <label for="txtEventLink" class="label col-3 text-right">
                             Link do wydarzenia:</label>
-                        <input id="txtEventLink" name="EventLink" type="text" class="textBox" />
-                        <span class="error"></span>
+                        <div class="col-9">
+                            <input id="txtEventLink" name="EventLink" type="text" class="textBox" />
+                            <span class="error"></span>
+                        </div>
                     </div>
-                    <div class="add-article-row">
-                        <label for="txtEventName" class="label">
+                    <div class="add-article-row row">
+                        <label for="txtEventName" class="label col-3 text-right">
                             Nazwa wydarzenia:</label>
-                        <input id="txtEventName" name="EventName" type="text" class="textBox" />
-                        <span class="error"></span>
+                        <div class="col-9">
+                            <input id="txtEventName" name="EventName" type="text" class="textBox" />
+                            <span class="error"></span>
+                        </div>
                     </div>
-                    <div class="add-article-row">
-                        <label for="txtEventDate" class="label">
+                    <div class="add-article-row row">
+                        <label for="txtEventDate" class="label col-3 text-right">
                             Data wydarzenia:</label>
-                        <input id="txtEventDate" name="EventDate" type="text" class="textBox"/>
+                        <div class="col-9">
+                            <input id="txtEventDate" name="EventDate" type="text" class="textBox"/>
+                        </div>
                     </div>
-                    <div class="add-article-row">
-                        <label for="txtEventPlace" class="label">
+                    <div class="add-article-row row">
+                        <label for="txtEventPlace" class="label col-3 text-right">
                             Miejsce wydarzenia:</label>
-                        <input id="txtEventPlace" name="EventPlace" type="text" class="textBox"/>
-                        <span class="error"></span>
+                        <div class="col-9">
+                            <input id="txtEventPlace" name="EventPlace" type="text" class="textBox"/>
+                            <span class="error"></span>
+                        </div>
                     </div>
-                    <div class="add-article-row">
-                        <label for="txtEventLead" class="label">
+                    <div class="add-article-row row">
+                        <label for="txtEventLead" class="label col-3 text-right">
                             Opis wydarzenia:</label>
-                        <textarea id="txtEventLead" name="EventLead" cols="40" rows="5" maxlength="500" class="largeTextArea" style="width: 334px !important;">Brak opisu</textarea>                        
-                        <span class="error"></span>
+                        <div class="col-9">
+                            <textarea id="txtEventLead" name="EventLead" cols="40" rows="5" maxlength="500" class="largeTextArea" style="width: 100% !important;">Brak opisu</textarea>                        
+                            <span class="error"></span>
+                        </div>
                     </div>
-                    <div class="add-article-row">
-                        <label for="txtUserEmail" class="label">
+                    <div class="add-article-row row">
+                        <label for="txtUserEmail" class="label col-3 text-right">
                             Email zgłaszającego:
                         </label>
-                        <input id="txtUserEmail" name="EventUserEmail" type="text" class="textBox" value="true" />
-                        <span class="error"></span>
+                        <div class="col-9">
+                            <input id="txtUserEmail" name="EventUserEmail" type="text" class="textBox" value="true" />
+                            <span class="error"></span>
+                        </div>
                     </div>
                     <% if (Model.IsCurrentUserAuthenticated && Model.CurrentUser != null &&
                            Model.CurrentUser.IsAdministrator())

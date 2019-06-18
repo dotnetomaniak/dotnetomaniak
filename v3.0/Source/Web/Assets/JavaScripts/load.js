@@ -76,18 +76,30 @@ $(document).ready(function () {
     });
 
     //podglad wysiwyg
-    $("a.hide-sample").live("click", function () {
+    //$("a.hide-sample").live("click", function () {
+    //    $(this).html("pokaż podgląd");
+    //    $(this).attr("class", "show-sample");
+    //    $(".wysiwyg-code").toggle();
+    //});
+    //$("a.show-sample").live("click", function () {
+
+    //    $(this).html("ukryj podgląd");
+    //    $(this).attr("class", "hide-sample");
+    //    $(".wysiwyg-code").toggle();
+
+
+    //});
+
+    $(document).on("click", "a.hide-sample", function () {
         $(this).html("pokaż podgląd");
         $(this).attr("class", "show-sample");
         $(".wysiwyg-code").toggle();
     });
-    $("a.show-sample").live("click", function () {
 
+    $(document).on("click", "a.show-sample", function () {
         $(this).html("ukryj podgląd");
         $(this).attr("class", "hide-sample");
         $(".wysiwyg-code").toggle();
-
-
     });
 
     $(".partialContents").each(function (index, item) {

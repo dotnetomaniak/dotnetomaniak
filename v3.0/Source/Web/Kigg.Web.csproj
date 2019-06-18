@@ -573,6 +573,12 @@
     <Content Include="Assets\Images\toplist_bottom.jpg" />
     <Content Include="Assets\Images\toplist_top.jpg" />
     <Content Include="Assets\Images\twitter.ico" />
+    <Content Include="Assets\Images\ui-icons_444444_256x240.png" />
+    <Content Include="Assets\Images\ui-icons_555555_256x240.png" />
+    <Content Include="Assets\Images\ui-icons_777620_256x240.png" />
+    <Content Include="Assets\Images\ui-icons_777777_256x240.png" />
+    <Content Include="Assets\Images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Assets\Images\ui-icons_ffffff_256x240.png" />
     <Content Include="Assets\Images\wyslij.jpg" />
     <Content Include="Assets\Images\zaloguj.jpg" />
     <Content Include="Assets\Images\zaloz-konto_07.jpg" />
@@ -582,6 +588,9 @@
     <Content Include="Assets\JavaScripts\devmediaBody.js" />
     <Content Include="Assets\JavaScripts\jquery-1.7.1.min.js" />
     <Content Include="Assets\JavaScripts\jquery-ui-1.8.17.custom.min.js" />
+    <Content Include="Assets\JavaScripts\jquery-ui-1.12.1.js" />
+    <Content Include="Assets\JavaScripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Assets\JavaScripts\jquery.markitup.js" />
     <Content Include="Assets\JavaScripts\jquery.validate.js" />
     <Content Include="Assets\JavaScripts\load.js" />
     <Content Include="Assets\JavaScripts\SocialMedia.js" />
@@ -592,6 +601,11 @@
     <Content Include="Assets\StyleSheets\devmedia.css" />
     <Content Include="Assets\StyleSheets\error.css" />
     <Content Include="Assets\StyleSheets\jquery-ui.css" />
+    <Content Include="Assets\StyleSheets\jquery-ui.min.css" />
+    <Content Include="Assets\StyleSheets\jquery-ui.structure.css" />
+    <Content Include="Assets\StyleSheets\jquery-ui.structure.min.css" />
+    <Content Include="Assets\StyleSheets\jquery-ui.theme.css" />
+    <Content Include="Assets\StyleSheets\jquery-ui.theme.min.css" />
     <Content Include="Assets\StyleSheets\marItUp.css" />
     <Content Include="Assets\StyleSheets\marItUp.min.css" />
     <Content Include="Assets\StyleSheets\modal.css" />

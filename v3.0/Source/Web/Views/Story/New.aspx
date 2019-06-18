@@ -42,14 +42,18 @@
         <div class="add-article-row row">
             <label for="txtStoryUrl" class="label offset-1 col-2">
                 Url:</label>
-            <input id="txtStoryUrl" name="url" type="text" class="largeTextBox col-7" value="<%= Model.Url %>" />
-            <span id="errorStoryUrl" class="error"></span>
+            <div class="col-9">
+                <input id="txtStoryUrl" name="url" type="text" class="largeTextBox col-7" value="<%= Model.Url %>" />
+                <span id="errorStoryUrl" class="error"></span>
+            </div>
         </div>
         <div class="add-article-row row">
             <label for="txtStoryTitle" class="label offset-1 col-2">
                 Tytuł:</label>
-            <input id="txtStoryTitle" name="title" type="text" class="largeTextBox col-7" value="<%= Model.Title %>" />
-            <span class="error"></span>
+            <div class="col-9">
+                <input id="txtStoryTitle" name="title" type="text" class="largeTextBox col-7" value="<%= Model.Title %>" />
+                <span class="error"></span>
+            </div>
         </div>
         <div class="add-article-row row">
             <label for="txtStoryDescription" class="label offset-1 col-2">
@@ -70,18 +74,20 @@
         <div class="add-article-row row">
             <label for="txtStoryTags" class="label offset-1 col-2">
                 Tagi:</label>
-            <input id="txtStoryTags" name="tags" type="text" class="largeTextBox col-7" />
-            <span class="info">(oddziel przecinkiem wiele tagów)</span>
-            <span class="error"></span>
+            <div class="col-9">
+                <input id="txtStoryTags" name="tags" type="text" class="largeTextBox col-7" />
+                <span class="info">(oddziel przecinkiem wiele tagów)</span>
+                <span class="error"></span>
+             </div>
         </div>
         <div class="add-article-row radios-wrapper row">
             <label class="label offset-1 col-2">
                 Kategoria:</label>
-            <div class="col-7">
+            <div class="col-9">
             <% Html.RenderAction("RadioButtonList", "Category"); %>   
-            </div>
             <div class="clearfix"></div>
             <span class="error"></span>
+            </div>
         </div>
         <%if (Model.CaptchaEnabled)%>
         <%{%>

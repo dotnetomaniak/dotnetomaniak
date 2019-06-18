@@ -19,7 +19,7 @@
                     <div class="commingEventDay"><%= commingEvent.EventDate.ToString("dd") %>.</div>
                     <div class="commingEventBody">                            
                         <a class="commingEventTitle" href="<%= commingEvent.EventLink %>" title="<%= commingEvent.EventName %>" target="_blank" rel="noopener">
-                            <%= commingEvent.EventName.WrapAt(20) %>
+                            <%= commingEvent.EventName %>
                         </a>
                         <div class="commingEventPlace"><%= commingEvent.EventPlace %></div>
                     </div>                    
