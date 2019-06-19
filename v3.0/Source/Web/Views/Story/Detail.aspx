@@ -40,7 +40,7 @@
     <% IStory story = Model.Story; %>
     <% IUser user = Model.CurrentUser;%>
     <%= Html.ArticleHeader("", new string[] { "Strona główna", story.BelongsTo.Name}) %>
-    <div id="t-<%= Html.AttributeEncode(story.Id.Shrink()) %>" class="story odd">
+    <div id="t-<%= Html.AttributeEncode(story.Id.Shrink()) %>" class="story odd row clearfix">
         <% Html.RenderPartial("Story", new StoryItemViewData { Story = story, User = Model.CurrentUser, PromoteText = Model.PromoteText, DemoteText = Model.DemoteText, CountText = Model.CountText, SocialServices = Model.SocialServices, DetailMode = true }); %>
         <div class="clearfix">
         </div>

@@ -185,7 +185,7 @@
     <meta name="twitter:title" content="<%= ""+Page.Header.Title %>"  />
     <meta name="twitter:image" content="https://dotnetomaniak.pl/Assets/Images/dotnetomaniak_logo_twitter.jpg"  />
     <meta property="og:image" content="https://dotnetomaniak.pl/Assets/Images/logo-dotnetomaniak.png"  />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="Rating" content="General" />
     <meta name="robots" content="index, follow" />  
     <link href="<%= Url.Asset("css").Replace("&", "&amp;") %>" rel="stylesheet" type="text/css" />
@@ -200,6 +200,7 @@
     <asp:ContentPlaceHolder ID="HeadPlaceHolder" runat="server">
     </asp:ContentPlaceHolder>
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
     <script>
         window.addEventListener("load", function(){
@@ -330,45 +331,58 @@
         });
       });
     </script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 
     <div id="fb-root"></div>
     <div id="info"></div>
-    <div id="container">
-        <div id="top">
-            <h1>
-                <a rel="home" title="<%= Model.SiteTitle %>" href="<%= Url.Content("~/") %>">
-                    <img alt="<%= Model.SiteTitle %>" src="<%= Url.Image("logo-dotnetomaniak.png") %>" />
-                </a>
-            </h1>
-            <div class="top-right">
-                <div class="links">
-                    <%
-                        Html.RenderAction("Menu", "Membership");%>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 offset-lg-7 text-right">
+                    <div class="links">
+                        <% Html.RenderAction("Menu", "Membership");%>
+                    </div>
                 </div>
-                <div class="top-right-bottom">
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <a rel="home" title="<%= Model.SiteTitle %>" href="<%= Url.Content("~/") %>">
+                        <img alt="<%= Model.SiteTitle %>" style="max-width: 100%; min-width: 120px;" src="<%= Url.Image("logo-dotnetomaniak.png") %>" />
+                    </a>
+                </div>
+                <div class="col-8 main-menu__right">
                     <p>
                         <%= Html.ActionLink("Dodaj artykuł", "Submit", "Story", null, new {id = "blue-button"})%>
                     </p>
                     <p class="show-more-articles">
-                        <%= Html.ActionLink("Zobacz listę oczekujących artykułów (" + ViewData.Model.UpcomingStoriesCount.ToString() + ")", "Upcoming", "Story", new { page = 0 }, null)%> 
-                    </p>
-                </div>               
+                       <%= Html.ActionLink("Zobacz listę oczekujących artykułów (" + ViewData.Model.UpcomingStoriesCount.ToString() + ")", "Upcoming", "Story", new { page = 0 }, null)%> 
+                   </p>
+                </div>
             </div>
-            <div id="menuwrapper">
-                <% Html.RenderAction("Menu", "Category"); %>
+            <div class="row">
+                <div id="menuwrapper">
+                    <% Html.RenderAction("Menu", "Category"); %>
+                </div>
             </div>
             <%--<% Html.RenderPartial("FbLog", ViewData.Model); %>--%>
             <%--<% Html.RenderPartial("SearchBox", ViewData.Model); %>--%>
-        </div>
-        <div id="content">
-            <% Html.RenderAction("Banner", "Recommendation"); %>
-            <div id="main">
+       </div>
+    </header>
+    <div id="page">
+        <div class="container">
+            <div id="content">
+            <div class="row">
+                <% Html.RenderAction("Banner", "Recommendation"); %>
+                <div id="main" class="col-lg-8 col-sm-12">
                 <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server">
                 </asp:ContentPlaceHolder>          
                 </div> 
-            <div id="sub">
+                <div id="sub" class="col-lg-4 col-sm-12">
                 <%
                     if (Model.CanCurrentUserModerate)
                     {
@@ -402,13 +416,17 @@
                 <% Html.RenderAction("TopTabs","Membership"); %>
                 <% Html.RenderAction("Tabs","Tag"); %>
                 </div>	 
-            <div class="fb-page" data-href="https://www.facebook.com/dotnetomaniakpl/" data-width="919" 
+            </div>
+            <div class="row">
+                <div class="fb-page col-12" data-href="https://www.facebook.com/dotnetomaniakpl/" data-width="919" 
                  data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" 
                  data-show-facepile="true">
                 <blockquote cite="https://www.facebook.com/dotnetomaniakpl/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/dotnetomaniakpl/">dotnetomaniak.pl</a></blockquote>
             </div>
+            </div>
+           </div>
         </div> 
-        <div id="footer">
+        <div id="footer" class="container">
             <p>
                 <strong>&copy; <%= ViewData.Model.SiteTitle %>.</strong>
                     <%= DateTime.Today.Year.ToString("0000") %>

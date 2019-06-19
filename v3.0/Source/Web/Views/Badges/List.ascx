@@ -4,7 +4,7 @@
     <% int i = 0;
        foreach (var badge in Model.Badges.OrderByDescending(x => x.Count))
        { %>
-    <li class='badge <%: i++ % 2 == 0 ?"odd" :"even" %>'><strong><%= Html.Translated(badge.Name) %></strong>
+    <li class='custom-badge <%: i++ % 2 == 0 ?"odd" :"even" %>'><strong><%= Html.Translated(badge.Name) %></strong>
         <%if (badge.Name == "PlaqueBadge")
           {%>
         <a href="http://blog.dotnetomaniak.pl/post/czy-masz-juz-swoja-plakietke.aspx">- <%= badge.Description %>

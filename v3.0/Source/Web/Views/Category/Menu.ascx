@@ -2,17 +2,22 @@
 <script runat="server">
     private bool IsInSupportPages(string url)
     {
-        return url.Contains("PromoteSite") || url.Contains("Faq") || url.Contains("Contact") || url.Contains("About");
+        return url.Contains("PromoteSite") || url.Contains("Faq") || url.Contains("Contact") || url.Contains("About") || url.Contains("Policy") || url.Contains("Odznaki");
     }
-    </script>
-<ul class="primary-nav">
-    <li><a href="/" <%= Request.Url.AbsolutePath == "/" ? "class='active'" : string.Empty %>>Strona główna</a> </li>
-</ul>
-<div class="categories-container">
-    <ul class="primary-nav">
-        <li id="categories"><a href="#" <%= Request.Url.AbsolutePath.Contains("Category") ? "class='active'" : string.Empty %>><span>Kategorie</span> </a></li>
-    </ul>
-    <div class="categories">
+</script>
+<nav class="navbar navbar-expand-sm navbar-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto primary-nav">
+      <li class="nav-item">
+        <a class="nav-link <%= Request.Url.AbsolutePath == "/" ? "active" : string.Empty %>" href="/">Strona główna</a>
+      </li>
+      <li class="nav-item" id="categories">
+        <a class="nav-link dropdown-toggle <%= Request.Url.AbsolutePath.Contains("Category") ? "active" : string.Empty %>" href="#" id="navbarCategoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kategorie</a>
+        <div class="categories dropdown-menu clearfix" aria-labelledby="navbarCategoryDropdown">
         <ul>
             <%
                 int count = Model.Count;
@@ -20,10 +25,10 @@
                 foreach (ICategory category in Model.OrderBy(x => x.Name))
                 {
             %>
-            <li <%= index/4 == count/4 ? "class='last'" : "" %>><strong>
-                <%= Html.ActionLink(category.Name, "Category", "Story", new { name = category.UniqueName }, new { rel = "tag directory", @class="" })%>
+            <li class="col-12 col-sm-3 <%= index/4 == count/4 ? "last" : "" %> <%= (index + 1) % 4 == 0 ? "last-col" : "" %>"><strong>
+                <%= Html.ActionLink(category.Name, "Category", "Story", new { name = category.UniqueName }, new { rel = "tag directory", @class="sublink dropdown-item" })%>
             </strong>
-                <p>
+                <p class="d-none d-sm-block">
                     <%: category.Description %></p>
             </li>
             <%
@@ -31,25 +36,27 @@
                 }
             %>
         </ul>
-    </div>
-</div>
-<div class="about-container">
-    <ul class="primary-nav">
-        <li id="about"><a href="#" <%= IsInSupportPages(Request.Url.AbsolutePath) ? "class='active'" : string.Empty %>><span>O dotNETomaniak</span></a></li>
+        </div>
+      </li>
+      <li class="nav-item dropdown" id="about">
+        <a class="nav-link dropdown-toggle <%= IsInSupportPages(Request.Url.AbsolutePath) ? "active" : string.Empty %>" href="#" id="navbarAboutDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          O dotNETomaniaku
+        </a>
+        <div class="about dropdown-menu clearfix" aria-labelledby="navbarAboutDropdown">
+            <ul>
+                <li class="col-12"><a class="sublink" href="<%= Url.Action("All","Badges") %>">Odznaki</a></li>
+                <li class="col-12"><a class="sublink" href="<%= Url.RouteUrl("PromoteSite")%>">Promocja</a> </li>
+                <li class="col-12"><a class="sublink" href="<%= Url.Action("Faq", "Support") %>">FAQ</a></li>
+                <li class="col-12"><a class="sublink" href="<%= Url.RouteUrl("About") %>">O dotNETomaniak</a></li>
+                <li class="col-12"><a class="sublink" href="<%= Url.Action("Policy","Support") %>">Polityka prywatności</a></li>
+                <li class="col-12 last"><a class="sublink" href="<%= Url.RouteUrl("Contact") %>">Kontakt</a></li>
+            </ul>
+        </div>
+      </li>
+        <li class="nav-item">
+            <a class="nav-link" href="http://dotnetomaniak.cupsell.pl" target="_blank">Sklep z gadżetami</a>
+        </li>
     </ul>
-    <div class="about">
-        <ul>
-            <li><a href="<%= Url.Action("All","Badges") %>">Odznaki</a></li>
-            <li><a href="<%= Url.RouteUrl("PromoteSite")%>">Promocja</a> </li>
-            <li><%= Html.ActionLink("FAQ", "Faq", "Support")%></li>
-            <li><a href="<%= Url.RouteUrl("About") %>">O dotNETomaniak</a></li>
-            <li><a href="<%= Url.Action("Policy","Support") %>">Polityka prywatności</a></li>
-            <li class="last"><a href="<%= Url.RouteUrl("Contact") %>">Kontakt</a></li>
-        </ul>
-    </div>
-</div>
-<div class="">
-    <ul class="primary-nav">
-       <li><a href="http://dotnetomaniak.cupsell.pl" target="_blank">Sklep z gadżetami</a></li>
-    </ul>
-</div>
+
+  </div>
+</nav>
