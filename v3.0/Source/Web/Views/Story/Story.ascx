@@ -104,7 +104,7 @@
 <%
     string attributedEncodedStoryId = Html.AttributeEncode(story.Id.Shrink());
     bool detailsMode = Model.DetailMode; %>
-<div class="kigg col-3 col-sm-2 col-xl-1">
+<div class="kigg mt-2 col-3 col-sm-2 col-xl-1">
     <div class="count" id="s-c-<%= attributedEncodedStoryId %>">
         <%= story.VoteCount %>
     </div>
@@ -160,13 +160,11 @@
     <% if (!detailsMode) %>
     <% { %>
     <div class="mt-2">
-        <div class="mt-2">
-            <a href="<%= Url.RouteUrl("Detail", new {name = story.UniqueName}) %>"
-               class="btn btn-sm btn-primary text-white" 
-               role="button" aria-pressed="true" rel="bookmark">
-                Więcej
-            </a>
-        </div>
+        <a href="<%= Url.RouteUrl("Detail", new {name = story.UniqueName}) %>"
+           class="btn btn-sm btn-primary text-white" 
+           role="button" aria-pressed="true" rel="bookmark">
+            Więcej
+        </a>
     </div>
     <% } %>
 </div>
