@@ -101,7 +101,7 @@
 <% const string LongDateFormat = "F"; %>
 <% IStory story = Model.Story; %>
 <% IUser user = Model.User; %>
-<%          
+<%
     string attributedEncodedStoryId = Html.AttributeEncode(story.Id.Shrink());
     bool detailsMode = Model.DetailMode; %>
 <div class="kigg col-3 col-sm-2 col-xl-1">
@@ -157,33 +157,40 @@
         <% } %>
         <span id="s-p-<%= attributedEncodedStoryId%>"></span>
     </div>
+    <% if (!detailsMode) %>
+    <% { %>
+    <div class="mt-2">
+        <div class="mt-2">
+            <a href="<%= Url.RouteUrl("Detail", new {name = story.UniqueName}) %>"
+               class="btn btn-sm btn-primary text-white" 
+               role="button" aria-pressed="true" rel="bookmark">
+                Więcej
+            </a>
+        </div>
+    </div>
+    <% } %>
 </div>
-<% string detailUrl = Url.RouteUrl("Detail", new { name = story.UniqueName });
-   string onClick = string.Empty;
-   string rel = "bookmark";
-   %>
-<% if (detailsMode)
-   {
-       detailUrl = Model.Story.Url;
-       onClick = @"onclick=""javascript:Story.click('" + attributedEncodedStoryId + @"')""";
-       rel += " external";
-   } %>
+<% var detailUrl = Model.Story.Url;
+   var onClick = @"onclick=""javascript:Story.click('" + attributedEncodedStoryId + @"')""";
+   var rel = "bookmark external";
+%>
 <div class="col-9 col-sm-10 col-xl-11">
     <div itemscope itemtype="http://schema.org/Article" class="article">
         <div class="title">
             <h2>
-                <a class="entry-title taggedlink" rel="<%= rel %>" href="<%= Html.AttributeEncode(detailUrl) %>"
-                    <%= onClick %> >
+                <a class="entry-title taggedlink" rel="<%= rel %>" 
+                   href="<%= Html.AttributeEncode(detailUrl) %>"
+                   target="_blank" <%= onClick %> >
                     <span itemprop="name"><%= Html.Encode(story.Title)%></span></a></h2>
         </div>
         <div class="entry-content description" <%= detailsMode ? "style='height: auto'" : "" %>>        
             <p itemprop="description"><span itemprop="articleBody">
             <% if (detailsMode) %>
-            <% { %>        
+            <% { %>
             <%= story.StrippedDescription() %>
             <% } %>
             <% else %>
-            <% { %>        
+            <% { %>
             <%= story.StrippedDescription() %>
             <% } %>
             </span></p>
@@ -210,7 +217,7 @@
                         <img id="thumb_img_id" itemprop="image" alt="<%= Html.AttributeEncode(story.Title) %>" src="<%= Html.AttributeEncode(story.GetSmallThumbnailPath()) %>"
                              class="smoothImage" onload="javascript:SmoothImage.show(this)" />
                     <% } %>
-                            
+
                     <% else %>
                     <% { %>
                         <img itemprop="image" alt="<%= Html.AttributeEncode(story.Title) %>" src="" data-story-id="<%= story.Id.Shrink() %>" class="smoothImage" onload="javascript:SmoothImage.show(this)" />
@@ -233,7 +240,7 @@
                 temu</span>
             <% }
                else
-               {%>           
+               {%>
                <span class="time" title="<%= story.CreatedAt.ToString(hDateFormat) %>"><%= story.CreatedAt.ToString(LongDateFormat) %> GMT</span>
                <%
                }%>
@@ -246,7 +253,7 @@
                 <span class="counter"><a id="a-c" href="javascript:void(0)" class="imageCode actionLink">pokaż kod licznika</a></span>
             <% }%>
             <% if ((user != null) && (detailsMode) && (user.CanModerate() || user.HasRightsToEditStory(story))) %>
-            <% { %>        
+            <% { %>
             <span class="edit"><a class="edit actionLink" href="javascript:void(0)" onclick="Membership.editStory('<%= attributedEncodedStoryId %>')">
                 edycja</a></span>
             <% } %>
