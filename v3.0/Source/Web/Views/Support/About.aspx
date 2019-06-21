@@ -16,6 +16,7 @@
     zbliżać wszystkich, którym technologia .NET nie jest obojętna a dzięki umieszczaniu i wymianie artykułów, rozwijać i poszerzać swoją wiedzę.</p>
     <p>Dodatkowo prowadzimy własnego bloga pod adresem: <a href="https://blog.dotnetomaniak.pl/">https://blog.dotnetomaniak.pl/</a>. Poza infromacjami o portalu co tydzień publikujemy tam podsumowanie tygodnia.</p>
     <p>Jeśli technologia .NET nie jest Ci obojętna - przyłącz się do nas i zamieszczaj artykuły.</p>
+    <p>Całość jest open-source a źródła dostępne są na <a href="https://github.com/dotnetomaniak/dotnetomaniak" target="_blank" rel="external noopener noreferrer">GitHubie</a></p>
     <p>Obecnie w rozwoju pomagają:</p>
     <ul>
     <li>

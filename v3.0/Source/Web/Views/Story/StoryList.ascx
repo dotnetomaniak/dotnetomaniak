@@ -6,10 +6,9 @@
     <% foreach (IStory story in Model.Stories) %>
     <% { %>
     <%      string className = (isOdd) ? "odd" : "even"; %>
-            <div id="t-<%= Html.AttributeEncode(story.Id.Shrink()) %>" class="story <%= className %> hentry">
+            <div id="t-<%= Html.AttributeEncode(story.Id.Shrink()) %>" class="story <%= className %> hentry row clearfix">
                     
                         <% Html.RenderPartial("Story", new StoryItemViewData { Story = story, User = Model.CurrentUser, PromoteText = Model.PromoteText, DemoteText = Model.DemoteText, CountText = Model.CountText, SocialServices = Model.SocialServices, DetailMode = false }); %>
-                        <div class="clearfix"></div>
             </div>            
     <%   isOdd = !isOdd;%>
     <% } %>

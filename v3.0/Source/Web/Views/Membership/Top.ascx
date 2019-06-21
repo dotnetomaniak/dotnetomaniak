@@ -4,7 +4,7 @@
     {
         int i = 1;
 %>
-<div class="toplist-entry">
+<div class="toplist-entry col-12">
     <% foreach (UserWithScore userScore in Model) %>
     <% { %>
     <%      string userName = userScore.User.UserName; %>
@@ -17,11 +17,11 @@
                     class="smoothImage" style="vertical-align: top" onload="javascript:SmoothImage.show(this)" />            
         </a>
         </div>
-        <div class="toplist-authot">
-            <p>
+        <div class="toplist-name">
                 <a title="<%= Html.AttributeEncode(userName) %>" href="<%= Url.RouteUrl("User", new { name = userScore.User.Id.Shrink(), tab = UserDetailTab.Promoted, page = 1 }) %>"><%= Html.Encode(userName.WrapAt(20)) %></a>
+        </div>
+        <div class="toplist-score">
                 (<%= userScore.Score.ToString(FormatStrings.UserScore) %>)
-            </p>
         </div>
     </div>
     <% } %>

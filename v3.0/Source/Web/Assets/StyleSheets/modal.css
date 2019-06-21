@@ -29,8 +29,8 @@
 .info
 {
     display: block;
-    margin-left: 123px;
     font-size: 8pt;
+    line-height: 1.5;
 }
 
 .modalBox .closeButton
@@ -141,6 +141,7 @@
 
 #openId, #userNameOrPassword {
     padding-top: 0;
+    padding-left: 0;
 }
 
   /************** ALERTS ***************/
@@ -174,8 +175,9 @@
     
   }
   #membershipBox input[type="password"], #membershipBox input[type="text"]{
-  width:329px !important; 
-  height:28px !important;
+    /*max-width: 329px !important;*/
+    height: 28px !important;
+    width: 100%;
   }
   #btnSignup{
     background:url(/Assets/Images/zaloz-konto_07.jpg) no-repeat;
