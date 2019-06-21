@@ -629,6 +629,9 @@
     <Content Include="DeploymentScripts\CreateSlot.ps1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="DeploymentScripts\ScaleDatabasePricingTier.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\PublishProfiles\dotnetomaniak - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
     <None Include="Scripts\jquery-1.4.4-vsdoc.js" />
