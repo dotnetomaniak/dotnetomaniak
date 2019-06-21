@@ -612,6 +612,9 @@
     <Content Include="Assets\StyleSheets\style.css" />
     <Content Include="Assets\StyleSheets\ui.jquery.css" />
     <Content Include="Data\Thumbnails\blank_thumbnail.png" />
+    <None Include="DeploymentScripts\RemoveAllSlots.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="ErrorPages\Offline.aspx" />
     <Content Include="MailTemplates\NewPassword.txt" />
     <Content Include="MailTemplates\RecommendationEndNotification.txt" />
