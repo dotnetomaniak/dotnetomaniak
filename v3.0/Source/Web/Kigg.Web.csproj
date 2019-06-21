@@ -620,6 +620,9 @@
     <Content Include="OneSignalSDKUpdaterWorker.js" />
     <Content Include="OneSignalSDKWorker.js" />
     <Content Include="manifest.json" />
+    <Content Include="DeploymentScripts\ScaleAppServicePlan.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\PublishProfiles\dotnetomaniak - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
     <None Include="Scripts\jquery-1.4.4-vsdoc.js" />
