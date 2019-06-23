@@ -157,16 +157,6 @@
         <% } %>
         <span id="s-p-<%= attributedEncodedStoryId%>"></span>
     </div>
-    <% if (!detailsMode) %>
-    <% { %>
-    <div class="mt-2">
-        <a href="<%= Url.RouteUrl("Detail", new {name = story.UniqueName}) %>"
-           class="btn btn-sm btn-primary text-white" 
-           role="button" aria-pressed="true" rel="bookmark">
-            Więcej
-        </a>
-    </div>
-    <% } %>
 </div>
 <% var detailUrl = Model.Story.Url;
    var onClick = @"onclick=""javascript:Story.click('" + attributedEncodedStoryId + @"')""";
@@ -272,6 +262,14 @@
             <% { %>
             <span class="approve"><a class="approve actionLink" href="javascript:void(0)" onclick="Moderation.approveStory('<%= attributedEncodedStoryId %>')">
                 zaakceptuj</a></span>
+            <% } %>
+            <% if (!detailsMode) %>
+            <% { %>
+            <a href="<%= Url.RouteUrl("Detail", new {name = story.UniqueName}) %>"
+               class="btn btn-sm btn-primary text-white" 
+               role="button" aria-pressed="true" rel="bookmark">
+                Więcej
+            </a>
             <% } %>
             <% if (detailsMode == false)
                {%>
