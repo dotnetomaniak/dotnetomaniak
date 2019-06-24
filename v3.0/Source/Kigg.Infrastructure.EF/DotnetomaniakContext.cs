@@ -33,5 +33,76 @@ namespace Kigg.Infrastructure.EF
         {
             optionsBuilder.UseLazyLoadingProxies();
         }
+
+        //Stored Procedures
+        public void _10kPoints()
+        {
+            this.Database.ExecuteSqlCommand("_10kPoints");
+        }
+
+        public void _1kPoints()
+        {
+            this.Database.ExecuteSqlCommand("_1kPoints");
+        }
+
+        public void Commenter()
+        {
+            this.Database.ExecuteSqlCommand("Commenter");
+        }
+
+        public void Dotnetomaniak()
+        {
+            this.Database.ExecuteSqlCommand("Dotnetomaniak");
+        }
+
+        public void EarlyBird()
+        {
+            this.Database.ExecuteSqlCommand("EarlyBird");
+        }
+
+        public void Facebook()
+        {
+            this.Database.ExecuteSqlCommand("Facebook");
+        }
+
+        public void Globetrotter()
+        {
+            this.Database.ExecuteSqlCommand("Globetrotter");
+        }
+
+        public void GoodStory()
+        {
+            this.Database.ExecuteSqlCommand("GoodStory");
+        }
+
+        public void GreatStory()
+        {
+            this.Database.ExecuteSqlCommand("GreatStory");
+        }
+
+        public void MultiAdder()
+        {
+            this.Database.ExecuteSqlCommand("MultiAdder");
+        }
+
+        public void NightOwl()
+        {
+            this.Database.ExecuteSqlCommand("NightOwl");
+        }
+
+        public void PopularStory()
+        {
+            this.Database.ExecuteSqlCommand("PopularStory");
+        }
+
+        public void StoryAdder()
+        {
+            this.Database.ExecuteSqlCommand("StoryAdder");
+        }
+
+        public void UpVoter()
+        {
+            this.Database.ExecuteSqlCommand("UpVoter");
+        }
     }
 }
