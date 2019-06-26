@@ -6,9 +6,11 @@ namespace Kigg.Infrastructure.EF
 {
     public class DotnetomaniakContext: DbContext
     {
-        public DotnetomaniakContext(DbContextOptions<DotnetomaniakContext> dbContextOptions) : base(dbContextOptions)
+        private readonly IConfigurationManager _configurationManager;
+
+        public DotnetomaniakContext(IConfigurationManager configurationManager)
         {
-            
+            _configurationManager = configurationManager;
         }
 
         public DbSet<Achievement> Achievements { get; set; }
@@ -32,6 +34,7 @@ namespace Kigg.Infrastructure.EF
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLazyLoadingProxies();
+            optionsBuilder.UseSqlServer(_configurationManager.GetConnectionString("dotnetomaniak"));
         }
 
         //Stored Procedures
