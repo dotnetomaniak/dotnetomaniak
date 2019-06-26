@@ -1,5 +1,5 @@
 ﻿using System;
-using Kigg.LinqToSql.Repository;
+using Kigg.Infrastructure.EF;
 
 namespace Kigg.Web.Jobs
 {
@@ -7,9 +7,9 @@ namespace Kigg.Web.Jobs
     {        
         public readonly Guid Id = new Guid("F5CC5705-5559-4818-A440-8C77F7D0B30C");        
 
-        protected override void AwardBadges(IDatabaseFactory databaseFactory)
+        protected override void AwardBadges(DotnetomaniakContext context)
         {
-            databaseFactory.Get().EarlyBird();
+            context.EarlyBird();
         }
 
         protected override TimeSpan Interval
