@@ -27,6 +27,11 @@ namespace Kigg.Infrastructure.EF.Repository
             _context.Remove<TEntity>(entity);
         }
 
+        public void Commit()
+        {
+            _context.SaveChanges();
+        }
+
         protected static PagedResult<T> BuildPagedResult<T>(IEnumerable entities, int total)
         {
             return new PagedResult<T>(entities.Cast<T>(), total);
