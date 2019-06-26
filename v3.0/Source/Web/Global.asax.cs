@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Configuration;
-using Kigg.LinqToSql.Repository;
+using Kigg.Infrastructure.EF;
 using StackExchange.Profiling;
 using StackExchange.Profiling.Mvc;
 using StackExchange.Profiling.Storage;
@@ -110,12 +110,8 @@ namespace Kigg.Web
 
         private void InitializeDatabase()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["dotnetomaniak"].ConnectionString;
-            Database database = new Database(connectionString);
-            if (!database.DatabaseExists())
-            {
-                database.CreateDatabase();
-            }
+            var context = new DotnetomaniakContext(new ConfigurationManagerWrapper());
+            context.Database.EnsureCreated();
         }
 
         protected void Application_End()
