@@ -32,6 +32,11 @@ namespace Kigg.Repository
             _innerRepository.Remove(entity);
         }
 
+        public void Commit()
+        {
+            _innerRepository.Commit();
+        }
+
         [DebuggerStepThrough]
         public virtual IUser FindById(Guid id)
         {
