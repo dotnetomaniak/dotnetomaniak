@@ -500,7 +500,18 @@ p.show-more-articles{
         background: url(/Assets/images/approve.png) no-repeat left 3px;
     }
 
-    a.rozwin {
+    a.zrodlo {
+        background: url("/Assets/images/icon-plus.png") no-repeat scroll right top transparent;
+        float: right;
+        font-family: Tahoma;
+        font-size: 11px;
+        height: 22px;
+        padding-right: 26px;
+        padding-top: 3px;
+        margin-right: 15px;
+    }
+
+    a.rozwin  {
         background: url("/Assets/images/ico-rozwin.png") no-repeat scroll right top transparent;
         float: right;
         font-family: Tahoma;

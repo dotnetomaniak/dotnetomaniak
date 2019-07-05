@@ -160,12 +160,13 @@
 </div>
 <% string detailUrl = Url.RouteUrl("Detail", new { name = story.UniqueName });
    string onClick = string.Empty;
+   string storyOnClick = @"onclick=""javascript:Story.click('" + attributedEncodedStoryId + @"')""";
    string rel = "bookmark";
    %>
 <% if (detailsMode)
    {
        detailUrl = Model.Story.Url;
-       onClick = @"onclick=""javascript:Story.click('" + attributedEncodedStoryId + @"')""";
+       onClick = storyOnClick;
        rel += " external";
    } %>
 <div class="col-9 col-sm-10 col-xl-11">
@@ -269,11 +270,9 @@
             <% } %>
             <% if (!detailsMode) %>
             <% { %>
-            <a href="<%= Url.RouteUrl("Detail", new {name = story.UniqueName}) %>"
-               class="btn btn-sm btn-primary text-white" 
-               role="button" aria-pressed="true" rel="bookmark">
-                Więcej
-            </a>
+            <a href="<%= Model.Story.Url %>" <%= storyOnClick %>
+               class="zrodlo" rel="bookmark" target="_blank">
+                źrodło</a>
             <% } %>
             <% if (detailsMode == false)
                {%>
