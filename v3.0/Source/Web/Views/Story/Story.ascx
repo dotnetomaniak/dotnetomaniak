@@ -160,12 +160,13 @@
 </div>
 <% string detailUrl = Url.RouteUrl("Detail", new { name = story.UniqueName });
    string onClick = string.Empty;
+   string storyOnClick = @"onclick=""javascript:Story.click('" + attributedEncodedStoryId + @"')""";
    string rel = "bookmark";
    %>
 <% if (detailsMode)
    {
        detailUrl = Model.Story.Url;
-       onClick = @"onclick=""javascript:Story.click('" + attributedEncodedStoryId + @"')""";
+       onClick = storyOnClick;
        rel += " external";
    } %>
 <div class="col-9 col-sm-10 col-xl-11">
@@ -266,6 +267,12 @@
             <% { %>
             <span class="approve"><a class="approve actionLink" href="javascript:void(0)" onclick="Moderation.approveStory('<%= attributedEncodedStoryId %>')">
                 zaakceptuj</a></span>
+            <% } %>
+            <% if (!detailsMode) %>
+            <% { %>
+            <a href="<%= Model.Story.Url %>" <%= storyOnClick %>
+               class="zrodlo" rel="bookmark" target="_blank">
+                źrodło</a>
             <% } %>
             <% if (detailsMode == false)
                {%>
