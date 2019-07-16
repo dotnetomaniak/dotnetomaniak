@@ -527,6 +527,7 @@
     <Content Include="Assets\Images\icon-click.png" />
     <Content Include="Assets\Images\icon-counter.png" />
     <Content Include="Assets\Images\icon-date.png" />
+    <Content Include="Assets\Images\icon-plus.png" />
     <Content Include="Assets\Images\icon-spam.png" />
     <Content Include="Assets\Images\icon-system.png" />
     <Content Include="Assets\Images\icon-time.png" />
