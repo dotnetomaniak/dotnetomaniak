@@ -10,10 +10,10 @@ namespace Kigg.Infrastructure.EF.DomainObjects
         public virtual string TextBody { get; set; }
 
         public System.Guid StoryId { get; set; }
-        public Story Story { get; set; }
+        public virtual Story Story { get; set; }
 
         public System.Guid UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         public string IPAddress { get; set; }
 

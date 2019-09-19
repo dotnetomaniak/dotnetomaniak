@@ -3,9 +3,9 @@
     public class StoryTag: Entity
     {
         public System.Guid StoryId { get; set; }
-        public Story Story { get; set; }
+        public virtual Story Story { get; set; }
 
         public System.Guid TagId { get; set; }
-        public Tag Tag { get; set; }
+        public virtual Tag Tag { get; set; }
     }
 }

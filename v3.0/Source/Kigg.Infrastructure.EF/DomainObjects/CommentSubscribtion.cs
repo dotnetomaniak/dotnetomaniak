@@ -7,10 +7,10 @@ namespace Kigg.Infrastructure.EF.DomainObjects
     public class CommentSubscribtion: Entity, ICommentSubscribtion
     {
         public Guid StoryId { get; set; }
-        public Story Story { get; set; }
+        public virtual Story Story { get; set; }
 
         public Guid UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         [NotMapped]
         public IStory ForStory => Story;

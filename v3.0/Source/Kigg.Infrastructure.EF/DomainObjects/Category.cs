@@ -15,7 +15,7 @@ namespace Kigg.Infrastructure.EF.DomainObjects
         public string Description { get; set; }
         public bool IsActive { get; set; }
 
-        public ICollection<Story> Stories { get; set; }
+        public virtual ICollection<Story> Stories { get; set; }
 
         [NotMapped]
         public int StoryCount => _storyCount == -1? this.GetStoryCount() : _storyCount;

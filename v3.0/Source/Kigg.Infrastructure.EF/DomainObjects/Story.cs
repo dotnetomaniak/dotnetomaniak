@@ -37,10 +37,10 @@ namespace Kigg.Infrastructure.EF.DomainObjects
         public string UrlHash { get; set; }
 
         public Guid CategoryId { get; set; }
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
 
         public Guid UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         public string IPAddress { get; set; }
 
@@ -54,17 +54,17 @@ namespace Kigg.Infrastructure.EF.DomainObjects
 
         public DateTime? LastProcessedAt { get; set; }
 
-        public ICollection<CommentSubscribtion> CommentSubscribtions { get; set; }
+        public virtual ICollection<CommentSubscribtion> CommentSubscribtions { get; set; }
 
-        public ICollection<StoryComment> StoryComments { get; set; }
+        public virtual ICollection<StoryComment> StoryComments { get; set; }
 
-        public ICollection<StoryMarkAsSpam> StoryMarkAsSpams { get; set; }
+        public virtual ICollection<StoryMarkAsSpam> StoryMarkAsSpams { get; set; }
 
-        public ICollection<StoryTag> StoryTags { get; set; }
+        public virtual ICollection<StoryTag> StoryTags { get; set; }
 
-        public ICollection<StoryView> StoryViews { get; set; }
+        public virtual ICollection<StoryView> StoryViews { get; set; }
 
-        public ICollection<StoryVote> StoryVotes { get; set; }
+        public virtual ICollection<StoryVote> StoryVotes { get; set; }
 
 
         [NotMapped]

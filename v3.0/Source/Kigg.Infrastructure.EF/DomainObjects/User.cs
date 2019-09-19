@@ -25,21 +25,21 @@ namespace Kigg.Infrastructure.EF.DomainObjects
 
         public string FbId { get; set; }
 
-        public ICollection<UserTag> UserTags { get; set; }
+        public virtual ICollection<UserTag> UserTags { get; set; }
 
-        public ICollection<CommentSubscribtion> CommentSubscribtions { get; set; }
+        public virtual ICollection<CommentSubscribtion> CommentSubscribtions { get; set; }
 
-        public ICollection<Story> Stories { get; set; }
+        public virtual ICollection<Story> Stories { get; set; }
 
-        public ICollection<StoryComment> StoryComments { get; set; }
+        public virtual ICollection<StoryComment> StoryComments { get; set; }
 
-        public ICollection<StoryMarkAsSpam> StoryMarkAsSpams { get; set; }
+        public virtual ICollection<StoryMarkAsSpam> StoryMarkAsSpams { get; set; }
 
-        public ICollection<StoryVote> StoryVotes { get; set; }
+        public virtual ICollection<StoryVote> StoryVotes { get; set; }
 
-        public ICollection<UserScore> UserScores { get; set; }
+        public virtual ICollection<UserScore> UserScores { get; set; }
 
-        public ICollection<UserAchievement> UserAchievements { get; set; }
+        public virtual ICollection<UserAchievement> UserAchievements { get; set; }
 
         [NotMapped]
         public ICollection<ITag> Tags => UserTags.Select(ut => ut.Tag).OrderBy(t => t.Name).Cast<ITag>().ToList().AsReadOnly();

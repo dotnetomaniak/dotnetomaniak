@@ -7,7 +7,7 @@ namespace Kigg.Infrastructure.EF.DomainObjects
     public class StoryView: Entity, IStoryView
     {
         public System.Guid StoryId { get; set; }
-        public Story Story { get; set; }
+        public virtual Story Story { get; set; }
 
         public System.DateTime Timestamp { get; set; }
 

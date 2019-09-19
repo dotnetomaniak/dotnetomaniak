@@ -13,8 +13,8 @@ namespace Kigg.Infrastructure.EF.DomainObjects
         public string UniqueName { get; set; }
         public string Name { get; set; }
 
-        public ICollection<UserTag> UserTags { get; set; }
-        public ICollection<StoryTag> StoryTags { get; set; }
+        public virtual ICollection<UserTag> UserTags { get; set; }
+        public virtual ICollection<StoryTag> StoryTags { get; set; }
 
         [NotMapped]
         public int StoryCount { get{

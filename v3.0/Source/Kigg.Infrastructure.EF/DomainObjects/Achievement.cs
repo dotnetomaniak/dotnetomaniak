@@ -12,7 +12,7 @@ namespace Kigg.Infrastructure.EF.DomainObjects
 
         public int Type { get; set; }
 
-        public ICollection<UserAchievement> UserAchievements { get; set; }
+        public virtual ICollection<UserAchievement> UserAchievements { get; set; }
 
         [NotMapped]
         public string UniqueName => Name;
