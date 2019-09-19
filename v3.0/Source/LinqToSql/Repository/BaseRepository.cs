@@ -44,6 +44,11 @@
             Database.Delete(entity as TClass);
         }
 
+        public void Commit()
+        {
+            throw new System.NotImplementedException();
+        }
+
         protected static PagedResult<T> BuildPagedResult<T>(IEnumerable entities, int total)
         {
             return new PagedResult<T>(entities.Cast<T>(), total);
