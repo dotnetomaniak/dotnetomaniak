@@ -1,6 +1,8 @@
 ﻿using System;
 using Kigg.Infrastructure.EF.DomainObjects;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Kigg.Infrastructure.EF
 {
@@ -35,6 +37,14 @@ namespace Kigg.Infrastructure.EF
         {
             optionsBuilder.UseLazyLoadingProxies();
             optionsBuilder.UseSqlServer(_configurationManager.GetConnectionString("dotnetomaniak"));
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                entityType.Relational().TableName = entityType.DisplayName();
+            }
         }
 
         //Stored Procedures
