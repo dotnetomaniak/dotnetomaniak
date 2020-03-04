@@ -54,7 +54,7 @@
         </div>
       </li>
         <li class="nav-item">
-            <a class="nav-link" href="http://dotnetomaniak.cupsell.pl" target="_blank">Sklep z gadżetami</a>
+            <a class="nav-link" href="https://dotnetomaniak.cupsell.pl" target="_blank">Sklep z gadżetami</a>
         </li>
     </ul>
 
