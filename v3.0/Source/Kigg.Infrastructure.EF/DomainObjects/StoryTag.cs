@@ -1,6 +1,6 @@
 ﻿namespace Kigg.Infrastructure.EF.DomainObjects
 {
-    public class StoryTag: Entity
+    public class StoryTag
     {
         public System.Guid StoryId { get; set; }
         public virtual Story Story { get; set; }

@@ -45,6 +45,9 @@ namespace Kigg.Infrastructure.EF
             {
                 entityType.Relational().TableName = entityType.DisplayName();
             }
+
+            modelBuilder.Entity<StoryTag>()
+                .HasKey(st => new { st.StoryId, st.TagId });
         }
 
         //Stored Procedures
