@@ -48,6 +48,15 @@ namespace Kigg.Infrastructure.EF
 
             modelBuilder.Entity<StoryTag>()
                 .HasKey(st => new { st.StoryId, st.TagId });
+
+            modelBuilder.Entity<StoryVote>()
+                .HasKey(sv => new {sv.StoryId, sv.UserId});
+
+            modelBuilder.Entity<UserAchievement>()
+                .HasKey(ua => new {ua.UserId, ua.AchievementId});
+
+            modelBuilder.Entity<UserTag>()
+                .HasKey(ut => new {ut.UserId, ut.TagId});
         }
 
         //Stored Procedures

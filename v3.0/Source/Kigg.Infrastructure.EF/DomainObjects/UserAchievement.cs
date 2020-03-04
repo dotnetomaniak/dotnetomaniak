@@ -3,7 +3,7 @@ using Kigg.DomainObjects;
 
 namespace Kigg.Infrastructure.EF.DomainObjects
 {
-    public class UserAchievement: Entity, IUserAchievement
+    public class UserAchievement: IUserAchievement
     {
         public System.DateTime DateAchieved { get; set; }
 

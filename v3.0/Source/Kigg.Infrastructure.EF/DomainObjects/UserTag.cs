@@ -2,7 +2,7 @@
 
 namespace Kigg.Infrastructure.EF.DomainObjects
 {
-    public class UserTag: Entity
+    public class UserTag
     {
         public Guid UserId { get; set; }
         public virtual User User { get; set; }
