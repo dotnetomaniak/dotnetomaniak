@@ -1,5 +1,4 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<StoryItemViewData>" %>
-<%@ Import Namespace="Kigg.LinqToSql.DomainObjects" %>
 <script runat="server">
     string ShareLinks(string id, IEnumerable<string> socialServices)
     {
