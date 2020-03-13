@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Kigg.Core.DomainObjects;
 using Kigg.DomainObjects;
 using Kigg.Infrastructure.EF.DomainObjects;
@@ -31,6 +32,14 @@ namespace Kigg.Infrastructure.EF
                 IsActive = string.IsNullOrEmpty(hashedPassword),
                 LastActivityAt = now,
                 CreatedAt = now,
+                UserTags =  new List<UserTag>(),
+                CommentSubscribtions = new List<CommentSubscribtion>(),
+                Stories = new List<Story>(),
+                StoryComments = new List<StoryComment>(),
+                StoryMarkAsSpams = new List<StoryMarkAsSpam>(),
+                StoryVotes = new List<StoryVote>(),
+                UserScores = new List<UserScore>(),
+                UserAchievements = new List<UserAchievement>()
             };
         }
 
@@ -54,7 +63,8 @@ namespace Kigg.Infrastructure.EF
                 Id = Guid.NewGuid(),
                 UniqueName = name.Trim().ToLegalUrl(),
                 Name = name.Trim(),
-                CreatedAt = SystemTime.Now()
+                CreatedAt = SystemTime.Now(),
+                Stories = new List<Story>()
             };
         }
 
@@ -67,7 +77,9 @@ namespace Kigg.Infrastructure.EF
                 Id = Guid.NewGuid(),
                 UniqueName = name.Trim().ToLegalUrl(),
                 Name = name.Trim(),
-                CreatedAt = SystemTime.Now()
+                CreatedAt = SystemTime.Now(),
+                UserTags = new List<UserTag>(),
+                StoryTags = new List<StoryTag>()
             };
         }
 
@@ -95,6 +107,12 @@ namespace Kigg.Infrastructure.EF
                 UrlHash = url.ToUpperInvariant().Hash(),
                 User = (User)byUser,
                 Category = (Category)forCategory,
+                CommentSubscribtions = new List<CommentSubscribtion>(),
+                StoryComments = new List<StoryComment>(),
+                StoryMarkAsSpams = new List<StoryMarkAsSpam>(),
+                StoryTags = new List<StoryTag>(),
+                StoryViews = new List<StoryView>(),
+                StoryVotes = new List<StoryVote>()
             };
             return story;
         }
