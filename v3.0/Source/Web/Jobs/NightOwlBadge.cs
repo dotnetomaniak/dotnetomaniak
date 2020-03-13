@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Linq;
-using Kigg.DomainObjects;
-using Kigg.LinqToSql.Repository;
-using Kigg.Repository;
+using Kigg.Infrastructure.EF;
 
 namespace Kigg.Web.Jobs
 {
@@ -10,10 +7,10 @@ namespace Kigg.Web.Jobs
     {        
         public Guid Id = new Guid("1FD420BA-3104-436E-A7C8-87897DCFE954");
      
-        protected override void AwardBadges(IDatabaseFactory databaseFactory)
+        protected override void AwardBadges(DotnetomaniakContext context)
         {
             //awards a badge if user visits site between 2-3 AM
-            databaseFactory.Get().NightOwl();
+            context.NightOwl();
         }
 
         protected override TimeSpan Interval

@@ -30,6 +30,11 @@ namespace Kigg.Repository
             _innerRepository.Remove(entity);
         }
 
+        public void Commit()
+        {
+            _innerRepository.Commit();
+        }
+
         [DebuggerStepThrough]
         public virtual IStory FindById(Guid id)
         {
