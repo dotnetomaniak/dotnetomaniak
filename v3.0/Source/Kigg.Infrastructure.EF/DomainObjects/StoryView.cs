@@ -6,7 +6,7 @@ namespace Kigg.Infrastructure.EF.DomainObjects
 {
     public class StoryView: IStoryView
     {
-        public int Id { get; set; }
+        public Int64 Id { get; set; }
         public System.Guid StoryId { get; set; }
         public virtual Story Story { get; set; }
 

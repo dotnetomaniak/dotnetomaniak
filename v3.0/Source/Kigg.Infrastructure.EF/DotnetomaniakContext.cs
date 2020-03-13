@@ -66,6 +66,10 @@ namespace Kigg.Infrastructure.EF
 
             modelBuilder.Entity<StoryMarkAsSpam>()
                 .HasKey(smas => new {smas.StoryId, smas.UserId});
+
+            modelBuilder.Entity<StoryView>()
+                .Property(sv => sv.Id)
+                .HasColumnType("bigint");
         }
 
         //Stored Procedures
