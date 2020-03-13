@@ -4,8 +4,9 @@ using Kigg.DomainObjects;
 
 namespace Kigg.Infrastructure.EF.DomainObjects
 {
-    public class StoryView: Entity, IStoryView
+    public class StoryView: IStoryView
     {
+        public int Id { get; set; }
         public System.Guid StoryId { get; set; }
         public virtual Story Story { get; set; }
 

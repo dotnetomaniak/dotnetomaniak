@@ -4,7 +4,7 @@ using Kigg.DomainObjects;
 
 namespace Kigg.Infrastructure.EF.DomainObjects
 {
-    public class CommentSubscribtion: Entity, ICommentSubscribtion
+    public class CommentSubscribtion: ICommentSubscribtion
     {
         public Guid StoryId { get; set; }
         public virtual Story Story { get; set; }

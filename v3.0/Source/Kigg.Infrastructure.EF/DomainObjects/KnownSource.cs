@@ -2,7 +2,7 @@
 
 namespace Kigg.Infrastructure.EF.DomainObjects
 {
-    public class KnownSource: Entity, IKnownSource
+    public class KnownSource: IKnownSource
     {
         public KnownSourceGrade Grade { get; set; }
         public string Url { get; set; }

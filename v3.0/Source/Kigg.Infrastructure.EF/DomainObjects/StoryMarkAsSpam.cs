@@ -4,7 +4,7 @@ using Kigg.DomainObjects;
 
 namespace Kigg.Infrastructure.EF.DomainObjects
 {
-    public class StoryMarkAsSpam: Entity, IMarkAsSpam
+    public class StoryMarkAsSpam: IMarkAsSpam
     {
         public System.Guid StoryId { get; set; }
         public virtual Story Story { get; set; }
