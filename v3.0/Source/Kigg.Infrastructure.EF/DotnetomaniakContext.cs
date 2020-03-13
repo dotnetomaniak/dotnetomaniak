@@ -57,6 +57,15 @@ namespace Kigg.Infrastructure.EF
 
             modelBuilder.Entity<UserTag>()
                 .HasKey(ut => new {ut.UserId, ut.TagId});
+
+            modelBuilder.Entity<CommentSubscribtion>()
+                .HasKey(cs => new {cs.UserId, cs.StoryId});
+
+            modelBuilder.Entity<KnownSource>()
+                .HasKey(ks => ks.Url);
+
+            modelBuilder.Entity<StoryMarkAsSpam>()
+                .HasKey(smas => new {smas.StoryId, smas.UserId});
         }
 
         //Stored Procedures
