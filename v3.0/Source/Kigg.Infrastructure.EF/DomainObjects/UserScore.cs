@@ -1,7 +1,8 @@
 ﻿namespace Kigg.Infrastructure.EF.DomainObjects
 {
-    public class UserScore: Entity
+    public class UserScore
     {
+        public int Id { get; set; }
         public System.Guid UserId { get; set; }
 
         public System.DateTime Timestamp { get; set; }
