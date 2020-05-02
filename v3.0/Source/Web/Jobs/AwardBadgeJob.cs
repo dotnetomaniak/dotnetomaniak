@@ -32,11 +32,8 @@ namespace Kigg.Web.Jobs
 
             try
             {
-                using (var context =
-                    IoC.Resolve<DotnetomaniakContext>())
-                {
-                    AwardBadges(context);
-                }
+                var context = IoC.Resolve<DotnetomaniakContext>();
+                AwardBadges(context);
             }
             catch (Exception e)
             {
