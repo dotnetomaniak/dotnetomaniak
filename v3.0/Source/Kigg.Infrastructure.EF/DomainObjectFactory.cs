@@ -100,6 +100,7 @@ namespace Kigg.Infrastructure.EF
                 UniqueName = title.Trim().ToLegalUrl().RemovePolishNationalChars(),
                 Title = title.Trim(),
                 HtmlDescription = description.Trim(),
+                TextDescription = description.StripHtml().Trim(),
                 Url = url,
                 IPAddress = fromIpAddress,
                 CreatedAt = now,
