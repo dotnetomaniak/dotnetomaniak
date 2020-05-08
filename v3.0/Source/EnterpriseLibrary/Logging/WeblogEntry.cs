@@ -165,9 +165,16 @@
             StringBuilder output = new StringBuilder();
             MethodBase method = new StackFrame(frameToSkip, false).GetMethod();
 
-            namespaceName = method.DeclaringType.Namespace;
-            className = method.DeclaringType.Name;
-
+            if (method.DeclaringType != null)
+            {
+                namespaceName = method.DeclaringType.Namespace;
+                className = method.DeclaringType.Name;
+            }
+            else
+            {
+                namespaceName = "";
+                className = "";
+            }
             output.Append(method.Name);
             output.Append("(");
 
