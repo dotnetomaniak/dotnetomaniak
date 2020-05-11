@@ -39,7 +39,7 @@ namespace Kigg.Infrastructure.EF.Repository
         {
             Check.Argument.IsNotInvalidWebUrl(url, "url");
 
-            return _context.KnownSources.Where(x => url.StartsWith(x.Url)).OrderByDescending(x => x.Url.Length).FirstOrDefault();
+            return _context.KnownSources.Where(x => url.Contains(x.Url)).OrderByDescending(x => x.Url.Length).FirstOrDefault();
         }
     }
 }
