@@ -1,6 +1,7 @@
 ﻿using System;
 using Kigg.Infrastructure.EF.DomainObjects;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
@@ -36,6 +37,7 @@ namespace Kigg.Infrastructure.EF
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLazyLoadingProxies();
+            optionsBuilder.ConfigureWarnings(w => w.Log(CoreEventId.LazyLoadOnDisposedContextWarning));
             optionsBuilder.UseSqlServer(_configurationManager.GetConnectionString("dotnetomaniak"));
         }
 
