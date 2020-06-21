@@ -37,11 +37,9 @@ namespace Kigg.Infrastructure.EF.Repository
 
         public IKnownSource FindMatching(string url)
         {
-            const string SQL = "select [Url], [Grade] from (select [Url], [Grade], len([Url]) as [Length] from [KnownSource] where charindex([Url], '{0}') > 0) as [KnownSourceWithGrade] order by [Length] desc";
-
             Check.Argument.IsNotInvalidWebUrl(url, "url");
 
-            return _context.KnownSources.FromSql(SQL, url).FirstOrDefault();
+            return _context.KnownSources.Where(x => url.Contains(x.Url)).OrderByDescending(x => x.Url.Length).FirstOrDefault();
         }
     }
 }
