@@ -732,7 +732,6 @@
     <Content Include="Views\Membership\Achievements.ascx" />
     <Content Include="Views\Quiz\QuizView.aspx" />
     <Content Include="Views\CommingEvent\AllCommingEvent.aspx" />
-    <Content Include="Views\Shared\CommingEventsBox.ascx" />
     <Content Include="Views\Shared\BannerBox.ascx" />
     <Content Include="Views\Shared\FbLog.aspx" />
     <Content Include="Views\Shared\FeedBox.ascx" />
@@ -762,6 +761,7 @@
     <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Views\Shared\CommingEventsBox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Kigg.Core.csproj">
