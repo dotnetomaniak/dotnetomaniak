@@ -735,7 +735,7 @@
     <Content Include="Views\Shared\FbLog.aspx" />
     <Content Include="Views\Shared\FeedBox.ascx" />
     <Content Include="Views\Shared\RecommendationListBox.aspx" />
-    <Content Include="Views\Shared\RecommendationsBox.ascx" />
+    <Content Include="Views\Shared\RecommendationsBox.cshtml" />
     <Content Include="Views\Story\Similars.ascx" />
     <Content Include="Views\Story\Questions.ascx" />
     <Content Include="Views\Support\Policy.aspx" />

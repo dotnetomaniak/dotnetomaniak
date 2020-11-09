@@ -1,0 +1,18 @@
+﻿@using Kigg.Web
+@model Kigg.Web.ViewData.RecommendationsViewData
+
+<div class="pageHeader">
+    <div class="pageTitle">
+        <h2>
+            Polecamy
+        </h2>
+    </div>
+</div>
+@foreach (var recommendationViewData in Model.Recommendations.ToList().OrderBy(x => x.Position))
+{
+
+    <div class="recommend-left-column">
+        <a href="@recommendationViewData.UrlLink" title="@recommendationViewData.UrlTitle" target="_blank" rel="noopener"><img src="@Url.Image(recommendationViewData.ImageName)" alt="@recommendationViewData.ImageAlt" /></a>
+    </div>
+}
+
