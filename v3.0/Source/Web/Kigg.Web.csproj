@@ -732,7 +732,6 @@
     <Content Include="Views\Membership\Achievements.ascx" />
     <Content Include="Views\Quiz\QuizView.aspx" />
     <Content Include="Views\CommingEvent\AllCommingEvent.aspx" />
-    <Content Include="Views\Shared\FbLog.aspx" />
     <Content Include="Views\Shared\MembershipBox.cshtml" />
     <Content Include="Views\Shared\RecommendationsBox.cshtml" />
     <Content Include="Views\Story\Similars.ascx" />
@@ -765,6 +764,7 @@
     <Content Include="Views\Shared\FeedBox.cshtml" />
     <Content Include="Views\Shared\IntroBox.cshtml" />
     <Content Include="Views\Shared\SearchBox.cshtml" />
+    <Content Include="Views\Shared\FbLog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Kigg.Core.csproj">
