@@ -734,7 +734,6 @@
     <Content Include="Views\CommingEvent\AllCommingEvent.aspx" />
     <Content Include="Views\Shared\FbLog.aspx" />
     <Content Include="Views\Shared\FeedBox.ascx" />
-    <Content Include="Views\Shared\RecommendationListBox.aspx" />
     <Content Include="Views\Shared\RecommendationsBox.cshtml" />
     <Content Include="Views\Story\Similars.ascx" />
     <Content Include="Views\Story\Questions.ascx" />
@@ -762,6 +761,7 @@
     <Content Include="Content\themes\base\jquery-ui.css" />
     <Content Include="Views\Shared\CommingEventsBox.cshtml" />
     <Content Include="Views\Shared\BannerBox.cshtml" />
+    <Content Include="Views\Shared\RecommendationListBox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Kigg.Core.csproj">
