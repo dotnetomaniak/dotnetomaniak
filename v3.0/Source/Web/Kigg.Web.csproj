@@ -764,6 +764,7 @@
     <Content Include="Views\Shared\RecommendationListBox.cshtml" />
     <Content Include="Views\Shared\FeedBox.cshtml" />
     <Content Include="Views\Shared\IntroBox.cshtml" />
+    <Content Include="Views\Shared\SearchBox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Kigg.Core.csproj">
@@ -938,7 +939,6 @@
     <Content Include="Views\Story\StoryList.ascx" />
     <Content Include="Views\Support\Faq.aspx" />
     <Content Include="Views\Tag\Cloud.ascx" />
-    <Content Include="Views\Shared\SearchBox.ascx" />
     <Content Include="Views\Story\List.aspx" />
     <Content Include="Views\Membership\TopTabs.ascx" />
     <Content Include="Views\Category\RadioButtonList.ascx" />
