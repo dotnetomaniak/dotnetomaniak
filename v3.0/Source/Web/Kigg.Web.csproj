@@ -763,6 +763,7 @@
     <Content Include="Views\Shared\BannerBox.cshtml" />
     <Content Include="Views\Shared\RecommendationListBox.cshtml" />
     <Content Include="Views\Shared\FeedBox.cshtml" />
+    <Content Include="Views\Shared\IntroBox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Kigg.Core.csproj">
@@ -929,7 +930,6 @@
     <Content Include="Views\Membership\Detail.aspx" />
     <Content Include="Views\Membership\List.aspx" />
     <Content Include="Views\Support\ControlPanel.ascx" />
-    <Content Include="Views\Shared\IntroBox.ascx" />
     <Content Include="Views\Membership\Top.ascx" />
     <Content Include="Views\Story\ImageCode.ascx" />
     <Content Include="Views\Story\Comments.ascx" />
