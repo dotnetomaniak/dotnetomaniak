@@ -733,6 +733,7 @@
     <Content Include="Views\Quiz\QuizView.aspx" />
     <Content Include="Views\CommingEvent\AllCommingEvent.aspx" />
     <Content Include="Views\Shared\FbLog.aspx" />
+    <Content Include="Views\Shared\MembershipBox.cshtml" />
     <Content Include="Views\Shared\RecommendationsBox.cshtml" />
     <Content Include="Views\Story\Similars.ascx" />
     <Content Include="Views\Story\Questions.ascx" />
@@ -946,7 +947,6 @@
     <Content Include="Views\Story\Detail.aspx" />
     <Content Include="Views\Shared\SiteTemplate.Master" />
     <Content Include="Views\Story\New.aspx" />
-    <Content Include="Views\Shared\MembershipBox.ascx" />
     <Content Include="Views\Support\Contact.aspx" />
     <Content Include="Views\Membership\Menu.ascx" />
     <Content Include="Views\Story\Story.ascx" />
