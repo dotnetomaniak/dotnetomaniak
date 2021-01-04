@@ -347,13 +347,14 @@ namespace Kigg.Infrastructure.EF.Repository
             int total = _context.Stories
                                 .Count(s => ((s.ApprovedAt != null) && s.StoryComments.Any(c => c.UserId == userId)));
 
-            IQueryable<Guid> ids = _context.StoryComments
+            var ids = _context.StoryComments
                                            .Where(c => ((c.UserId == userId) && (c.Story.ApprovedAt != null)))
                                            .OrderByDescending(c => c.CreatedAt)
-                                           .Select(c => c.StoryId)
+                                           .Select(c => new { c.StoryId, c.CreatedAt })
                                            .Distinct()
                                            .Skip(start)
-                                           .Take(max);
+                                           .Take(max)
+                                           .Select(c => c.StoryId);
 
             List<Story> stories = _context.Stories
                                           .Where(s => ids.Contains(s.Id))
