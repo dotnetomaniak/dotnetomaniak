@@ -72,6 +72,12 @@ namespace Kigg.Infrastructure.EF
             modelBuilder.Entity<StoryView>()
                 .Property(sv => sv.Id)
                 .HasColumnType("bigint");
+
+            modelBuilder.Entity<UserAchievement>()
+                .HasOne<Achievement>(ua => ua.Achievement)
+                .WithMany(a => a.UserAchievements)
+                .HasForeignKey(ua => ua.AchievementId);
+
         }
 
         //Stored Procedures
