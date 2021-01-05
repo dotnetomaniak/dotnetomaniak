@@ -23,6 +23,7 @@ namespace Kigg.Infrastructure.EF.Repository
                 .Include(x => x.StoryComments)
                 .Include(x => x.StoryMarkAsSpams)
                 .Include(x => x.StoryTags)
+                    .ThenInclude(st=>st.Tag)
                 .Include(x => x.StoryViews)
                 .Include(x => x.StoryVotes);
         private readonly IConfigurationSettings _settings;
@@ -69,14 +70,14 @@ namespace Kigg.Infrastructure.EF.Repository
         {
             Check.Argument.IsNotEmpty(id, "id");
 
-            return _context.Stories.SingleOrDefault(s => s.Id == id);
+            return storiesWithIncludes.SingleOrDefault(s => s.Id == id);
         }
 
         public virtual IStory FindByUniqueName(string uniqueName)
         {
             Check.Argument.IsNotEmpty(uniqueName, "uniqueName");
 
-            return _context.Stories.SingleOrDefault(s => s.UniqueName == uniqueName);
+            return storiesWithIncludes.SingleOrDefault(s => s.UniqueName == uniqueName);
         }
 
         public virtual IStory FindByUrl(string url)
@@ -85,7 +86,7 @@ namespace Kigg.Infrastructure.EF.Repository
 
             string hashedUrl = url.ToUpperInvariant().Hash();
 
-            return _context.Stories.SingleOrDefault(s => s.UrlHash == hashedUrl);
+            return storiesWithIncludes.SingleOrDefault(s => s.UrlHash == hashedUrl);
         }
 
         public virtual PagedResult<IStory> FindPublished(int start, int max)
@@ -366,7 +367,7 @@ namespace Kigg.Infrastructure.EF.Repository
                                            .Take(max)
                                            .Select(c => c.StoryId);
 
-            List<Story> stories = _context.Stories
+            List<Story> stories = storiesWithIncludes
                                           .Where(s => ids.Contains(s.Id))
                                           .ToList();
 
@@ -378,7 +379,7 @@ namespace Kigg.Infrastructure.EF.Repository
             var tags = storyToFindSimilarTo.Tags.Select(x => x.Name).ToList();
             tags = tags.Where(x => x != "C#").Where(x => x != ".Net").ToList();
 
-            var similarsByTags = _context.Stories
+            var similarsByTags = storiesWithIncludes
                            .OrderByDescending(x => x.CreatedAt)
                            .SelectMany(x => x.StoryTags)
                            .Where(x => tags.Contains(x.Tag.Name))
@@ -394,7 +395,7 @@ namespace Kigg.Infrastructure.EF.Repository
             if (similarsByTags.Count == 0)
             {
                 var category = storyToFindSimilarTo.BelongsTo.Id;
-                var similarsByCategory = _context.Stories
+                var similarsByCategory = storiesWithIncludes
                     .OrderByDescending(x => x.CreatedAt)
                     .Where(x => x.CategoryId == category)
                     .Take(11)
