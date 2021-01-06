@@ -1,10 +1,9 @@
-using System.Linq;
-using Kigg.Core.DomainObjects;
+using System.Collections.Generic;
 
 namespace Kigg.Web.ViewData
 {
     public class RecommendationsViewData : BaseViewData
     {
-        public IQueryable<RecommendationViewData> Recommendations { get; set; }
+        public IList<RecommendationViewData> Recommendations { get; set; }
     }
 }

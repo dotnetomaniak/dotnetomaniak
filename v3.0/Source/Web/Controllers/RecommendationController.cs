@@ -189,12 +189,12 @@ namespace Kigg.Web
         {
             IQueryable<IRecommendation> recommendations = _recommendationRepository.GetAllVisible().Where(x=>x.IsBanner == false);
             var viewModel = CreateViewData<RecommendationsViewData>();
-            viewModel.Recommendations = recommendations.Select(x=>CreateRecommendationViewData(x));
+            viewModel.Recommendations = recommendations.Select(x=>CreateRecommendationViewData(x)).ToList();
             int defaultAds = 3 - recommendations.Count();
             if (defaultAds > 0)
             {
                 recommendations = _recommendationRepository.GetAllDefault(defaultAds);
-                viewModel.Recommendations = viewModel.Recommendations.Union(recommendations.Select(x => CreateRecommendationViewData(x)));
+                viewModel.Recommendations = viewModel.Recommendations.Union(recommendations.Select(x => CreateRecommendationViewData(x))).ToList();
             }
             return View("RecommendationsBox", viewModel);
         }
@@ -203,7 +203,7 @@ namespace Kigg.Web
         {
             IQueryable<IRecommendation> recommendations = _recommendationRepository.GetAllVisible().Where(x => x.IsBanner);
             var viewModel = CreateViewData<RecommendationsViewData>();
-            viewModel.Recommendations = recommendations.Select(x => CreateRecommendationViewData(x));
+            viewModel.Recommendations = recommendations.Select(x => CreateRecommendationViewData(x)).ToList();
             return View("BannerBox", viewModel);
         }
 
@@ -278,7 +278,7 @@ namespace Kigg.Web
             if (IsCurrentUserAuthenticated && CurrentUser.CanModerate())
             {
                 IQueryable<IRecommendation> recommendations = _recommendationRepository.GetAll();                
-                viewModel.Recommendations = recommendations.Select(x => CreateRecommendationViewData(x));
+                viewModel.Recommendations = recommendations.Select(x => CreateRecommendationViewData(x)).ToList();
             }
             else
             {

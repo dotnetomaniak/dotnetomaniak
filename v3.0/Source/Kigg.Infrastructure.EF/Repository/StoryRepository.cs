@@ -360,12 +360,13 @@ namespace Kigg.Infrastructure.EF.Repository
 
             var ids = _context.StoryComments
                                            .Where(c => ((c.UserId == userId) && (c.Story.ApprovedAt != null)))
-                                           .OrderByDescending(c => c.CreatedAt)
                                            .Select(c => new { c.StoryId, c.CreatedAt })
                                            .Distinct()
+                                           .OrderByDescending(c => c.CreatedAt)
                                            .Skip(start)
                                            .Take(max)
-                                           .Select(c => c.StoryId);
+                                           .Select(c => c.StoryId)
+                                           .ToList();
 
             List<Story> stories = storiesWithIncludes
                                           .Where(s => ids.Contains(s.Id))
@@ -376,21 +377,28 @@ namespace Kigg.Infrastructure.EF.Repository
 
         public ICollection<IStory> FindSimilar(IStory storyToFindSimilarTo)
         {
-            var tags = storyToFindSimilarTo.Tags.Select(x => x.Name).ToList();
-            tags = tags.Where(x => x != "C#").Where(x => x != ".Net").ToList();
+            var tags = storyToFindSimilarTo
+                .Tags
+                .Where(x => x.Name != "C#")
+                .Where(x => x.Name != ".Net")
+                .Select(x => x.Id)
+                .ToList();
+
+            var simmilarIds = _context.StoryTags
+                .Where(x => x.StoryId != storyToFindSimilarTo.Id)
+                .Where(st => tags.Contains(st.TagId))
+                .GroupBy(x => x.StoryId)
+                .Select(x => new { StoryId = x.Key, Count = x.Count() })
+                .OrderByDescending(x => x.Count)
+                .Take(11)
+                .Select(x=>x.StoryId)
+                .ToList();
+
 
             var similarsByTags = storiesWithIncludes
-                           .OrderByDescending(x => x.CreatedAt)
-                           .SelectMany(x => x.StoryTags)
-                           .Where(x => tags.Contains(x.Tag.Name))
-                           .GroupBy(x => x.Story)
-                           .Select(x => new { Element = x.Key, Count = x.Count() })
-                           .OrderByDescending(x => x.Count)
-                           .Select(x => x.Element)
-                           .Where(x => x != storyToFindSimilarTo)
-                           .Take(11)
-                           .Cast<IStory>()
-                           .ToList();
+                .Where(s => simmilarIds.Contains(s.Id))
+                .Cast<IStory>()
+                .ToList();
 
             if (similarsByTags.Count == 0)
             {

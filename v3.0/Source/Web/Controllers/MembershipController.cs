@@ -728,7 +728,7 @@
 
             if (user == null)
             {
-                ThrowNotFound("U¿ytkownik nie istnieje.");
+                ThrowNotFound("Użytkownik nie istnieje.");
             }
 
             UserDetailTab selectedTab = tab.ToEnum(UserDetailTab.Promoted);
