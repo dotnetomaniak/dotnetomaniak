@@ -45,7 +45,7 @@ namespace Kigg.Infrastructure.EF
         {
             foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes())
             {
-                entityType.Relational().TableName = entityType.DisplayName();
+                entityType.SetTableName(entityType.DisplayName());
             }
 
             modelBuilder.Entity<StoryTag>()

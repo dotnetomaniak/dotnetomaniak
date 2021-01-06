@@ -41,7 +41,7 @@ namespace Kigg.Infrastructure.EF.Repository
         public IQueryable<ICommingEvent> GetAllApproved()
         {
             return _context.CommingEvents
-                .Where(x => x.IsApproved.GetValueOrDefault())
+                .Where(x => x.IsApproved == true)
                 .OrderBy(x => x.EventDate);
         }
 
