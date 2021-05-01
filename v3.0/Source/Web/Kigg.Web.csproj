@@ -739,6 +739,9 @@
     <Content Include="Assets\StyleSheets\style.css" />
     <Content Include="Assets\StyleSheets\ui.jquery.css" />
     <Content Include="Data\Thumbnails\blank_thumbnail.png" />
+    <None Include="DeploymentScripts\RemoveAllSlots.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="ErrorPages\Offline.aspx" />
     <Content Include="MailTemplates\NewPassword.txt" />
     <Content Include="MailTemplates\RecommendationEndNotification.txt" />
@@ -747,6 +750,15 @@
     <Content Include="OneSignalSDKUpdaterWorker.js" />
     <Content Include="OneSignalSDKWorker.js" />
     <Content Include="manifest.json" />
+    <Content Include="DeploymentScripts\ScaleAppServicePlan.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DeploymentScripts\CreateSlot.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DeploymentScripts\ScaleDatabasePricingTier.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\PublishProfiles\dotnetomaniak - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
     <None Include="Scripts\jquery-1.4.4-vsdoc.js" />
