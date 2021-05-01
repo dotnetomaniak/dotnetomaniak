@@ -21,7 +21,16 @@
                         <a class="commingEventTitle" href="<%= commingEvent.EventLink %>" title="<%= commingEvent.EventName %>" target="_blank" rel="noopener">
                             <%= commingEvent.EventName %>
                         </a>
-                        <div class="commingEventPlace"><%= commingEvent.EventPlace %></div>
+                        <div class="commingEventPlace">
+                            <% if(commingEvent.IsOnline) { %>
+                                <b>ONLINE</b>
+                            <% } %>
+
+                            <% else if(!string.IsNullOrEmpty(commingEvent.EventCity)) { %>
+                                <b> <%= commingEvent.EventCity %></b>, 
+                             <%= commingEvent.EventPlace %>
+                         <% } %>
+                        </div>
                     </div>                    
                 </div>
 <% }   

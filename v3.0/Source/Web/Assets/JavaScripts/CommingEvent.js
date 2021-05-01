@@ -70,6 +70,17 @@
             }
         );
 
+        $('#IsOnline').change(
+            function () {
+                if (this.checked) {
+                    $('#localization').hide();
+                    $('#txtEventCity').val("");
+                    $('#txtEventPlace').val("");
+            } else {
+                    $('#localization').show();
+            }
+            });
+
         $('#frmEvent').validate(
             {
                 rules: {
@@ -81,8 +92,12 @@
                     },
                     EventName: {
                         required: true,
+                        maxlength: 50,
                     },
                     EventDate: {
+                        required: true,
+                    },
+                    EventEndDate: {
                         required: true,
                     }
                 },
@@ -95,9 +110,13 @@
                     },
                     EventName: {
                         required: 'Nazwa wydarzenia nie może być pusta.',
+                        maxlength: 'Nazwa wydarzenia musi być krótsza niż 50 znaków.',
                     },
                     EventDate: {
-                        required: 'Data wydarzenia jest wymagana.',
+                        required: 'Data rozpoczęcia wydarzenia jest wymagana.',
+                    },
+                    EventEndDate: {
+                        required: 'Data zakończenia wydarzenia jest wymagana.',
                     }
                 },
                 submitHandler: function (form) {
@@ -200,11 +219,18 @@
                         $('#txtEventLink').val(result.eventLink);
                         $('#txtEventName').val(result.eventName);
                         $('#txtEventDate').val(result.eventDate);
+                        $('#txtEventEndDate').val(result.eventEndDate);
+                        $('#txtEventCity').val(result.eventCity);
                         $('#txtEventPlace').val(result.eventPlace);
                         $('#txtEventLead').val(result.eventLead);
+
+                        if (result.isOnline) {
+                            $('#IsOnline').prop('checked', true);
+                            $('#localization').hide();
+                        }
                         
                         if (result.isApproved) {
-                            $('#IsApproved').attr('checked', true);
+                            $('#IsApproved').prop('checked', true);
                         }
                     }
                 }
@@ -213,7 +239,8 @@
     },
 
     showEvent: function () {
-        $('input[name="EventDate"]').datepicker({ dateFormat: 'yy-mm-dd' }).val();
+        $('#txtEventDate').datetimepicker({ format: 'DD-MM-YYYY HH:mm', locale: 'pl' });
+        $('#txtEventEndDate').datetimepicker({ format: 'DD-MM-YYYY HH:mm', locale: 'pl' });
         $('.contentContainer > div').hide();
 
         var action = $('#frmEvent').attr('action');

@@ -298,6 +298,14 @@
                 <fieldset>
                     <input type="hidden" id="hidEventId" name="id"/>                    
                     <div class="add-article-row row">
+                        <label for="txtEventName" class="label col-3 text-right">
+                            Nazwa:</label>
+                        <div class="col-9">
+                            <input id="txtEventName" name="EventName" type="text" class="textBox" />
+                            <span class="error"></span>
+                        </div>
+                    </div>
+                    <div class="add-article-row row">
                         <label for="txtEventLink" class="label col-3 text-right">
                             Link do wydarzenia:</label>
                         <div class="col-9">
@@ -306,31 +314,47 @@
                         </div>
                     </div>
                     <div class="add-article-row row">
-                        <label for="txtEventName" class="label col-3 text-right">
-                            Nazwa wydarzenia:</label>
-                        <div class="col-9">
-                            <input id="txtEventName" name="EventName" type="text" class="textBox" />
-                            <span class="error"></span>
-                        </div>
-                    </div>
-                    <div class="add-article-row row">
                         <label for="txtEventDate" class="label col-3 text-right">
-                            Data wydarzenia:</label>
+                            Data rozpoczęcia:</label>
                         <div class="col-9">
                             <input id="txtEventDate" name="EventDate" type="text" class="textBox"/>
                         </div>
                     </div>
                     <div class="add-article-row row">
-                        <label for="txtEventPlace" class="label col-3 text-right">
-                            Miejsce wydarzenia:</label>
+                        <label for="txtEventEndDate" class="label col-3 text-right">
+                            Data zakończenia:</label>
                         <div class="col-9">
-                            <input id="txtEventPlace" name="EventPlace" type="text" class="textBox"/>
-                            <span class="error"></span>
+                            <input id="txtEventEndDate" name="EventEndDate" type="text" class="textBox"/>
                         </div>
                     </div>
                     <div class="add-article-row row">
+                        <label for="IsOnline" class="label col-3 text-right">
+                            Online:</label>
+                        <div class="col-9">
+                        <%= Html.CheckBox("IsOnline") %>               
+                        </div>
+                    </div>
+                    <div id="localization">
+                        <div class="add-article-row row">
+                            <label for="txtEventCity" class="label col-3 text-right">
+                                Miasto:</label>
+                            <div class="col-9">
+                                <input id="txtEventCity" name="EventCity" type="text" class="textBox"/>
+                                <span class="error"></span>
+                            </div>
+                        </div>
+                        <div class="add-article-row row">
+                            <label for="txtEventPlace" class="label col-3 text-right">
+                                Lokalizacja:</label>
+                            <div class="col-9">
+                                <input id="txtEventPlace" name="EventPlace" type="text" class="textBox"/>
+                                <span class="error"></span>
+                            </div>
+                        </div>
+                     </div>
+                    <div class="add-article-row row">
                         <label for="txtEventLead" class="label col-3 text-right">
-                            Opis wydarzenia:</label>
+                            Opis:</label>
                         <div class="col-9">
                             <textarea id="txtEventLead" name="EventLead" cols="40" rows="5" maxlength="500" class="largeTextArea" style="width: 100% !important;">Brak opisu</textarea>                        
                             <span class="error"></span>
@@ -348,11 +372,12 @@
                     <% if (Model.IsCurrentUserAuthenticated && Model.CurrentUser != null &&
                            Model.CurrentUser.IsAdministrator())
                        { %>
-                    <div id="isApprovedCheckbox" class="add-article-row" >
-                        <label for="IsApproved" class="label" class="textBox">
+                     <div class="add-article-row row">
+                        <label for="IsApproved" class="label col-3 text-right">
                             Jest zatwierdzony:</label>
-                        <%--<input id="isApprovedCheckBox" name="IsApproved" type="checkbox"/>  --%>     
+                        <div class="col-9">
                         <%= Html.CheckBox("IsApproved") %>               
+                        </div>
                     </div>
                     <% } %>
                     <div class="add-article-row">

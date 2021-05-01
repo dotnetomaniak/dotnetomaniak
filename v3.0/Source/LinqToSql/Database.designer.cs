@@ -4838,6 +4838,8 @@ namespace Kigg.LinqToSql.DomainObjects
 		private string _EventLink;
 		
 		private string _EventName;
+
+		private string _GoogleEventId;
 		
 		private System.DateTime _EventDate;
 		
@@ -4850,6 +4852,12 @@ namespace Kigg.LinqToSql.DomainObjects
 		private string _Email;
 		
 		private System.Nullable<bool> _IsApproved;
+
+		private System.Nullable<bool> _IsOnline;
+		
+		private System.Nullable<System.DateTime> _EventEndDate;
+		
+		private string _EventCity;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -4873,6 +4881,14 @@ namespace Kigg.LinqToSql.DomainObjects
     partial void OnEmailChanged();
     partial void OnIsApprovedChanging(System.Nullable<bool> value);
     partial void OnIsApprovedChanged();
+    partial void OnIsOnlineChanging(System.Nullable<bool> value);
+    partial void OnIsOnlineChanged();
+    partial void OnEventEndDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnEventEndDateChanged();
+    partial void OnEventCityChanging(string value);
+    partial void OnEventCityChanged();
+	partial void OnGoogleEventIdChanging(string value);
+    partial void OnGoogleEventIdChanged();
     #endregion
 		
 		public CommingEvent()
@@ -4942,7 +4958,7 @@ namespace Kigg.LinqToSql.DomainObjects
 				}
 			}
 		}
-		
+
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventDate", DbType="DateTime NOT NULL")]
 		[global::System.Runtime.Serialization.DataMemberAttribute(Order=4)]
 		public System.DateTime EventDate
@@ -5068,7 +5084,91 @@ namespace Kigg.LinqToSql.DomainObjects
 				}
 			}
 		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsOnline", DbType="bit")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=10)]
+		public System.Nullable<bool> IsOnline
+		{
+			get
+			{
+				return this._IsOnline;
+			}
+			set
+			{
+				if ((this._IsOnline != value))
+				{
+					this.OnIsOnlineChanging(value);
+					this.SendPropertyChanging();
+					this._IsOnline = value;
+					this.SendPropertyChanged("IsOnline");
+					this.OnIsOnlineChanged();
+				}
+			}
+		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventEndDate", DbType="DateTime")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=11)]
+		public System.Nullable<System.DateTime> EventEndDate
+		{
+			get
+			{
+				return this._EventEndDate;
+			}
+			set
+			{
+				if ((this._EventEndDate != value))
+				{
+					this.OnEventEndDateChanging(value);
+					this.SendPropertyChanging();
+					this._EventEndDate = value;
+					this.SendPropertyChanged("EventEndDate");
+					this.OnEventEndDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventCity", DbType="VarChar(50) NULL")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order=12)]
+		public string EventCity
+		{
+			get
+			{
+				return this._EventCity;
+			}
+			set
+			{
+				if ((this._EventCity != value))
+				{
+					this.OnEventCityChanging(value);
+					this.SendPropertyChanging();
+					this._EventCity = value;
+					this.SendPropertyChanged("EventCity");
+					this.OnEventCityChanged();
+				}
+			}
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_GoogleEventId", DbType = "VarChar(50) NULL")]
+		[global::System.Runtime.Serialization.DataMemberAttribute(Order = 13)]
+		public string GoogleEventId
+		{
+			get
+			{
+				return this._GoogleEventId;
+			}
+			set
+			{
+				if ((this._GoogleEventId != value))
+				{
+					this.OnGoogleEventIdChanging(value);
+					this.SendPropertyChanging();
+					this._GoogleEventId = value;
+					this.SendPropertyChanged("GoogleEventId");
+					this.OnGoogleEventIdChanged();
+				}
+			}
+		}
+
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;

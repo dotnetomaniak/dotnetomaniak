@@ -145,6 +145,11 @@ p.show-more-articles{
         padding-right: 15px;
     }
 
+.collapse.in, .collapse.show {
+    display: block !important;
+    visibility: visible !important;
+}
+
 @media (min-width: 575px) {
     div.about {
         width: 179px;
@@ -687,7 +692,7 @@ p.show-more-articles{
         width: 600px;
     }
 
-    .commingEventPlace {
+    .commingEventPlace, .commingEventDates {
         padding-left: 15px;
         font-size: 12px;
         font-weight: normal;
@@ -723,6 +728,10 @@ p.show-more-articles{
         font-weight: 100;
         padding-left: 75px;
         padding-top: 12px;
+    }
+
+    #EventSection input[type=checkbox] {
+        margin-top: 10px;
     }
 
     .toplist-entry {
@@ -1139,7 +1148,7 @@ p.show-more-articles{
     .add-article-row {
         clear: both;
         margin-top: 20px;
-        overflow: hidden;
+        /*overflow: hidden;*/
         zoom: 1;
     }
 
@@ -1238,8 +1247,8 @@ p.show-more-articles{
         float: none;
         border: 0 none;
         background: url(/Assets/Images/dodaj-artykul.jpg) no-repeat;
-        width: 116px;
-        height: 43px;
+        width: 83px;
+        height: 33px;
         margin: 0 auto;
         text-indent: -9999px;
         cursor: pointer;
@@ -2000,12 +2009,36 @@ p.show-more-articles{
         background-color: #f6f6f6
     }
 
-    .ui-state-default, .ui-state-default {
-        border: 1px solid #ccc;
-        background: #f6f6f6 url(images/ui-bg_glass_100_f6f6f6_1x400.png) 50% 50% repeat-x;
-        font-weight: bold;
-        color: #1c94c4
+    .bootstrap-datetimepicker-widget {
+        font-size: 1em !important;
+        padding: 0 !important;
+        margin: 0 !important;
     }
+
+    .bootstrap-datetimepicker-widget th {
+        font-weight: bold;
+    }
+
+    .bootstrap-datetimepicker-widget .dropdown-menu, .bootstrap-datetimepicker-widget .table-condensed,
+    .bootstrap-datetimepicker-widget ul
+    {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .bootstrap-datetimepicker-widget .table-condensed td:hover
+    {
+        background-color:#f5f5f5;
+        cursor: pointer;
+    }
+
+
+.ui-state-default, .ui-state-default {
+    border: 1px solid #ccc;
+    background: #f6f6f6 url(images/ui-bg_glass_100_f6f6f6_1x400.png) 50% 50% repeat-x;
+    font-weight: bold;
+    color: #1c94c4
+}
 
     .ui-helper-hidden-accessible {
         display: none;

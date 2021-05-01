@@ -191,8 +191,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\MySqlClient\MySql.Data.Entity.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -612,8 +612,15 @@
     <Content Include="Assets\StyleSheets\modal.css" />
     <Content Include="Assets\StyleSheets\style.css" />
     <Content Include="Assets\StyleSheets\ui.jquery.css" />
+    <Content Include="Assets\StyleSheets\bootstrap-datetimepicker.css" />
+    <Content Include="Assets\StyleSheets\bootstrap-datetimepicker.min.css" />
+    <Content Include="Assets\StyleSheets\bootstrap-theme.css" />
+    <Content Include="Assets\StyleSheets\bootstrap-theme.min.css" />
+    <Content Include="Assets\StyleSheets\bootstrap.css" />
+    <Content Include="Assets\StyleSheets\bootstrap.min.css" />
     <Content Include="Data\Thumbnails\blank_thumbnail.png" />
     <Content Include="ErrorPages\Offline.aspx" />
+    <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="MailTemplates\NewPassword.txt" />
     <Content Include="MailTemplates\RecommendationEndNotification.txt" />
     <Content Include="MailTemplates\Registration.txt" />
@@ -621,15 +628,28 @@
     <Content Include="OneSignalSDKUpdaterWorker.js" />
     <Content Include="OneSignalSDKWorker.js" />
     <Content Include="manifest.json" />
+    <Content Include="Assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Assets\StyleSheets\bootstrap.css.map" />
+    <Content Include="Assets\StyleSheets\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\dotnetomaniak - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
     <None Include="Scripts\jquery-1.4.4-vsdoc.js" />
+    <Content Include="Assets\JavaScripts\bootstrap-datetimepicker.js" />
+    <Content Include="Assets\JavaScripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="Assets\JavaScripts\bootstrap.js" />
+    <Content Include="Assets\JavaScripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.4.4.js" />
     <Content Include="Scripts\jquery-1.4.4.min.js" />
+    <None Include="Assets\JavaScripts\jquery-1.9.0.intellisense.js" />
+    <Content Include="Assets\JavaScripts\jquery-1.9.0.js" />
+    <Content Include="Assets\JavaScripts\jquery-1.9.0.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Assets\JavaScripts\jquery-1.9.0.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -641,6 +661,11 @@
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Assets\JavaScripts\moment-with-locales.js" />
+    <Content Include="Assets\JavaScripts\moment-with-locales.min.js" />
+    <Content Include="Assets\JavaScripts\moment.js" />
+    <Content Include="Assets\JavaScripts\moment.min.js" />
+    <Content Include="Assets\JavaScripts\npm.js" />
     <Content Include="Views\Badges\Seeker.aspx" />
     <Content Include="Views\Badges\All.aspx" />
     <Content Include="Views\Badges\List.ascx" />

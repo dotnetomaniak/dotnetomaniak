@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Kigg.Web.ViewData
+namespace Kigg.Core.DTO
 {
-    public class EventViewData
+    public class CommingEvent
     {        
         public string Id { get; set; }
         public string EventLink { get; set; }
@@ -16,5 +16,18 @@ namespace Kigg.Web.ViewData
         public string EventUserEmail { get; set; }
         public bool IsApproved { get; set; }
         public bool IsOnline { get; set; }
+
+        public CommingEvent(string name, string link, string googleEventId, DateTime date, DateTime endDate, string city, string place, string lead, bool isOnline)
+        {
+            EventName = name;
+            EventLink = link;
+            GoogleEventId = googleEventId;
+            EventDate = date;
+            EventEndDate = endDate;
+            EventCity = city;
+            EventPlace = place;
+            EventLead = lead;
+            IsOnline = isOnline;
+        }
     }
 }

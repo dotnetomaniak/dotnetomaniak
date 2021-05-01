@@ -9,6 +9,8 @@ using Kigg.Service;
 using Kigg.Web.ViewData;
 using Kigg.Infrastructure;
 using UnitOfWork = Kigg.Infrastructure.UnitOfWork;
+using Kigg.Core.Service.GoogleService;
+using Kigg.Core.DTO;
 
 namespace Kigg.Web
 {
@@ -17,16 +19,19 @@ namespace Kigg.Web
         private readonly IDomainObjectFactory _factory;
         private readonly ICommingEventRepository _commingEventRepository;
         private readonly IEventAggregator _aggregator;
+        private readonly IGoogleService _googleService;
 
-        public CommingEventController(IDomainObjectFactory factory, ICommingEventRepository commingEventRepository, IEventAggregator aggregator)
+        public CommingEventController(IDomainObjectFactory factory, ICommingEventRepository commingEventRepository, IEventAggregator aggregator, IGoogleService googleService)
         {
             Check.Argument.IsNotNull(factory, "factory");
             Check.Argument.IsNotNull(commingEventRepository, "commingEventRepository");
             Check.Argument.IsNotNull(aggregator, "aggregator");
+            Check.Argument.IsNotNull(googleService, "googleService");
 
             _factory = factory;
             _commingEventRepository = commingEventRepository;
             _aggregator = aggregator;
+            _googleService = googleService;
         }
 
         private static CommingEventViewData CreateCommingEventsViewData(ICommingEvent x)
@@ -35,12 +40,16 @@ namespace Kigg.Web
             {
                 EventLink = x.EventLink,
                 EventName = x.EventName,
+                GoogleEventId = x.GoogleEventId,
                 EventDate = x.EventDate,
+                EventEndDate = x.EventEndDate,
+                EventCity = x.EventCity,
                 Id = x.Id.Shrink(),
                 EventPlace = x.EventPlace,
                 EventLead = x.EventLead,
                 Email = x.Email,
                 IsApproved = x.IsApproved.GetValueOrDefault(),
+                IsOnline = x.IsOnline.GetValueOrDefault(),
             };
         }
 
@@ -92,7 +101,8 @@ namespace Kigg.Web
                 new Validation(() => string.IsNullOrWhiteSpace(model.EventLink.NullSafe()), "Link do wydarzenia nie może być pusty."),
                 new Validation(() => string.IsNullOrWhiteSpace(model.EventName.NullSafe()), "Tytuł wydarzenia nie może być pusty."),
                 new Validation(() => model.EventUserEmail.NullSafe().IsEmail() == false, "Nieprawidłowy adres e-mail."),
-                new Validation(() => model.Id.ToGuid() != Guid.Empty, "Id wydarzenia nie może być podane")
+                new Validation(() => model.Id.ToGuid() != Guid.Empty, "Id wydarzenia nie może być podane"),
+                new Validation(() => !model.EventEndDate.IsLaterThan(model.EventDate), "Nieprawidłowa data zakończenia wydarzenia.")
                 );
             if (viewData == null)
             {
@@ -102,16 +112,25 @@ namespace Kigg.Web
                     var eventApproveStatus = CurrentUser != null && CurrentUser.IsAdministrator() &&
                                              model.IsApproved;
 
+                    if (eventApproveStatus)
+                    {
+                        model.GoogleEventId = _googleService.EventApproved(new CommingEvent(model.EventName, model.EventLink, model.GoogleEventId, model.EventDate, model.EventEndDate, model.EventCity, model.EventPlace, model.EventLead, model.IsOnline));
+                    }
+
                     using (IUnitOfWork unitOfWork = UnitOfWork.Begin())
                     {
                         var commingEvent = _factory.CreateCommingEvent(
                                     model.EventUserEmail,
                                     model.EventLink,
                                     model.EventName,
+                                    model.GoogleEventId,
                                     model.EventDate,
+                                    model.EventEndDate,
+                                    model.EventCity,
                                     model.EventPlace,
                                     model.EventLead,
-                                    eventApproveStatus
+                                    eventApproveStatus,
+                                    model.IsOnline
                                     );
                         _commingEventRepository.Add(commingEvent);
 
@@ -144,8 +163,9 @@ namespace Kigg.Web
                 new Validation(() => string.IsNullOrEmpty(model.EventLink.NullSafe()), "Link wydarzenia nie może być pusty."),
                 new Validation(() => string.IsNullOrEmpty(model.EventName.NullSafe()), "Tytuł wydarzenia nie może być pusty."),
                 new Validation(() => !model.EventUserEmail.NullSafe().IsEmail(), "Niepoprawny adres e-mail."),
-                new Validation(()=> CurrentUser.IsAdministrator() == false, "Nie możesz edytować tego wydarzenia."),
-                new Validation(()=>model.Id.NullSafe().ToGuid().IsEmpty(), "Nieprawidłowy identyfikator wydarzenia.")
+                new Validation(() => CurrentUser.IsAdministrator() == false, "Nie możesz edytować tego wydarzenia."),
+                new Validation(() => model.Id.NullSafe().ToGuid().IsEmpty(), "Nieprawidłowy identyfikator wydarzenia."),
+                new Validation(() => !model.EventEndDate.IsLaterThan(model.EventDate), "Nieprawidłowa data zakończenia wydarzenia.")
                 );
 
             if (viewData == null)
@@ -163,15 +183,38 @@ namespace Kigg.Web
                         }
                         else
                         {
+                            if (model.IsApproved)
+                            {
+                                var upcomingEvent = new CommingEvent(commingEvent.EventName, commingEvent.EventLink, commingEvent.GoogleEventId, commingEvent.EventDate, commingEvent.EventEndDate.Value, commingEvent.EventCity, commingEvent.EventPlace, commingEvent.EventLead, model.IsOnline);
+
+                                if (string.IsNullOrEmpty(commingEvent.GoogleEventId))
+                                {
+                                    model.GoogleEventId = _googleService.EventApproved(upcomingEvent);
+                                }
+                                else
+                                {
+                                    model.GoogleEventId = _googleService.EditEvent(upcomingEvent);
+                                }
+                            }
+                            else if (!string.IsNullOrEmpty(commingEvent.GoogleEventId))
+                            {
+                                _googleService.DeleteEvent(commingEvent.GoogleEventId);
+                                model.GoogleEventId = null;
+                            }
+
                             _commingEventRepository.EditEvent(
                                 commingEvent,
                                 model.EventUserEmail.NullSafe(),
                                 model.EventLink.NullSafe(),
                                 model.EventName.NullSafe(),
+                                model.GoogleEventId,
                                 model.EventDate,
+                                model.EventEndDate,
+                                model.EventCity,
                                 model.EventPlace,
                                 model.EventLead,
-                                eventApproveStatus
+                                eventApproveStatus,
+                                model.IsOnline
                                 );
 
                             unitOfWork.Commit();
@@ -217,6 +260,9 @@ namespace Kigg.Web
                         {
                             _commingEventRepository.Remove(commingEvent);
                             unitOfWork.Commit();
+
+                            if(!string.IsNullOrEmpty(commingEvent.GoogleEventId))
+                                _googleService.DeleteEvent(commingEvent.GoogleEventId);
 
                             viewData = new JsonViewData { isSuccessful = true };
                         }
@@ -265,11 +311,14 @@ namespace Kigg.Web
                                             eventId = commingEvent.Id.Shrink(),
                                             eventLink = commingEvent.EventLink,
                                             eventName = commingEvent.EventName,
-                                            eventDate = commingEvent.EventDate.ToString("yyyy-MM-dd"),
+                                            eventDate = commingEvent.EventDate.ToString("dd-MM-yyyy HH:mm"),
+                                            eventEndDate = commingEvent.EventEndDate?.ToString("dd-MM-yyyy HH:mm"),
+                                            eventCity = commingEvent.EventCity,
                                             eventPlace = commingEvent.EventPlace,
                                             eventLead = commingEvent.EventLead,
                                             eventUserEmail = commingEvent.Email,
-                                            isApproved = commingEvent.IsApproved
+                                            isApproved = commingEvent.IsApproved,
+                                            isOnline = commingEvent.IsOnline
                                         }
                                     );
                     }
@@ -278,7 +327,7 @@ namespace Kigg.Web
                 {
                     Log.Exception(e);
 
-                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("pobierania wudarzenia") };
+                    viewData = new JsonViewData { errorMessage = FormatStrings.UnknownError.FormatWith("pobierania wydarzenia") };
                 }
             }
 

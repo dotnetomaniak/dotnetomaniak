@@ -55,8 +55,8 @@ namespace Kigg.LinqToSql.Repository
         }
 
 
-        public void EditEvent(ICommingEvent commingEvent, string eventUserEmail, string eventLink, string eventName, DateTime eventDate, string eventPlace,
-            string eventLead, bool isApproved)
+        public void EditEvent(ICommingEvent commingEvent, string eventUserEmail, string eventLink, string eventName, string googleEventId, DateTime eventDate, DateTime eventEndDate, string eventCity, string eventPlace,
+            string eventLead, bool isApproved, bool isOnline)
         {
             Check.Argument.IsNotNull(commingEvent, "CommingEvent");
 
@@ -64,11 +64,15 @@ namespace Kigg.LinqToSql.Repository
             if (!string.IsNullOrEmpty(eventLink)) commingEvent.EventLink = eventLink;
             if (!string.IsNullOrEmpty(eventName)) commingEvent.EventName = eventName;
 
+            commingEvent.GoogleEventId = googleEventId;
             commingEvent.EventDate = eventDate;
+            commingEvent.EventEndDate = eventEndDate;
+            commingEvent.EventCity = eventCity;
             commingEvent.EventPlace = eventPlace;
             commingEvent.EventLead = eventLead;
             commingEvent.Email = eventUserEmail;
             commingEvent.IsApproved = isApproved;
+            commingEvent.IsOnline = isOnline;
         }
 
         public int CountByUnapproved()
