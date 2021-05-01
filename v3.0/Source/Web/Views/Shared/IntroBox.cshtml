@@ -1,5 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
-<div id="intro">
+﻿<div id="intro">
     <h3>Witaj!</h3>
     <div>
         <p>
@@ -9,14 +8,13 @@
             jeszcze lepszą społeczność <strong>.NET</strong> w Polsce.
         </p>
         <p>
-            <!--Enjoy participating in this community and see which other people in our industry are getting <em>Shoutouts</em>.-->
             <strong>dotnetomaniak.pl</strong> to portal dla fanów <strong>.NET</strong>
         </p>
         <p style="float: left">
-            <%= Html.ActionLink("promuj »","PromoteSite","Support")%>&nbsp;
-        </p>        
+            @Html.ActionLink("promuj »", "PromoteSite", "Support")&nbsp;
+        </p>
         <p style="text-align: right">
-            <%= Html.ActionLink("faq »", "Faq", "Support")%>
+            @Html.ActionLink("faq »", "Faq", "Support")
         </p>
     </div>
 </div>
