@@ -7,6 +7,7 @@ namespace Kigg.Core.Test
 {
     using Service;
     using Kigg.Test.Infrastructure;
+    using Kigg.Service;
 
     public class EmailSenderFixture : BaseFixture
     {

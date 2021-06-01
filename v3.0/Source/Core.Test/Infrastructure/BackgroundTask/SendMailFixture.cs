@@ -9,6 +9,7 @@ namespace Kigg.Core.Test
 {
     using DomainObjects;
     using Infrastructure;
+    using Kigg.Service;
     using Service;
 
     public class SendMailFixture
