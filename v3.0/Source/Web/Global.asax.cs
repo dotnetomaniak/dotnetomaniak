@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Configuration;
-using Kigg.LinqToSql.Repository;
+using Kigg.Infrastructure.EF;
 using StackExchange.Profiling;
 using StackExchange.Profiling.Mvc;
 using StackExchange.Profiling.Storage;
@@ -100,7 +100,7 @@ namespace Kigg.Web
                     .ExcludeMethod("Flush") // Ignore any method with the name of Flush
                     .AddViewPofiling() // Add MVC view profiling (you want this)
                 // If using EntityFrameworkCore, here's where it'd go.
-                // .AddEntityFramework()        // Extension method in the MiniProfiler.EntityFrameworkCore package
+                .AddEntityFramework()        // Extension method in the MiniProfiler.EntityFrameworkCore package
             );
 
             // If we're using EntityFramework 6, here's where it'd go.
@@ -110,12 +110,8 @@ namespace Kigg.Web
 
         private void InitializeDatabase()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["dotnetomaniak"].ConnectionString;
-            Database database = new Database(connectionString);
-            if (!database.DatabaseExists())
-            {
-                database.CreateDatabase();
-            }
+            var context = new DotnetomaniakContext(new ConfigurationManagerWrapper());
+            context.Database.EnsureCreated();
         }
 
         protected void Application_End()

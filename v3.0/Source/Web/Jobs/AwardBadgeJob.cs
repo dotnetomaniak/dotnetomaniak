@@ -3,7 +3,7 @@ using System.Threading;
 using System.Web;
 using System.Web.Caching;
 using Kigg.Infrastructure;
-using Kigg.LinqToSql.Repository;
+using Kigg.Infrastructure.EF;
 using Cache = System.Web.Caching.Cache;
 
 namespace Kigg.Web.Jobs
@@ -30,31 +30,23 @@ namespace Kigg.Web.Jobs
             if (reason != CacheItemRemovedReason.Expired)
                 return;
 
-            //Shedule awardbadge job to be done in a separate thread.
-            //ThreadPool.QueueUserWorkItem(wi =>
-                                             {                                                 
-                                                 try
-                                                 {
-                                                     using (var databaseFactory =
-                                                         new DatabaseFactory(IoC.Resolve<IConnectionString>()))
-                                                     {
-                                                         AwardBadges(databaseFactory);
-                                                     }
-                                                 }
-                                                 catch (Exception e)
-                                                 {
-                                                     var logger = IoC.Resolve<ILog>();
-                                                     logger.Exception(e);
-                                                 }
-                                                 finally
-                                                 {
-                                                     Insert();
-                                                 }
-                                             }
-            //);
+            try
+            {
+                var context = IoC.Resolve<DotnetomaniakContext>();
+                AwardBadges(context);
+            }
+            catch (Exception e)
+            {
+                var logger = IoC.Resolve<ILog>();
+                logger.Exception(e);
+            }
+            finally
+            {
+                Insert();
+            }
         }
 
-        protected abstract void AwardBadges(IDatabaseFactory databaseFactory);
+        protected abstract void AwardBadges(DotnetomaniakContext context);
 
         protected abstract TimeSpan Interval { get; }
 

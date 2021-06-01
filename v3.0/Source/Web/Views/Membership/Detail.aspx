@@ -27,7 +27,7 @@
 
             case UserDetailTab.Commented:
                 {
-                    Html.RenderAction("CommentedBy", "Story", new RouteValueDictionary { { "name", userId }, { "page", page } });
+                    //Html.RenderAction("CommentedBy", "Story", new RouteValueDictionary { { "name", userId }, { "page", page } });
                     //Html.RenderAction<StoryController>(c => c.CommentedBy(userId, page));
                     break;
                 }

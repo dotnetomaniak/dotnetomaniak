@@ -1,14 +1,14 @@
 using System;
-using Kigg.LinqToSql.Repository;
+using Kigg.Infrastructure.EF;
 
 namespace Kigg.Web.Jobs
 {
     public class GoodStoryBadge : AwardBadgeJob
     {
         public Guid id = new Guid("134B2022-274F-46AB-98F5-2BE0CBC972AC");
-        protected override void AwardBadges(IDatabaseFactory databaseFactory)
+        protected override void AwardBadges(DotnetomaniakContext context)
         {
-            databaseFactory.Get().GoodStory();
+            context.GoodStory();
         }
 
         protected override TimeSpan Interval

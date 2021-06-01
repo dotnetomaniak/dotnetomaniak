@@ -29,6 +29,11 @@
             _innerRepository.Remove(entity);
         }
 
+        public void Commit()
+        {
+            _innerRepository.Commit();
+        }
+
         [DebuggerStepThrough]
         public virtual ITag FindById(Guid id)
         {

@@ -5,5 +5,7 @@ namespace Kigg.Repository
         void Add(TEntity entity);
 
         void Remove(TEntity entity);
+
+        void Commit();
     }
 }

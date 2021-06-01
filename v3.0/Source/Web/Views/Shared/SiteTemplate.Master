@@ -185,6 +185,7 @@
     <meta name="twitter:title" content="<%= ""+Page.Header.Title %>"  />
     <meta name="twitter:image" content="https://dotnetomaniak.pl/Assets/Images/dotnetomaniak_logo_twitter.jpg"  />
     <meta property="og:image" content="https://dotnetomaniak.pl/Assets/Images/logo-dotnetomaniak.png"  />
+    <link rel="apple-touch-icon" href="https://dotnetomaniak.pl/Assets/Images/fav-big.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="Rating" content="General" />
     <meta name="robots" content="index, follow" />  

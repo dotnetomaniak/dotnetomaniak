@@ -1,15 +1,14 @@
 ﻿using System;
-using Kigg.LinqToSql.Repository;
-using Kigg.Repository;
+using Kigg.Infrastructure.EF;
 
 namespace Kigg.Web.Jobs
 {
     public class CommenterBadge : AwardBadgeJob
     {
         public Guid Id = new Guid("F23FF0BA-37F1-433B-B405-7427D0F4ED2E");
-        protected override void AwardBadges(IDatabaseFactory databaseFactory)
+        protected override void AwardBadges(DotnetomaniakContext context)
         {
-            databaseFactory.Get().Commeter();
+            context.Commenter();
         }
 
         protected override TimeSpan Interval

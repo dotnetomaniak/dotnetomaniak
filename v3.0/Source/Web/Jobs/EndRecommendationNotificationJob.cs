@@ -2,9 +2,9 @@
 using System.Web;
 using System.Web.Caching;
 using Kigg.Infrastructure;
-using Kigg.LinqToSql.Repository;
 using Cache = System.Web.Caching.Cache;
 using Kigg.Core.DomainObjects;
+using Kigg.Infrastructure.EF.Repository;
 
 namespace Kigg.Web.Jobs
 {
@@ -33,7 +33,7 @@ namespace Kigg.Web.Jobs
         }
 
         private void Callback(string key, object value, CacheItemRemovedReason reason)
-        {         
+        {
             if (reason != CacheItemRemovedReason.Expired)
                 return;
             try
@@ -56,21 +56,16 @@ namespace Kigg.Web.Jobs
 
         private void CheckRecommendationsEndAndSendNotification()
         {
-            using (var databaseFactory = new DatabaseFactory(IoC.Resolve<IConnectionString>()))
-            {
-                using (IUnitOfWork unitOfWork = new LinqToSql.Repository.UnitOfWork(databaseFactory))
-                {
-                    var recommendationRepository = new RecommendationRepository(databaseFactory);
-                    var recommendations = recommendationRepository.FindRecommendationToSendNotification(_intervalToCheckEndingRecommendationInDays);
+            var recommendationRepository = IoC.Resolve<RecommendationRepository>();
+            var recommendations = recommendationRepository.FindRecommendationToSendNotification(_intervalToCheckEndingRecommendationInDays);
 
-                    foreach (IRecommendation recommendation in recommendations)
-                    {
-                        _emailSender.NotifyRecommendationEnds(recommendation);
-                        recommendation.NotificationIsSent = true;
-                    }
-                    unitOfWork.Commit();
-                }
+            foreach (IRecommendation recommendation in recommendations)
+            {
+                _emailSender.NotifyRecommendationEnds(recommendation);
+                recommendation.NotificationIsSent = true;
             }
+            
+            recommendationRepository.Commit();
         }
 
         protected TimeSpan Interval
