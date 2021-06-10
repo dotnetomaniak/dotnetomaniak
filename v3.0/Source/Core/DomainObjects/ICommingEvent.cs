@@ -17,7 +17,25 @@ namespace Kigg.Core.DomainObjects
             set;
         }
 
+        string GoogleEventId
+        {
+            get;
+            set;
+        }
+
         DateTime EventDate
+        {
+            get;
+            set;
+        }
+
+        DateTime? EventEndDate
+        {
+            get;
+            set;
+        }
+
+        string EventCity
         {
             get;
             set;
@@ -36,6 +54,12 @@ namespace Kigg.Core.DomainObjects
         }
 
         string Email
+        {
+            get;
+            set;
+        }
+
+        bool? IsOnline
         {
             get;
             set;

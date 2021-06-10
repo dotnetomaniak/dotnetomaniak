@@ -52,9 +52,8 @@ namespace Kigg.Infrastructure.EF.Repository
         }
 
 
-        public void EditEvent(ICommingEvent commingEvent, string eventUserEmail, string eventLink, string eventName,
-            DateTime eventDate, string eventPlace,
-            string eventLead, bool isApproved)
+        public void EditEvent(ICommingEvent commingEvent, string eventUserEmail, string eventLink, string googleEventId, string eventName,
+            DateTime eventDate, DateTime eventEndDate, string eventCity, string eventPlace, string eventLead, bool isApproved, bool isOnline)
         {
             Check.Argument.IsNotNull(commingEvent, "CommingEvent");
 
@@ -63,10 +62,15 @@ namespace Kigg.Infrastructure.EF.Repository
             if (!string.IsNullOrEmpty(eventName)) commingEvent.EventName = eventName;
 
             commingEvent.EventDate = eventDate;
+            commingEvent.EventEndDate = eventEndDate;
             commingEvent.EventPlace = eventPlace;
+            commingEvent.EventCity = eventCity;
             commingEvent.EventLead = eventLead;
             commingEvent.Email = eventUserEmail;
+            commingEvent.GoogleEventId = googleEventId;
+
             commingEvent.IsApproved = isApproved;
+            commingEvent.IsOnline = isOnline;
         }
 
         public int CountByUnapproved()

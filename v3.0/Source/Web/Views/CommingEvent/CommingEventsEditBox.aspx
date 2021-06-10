@@ -16,7 +16,7 @@
                     Data
                 </th>
                 <th>
-                    Miejsce
+                    Lokalizacja
                 </th>
                 <th>
                     Opis
@@ -35,7 +35,14 @@
                     <%= commingEventViewData.EventDate.ToShortDateString() %>
                 </td>
                 <td>
-                    <%= commingEventViewData.EventPlace %>
+                    <% if (commingEventViewData.IsOnline){ %>
+                        <b>ONLINE</b>
+                    <% } %>
+
+                    <% else if(!string.IsNullOrEmpty(commingEventViewData.EventCity)) { %>
+                       <b> <%= commingEventViewData.EventCity %></b><br />
+                        <%= commingEventViewData.EventPlace %>
+                    <% } %>
                 </td>
                 <td>
                     <%= commingEventViewData.EventLead %>

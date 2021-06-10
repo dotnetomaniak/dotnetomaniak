@@ -28,6 +28,6 @@ namespace Kigg.DomainObjects
 
         IRecommendation CreateRecommendation(string recommendationLink, string recommendationTitle, string imageLink, string imageTitle, DateTime startTime, DateTime endTime, string email, int position, bool notificationIsSent, bool isBanner);
 
-        ICommingEvent CreateCommingEvent(string eventUserEmail, string eventLink, string eventName, DateTime eventTime, string eventPlace, string eventLead, bool isApproved);
+        ICommingEvent CreateCommingEvent(string eventUserEmail, string eventLink, string eventName, string googleEventId, DateTime eventTime, DateTime eventEndTime, string eventCity, string eventPlace, string eventLead, bool isApproved, bool isOnline);
     }
 }

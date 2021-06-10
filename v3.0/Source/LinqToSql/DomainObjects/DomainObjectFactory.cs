@@ -210,7 +210,7 @@ namespace Kigg.LinqToSql.DomainObjects
             return recommendation;
         }
 
-    public ICommingEvent CreateCommingEvent(string eventUserEmail, string eventLink, string eventName, DateTime eventTime, string eventPlace, string eventLead, bool isApproved)
+    public ICommingEvent CreateCommingEvent(string eventUserEmail, string eventLink, string eventName, string googleEventId, DateTime eventTime, DateTime eventEndTime, string eventCity, string eventPlace, string eventLead, bool isApproved, bool isOnline)
     {
         Check.Argument.IsNotEmpty(eventLink, "EventLink");
         Check.Argument.IsNotEmpty(eventName, "EventName");
@@ -222,12 +222,16 @@ namespace Kigg.LinqToSql.DomainObjects
             Id = Guid.NewGuid(),
             EventLink = eventLink,
             EventName = eventName,
+            GoogleEventId = googleEventId,
             EventDate = eventTime,
+            EventEndDate = eventEndTime,
+            EventCity = eventCity,
             EventPlace = eventPlace,
             EventLead = eventLead,
             CreatedAt = now,
             Email = eventUserEmail,
-            IsApproved = isApproved
+            IsApproved = isApproved,
+            IsOnline = isOnline
         };
 
         return commingEvent;

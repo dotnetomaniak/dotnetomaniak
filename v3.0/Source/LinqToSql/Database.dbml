@@ -200,6 +200,10 @@
       <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Email" Type="System.String" DbType="Varchar(50)" CanBeNull="true" />
       <Column Name="IsApproved" Type="System.Boolean" DbType="bit" CanBeNull="true" />
+      <Column Name="IsOnline" Type="System.Boolean" DbType="bit" CanBeNull="true" />
+      <Column Name="GoogleEventId" Type="System.String" DbType="VarChar(50) NULL" CanBeNull="true" />
+      <Column Name="EventEndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EventCity" Type="System.String" DbType="VarChar(50) NULL" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.CommentSearch" Method="CommentSearch" IsComposable="true">

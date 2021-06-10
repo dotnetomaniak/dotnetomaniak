@@ -3,6 +3,7 @@ using Xunit;
 
 namespace Kigg.Core.Test
 {
+    using Kigg.Service;
     using Service;
 
     public class StoryWeightBaseCalculatorFixture

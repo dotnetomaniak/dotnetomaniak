@@ -16,6 +16,12 @@ namespace Kigg
         }
 
         [DebuggerStepThrough]
+        public static bool IsLaterThan(this DateTime target, DateTime startDate)
+        {
+            return (target > startDate);
+        }
+
+        [DebuggerStepThrough]
         public static bool HourBetween (this DateTime target, int from, int to)
         {
             return target.Hour >= from && target.Hour <= to;

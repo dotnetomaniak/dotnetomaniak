@@ -228,7 +228,7 @@ namespace Kigg.Infrastructure.EF
             return recommendation;
         }
 
-        public ICommingEvent CreateCommingEvent(string eventUserEmail, string eventLink, string eventName, DateTime eventTime, string eventPlace, string eventLead, bool isApproved)
+        public ICommingEvent CreateCommingEvent(string eventUserEmail, string eventLink, string eventName, string googleEventId, DateTime eventTime, DateTime eventEndTime, string eventCity, string eventPlace, string eventLead, bool isApproved, bool isOnline)
         {
             Check.Argument.IsNotEmpty(eventLink, "EventLink");
             Check.Argument.IsNotEmpty(eventName, "EventName");
@@ -241,11 +241,15 @@ namespace Kigg.Infrastructure.EF
                 EventLink = eventLink,
                 EventName = eventName,
                 EventDate = eventTime,
+                EventEndDate = eventEndTime,
                 EventPlace = eventPlace,
+                EventCity = eventCity,
                 EventLead = eventLead,
+                GoogleEventId = googleEventId,
                 CreatedAt = now,
                 Email = eventUserEmail,
-                IsApproved = isApproved
+                IsApproved = isApproved,
+                IsOnline = isOnline
             };
 
             return commingEvent;
@@ -259,6 +263,5 @@ namespace Kigg.Infrastructure.EF
             Check.Argument.IsNotEmpty(fromIpAddress, "fromIpAddress");
 
         }
-
     }
 }
