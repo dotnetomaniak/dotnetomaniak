@@ -395,15 +395,11 @@ namespace Kigg.Infrastructure.EF.Repository
                 .ToList();
 
 
-            var similarsByTags = storiesWithIncludes
-                .Where(s => simmilarIds.Contains(s.Id))
-                .Cast<IStory>()
-                .ToList();
 
-            if (similarsByTags.Count == 0)
+            if (simmilarIds.Count == 0)
             {
                 var category = storyToFindSimilarTo.BelongsTo.Id;
-                var similarsByCategory = storiesWithIncludes
+                var similarsByCategory = _context.Stories
                     .OrderByDescending(x => x.CreatedAt)
                     .Where(x => x.CategoryId == category)
                     .Take(11)
@@ -414,6 +410,11 @@ namespace Kigg.Infrastructure.EF.Repository
             }
             else
             {
+                var similarsByTags = _context.Stories
+                    .Where(s => simmilarIds.Contains(s.Id))
+                    .Cast<IStory>()
+                    .ToList();
+                   
                 return similarsByTags;
             }
         }
