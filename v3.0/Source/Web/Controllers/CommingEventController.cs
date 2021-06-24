@@ -185,14 +185,14 @@ namespace Kigg.Web
                         {
                             if (model.IsApproved)
                             {
-                                var upcomingEvent = new CommingEvent(commingEvent.EventName, commingEvent.EventLink, commingEvent.GoogleEventId, commingEvent.EventDate, commingEvent.EventEndDate.Value, commingEvent.EventCity, commingEvent.EventPlace, commingEvent.EventLead, model.IsOnline);
-
                                 if (string.IsNullOrEmpty(commingEvent.GoogleEventId))
                                 {
+                                    var upcomingEvent = new CommingEvent(commingEvent.EventName, commingEvent.EventLink, commingEvent.GoogleEventId, commingEvent.EventDate, commingEvent.EventEndDate.Value, commingEvent.EventCity, commingEvent.EventPlace, commingEvent.EventLead, model.IsOnline);
                                     model.GoogleEventId = _googleService.EventApproved(upcomingEvent);
                                 }
                                 else
                                 {
+                                    var upcomingEvent = new CommingEvent(model.EventName, model.EventLink, commingEvent.GoogleEventId, model.EventDate, model.EventEndDate, model.EventCity, model.EventPlace, model.EventLead, model.IsOnline);
                                     model.GoogleEventId = _googleService.EditEvent(upcomingEvent);
                                 }
                             }
@@ -206,8 +206,8 @@ namespace Kigg.Web
                                 commingEvent,
                                 model.EventUserEmail.NullSafe(),
                                 model.EventLink.NullSafe(),
-                                model.EventName.NullSafe(),
                                 model.GoogleEventId,
+                                model.EventName.NullSafe(),
                                 model.EventDate,
                                 model.EventEndDate,
                                 model.EventCity,
