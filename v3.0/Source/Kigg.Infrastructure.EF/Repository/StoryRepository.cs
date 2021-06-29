@@ -115,7 +115,7 @@ namespace Kigg.Infrastructure.EF.Repository
 
             int total = CountByCategory(categoryId);
 
-            var stories = storiesWithIncludes
+            var stories = _context.Stories
                                   .Where(s => (s.ApprovedAt != null) && (s.PublishedAt != null) && (s.Rank != null) && (s.CategoryId == categoryId))
                                   .OrderByDescending(s => s.PublishedAt)
                                   .ThenBy(s => s.Rank)
@@ -134,7 +134,7 @@ namespace Kigg.Infrastructure.EF.Repository
 
             int total = CountByCategory(category);
 
-            var stories = storiesWithIncludes
+            var stories = _context.Stories
                                   .Where(s => (s.ApprovedAt != null) && (s.PublishedAt != null) && (s.Rank != null) && (s.Category.Name == category))
                                   .OrderByDescending(s => s.PublishedAt)
                                   .ThenBy(s => s.Rank)
@@ -219,7 +219,7 @@ namespace Kigg.Infrastructure.EF.Repository
 
             int total = CountByTag(tagId);
 
-            var stories = storiesWithIncludes
+            var stories = _context.Stories
                                   .Where(s => (s.ApprovedAt != null) && s.StoryTags.Any(st => st.TagId == tagId))
                                   .OrderByDescending(s => s.CreatedAt)
                                   .Skip(start)
