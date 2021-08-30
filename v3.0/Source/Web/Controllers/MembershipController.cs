@@ -762,9 +762,10 @@
         [ChildActionOnly]
         public ActionResult TopTabs()
         {
-            DateTime maxTimestamp = SystemTime.Now();
+            DateTime today = SystemTime.Now();
+            DateTime rankingStartDate = new DateTime(today.Year, today.Month, 1);
 
-            ICollection<UserWithScore> topLeaders = UserRepository.FindTop(Constants.ProductionDate, maxTimestamp, 0, Settings.TopUsers)
+            ICollection<UserWithScore> topLeaders = UserRepository.FindTop(rankingStartDate, today, 0, Settings.TopUsers)
                                                                   .Result.Select(u => new UserWithScore { User = u, Score = u.CurrentScore })
                                                                   .ToList()
                                                                   .AsReadOnly();
@@ -781,6 +782,26 @@
                                    TopLeaders = topLeaders,
                                    //TopMovers = topMovers
                                };
+
+            return View(viewData);
+        }
+
+        [ChildActionOnly]
+        public ActionResult Contest()
+        {
+            DateTime contestStartDate = new DateTime(2021, 09, 01);
+            DateTime contestStopDate = new DateTime(2021, 09, 11);
+            DateTime today = SystemTime.Now();
+            DateTime maxTimestamp = today > contestStopDate ? contestStopDate : today;
+
+            ICollection<UserWithScore> topLeaders = UserRepository.FindTop(contestStartDate, maxTimestamp, 0, 5)
+                                                                  .Result.Select(u => new UserWithScore { User = u, Score = u.CurrentScore })
+                                                                  .ToList()
+                                                                  .AsReadOnly();
+            var viewData = new TopUserTabsViewData
+            {
+                TopLeaders = topLeaders,
+            };
 
             return View(viewData);
         }
