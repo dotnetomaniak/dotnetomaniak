@@ -414,6 +414,8 @@
                     </form>
                   </div>
                 </div>
+                <% Html.RenderAction("Contest","Membership"); %>
+
                 <% Html.RenderAction("Ads", "Recommendation"); %>
                 <% Html.RenderAction("CommingEventsBox", "CommingEvent"); %>
 
