@@ -766,7 +766,7 @@
             DateTime rankingStartDate = new DateTime(today.Year, today.Month, 1);
 
             ICollection<UserWithScore> topLeaders = UserRepository.FindTop(rankingStartDate, today, 0, Settings.TopUsers)
-                                                                  .Result.Select(u => new UserWithScore { User = u, Score = u.CurrentScore })
+                                                                  .Result.Select(u => new UserWithScore { User = u, Score = u.GetScoreBetween(rankingStartDate, today) })
                                                                   .ToList()
                                                                   .AsReadOnly();
 
@@ -795,7 +795,7 @@
             DateTime maxTimestamp = today > contestStopDate ? contestStopDate : today;
 
             ICollection<UserWithScore> topLeaders = UserRepository.FindTop(contestStartDate, maxTimestamp, 0, 5)
-                                                                  .Result.Select(u => new UserWithScore { User = u, Score = u.CurrentScore })
+                                                                  .Result.Select(u => new UserWithScore { User = u, Score = u.GetScoreBetween(contestStartDate, maxTimestamp) })
                                                                   .ToList()
                                                                   .AsReadOnly();
             var viewData = new TopUserTabsViewData
