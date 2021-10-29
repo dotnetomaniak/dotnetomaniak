@@ -787,15 +787,14 @@
         }
 
         [ChildActionOnly]
-        public ActionResult Contest()
+        public ActionResult MonthTop()
         {
-            DateTime contestStartDate = new DateTime(2021, 09, 01);
-            DateTime contestStopDate = new DateTime(2021, 09, 11);
             DateTime today = SystemTime.Now();
-            DateTime maxTimestamp = today > contestStopDate ? contestStopDate : today;
+            DateTime monthStart = new DateTime(today.Year, today.Month, 1);
+            DateTime monthEnd = monthStart.AddMonths(1).AddMilliseconds(-1);
 
-            ICollection<UserWithScore> topLeaders = UserRepository.FindTop(contestStartDate, maxTimestamp, 0, 5)
-                                                                  .Result.Select(u => new UserWithScore { User = u, Score = u.GetScoreBetween(contestStartDate, maxTimestamp) })
+            ICollection<UserWithScore> topLeaders = UserRepository.FindTop(monthStart, monthEnd, 0, 5)
+                                                                  .Result.Select(u => new UserWithScore { User = u, Score = u.GetScoreBetween(monthStart, monthEnd) })
                                                                   .ToList()
                                                                   .AsReadOnly();
             var viewData = new TopUserTabsViewData
