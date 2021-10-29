@@ -798,7 +798,7 @@
     <Content Include="Views\CommingEvent\CommingEventList.ascx" />
     <Content Include="Views\CommingEvent\CommingEventsEditBox.aspx" />
     <Content Include="Views\Membership\Achievements.ascx" />
-    <Content Include="Views\Membership\Contest.ascx" />
+    <Content Include="Views\Membership\MonthTop.ascx" />
     <Content Include="Views\Quiz\QuizView.aspx" />
     <Content Include="Views\CommingEvent\AllCommingEvent.aspx" />
     <Content Include="Views\Shared\CommingEventsBox.ascx" />
