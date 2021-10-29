@@ -789,9 +789,9 @@
         [ChildActionOnly]
         public ActionResult MonthTop()
         {
-            DateTime today = SystemTime.Now();
+            DateTime today = DateTime.Today;
             DateTime monthStart = new DateTime(today.Year, today.Month, 1);
-            DateTime monthEnd = monthStart.AddMonths(1).AddMilliseconds(-1);
+            DateTime monthEnd = today;
 
             ICollection<UserWithScore> topLeaders = UserRepository.FindTop(monthStart, monthEnd, 0, 5)
                                                                   .Result.Select(u => new UserWithScore { User = u, Score = u.GetScoreBetween(monthStart, monthEnd) })
