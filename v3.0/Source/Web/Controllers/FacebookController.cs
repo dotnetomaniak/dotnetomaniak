@@ -52,8 +52,9 @@ namespace Kigg.Web.Controllers
                             viewData = LogUserByFb(viewData, unitOfWork, user);
                         }
                         else
-                        {                            
-                            user = _userRepository.FindByEmail(fbUserViewData.Email);
+                        {
+                            if (!string.IsNullOrEmpty(fbUserViewData.Email))
+                                user = _userRepository.FindByEmail(fbUserViewData.Email);
 
                             if (user != null)
                             {
@@ -128,7 +129,10 @@ namespace Kigg.Web.Controllers
 
                         if (user == null)
                         {
-                            user = _factory.CreateUser(fbUserViewData.Name, fbUserViewData.Email, null);
+                            var email = fbUserViewData.Email;
+                            if (string.IsNullOrEmpty(email))
+                                email = fbUserViewData.Id + "@facebook.dotnetomaniak.pl";
+                            user = _factory.CreateUser(fbUserViewData.Name, email, null);
 
                             user.FbId = fbUserViewData.Id;
                             unitOfWork.Commit();

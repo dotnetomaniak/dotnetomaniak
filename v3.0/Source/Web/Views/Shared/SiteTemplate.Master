@@ -227,14 +227,14 @@
             })});
     </script>
     <script type="text/javascript">        
-        window.fbAsyncInit = function () {            
+        window.fbAsyncInit = function () {
             FB.Event.subscribe('auth.authResponseChange', function (response) {
                 if (response.status === 'connected') {
                     takeFbUserData();
                 } else if (response.status === 'not_authorized') {
-                    FB.login();
+                    FB.login({ scope: 'email' });
                 } else {
-                    FB.login();
+                    FB.login({ scope: 'email' });
                 }
             });
         }
@@ -288,7 +288,7 @@
                         }
                     }
                 });
-            })
+            });
         };
 
         function synchronizeWithFb() {
