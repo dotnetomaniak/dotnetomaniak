@@ -416,7 +416,6 @@
                 </div>
                 <% Html.RenderAction("TopTabs","Membership"); %>
 
-                <% Html.RenderAction("Ads", "Recommendation"); %>
                 <% Html.RenderAction("CommingEventsBox", "CommingEvent"); %>
 
                 <% Html.RenderAction("Tabs","Tag"); %>
