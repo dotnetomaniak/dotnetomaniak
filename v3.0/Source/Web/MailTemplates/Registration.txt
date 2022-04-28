@@ -2,16 +2,16 @@
 
 Dziękujemy za rejestrację na <%=siteTitle%>! Mamy nadzieję, że podoba Ci się strona.
 
-Poniżej znajdują się Twoje dane rejestracyjne. Prosimy potwierdzić Twój e-mail klikając na poniższy link:
+Poniżej znajdują się Twoje dane rejestracyjne. Prosimy potwierdzić Twój e-mail klikając poniższy link:
 
-Użytkownik:<%=userName%>
+Użytkownik: <%=userName%>
 Hasło: nie sądziłeś chyba, że będziemy przesyłać Twoje hasło w mailu ;)
 
-Url:<%=url%>
+Url: <%=url%>
 
 Jeśli nie możesz kliknąć na powyższy link, skopiuj go i wklej do paska adresu swojej przeglądarki.
 
-To jest automatycznie wygenerowane wiadomość, to wszystkie maile od naszych użytkowników czytamy. Więc jeśli masz jakiekolwiek pytania, komentarze czy sugestie wyślij nam wiadomość.
+To jest automatycznie wygenerowana wiadomość, ale wszystkie maile od naszych użytkowników czytamy. Więc jeśli masz jakiekolwiek pytania, komentarze czy sugestie wyślij nam wiadomość.
 
 Dziękujemy,
 Zespół <%=siteTitle%> 
